@@ -11,6 +11,8 @@ import AVFoundation
 
 class LandingViewController: UIViewController {
 
+    @IBOutlet weak var cameraButton: UIButton!
+    
     @IBOutlet weak var background: UIImageView!
     
     @IBOutlet weak var libraryLeft: NSLayoutConstraint!
@@ -21,6 +23,7 @@ class LandingViewController: UIViewController {
     
     @IBAction func didTapLibrary(sender: AnyObject) {
         print("LIBRARY")
+        self.navigationController?.performSegueWithIdentifier("Library", sender: self)
     }
     
     @IBAction func didTapCamera(sender: AnyObject) {
@@ -33,6 +36,8 @@ class LandingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // cameraButton.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
         
         let scaleX = view.frame.size.width / 320
         libraryLeft.constant = libraryLeft.constant * scaleX

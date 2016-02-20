@@ -19,6 +19,8 @@
                     </navigationBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="qVJ-cy-pLv"/>
+                        <segue destination="UGw-Kc-yRq" kind="show" identifier="Library" action="showDetailViewController:sender:" id="vqQ-fG-REO"/>
+                        <segue destination="ePk-sB-AnL" kind="showDetail" identifier="Camera" id="3jW-3E-XpP"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hn1-bf-jjy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -95,6 +97,7 @@
                             <constraint firstItem="bVI-k8-u9n" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="251" id="AtP-t4-kZa"/>
                             <constraint firstAttribute="trailing" secondItem="bVI-k8-u9n" secondAttribute="trailing" constant="96" id="Bvu-kq-Ase"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" relation="greaterThanOrEqual" secondItem="qYe-a8-TiL" secondAttribute="bottom" id="CVK-ar-3x6"/>
+                            <constraint firstItem="4aM-bp-86k" firstAttribute="width" secondItem="iA8-o7-982" secondAttribute="height" multiplier="13:80" id="DA0-3b-h8n"/>
                             <constraint firstItem="qYe-a8-TiL" firstAttribute="top" relation="greaterThanOrEqual" secondItem="iA8-o7-982" secondAttribute="top" constant="-38" id="DMZ-hY-FTT"/>
                             <constraint firstItem="bVI-k8-u9n" firstAttribute="width" secondItem="iA8-o7-982" secondAttribute="height" multiplier="13:80" id="DPf-Rd-V8P"/>
                             <constraint firstItem="bVI-k8-u9n" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="30" id="Dno-wY-qyJ"/>
@@ -104,6 +107,7 @@
                             <constraint firstAttribute="trailing" secondItem="iA8-o7-982" secondAttribute="trailing" id="Jag-pf-qdr"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" relation="lessThanOrEqual" secondItem="qYe-a8-TiL" secondAttribute="bottom" constant="50" id="LDR-tZ-4U5"/>
                             <constraint firstItem="bVI-k8-u9n" firstAttribute="trailing" secondItem="iA8-o7-982" secondAttribute="trailing" id="LJA-zD-Xlc"/>
+                            <constraint firstItem="4aM-bp-86k" firstAttribute="height" secondItem="iA8-o7-982" secondAttribute="height" multiplier="13:80" id="NJY-LM-GT2"/>
                             <constraint firstItem="qYe-a8-TiL" firstAttribute="top" relation="lessThanOrEqual" secondItem="iA8-o7-982" secondAttribute="bottom" id="NdM-fG-kY5"/>
                             <constraint firstItem="iA8-o7-982" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Npq-8Y-7wj"/>
                             <constraint firstItem="4aM-bp-86k" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="192" id="O9S-v0-T80"/>
@@ -217,6 +221,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="background" destination="iA8-o7-982" id="od4-ZZ-X34"/>
+                        <outlet property="cameraButton" destination="4aM-bp-86k" id="jeW-D6-XUA"/>
                         <outlet property="cameraLeft" destination="O9S-v0-T80" id="fH9-ht-bJL"/>
                         <outlet property="cameraTop" destination="knc-wC-ujX" id="V4m-3s-1hh"/>
                         <outlet property="libraryLeft" destination="AtP-t4-kZa" id="ud7-tm-gb3"/>
@@ -228,22 +233,50 @@
             <point key="canvasLocation" x="127" y="-195"/>
         </scene>
         <!--View Controller-->
-        <scene sceneID="FYC-R3-Cve">
+        <scene sceneID="aHo-fS-S5N">
             <objects>
-                <viewController id="9xH-2Q-eHA" sceneMemberID="viewController">
+                <viewController id="UGw-Kc-yRq" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="DWF-sP-wQ7"/>
-                        <viewControllerLayoutGuide type="bottom" id="Cn3-pv-VJh"/>
+                        <viewControllerLayoutGuide type="top" id="Reb-aM-xBO"/>
+                        <viewControllerLayoutGuide type="bottom" id="AUO-fW-vJ9"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Y2M-UJ-Xgf">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <view key="view" contentMode="scaleToFill" id="Fdd-K1-7oW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="psg-2G-KDJ">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="Wy3-Sz-JUj"/>
+                                </items>
+                            </navigationBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ecP-pV-bQ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p1e-m2-7uH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="239" y="1144"/>
+            <point key="canvasLocation" x="-806" y="610"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="NIS-lr-jZp">
+            <objects>
+                <viewController id="ePk-sB-AnL" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hIC-1H-3QL"/>
+                        <viewControllerLayoutGuide type="bottom" id="fue-RD-83R"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LDZ-JB-MB2">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="0.022464787999999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ilY-uq-Pw7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-232" y="618"/>
         </scene>
     </scenes>
     <resources>
