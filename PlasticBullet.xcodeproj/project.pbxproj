@@ -7,19 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7812797F1C77A08C00C4AAA5 /* Main-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7812797D1C77A08C00C4AAA5 /* Main-iPad.storyboard */; };
-		781279811C77F17000C4AAA5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 781279801C77F17000C4AAA5 /* AVFoundation.framework */; };
+		7881D58F1C78DAA8000255F9 /* PBCircleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7881D58E1C78DAA8000255F9 /* PBCircleLabel.swift */; };
+		7881D5921C78DFB9000255F9 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 7881D5911C78DFB9000255F9 /* README.md */; };
 		78B6A24E1C76780500AE58F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6A24D1C76780500AE58F7 /* AppDelegate.swift */; };
 		78B6A2501C76780500AE58F7 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6A24F1C76780500AE58F7 /* LandingViewController.swift */; };
 		78B6A2531C76780500AE58F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78B6A2511C76780500AE58F7 /* Main.storyboard */; };
 		78B6A2551C76780500AE58F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78B6A2541C76780500AE58F7 /* Assets.xcassets */; };
 		78B6A2581C76780500AE58F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78B6A2561C76780500AE58F7 /* LaunchScreen.storyboard */; };
 		78BD7F771C7689C900078D05 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BD7F761C7689C800078D05 /* NavigationController.swift */; };
+		7DB9009B93DFA315DE326BB3 /* Pods_PlasticBullet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0893F224447775751EA92B24 /* Pods_PlasticBullet.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7812797E1C77A08C00C4AAA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Main-iPad.storyboard"; sourceTree = "<group>"; };
-		781279801C77F17000C4AAA5 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		0893F224447775751EA92B24 /* Pods_PlasticBullet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlasticBullet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2334246BEB39A7EFB887843E /* Pods-PlasticBullet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlasticBullet.release.xcconfig"; path = "Pods/Target Support Files/Pods-PlasticBullet/Pods-PlasticBullet.release.xcconfig"; sourceTree = "<group>"; };
+		72FDE293A2423CFDAC10758C /* Pods-PlasticBullet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlasticBullet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PlasticBullet/Pods-PlasticBullet.debug.xcconfig"; sourceTree = "<group>"; };
+		7881D58E1C78DAA8000255F9 /* PBCircleLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PBCircleLabel.swift; path = Landing/PBCircleLabel.swift; sourceTree = "<group>"; };
+		7881D5911C78DFB9000255F9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		78B6A24A1C76780500AE58F7 /* PlasticBullet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlasticBullet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78B6A24D1C76780500AE58F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78B6A24F1C76780500AE58F7 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
@@ -35,19 +39,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				781279811C77F17000C4AAA5 /* AVFoundation.framework in Frameworks */,
+				7DB9009B93DFA315DE326BB3 /* Pods_PlasticBullet.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		16F425962B6D1F5432EB52C8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0893F224447775751EA92B24 /* Pods_PlasticBullet.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7881D5901C78DAAE000255F9 /* Landing */ = {
+			isa = PBXGroup;
+			children = (
+				78B6A24F1C76780500AE58F7 /* LandingViewController.swift */,
+				7881D58E1C78DAA8000255F9 /* PBCircleLabel.swift */,
+			);
+			name = Landing;
+			sourceTree = "<group>";
+		};
 		78B6A2411C76780500AE58F7 = {
 			isa = PBXGroup;
 			children = (
-				781279801C77F17000C4AAA5 /* AVFoundation.framework */,
+				7881D5911C78DFB9000255F9 /* README.md */,
 				78B6A24C1C76780500AE58F7 /* PlasticBullet */,
 				78B6A24B1C76780500AE58F7 /* Products */,
+				C4C535EA535B43828A23B836 /* Pods */,
+				16F425962B6D1F5432EB52C8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,16 +85,24 @@
 		78B6A24C1C76780500AE58F7 /* PlasticBullet */ = {
 			isa = PBXGroup;
 			children = (
-				78B6A24D1C76780500AE58F7 /* AppDelegate.swift */,
-				78B6A24F1C76780500AE58F7 /* LandingViewController.swift */,
-				78BD7F761C7689C800078D05 /* NavigationController.swift */,
 				78B6A2511C76780500AE58F7 /* Main.storyboard */,
-				7812797D1C77A08C00C4AAA5 /* Main-iPad.storyboard */,
+				78B6A24D1C76780500AE58F7 /* AppDelegate.swift */,
+				78BD7F761C7689C800078D05 /* NavigationController.swift */,
+				7881D5901C78DAAE000255F9 /* Landing */,
 				78B6A2541C76780500AE58F7 /* Assets.xcassets */,
 				78B6A2561C76780500AE58F7 /* LaunchScreen.storyboard */,
 				78B6A2591C76780500AE58F7 /* Info.plist */,
 			);
 			path = PlasticBullet;
+			sourceTree = "<group>";
+		};
+		C4C535EA535B43828A23B836 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				72FDE293A2423CFDAC10758C /* Pods-PlasticBullet.debug.xcconfig */,
+				2334246BEB39A7EFB887843E /* Pods-PlasticBullet.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -81,9 +112,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 78B6A25C1C76780500AE58F7 /* Build configuration list for PBXNativeTarget "PlasticBullet" */;
 			buildPhases = (
+				176A0F38D2845A6873322EE6 /* Check Pods Manifest.lock */,
 				78B6A2461C76780500AE58F7 /* Sources */,
 				78B6A2471C76780500AE58F7 /* Frameworks */,
 				78B6A2481C76780500AE58F7 /* Resources */,
+				A5AE32186FB3240C63F15030 /* Embed Pods Frameworks */,
+				880C4B3F615DF643A2600EFB /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -135,11 +169,58 @@
 				78B6A2581C76780500AE58F7 /* LaunchScreen.storyboard in Resources */,
 				78B6A2551C76780500AE58F7 /* Assets.xcassets in Resources */,
 				78B6A2531C76780500AE58F7 /* Main.storyboard in Resources */,
-				7812797F1C77A08C00C4AAA5 /* Main-iPad.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		176A0F38D2845A6873322EE6 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		880C4B3F615DF643A2600EFB /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PlasticBullet/Pods-PlasticBullet-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A5AE32186FB3240C63F15030 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PlasticBullet/Pods-PlasticBullet-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		78B6A2461C76780500AE58F7 /* Sources */ = {
@@ -148,6 +229,8 @@
 			files = (
 				78B6A2501C76780500AE58F7 /* LandingViewController.swift in Sources */,
 				78BD7F771C7689C900078D05 /* NavigationController.swift in Sources */,
+				7881D5921C78DFB9000255F9 /* README.md in Sources */,
+				7881D58F1C78DAA8000255F9 /* PBCircleLabel.swift in Sources */,
 				78B6A24E1C76780500AE58F7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -155,14 +238,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		7812797D1C77A08C00C4AAA5 /* Main-iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7812797E1C77A08C00C4AAA5 /* Base */,
-			);
-			name = "Main-iPad.storyboard";
-			sourceTree = "<group>";
-		};
 		78B6A2511C76780500AE58F7 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -267,6 +342,7 @@
 		};
 		78B6A25D1C76780500AE58F7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 72FDE293A2423CFDAC10758C /* Pods-PlasticBullet.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = PlasticBullet/Info.plist;
@@ -278,6 +354,7 @@
 		};
 		78B6A25E1C76780500AE58F7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2334246BEB39A7EFB887843E /* Pods-PlasticBullet.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = PlasticBullet/Info.plist;

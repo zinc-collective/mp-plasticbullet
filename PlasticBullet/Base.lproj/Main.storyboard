@@ -67,27 +67,57 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bVI-k8-u9n">
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="164" placeholderIntrinsicHeight="164" translatesAutoresizingMaskIntoConstraints="NO" id="9hM-0K-z0N" userLabel="Library Text" customClass="PBCircleLabel" customModule="PlasticBullet" customModuleProvider="target">
+                                <rect key="frame" x="242" y="322" width="164" height="164"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="9hM-0K-z0N" secondAttribute="height" multiplier="1:1" id="Q8N-dW-6EJ"/>
+                                    <constraint firstAttribute="width" secondItem="9hM-0K-z0N" secondAttribute="height" multiplier="1:1" id="aps-Nu-uPI"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="aps-Nu-uPI"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bVI-k8-u9n" userLabel="Camera Button">
                                 <rect key="frame" x="274" y="353" width="101" height="101"/>
-                                <state key="normal" image="Library Button"/>
-                                <state key="highlighted" image="Library Button Highlight"/>
-                                <connections>
-                                    <action selector="didTapLibrary:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FcK-YP-THJ"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4aM-bp-86k">
-                                <rect key="frame" x="196" y="443" width="101" height="101"/>
                                 <state key="normal" image="Camera Button"/>
                                 <state key="highlighted" image="Camera Button Highlight"/>
                                 <connections>
-                                    <action selector="didTapCamera:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sXW-d9-yQ4"/>
+                                    <action selector="didTapCamera:" destination="BYZ-38-t0r" eventType="touchUpInside" id="I0F-89-6UL"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="164" placeholderIntrinsicHeight="164" translatesAutoresizingMaskIntoConstraints="NO" id="vHw-zz-8Rf" customClass="PBCircleLabel" customModule="PlasticBullet" customModuleProvider="target">
+                                <rect key="frame" x="165" y="412" width="164" height="164"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="vHw-zz-8Rf" secondAttribute="height" multiplier="1:1" id="lAr-lQ-6cA"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4aM-bp-86k" userLabel="Library Button">
+                                <rect key="frame" x="196" y="443" width="101" height="101"/>
+                                <state key="normal" image="Library Button"/>
+                                <state key="highlighted" image="Library Button Highlight"/>
+                                <connections>
+                                    <action selector="didTapLibrary:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pW5-NN-AfQ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o3U-zH-PnB">
+                                <rect key="frame" x="20" y="28" width="39" height="39"/>
+                                <state key="normal" image="Info"/>
+                                <state key="highlighted" image="4487DE23-D51A-418B-9E5A-3D4A2FB60AEB"/>
+                                <connections>
+                                    <action selector="didTapInfo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="P4w-PO-JRT"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.12" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="iA8-o7-982" secondAttribute="trailing" id="0D1-zf-DK3"/>
+                            <constraint firstItem="9hM-0K-z0N" firstAttribute="centerX" secondItem="bVI-k8-u9n" secondAttribute="centerX" id="0TP-tB-nf3"/>
                             <constraint firstItem="bVI-k8-u9n" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="129" id="1IT-2o-0zx"/>
+                            <constraint firstItem="9hM-0K-z0N" firstAttribute="centerY" secondItem="bVI-k8-u9n" secondAttribute="centerY" id="4Ic-Mh-RD7"/>
                             <constraint firstAttribute="trailing" secondItem="qYe-a8-TiL" secondAttribute="trailing" id="4KX-C3-TYj"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="bVI-k8-u9n" secondAttribute="bottom" constant="215" id="4kH-Qi-kl2"/>
                             <constraint firstItem="qYe-a8-TiL" firstAttribute="top" secondItem="iA8-o7-982" secondAttribute="bottom" id="6Z7-mJ-HW4"/>
@@ -104,9 +134,11 @@
                             <constraint firstItem="qYe-a8-TiL" firstAttribute="top" relation="lessThanOrEqual" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="480" id="F54-T9-ALm"/>
                             <constraint firstItem="bVI-k8-u9n" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="404" id="Fg9-E7-yM0"/>
                             <constraint firstItem="qYe-a8-TiL" firstAttribute="trailing" secondItem="iA8-o7-982" secondAttribute="trailing" id="Hhx-mH-drt"/>
+                            <constraint firstItem="vHw-zz-8Rf" firstAttribute="width" secondItem="4aM-bp-86k" secondAttribute="height" multiplier="164:101" id="IUn-8v-pbs"/>
                             <constraint firstAttribute="trailing" secondItem="iA8-o7-982" secondAttribute="trailing" id="Jag-pf-qdr"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" relation="lessThanOrEqual" secondItem="qYe-a8-TiL" secondAttribute="bottom" constant="50" id="LDR-tZ-4U5"/>
                             <constraint firstItem="bVI-k8-u9n" firstAttribute="trailing" secondItem="iA8-o7-982" secondAttribute="trailing" id="LJA-zD-Xlc"/>
+                            <constraint firstItem="9hM-0K-z0N" firstAttribute="width" secondItem="bVI-k8-u9n" secondAttribute="height" multiplier="164:101" id="Msl-LN-Aa0"/>
                             <constraint firstItem="4aM-bp-86k" firstAttribute="height" secondItem="iA8-o7-982" secondAttribute="height" multiplier="13:80" id="NJY-LM-GT2"/>
                             <constraint firstItem="qYe-a8-TiL" firstAttribute="top" relation="lessThanOrEqual" secondItem="iA8-o7-982" secondAttribute="bottom" id="NdM-fG-kY5"/>
                             <constraint firstItem="iA8-o7-982" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Npq-8Y-7wj"/>
@@ -114,6 +146,7 @@
                             <constraint firstItem="iA8-o7-982" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="ON1-kF-vT1"/>
                             <constraint firstItem="bVI-k8-u9n" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="92" id="OXB-Ow-FRr"/>
                             <constraint firstItem="bVI-k8-u9n" firstAttribute="width" secondItem="iA8-o7-982" secondAttribute="height" multiplier="13:80" id="Rbv-F1-x5f"/>
+                            <constraint firstItem="vHw-zz-8Rf" firstAttribute="width" secondItem="4aM-bp-86k" secondAttribute="height" multiplier="130:101" id="SCC-aq-wKv"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="qYe-a8-TiL" secondAttribute="bottom" id="SDD-jc-WMf"/>
                             <constraint firstItem="bVI-k8-u9n" firstAttribute="height" secondItem="iA8-o7-982" secondAttribute="height" multiplier="13:80" id="T0x-kN-pzM"/>
                             <constraint firstItem="qYe-a8-TiL" firstAttribute="leading" secondItem="iA8-o7-982" secondAttribute="leading" id="TX4-u7-hRU"/>
@@ -125,6 +158,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="iA8-o7-982" secondAttribute="trailing" constant="-20" id="XOj-5E-bEZ"/>
                             <constraint firstItem="qYe-a8-TiL" firstAttribute="top" relation="greaterThanOrEqual" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="442" id="Z0P-0M-Zvj"/>
                             <constraint firstItem="iA8-o7-982" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="a9n-KG-cZp"/>
+                            <constraint firstItem="vHw-zz-8Rf" firstAttribute="centerX" secondItem="4aM-bp-86k" secondAttribute="centerX" id="aXd-BJ-s3O"/>
                             <constraint firstItem="bVI-k8-u9n" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="129" id="ab1-Df-LcV"/>
                             <constraint firstItem="bVI-k8-u9n" firstAttribute="leading" secondItem="iA8-o7-982" secondAttribute="leading" id="bo1-IG-zlp"/>
                             <constraint firstItem="bVI-k8-u9n" firstAttribute="centerY" secondItem="iA8-o7-982" secondAttribute="bottom" multiplier="0.65" id="cGf-JX-5YD"/>
@@ -132,7 +166,10 @@
                             <constraint firstItem="iA8-o7-982" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="40:71" id="eJ2-gs-8qq"/>
                             <constraint firstItem="iA8-o7-982" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="eeG-ip-kd5"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="qYe-a8-TiL" secondAttribute="bottom" constant="50" id="enz-qd-zRo"/>
+                            <constraint firstItem="9hM-0K-z0N" firstAttribute="width" secondItem="9hM-0K-z0N" secondAttribute="height" multiplier="1:1" id="fFr-56-Ppd"/>
+                            <constraint firstItem="vHw-zz-8Rf" firstAttribute="centerY" secondItem="4aM-bp-86k" secondAttribute="centerY" id="fK2-8t-bk3"/>
                             <constraint firstItem="bVI-k8-u9n" firstAttribute="leading" secondItem="iA8-o7-982" secondAttribute="trailing" constant="-192" id="faK-95-Ucv"/>
+                            <constraint firstItem="vHw-zz-8Rf" firstAttribute="width" secondItem="4aM-bp-86k" secondAttribute="height" multiplier="170:101" id="hke-bx-JAo"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" relation="greaterThanOrEqual" secondItem="qYe-a8-TiL" secondAttribute="bottom" id="jBE-we-FCJ"/>
                             <constraint firstItem="qYe-a8-TiL" firstAttribute="top" secondItem="iA8-o7-982" secondAttribute="bottom" constant="50" id="kjq-Er-m4h"/>
                             <constraint firstItem="4aM-bp-86k" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="494" id="knc-wC-ujX"/>
@@ -151,6 +188,8 @@
                             <constraint firstItem="iA8-o7-982" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="q79-na-W5s"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="qYe-a8-TiL" secondAttribute="bottom" id="qD5-pe-eIV"/>
                             <constraint firstAttribute="trailingMargin" secondItem="bVI-k8-u9n" secondAttribute="trailing" constant="92" id="r8z-r7-83k"/>
+                            <constraint firstItem="vHw-zz-8Rf" firstAttribute="width" secondItem="4aM-bp-86k" secondAttribute="height" multiplier="150:101" id="rvz-jL-Ndh"/>
+                            <constraint firstItem="vHw-zz-8Rf" firstAttribute="width" secondItem="4aM-bp-86k" secondAttribute="height" multiplier="180:101" id="sA3-sA-RhQ"/>
                             <constraint firstItem="qYe-a8-TiL" firstAttribute="top" relation="lessThanOrEqual" secondItem="iA8-o7-982" secondAttribute="bottom" id="uLc-HH-ddt"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="iA8-o7-982" secondAttribute="bottom" id="ulS-GH-G7E"/>
                             <constraint firstItem="qYe-a8-TiL" firstAttribute="top" relation="greaterThanOrEqual" secondItem="iA8-o7-982" secondAttribute="bottom" constant="-38" id="ygJ-aA-efB"/>
@@ -167,6 +206,11 @@
                                 <exclude reference="eeG-ip-kd5"/>
                                 <exclude reference="q79-na-W5s"/>
                                 <exclude reference="zEz-yo-ql5"/>
+                                <exclude reference="fFr-56-Ppd"/>
+                                <exclude reference="SCC-aq-wKv"/>
+                                <exclude reference="hke-bx-JAo"/>
+                                <exclude reference="rvz-jL-Ndh"/>
+                                <exclude reference="sA3-sA-RhQ"/>
                                 <exclude reference="1IT-2o-0zx"/>
                                 <exclude reference="6po-96-nSX"/>
                                 <exclude reference="Bvu-kq-Ase"/>
@@ -223,11 +267,12 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="background" destination="iA8-o7-982" id="od4-ZZ-X34"/>
-                        <outlet property="cameraButton" destination="4aM-bp-86k" id="jeW-D6-XUA"/>
-                        <outlet property="cameraLeft" destination="O9S-v0-T80" id="fH9-ht-bJL"/>
-                        <outlet property="cameraTop" destination="knc-wC-ujX" id="V4m-3s-1hh"/>
-                        <outlet property="libraryLeft" destination="AtP-t4-kZa" id="ud7-tm-gb3"/>
-                        <outlet property="libraryTop" destination="Fg9-E7-yM0" id="UtF-2c-vTQ"/>
+                        <outlet property="cameraLeft" destination="AtP-t4-kZa" id="eYY-9l-f3m"/>
+                        <outlet property="cameraText" destination="9hM-0K-z0N" id="q3N-ry-Wdw"/>
+                        <outlet property="cameraTop" destination="Fg9-E7-yM0" id="ws2-qr-LjV"/>
+                        <outlet property="libraryLeft" destination="O9S-v0-T80" id="Nd3-oG-qPR"/>
+                        <outlet property="libraryText" destination="vHw-zz-8Rf" id="IwI-Vu-g7j"/>
+                        <outlet property="libraryTop" destination="knc-wC-ujX" id="8WM-63-2aS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -282,8 +327,25 @@
         </scene>
     </scenes>
     <resources>
+        <image name="4487DE23-D51A-418B-9E5A-3D4A2FB60AEB" width="65" height="65">
+            <mutableData key="keyedArchiveRepresentation">
+YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBMU
+GR4fJSYsLzU4VSRudWxs1QkKCwwNDg8QERJWTlNTaXplViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBz
+V05TQ29sb3KAAoAMEiTAAACAA4AKWHs2NSwgNjV90hUKFhhaTlMub2JqZWN0c6EXgASACdIVChoYohsc
+gAWABoAJEAXTIAohIiMkV05TLmJhc2VbTlMucmVsYXRpdmWAAIAIgAdfEHxmaWxlOi8vL0FwcGxpY2F0
+aW9ucy9YY29kZS5hcHAvQ29udGVudHMvUGx1Z0lucy9JREVJbnRlcmZhY2VCdWlsZGVyS2l0LmlkZXBs
+dWdpbi9Db250ZW50cy9SZXNvdXJjZXMvSUJNaXNzaW5nSW1hZ2VHbHlwaC50aWZm0icoKSpaJGNsYXNz
+bmFtZVgkY2xhc3Nlc1VOU1VSTKIpK1hOU09iamVjdNInKC0uV05TQXJyYXmiLSvTMDEKMjM0V05TV2hp
+dGVcTlNDb2xvclNwYWNlRDAgMAAQA4AL0icoNjdXTlNDb2xvcqI2K9InKDk6V05TSW1hZ2WiOStfEA9O
+U0tleWVkQXJjaGl2ZXLRPT5Ucm9vdIABAAgAEQAaACMALQAyADcARQBLAFYAXQBkAHEAeACAAIIAhACJ
+AIsAjQCWAJsApgCoAKoArACxALQAtgC4ALoAvADDAMsA1wDZANsA3QFcAWEBbAF1AXsBfgGHAYwBlAGX
+AZ4BpgGzAbgBugG8AcEByQHMAdEB2QHcAe4B8QH2AAAAAAAAAgEAAAAAAAAAPwAAAAAAAAAAAAAAAAAA
+Afg
+</mutableData>
+        </image>
         <image name="Camera Button" width="101" height="101"/>
         <image name="Camera Button Highlight" width="101" height="101"/>
+        <image name="Info" width="38" height="38"/>
         <image name="Landing Background" width="213" height="320"/>
         <image name="Landing Logobar" width="320" height="38"/>
         <image name="Library Button" width="101" height="101"/>
