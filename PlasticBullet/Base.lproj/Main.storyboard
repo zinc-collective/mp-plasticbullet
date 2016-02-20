@@ -36,11 +36,11 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Landing Background" translatesAutoresizingMaskIntoConstraints="NO" id="iA8-o7-982">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="621"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="320" id="6ev-3M-7cu"/>
@@ -54,8 +54,8 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="Landing Logobar" translatesAutoresizingMaskIntoConstraints="NO" id="qYe-a8-TiL">
-                                <rect key="frame" x="0.0" y="480" width="320" height="38"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="Landing Logobar" translatesAutoresizingMaskIntoConstraints="NO" id="qYe-a8-TiL">
+                                <rect key="frame" x="0.0" y="622" width="414" height="49"/>
                                 <color key="backgroundColor" red="0.10588236149999999" green="0.33725491169999999" blue="0.98431378599999997" alpha="1" colorSpace="deviceRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="CjV-JF-izv"/>
@@ -67,20 +67,20 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4aM-bp-86k">
-                                <rect key="frame" x="153" y="343" width="78" height="78"/>
-                                <state key="normal" image="Camera Button"/>
-                                <state key="highlighted" image="Camera Button Highlight"/>
-                                <connections>
-                                    <action selector="didTapCamera:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sXW-d9-yQ4"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bVI-k8-u9n">
-                                <rect key="frame" x="212" y="275" width="78" height="78"/>
+                                <rect key="frame" x="274" y="353" width="101" height="101"/>
                                 <state key="normal" image="Library Button"/>
                                 <state key="highlighted" image="Library Button Highlight"/>
                                 <connections>
                                     <action selector="didTapLibrary:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FcK-YP-THJ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4aM-bp-86k">
+                                <rect key="frame" x="196" y="443" width="101" height="101"/>
+                                <state key="normal" image="Camera Button"/>
+                                <state key="highlighted" image="Camera Button Highlight"/>
+                                <connections>
+                                    <action selector="didTapCamera:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sXW-d9-yQ4"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -94,7 +94,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="bVI-k8-u9n" secondAttribute="trailing" constant="77" id="6po-96-nSX"/>
                             <constraint firstItem="qYe-a8-TiL" firstAttribute="top" relation="lessThanOrEqual" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="480" id="7OL-V2-XDo"/>
                             <constraint firstAttribute="trailingMargin" secondItem="qYe-a8-TiL" secondAttribute="trailing" constant="-20" id="8oq-S4-Tlv"/>
-                            <constraint firstItem="bVI-k8-u9n" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="251" id="AtP-t4-kZa"/>
+                            <constraint firstItem="bVI-k8-u9n" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="325" id="AtP-t4-kZa"/>
                             <constraint firstAttribute="trailing" secondItem="bVI-k8-u9n" secondAttribute="trailing" constant="96" id="Bvu-kq-Ase"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" relation="greaterThanOrEqual" secondItem="qYe-a8-TiL" secondAttribute="bottom" id="CVK-ar-3x6"/>
                             <constraint firstItem="4aM-bp-86k" firstAttribute="width" secondItem="iA8-o7-982" secondAttribute="height" multiplier="13:80" id="DA0-3b-h8n"/>
@@ -102,7 +102,7 @@
                             <constraint firstItem="bVI-k8-u9n" firstAttribute="width" secondItem="iA8-o7-982" secondAttribute="height" multiplier="13:80" id="DPf-Rd-V8P"/>
                             <constraint firstItem="bVI-k8-u9n" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="30" id="Dno-wY-qyJ"/>
                             <constraint firstItem="qYe-a8-TiL" firstAttribute="top" relation="lessThanOrEqual" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="480" id="F54-T9-ALm"/>
-                            <constraint firstItem="bVI-k8-u9n" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="314" id="Fg9-E7-yM0"/>
+                            <constraint firstItem="bVI-k8-u9n" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="404" id="Fg9-E7-yM0"/>
                             <constraint firstItem="qYe-a8-TiL" firstAttribute="trailing" secondItem="iA8-o7-982" secondAttribute="trailing" id="Hhx-mH-drt"/>
                             <constraint firstAttribute="trailing" secondItem="iA8-o7-982" secondAttribute="trailing" id="Jag-pf-qdr"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" relation="lessThanOrEqual" secondItem="qYe-a8-TiL" secondAttribute="bottom" constant="50" id="LDR-tZ-4U5"/>
@@ -110,10 +110,12 @@
                             <constraint firstItem="4aM-bp-86k" firstAttribute="height" secondItem="iA8-o7-982" secondAttribute="height" multiplier="13:80" id="NJY-LM-GT2"/>
                             <constraint firstItem="qYe-a8-TiL" firstAttribute="top" relation="lessThanOrEqual" secondItem="iA8-o7-982" secondAttribute="bottom" id="NdM-fG-kY5"/>
                             <constraint firstItem="iA8-o7-982" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Npq-8Y-7wj"/>
-                            <constraint firstItem="4aM-bp-86k" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="192" id="O9S-v0-T80"/>
+                            <constraint firstItem="4aM-bp-86k" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="247" id="O9S-v0-T80"/>
                             <constraint firstItem="iA8-o7-982" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="ON1-kF-vT1"/>
                             <constraint firstItem="bVI-k8-u9n" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="92" id="OXB-Ow-FRr"/>
+                            <constraint firstItem="bVI-k8-u9n" firstAttribute="width" secondItem="iA8-o7-982" secondAttribute="height" multiplier="13:80" id="Rbv-F1-x5f"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="qYe-a8-TiL" secondAttribute="bottom" id="SDD-jc-WMf"/>
+                            <constraint firstItem="bVI-k8-u9n" firstAttribute="height" secondItem="iA8-o7-982" secondAttribute="height" multiplier="13:80" id="T0x-kN-pzM"/>
                             <constraint firstItem="qYe-a8-TiL" firstAttribute="leading" secondItem="iA8-o7-982" secondAttribute="leading" id="TX4-u7-hRU"/>
                             <constraint firstItem="bVI-k8-u9n" firstAttribute="width" secondItem="iA8-o7-982" secondAttribute="height" multiplier="19:96" id="U8C-Bu-N57"/>
                             <constraint firstItem="qYe-a8-TiL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="UbA-8c-mTS"/>
@@ -133,7 +135,7 @@
                             <constraint firstItem="bVI-k8-u9n" firstAttribute="leading" secondItem="iA8-o7-982" secondAttribute="trailing" constant="-192" id="faK-95-Ucv"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" relation="greaterThanOrEqual" secondItem="qYe-a8-TiL" secondAttribute="bottom" id="jBE-we-FCJ"/>
                             <constraint firstItem="qYe-a8-TiL" firstAttribute="top" secondItem="iA8-o7-982" secondAttribute="bottom" constant="50" id="kjq-Er-m4h"/>
-                            <constraint firstItem="4aM-bp-86k" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="382" id="knc-wC-ujX"/>
+                            <constraint firstItem="4aM-bp-86k" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="494" id="knc-wC-ujX"/>
                             <constraint firstItem="qYe-a8-TiL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="l5p-s7-zlW"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" relation="greaterThanOrEqual" secondItem="qYe-a8-TiL" secondAttribute="bottom" id="lAb-JU-xvU"/>
                             <constraint firstItem="bVI-k8-u9n" firstAttribute="leading" secondItem="iA8-o7-982" secondAttribute="trailing" constant="-107" id="lgh-Nf-gis"/>
@@ -218,7 +220,7 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="background" destination="iA8-o7-982" id="od4-ZZ-X34"/>
                         <outlet property="cameraButton" destination="4aM-bp-86k" id="jeW-D6-XUA"/>
@@ -280,11 +282,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Camera Button" width="78" height="78"/>
-        <image name="Camera Button Highlight" width="78" height="78"/>
+        <image name="Camera Button" width="101" height="101"/>
+        <image name="Camera Button Highlight" width="101" height="101"/>
         <image name="Landing Background" width="213" height="320"/>
         <image name="Landing Logobar" width="320" height="38"/>
-        <image name="Library Button" width="78" height="78"/>
-        <image name="Library Button Highlight" width="78" height="78"/>
+        <image name="Library Button" width="101" height="101"/>
+        <image name="Library Button Highlight" width="101" height="101"/>
     </resources>
 </document>

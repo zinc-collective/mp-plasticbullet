@@ -38,13 +38,14 @@ class LandingViewController: UIViewController {
         super.viewDidLoad()
         
         // cameraButton.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
+        let IB_MANUAL_WIDTH = CGFloat(414)
         
-        let scaleX = view.frame.size.width / 320
-        libraryLeft.constant = libraryLeft.constant * scaleX
-        libraryTop.constant = libraryTop.constant * scaleX
+        let scale = view.frame.size.width / IB_MANUAL_WIDTH
+        libraryLeft.constant = libraryLeft.constant * scale
+        libraryTop.constant = libraryTop.constant * scale
         
-        cameraLeft.constant = cameraLeft.constant * scaleX
-        cameraTop.constant = cameraTop.constant * scaleX
+        cameraLeft.constant = cameraLeft.constant * scale
+        cameraTop.constant = cameraTop.constant * scale
     }
 
     override func didReceiveMemoryWarning() {
