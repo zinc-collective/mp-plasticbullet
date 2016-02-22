@@ -56,28 +56,17 @@ class NavigationController: UINavigationController, UIImagePickerControllerDeleg
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        print("PICKED!")
-        
         let chosenImage = info[UIImagePickerControllerOriginalImage]
-        print(info)
-        print(chosenImage)
-        // imageView.image = chosenImage;
         
         picker.dismissViewControllerAnimated(true, completion: nil)
-        
         self.performSegueWithIdentifier("Filters", sender: chosenImage)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        print("PREPARE FOR SEGUE")
-        print(segue.identifier)
-        
         if (segue.identifier == "Filters") {
-            let filters = segue.destinationViewController as! FilterPickerViewController
             let image = sender as! UIImage
-            print("SET IMAGE FOR FILTERS YO")
-            print(filters)
-            print(image)
+            let filters = segue.destinationViewController as! FilterPickerViewController
+            filters.image = image
         }
     }
     

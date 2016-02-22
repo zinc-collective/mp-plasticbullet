@@ -46,11 +46,11 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="kkw-7n-9wY">
+                            <navigationBar contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="kkw-7n-9wY">
                                 <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                                 <items>
                                     <navigationItem title="Plastic Bullet" id="uRV-Uk-Kko">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="ULx-PD-qEb">
+                                        <barButtonItem key="leftBarButtonItem" title="Close" id="ULx-PD-qEb">
                                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <segue destination="iwt-VJ-oTD" kind="unwind" unwindAction="closeInfo:" id="VhW-Tg-bia"/>
@@ -61,6 +61,12 @@
                             </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="kkw-7n-9wY" firstAttribute="leading" secondItem="Wd4-5C-Opb" secondAttribute="leading" id="Ctc-4i-GGt"/>
+                            <constraint firstAttribute="trailing" secondItem="kkw-7n-9wY" secondAttribute="trailing" id="JMq-ch-SYF"/>
+                            <constraint firstItem="kkw-7n-9wY" firstAttribute="top" secondItem="uB5-T2-HSH" secondAttribute="bottom" id="ZLA-b7-Tg6"/>
+                            <constraint firstItem="kkw-7n-9wY" firstAttribute="width" secondItem="Wd4-5C-Opb" secondAttribute="width" id="aqm-TK-IQa"/>
+                        </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
@@ -112,19 +118,19 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="csX-Bu-LeK">
                                 <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fAl-cY-xzZ">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fAl-cY-xzZ" customClass="FilterView" customModule="PlasticBullet" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="207" height="336"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XGd-ZN-Unt">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XGd-ZN-Unt" customClass="FilterView" customModule="PlasticBullet" customModuleProvider="target">
                                         <rect key="frame" x="207" y="0.0" width="207" height="336"/>
                                         <color key="backgroundColor" red="1" green="0.022464787999999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jzY-ZE-RrS">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jzY-ZE-RrS" customClass="FilterView" customModule="PlasticBullet" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="336" width="207" height="336"/>
                                         <color key="backgroundColor" red="0.49109487347976355" green="0.55336596628442591" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="deY-qk-2ca">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="deY-qk-2ca" customClass="FilterView" customModule="PlasticBullet" customModuleProvider="target">
                                         <rect key="frame" x="207" y="336" width="207" height="336"/>
                                         <color key="backgroundColor" red="0.7827222546" green="1" blue="0.49402308690000002" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
@@ -197,6 +203,12 @@
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="bottomLeftImage" destination="jzY-ZE-RrS" id="lil-HD-GaE"/>
+                        <outlet property="bottomRightImage" destination="deY-qk-2ca" id="sfK-mr-de4"/>
+                        <outlet property="topLeftImage" destination="fAl-cY-xzZ" id="dCW-WB-FLi"/>
+                        <outlet property="topRightImage" destination="XGd-ZN-Unt" id="ac2-dl-w0B"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hpw-kk-x2w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

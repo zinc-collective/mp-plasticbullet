@@ -9,9 +9,24 @@
 import UIKit
 
 class FilterPickerViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
+    
+    @IBOutlet weak var topLeftImage: FilterView!
+    @IBOutlet weak var topRightImage: FilterView!
+    @IBOutlet weak var bottomLeftImage: FilterView!
+    @IBOutlet weak var bottomRightImage: FilterView!
+    
+    var image:UIImage?
+    var renderArgs:ffRenderArguments = FilterImage.randomImgParameters()
+    
+    var allImageViews:[FilterView] {
+        get {
+            return [topLeftImage, topRightImage, bottomLeftImage, bottomRightImage]
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateImages()
         // Do any additional setup after loading the view.
     }
 
@@ -27,6 +42,8 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
     
     @IBAction func didTapRefresh(sender: AnyObject) {
         print("REFRESH")
+        renderArgs = FilterImage.randomImgParameters()
+        updateImages()
     }
     
     
@@ -55,16 +72,36 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         print("PICKED!")
         
-        let chosenImage = info[UIImagePickerControllerOriginalImage]
+        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         print(info)
         print(chosenImage)
-        // imageView.image = chosenImage;
+        
+        self.image = chosenImage
+        updateImages()
         
         picker.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    func updateImage(image:UIImage) {
+        // set blurImage
+        // prepTmpArt: resolution landscape
+            // leakImg = [UIImage imageNamed:PROCESS_LEAK_6K]
+            // borderImg = [UIImage imageNamed:PROCESS_BORDER_LANDSCAPE_2K]
+            // cvVigArtImg null
+            // VigArtImg is null
+    }
     
-
+    func updateImages() {
+        if let img = self.image {
+//            let view = self.allImageViews[0]
+//            view.renderImage(img, renderArgs: renderArgs, blurImage: nil, cvVigArtImage: nil, sqrVigArtImage: nil, leakImage: nil, borderImage: nil)
+            allImageViews.forEach({(view: FilterView) -> () in
+                view.renderImage(img, renderArgs: renderArgs, blurImage: nil, cvVigArtImage: nil, sqrVigArtImage: nil, leakImage: nil, borderImage: nil)
+            })
+        }
+    }
+    
+    
     /*
     // MARK: - Navigation
 
