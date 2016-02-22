@@ -22,6 +22,7 @@ class InfoViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
+        self.title = "Plastic Bullet"
         self.navigationController?.navigationBarHidden = false
     }
 

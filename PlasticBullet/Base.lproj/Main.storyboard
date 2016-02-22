@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hwJ-Of-5OJ">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -10,6 +10,24 @@
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="df2-ep-u5h">
+            <objects>
+                <navigationController modalTransitionStyle="flipHorizontal" id="hwJ-Of-5OJ" customClass="NavigationController" customModule="PlasticBullet" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="RqV-1u-YWX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="JSA-fc-QV7"/>
+                        <segue destination="0fh-ly-n7p" kind="presentation" identifier="Info" id="AwG-nl-7Oq"/>
+                        <segue destination="ATz-sP-9fS" kind="presentation" identifier="Filters" modalTransitionStyle="flipHorizontal" id="guq-71-EFk"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UCL-xh-97V" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-276" y="-1136"/>
+        </scene>
         <!--Info View Controller-->
         <scene sceneID="B9R-N2-0ph">
             <objects>
@@ -22,35 +40,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="1Gh-XZ-a8j">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hello" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TU5-8V-gWF">
+                                <rect key="frame" x="23" y="72" width="39" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="kkw-7n-9wY">
                                 <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                                 <items>
-                                    <navigationItem title="Plastic Bullet" id="4kN-5J-SLb">
-                                        <barButtonItem key="leftBarButtonItem" title="Close" id="tkj-UC-Ttp">
+                                    <navigationItem title="Plastic Bullet" id="uRV-Uk-Kko">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="ULx-PD-qEb">
+                                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
-                                                <segue destination="iwt-VJ-oTD" kind="unwind" unwindAction="closeInfo:" id="TpG-uV-nxp"/>
+                                                <segue destination="iwt-VJ-oTD" kind="unwind" unwindAction="closeInfo:" id="VhW-Tg-bia"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xGJ-em-X3t">
-                                <rect key="frame" x="0.0" y="65" width="414" height="671"/>
-                                <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
-                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="1Gh-XZ-a8j" firstAttribute="leading" secondItem="Wd4-5C-Opb" secondAttribute="leading" id="Bcz-7f-ZQh"/>
-                            <constraint firstItem="1Gh-XZ-a8j" firstAttribute="width" secondItem="Wd4-5C-Opb" secondAttribute="width" id="DyO-ZM-x7o"/>
-                            <constraint firstAttribute="trailing" secondItem="1Gh-XZ-a8j" secondAttribute="trailing" id="MQn-Tc-LEJ"/>
-                            <constraint firstItem="xGJ-em-X3t" firstAttribute="leading" secondItem="Wd4-5C-Opb" secondAttribute="leading" id="QJb-w4-0Be"/>
-                            <constraint firstAttribute="trailing" secondItem="xGJ-em-X3t" secondAttribute="trailing" id="dpv-vx-svK"/>
-                            <constraint firstItem="xGJ-em-X3t" firstAttribute="top" secondItem="uB5-T2-HSH" secondAttribute="bottom" constant="45" id="hkh-px-Uij"/>
-                            <constraint firstItem="kCu-M1-arz" firstAttribute="top" secondItem="xGJ-em-X3t" secondAttribute="bottom" id="saT-ep-J2m"/>
-                            <constraint firstItem="xGJ-em-X3t" firstAttribute="width" secondItem="Wd4-5C-Opb" secondAttribute="width" id="tRG-5Q-Zem"/>
-                            <constraint firstItem="1Gh-XZ-a8j" firstAttribute="top" secondItem="uB5-T2-HSH" secondAttribute="bottom" id="tbk-f6-XZ8"/>
-                        </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
@@ -58,7 +68,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gGb-Fo-6mc" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="iwt-VJ-oTD" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3" y="-258"/>
+            <point key="canvasLocation" x="375" y="-264"/>
         </scene>
         <!--Filters View Controller-->
         <scene sceneID="lf6-H7-z6g">
@@ -77,15 +87,24 @@
                                 <items>
                                     <navigationItem title="Filters" id="ESJ-Su-p71">
                                         <leftBarButtonItems>
-                                            <barButtonItem systemItem="organize" id="0Xb-wr-gu2">
+                                            <barButtonItem systemItem="organize" id="hQN-PP-ZKv">
                                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <action selector="didTapLibrary:" destination="hpw-kk-x2w" id="69r-fh-4lO"/>
+                                                </connections>
                                             </barButtonItem>
-                                            <barButtonItem systemItem="camera" id="Mpj-tG-blF">
+                                            <barButtonItem systemItem="camera" id="uzF-af-klp">
                                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <action selector="didTapCamera:" destination="hpw-kk-x2w" id="l6l-Ad-fQl"/>
+                                                </connections>
                                             </barButtonItem>
                                         </leftBarButtonItems>
                                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="A2v-ia-rup">
                                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="didTapRefresh:" destination="hpw-kk-x2w" id="H8T-BK-pah"/>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -181,7 +200,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hpw-kk-x2w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-585" y="578"/>
+            <point key="canvasLocation" x="-276" y="-254"/>
         </scene>
         <!--Landing View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -241,7 +260,7 @@
                                 <state key="normal" image="Camera Button"/>
                                 <state key="highlighted" image="Camera Button Highlight"/>
                                 <connections>
-                                    <action selector="didTapCamera:" destination="BYZ-38-t0r" eventType="touchUpInside" id="I0F-89-6UL"/>
+                                    <action selector="didTapCamera:" destination="dkx-z0-nzr" eventType="touchUpInside" id="gi3-eZ-WFp"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="164" placeholderIntrinsicHeight="164" translatesAutoresizingMaskIntoConstraints="NO" id="vHw-zz-8Rf" customClass="PBCircleLabel" customModule="PlasticBullet" customModuleProvider="target">
@@ -256,7 +275,7 @@
                                 <state key="normal" image="Library Button"/>
                                 <state key="highlighted" image="Library Button Highlight"/>
                                 <connections>
-                                    <action selector="didTapLibrary:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pW5-NN-AfQ"/>
+                                    <action selector="didTapLibrary:" destination="dkx-z0-nzr" eventType="touchUpInside" id="cnM-R4-JiZ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o3U-zH-PnB">
@@ -264,7 +283,7 @@
                                 <state key="normal" image="Info"/>
                                 <state key="highlighted" image="Info+"/>
                                 <connections>
-                                    <action selector="didTapInfo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="P4w-PO-JRT"/>
+                                    <action selector="didTapInfo:" destination="dkx-z0-nzr" eventType="touchUpInside" id="iPJ-zJ-AyF"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -429,13 +448,11 @@
                         <outlet property="libraryLeft" destination="O9S-v0-T80" id="Nd3-oG-qPR"/>
                         <outlet property="libraryText" destination="vHw-zz-8Rf" id="IwI-Vu-g7j"/>
                         <outlet property="libraryTop" destination="knc-wC-ujX" id="8WM-63-2aS"/>
-                        <segue destination="ATz-sP-9fS" kind="presentation" identifier="Filters" modalTransitionStyle="flipHorizontal" id="Njj-BY-c2Y"/>
-                        <segue destination="0fh-ly-n7p" kind="show" identifier="Info" id="qns-69-7ym"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-585" y="-264"/>
+            <point key="canvasLocation" x="-895" y="-264"/>
         </scene>
     </scenes>
     <resources>

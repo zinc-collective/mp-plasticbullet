@@ -1,18 +1,19 @@
 //
-//  FilterPickerViewController.swift
+//  NavigationViewController.swift
 //  PlasticBullet
 //
-//  Created by Sean Hess on 2/20/16.
+//  Created by Sean Hess on 2/22/16.
 //  Copyright © 2016 JustStartGo. All rights reserved.
 //
 
 import UIKit
 
-class FilterPickerViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class NavigationController: UINavigationController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
+        self.navigationBar.tintColor = TintColor
     }
 
     override func didReceiveMemoryWarning() {
@@ -20,28 +21,12 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillAppear(animated: Bool) {
-        self.navigationController?.navigationBarHidden = false
-        self.title = "UMMM"
+    
+    @IBAction func woot(segue:UIStoryboardSegue) {
+        print("Close info")
     }
     
-    @IBAction func didTapRefresh(sender: AnyObject) {
-        print("REFRESH")
-    }
-    
-    
-    @IBAction func didTapCamera(sender: AnyObject) {
-        print("CAMERA")
-        if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)) {
-            let picker = UIImagePickerController.init()
-            picker.delegate = self
-            picker.allowsEditing = false
-            picker.sourceType = UIImagePickerControllerSourceType.Camera
-            self.presentViewController(picker, animated: true, completion: nil)
-        }
-    }
-    
-    @IBAction func didTapLibrary(sender: AnyObject) {
+    func openLibrary() {
         if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary)) {
             let picker = UIImagePickerController.init()
             picker.delegate = self
@@ -51,6 +36,24 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
         }
     }
     
+    func openCamera() {
+        if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)) {
+            let picker = UIImagePickerController.init()
+            picker.delegate = self
+            picker.allowsEditing = false
+            picker.sourceType = UIImagePickerControllerSourceType.Camera
+            self.presentViewController(picker, animated: true, completion: nil)
+        }
+    }
+    
+    func openInfo() {
+        print("INFO")
+        self.performSegueWithIdentifier("Info", sender: self)
+    }
+    
+    @IBAction func closeInfo(segue:UIStoryboardSegue) {
+        print("Close info")
+    }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         print("PICKED!")
@@ -61,10 +64,25 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
         // imageView.image = chosenImage;
         
         picker.dismissViewControllerAnimated(true, completion: nil)
+        
+        self.performSegueWithIdentifier("Filters", sender: chosenImage)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        print("PREPARE FOR SEGUE")
+        print(segue.identifier)
+        
+        if (segue.identifier == "Filters") {
+            let filters = segue.destinationViewController as! FilterPickerViewController
+            let image = sender as! UIImage
+            print("SET IMAGE FOR FILTERS YO")
+            print(filters)
+            print(image)
+        }
     }
     
     
-
+    
     /*
     // MARK: - Navigation
 

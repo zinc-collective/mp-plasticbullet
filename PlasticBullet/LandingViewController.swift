@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 import XMCircleType
 
-class LandingViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
+class LandingViewController: UIViewController  {
     
     @IBOutlet weak var background: UIImageView!
     
@@ -23,36 +23,10 @@ class LandingViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var libraryLeft: NSLayoutConstraint!
     @IBOutlet weak var libraryTop: NSLayoutConstraint!
     
-    @IBAction func didTapLibrary(sender: AnyObject) {
-        print("LIBRARY")
-        
-        if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary)) {
-            let picker = UIImagePickerController.init()
-            let nav = self
-            picker.delegate = nav
-            picker.allowsEditing = false
-            picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-            self.presentViewController(picker, animated: true, completion: nil)
-        }
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController?.navigationBarHidden = true
     }
     
-    @IBAction func didTapCamera(sender: AnyObject) {
-//        print("CAMERA")
-//        
-//        if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)) {
-//            let picker = UIImagePickerController.init()
-//            picker.delegate = self
-//            picker.allowsEditing = false
-//            picker.sourceType = UIImagePickerControllerSourceType.Camera
-//            self.presentViewController(picker, animated: true, completion: nil)
-//        }
-//        
-    }
-    
-    @IBAction func didTapInfo(sender: AnyObject) {
-        print("INFO")
-        self.performSegueWithIdentifier("Info", sender: self)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,36 +66,23 @@ class LandingViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     
-    @IBAction func closeInfo(segue:UIStoryboardSegue) {
-        print("Close info")
+    @IBAction func didTapLibrary(sender: AnyObject) {
+        print("LIBRARY")
+        let nav = self.navigationController as! NavigationController
+        nav.openLibrary()
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        print("PICKED!")
-        
-        let chosenImage = info[UIImagePickerControllerOriginalImage]
-        print(info)
-        print(chosenImage)
-        // imageView.image = chosenImage;
-        
-        picker.dismissViewControllerAnimated(true, completion: nil)
-        
-        self.performSegueWithIdentifier("Filters", sender: chosenImage)
+    @IBAction func didTapCamera(sender: AnyObject) {
+        print("CAMERA")
+        let nav = self.navigationController as! NavigationController
+        nav.openCamera()
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        print("PREPARE FOR SEGUE")
-        print(segue.identifier)
-        
-        if (segue.identifier == "Filters") {
-            let filters = segue.destinationViewController as! FilterPickerViewController
-            let image = sender as! UIImage
-            print("SET IMAGE FOR FILTERS YO")
-            print(filters)
-            print(image)
-        }
+    @IBAction func didTapInfo(sender: AnyObject) {
+        print("INFO")
+        let nav = self.navigationController as! NavigationController
+        print(self.navigationController)
+        nav.openInfo()
     }
-    
-    // unowned(unsafe) var delegate: protocol<UIImagePickerControllerDelegate, UINavigationControllerDelegate>?
 }
 
