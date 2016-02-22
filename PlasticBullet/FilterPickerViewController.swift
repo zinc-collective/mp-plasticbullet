@@ -1,18 +1,17 @@
 //
-//  NavigationControllerViewController.swift
+//  FilterPickerViewController.swift
 //  PlasticBullet
 //
-//  Created by Sean Hess on 2/18/16.
+//  Created by Sean Hess on 2/20/16.
 //  Copyright © 2016 JustStartGo. All rights reserved.
 //
 
 import UIKit
 
-class NavigationController : UINavigationController {
+class FilterPickerViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
 
@@ -21,18 +20,10 @@ class NavigationController : UINavigationController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func overrideTraitCollectionForChildViewController(childViewController: UIViewController) -> UITraitCollection? {
-        if view.bounds.width < view.bounds.height {
-            return UITraitCollection(horizontalSizeClass: .Compact)
-        } else {
-            return UITraitCollection(horizontalSizeClass: .Regular)
-        }
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController?.navigationBarHidden = false
+        self.title = "UMMM"
     }
-   
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
-    }
-    
 
     /*
     // MARK: - Navigation

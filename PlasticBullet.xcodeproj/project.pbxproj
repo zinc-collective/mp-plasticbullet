@@ -9,12 +9,14 @@
 /* Begin PBXBuildFile section */
 		7881D58F1C78DAA8000255F9 /* PBCircleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7881D58E1C78DAA8000255F9 /* PBCircleLabel.swift */; };
 		7881D5921C78DFB9000255F9 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 7881D5911C78DFB9000255F9 /* README.md */; };
+		7881D5941C78EDC9000255F9 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7881D5931C78EDC9000255F9 /* InfoViewController.swift */; };
+		7881D5961C78F7C4000255F9 /* FilterPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7881D5951C78F7C4000255F9 /* FilterPickerViewController.swift */; };
 		78B6A24E1C76780500AE58F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6A24D1C76780500AE58F7 /* AppDelegate.swift */; };
 		78B6A2501C76780500AE58F7 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6A24F1C76780500AE58F7 /* LandingViewController.swift */; };
 		78B6A2531C76780500AE58F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78B6A2511C76780500AE58F7 /* Main.storyboard */; };
 		78B6A2551C76780500AE58F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78B6A2541C76780500AE58F7 /* Assets.xcassets */; };
 		78B6A2581C76780500AE58F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78B6A2561C76780500AE58F7 /* LaunchScreen.storyboard */; };
-		78BD7F771C7689C900078D05 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BD7F761C7689C800078D05 /* NavigationController.swift */; };
+		78E2E6AF1C7B6A4B00B5A91A /* 4up_BG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78E2E6AE1C7B6A4B00B5A91A /* 4up_BG@2x.png */; };
 		7DB9009B93DFA315DE326BB3 /* Pods_PlasticBullet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0893F224447775751EA92B24 /* Pods_PlasticBullet.framework */; };
 /* End PBXBuildFile section */
 
@@ -24,6 +26,8 @@
 		72FDE293A2423CFDAC10758C /* Pods-PlasticBullet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlasticBullet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PlasticBullet/Pods-PlasticBullet.debug.xcconfig"; sourceTree = "<group>"; };
 		7881D58E1C78DAA8000255F9 /* PBCircleLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PBCircleLabel.swift; path = Landing/PBCircleLabel.swift; sourceTree = "<group>"; };
 		7881D5911C78DFB9000255F9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		7881D5931C78EDC9000255F9 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		7881D5951C78F7C4000255F9 /* FilterPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterPickerViewController.swift; sourceTree = "<group>"; };
 		78B6A24A1C76780500AE58F7 /* PlasticBullet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlasticBullet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78B6A24D1C76780500AE58F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78B6A24F1C76780500AE58F7 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
@@ -31,7 +35,7 @@
 		78B6A2541C76780500AE58F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		78B6A2571C76780500AE58F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		78B6A2591C76780500AE58F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		78BD7F761C7689C800078D05 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationController.swift; path = Assets.xcassets/NavigationController.swift; sourceTree = "<group>"; };
+		78E2E6AE1C7B6A4B00B5A91A /* 4up_BG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "4up_BG@2x.png"; path = "PlasticBullet/img/4up_BG@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,15 +61,24 @@
 		7881D5901C78DAAE000255F9 /* Landing */ = {
 			isa = PBXGroup;
 			children = (
-				78B6A24F1C76780500AE58F7 /* LandingViewController.swift */,
+				7881D5931C78EDC9000255F9 /* InfoViewController.swift */,
 				7881D58E1C78DAA8000255F9 /* PBCircleLabel.swift */,
 			);
 			name = Landing;
 			sourceTree = "<group>";
 		};
+		7881D5971C78F7C8000255F9 /* Filters */ = {
+			isa = PBXGroup;
+			children = (
+				7881D5951C78F7C4000255F9 /* FilterPickerViewController.swift */,
+			);
+			name = Filters;
+			sourceTree = "<group>";
+		};
 		78B6A2411C76780500AE58F7 = {
 			isa = PBXGroup;
 			children = (
+				78E2E6AE1C7B6A4B00B5A91A /* 4up_BG@2x.png */,
 				7881D5911C78DFB9000255F9 /* README.md */,
 				78B6A24C1C76780500AE58F7 /* PlasticBullet */,
 				78B6A24B1C76780500AE58F7 /* Products */,
@@ -87,10 +100,11 @@
 			children = (
 				78B6A2511C76780500AE58F7 /* Main.storyboard */,
 				78B6A24D1C76780500AE58F7 /* AppDelegate.swift */,
-				78BD7F761C7689C800078D05 /* NavigationController.swift */,
+				78B6A24F1C76780500AE58F7 /* LandingViewController.swift */,
 				7881D5901C78DAAE000255F9 /* Landing */,
 				78B6A2541C76780500AE58F7 /* Assets.xcassets */,
 				78B6A2561C76780500AE58F7 /* LaunchScreen.storyboard */,
+				7881D5971C78F7C8000255F9 /* Filters */,
 				78B6A2591C76780500AE58F7 /* Info.plist */,
 			);
 			path = PlasticBullet;
@@ -169,6 +183,7 @@
 				78B6A2581C76780500AE58F7 /* LaunchScreen.storyboard in Resources */,
 				78B6A2551C76780500AE58F7 /* Assets.xcassets in Resources */,
 				78B6A2531C76780500AE58F7 /* Main.storyboard in Resources */,
+				78E2E6AF1C7B6A4B00B5A91A /* 4up_BG@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,10 +243,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				78B6A2501C76780500AE58F7 /* LandingViewController.swift in Sources */,
-				78BD7F771C7689C900078D05 /* NavigationController.swift in Sources */,
 				7881D5921C78DFB9000255F9 /* README.md in Sources */,
 				7881D58F1C78DAA8000255F9 /* PBCircleLabel.swift in Sources */,
+				7881D5941C78EDC9000255F9 /* InfoViewController.swift in Sources */,
 				78B6A24E1C76780500AE58F7 /* AppDelegate.swift in Sources */,
+				7881D5961C78F7C4000255F9 /* FilterPickerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

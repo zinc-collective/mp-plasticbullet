@@ -3,5 +3,14 @@ TODO
 - [x] bottom bar
 - [x] circular text
 - [x] property sizes buttons
-- [ ] swap buttons
-- [ ] info button
+- [x] swap buttons
+- [x] info button
+
+DELIVER THIS WEEK
+- [ ] filters view - basic look and feel
+- [ ] filters view - 4 sub views
+- [ ] filters view - integrate actual thing!
+- [ ] filters view - support landscape
+- [ ] share button
+- [ ] info panel
+- [ ] localization
