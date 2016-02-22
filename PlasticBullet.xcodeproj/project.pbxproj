@@ -17,6 +17,7 @@
 		78B6A2551C76780500AE58F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78B6A2541C76780500AE58F7 /* Assets.xcassets */; };
 		78B6A2581C76780500AE58F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78B6A2561C76780500AE58F7 /* LaunchScreen.storyboard */; };
 		78E2E6AF1C7B6A4B00B5A91A /* 4up_BG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78E2E6AE1C7B6A4B00B5A91A /* 4up_BG@2x.png */; };
+		78E2E6B11C7B739100B5A91A /* todo.md in Sources */ = {isa = PBXBuildFile; fileRef = 78E2E6B01C7B739100B5A91A /* todo.md */; };
 		7DB9009B93DFA315DE326BB3 /* Pods_PlasticBullet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0893F224447775751EA92B24 /* Pods_PlasticBullet.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +37,7 @@
 		78B6A2571C76780500AE58F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		78B6A2591C76780500AE58F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78E2E6AE1C7B6A4B00B5A91A /* 4up_BG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "4up_BG@2x.png"; path = "PlasticBullet/img/4up_BG@2x.png"; sourceTree = "<group>"; };
+		78E2E6B01C7B739100B5A91A /* todo.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = todo.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 			children = (
 				78E2E6AE1C7B6A4B00B5A91A /* 4up_BG@2x.png */,
 				7881D5911C78DFB9000255F9 /* README.md */,
+				78E2E6B01C7B739100B5A91A /* todo.md */,
 				78B6A24C1C76780500AE58F7 /* PlasticBullet */,
 				78B6A24B1C76780500AE58F7 /* Products */,
 				C4C535EA535B43828A23B836 /* Pods */,
@@ -248,6 +251,7 @@
 				7881D5941C78EDC9000255F9 /* InfoViewController.swift in Sources */,
 				78B6A24E1C76780500AE58F7 /* AppDelegate.swift in Sources */,
 				7881D5961C78F7C4000255F9 /* FilterPickerViewController.swift in Sources */,
+				78E2E6B11C7B739100B5A91A /* todo.md in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
