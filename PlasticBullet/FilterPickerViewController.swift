@@ -8,15 +8,17 @@
 
 import UIKit
 
-class FilterPickerViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class FilterPickerViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MojoDelegate {
     
     @IBOutlet weak var topLeftImage: FilterView!
     @IBOutlet weak var topRightImage: FilterView!
     @IBOutlet weak var bottomLeftImage: FilterView!
     @IBOutlet weak var bottomRightImage: FilterView!
+    @IBOutlet weak var imagesView: UIView!
     
     var image:UIImage?
-    var renderArgs:ffRenderArguments = FilterImage.randomImgParameters()
+    
+    var mojo:mojoViewController = mojoViewController.init()
     
     var allImageViews:[FilterView] {
         get {
@@ -26,7 +28,19 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateImages()
+        
+        mojo.delegate = self
+        mojo.topLeftView = self.topLeftImage
+        mojo.topRightView = self.topRightImage
+        mojo.bottomLeftView = self.bottomLeftImage
+        mojo.bottomRightView = self.bottomRightImage
+        mojo.view = self.imagesView
+        
+        mojo.viewDidLoad()
+        
+        if let img = image {
+            updateImage(img)
+        }
         // Do any additional setup after loading the view.
     }
 
@@ -40,10 +54,21 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
         self.title = "UMMM"
     }
     
+    override func prefersStatusBarHidden() -> Bool {
+        return true;
+    }
+    
     @IBAction func didTapRefresh(sender: AnyObject) {
         print("REFRESH")
-        renderArgs = FilterImage.randomImgParameters()
-        updateImages()
+        if let img = image {
+            updateImage(img)
+        }
+    }
+    
+    func didRefreshGesture() {
+        if let img = image {
+            updateImage(img)
+        }
     }
     
     
@@ -77,12 +102,15 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
         print(chosenImage)
         
         self.image = chosenImage
-        updateImages()
+        updateImage(chosenImage)
         
         picker.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    
     func updateImage(image:UIImage) {
+        print("UPDATE IMAGE", image)
+        mojo.renderImage(image)
         // set blurImage
         // prepTmpArt: resolution landscape
             // leakImg = [UIImage imageNamed:PROCESS_LEAK_6K]
@@ -91,15 +119,19 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
             // VigArtImg is null
     }
     
-    func updateImages() {
-        if let img = self.image {
-//            let view = self.allImageViews[0]
-//            view.renderImage(img, renderArgs: renderArgs, blurImage: nil, cvVigArtImage: nil, sqrVigArtImage: nil, leakImage: nil, borderImage: nil)
-            allImageViews.forEach({(view: FilterView) -> () in
-                view.renderImage(img, renderArgs: renderArgs, blurImage: nil, cvVigArtImage: nil, sqrVigArtImage: nil, leakImage: nil, borderImage: nil)
-            })
-        }
+    func didTransformOrientations(isPortrait: Bool) {
+        print("SWITCHING!", isPortrait)
     }
+    
+//    func updateImages() {
+//        if let img = self.image {
+////            let view = self.allImageViews[0]
+////            view.renderImage(img, renderArgs: renderArgs, blurImage: nil, cvVigArtImage: nil, sqrVigArtImage: nil, leakImage: nil, borderImage: nil)
+//            allImageViews.forEach({(view: FilterView) -> () in
+//                view.renderImage(img, renderArgs: renderArgs, blurImage: nil, cvVigArtImage: nil, sqrVigArtImage: nil, leakImage: nil, borderImage: nil)
+//            })
+//        }
+//    }
     
     
     /*

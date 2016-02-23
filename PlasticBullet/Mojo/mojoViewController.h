@@ -14,24 +14,23 @@
 //add by jack
 typedef enum SAVE_TO_TYPE{
 	SAVE_TO_ALBUM = 0,
-	SAVE_TO_FACEBOOK,
-	SAVE_TO_FLICKR,
-	SAVE_TO_TWITTER,
-	SAVE_TO_TUMBLR,
-	SAVE_TO_ALL
 }SAVE_TO;
 
 #define KEY_SAVE_TO		@"saveto"
 //end add
 
-@class mojoView;
 @class PostToFlickrViewController;
 @class PostToAllViewController;
 @class ProgressView;
 
+@protocol MojoDelegate
+-(void)didTransformOrientations:(BOOL)isPortrait;
+-(void)didRefreshGesture;
+@end
+
 @interface mojoViewController : UIViewController <UIPopoverControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, UIAccelerometerDelegate, CLLocationManagerDelegate> {
 //	IBOutlet	UIButton *button1;
-	
+    
 	IBOutlet	UIActivityIndicatorView *spinner;
 	IBOutlet	UIImageView *topLeftView;
 	IBOutlet	UIImageView *topRightView;
@@ -45,28 +44,6 @@ typedef enum SAVE_TO_TYPE{
 	IBOutlet	UIImageView *middleMiddleView;
 	IBOutlet	UIImageView *middleRightView;
 	IBOutlet	UIImageView *bottomMiddleView;
-
-	
-	IBOutlet	UIButton *button_topLeftView;
-	IBOutlet	UIButton *button_topRightView;
-	IBOutlet	UIButton *button_bottomLeftView;
-	IBOutlet	UIButton *button_bottomRightView;
-	
-	IBOutlet	UIButton *button_topMiddleView;
-	IBOutlet	UIButton *button_middleLeftView;
-	IBOutlet	UIButton *button_middleMiddleView;
-	IBOutlet	UIButton *button_middleRightView;
-	IBOutlet	UIButton *button_bottomMiddleView;
-
-	IBOutlet	UIButton *button_back;
-	IBOutlet	UIButton *button_camera;
-	IBOutlet	UIButton *button_library;
-	IBOutlet	UIButton *button_refresh;
-    IBOutlet	UIButton *button_refresh2;
-	IBOutlet	UIButton *button_save;
-	
-	IBOutlet	UIButton *button_four;
-	IBOutlet	UIButton *button_nine;
 	
 	int m_viewState;
 //	CFURLRef		soundFileURLRef;
@@ -127,6 +104,8 @@ typedef enum SAVE_TO_TYPE{
 	
 }
 
+@property (weak, nonatomic) id<MojoDelegate> delegate;
+
 @property (nonatomic, assign) UIInterfaceOrientation nowInterfaceOrientation;
 
 @property (retain, nonatomic)PostToAllViewController *postToAllViewController;
@@ -146,28 +125,6 @@ typedef enum SAVE_TO_TYPE{
 @property (retain, nonatomic) UIImageView *middleMiddleView;
 @property (retain, nonatomic) UIImageView *middleRightView;
 @property (retain, nonatomic) UIImageView *bottomMiddleView;
-
-
-@property (retain, nonatomic) UIButton *button_topLeftView;
-@property (retain, nonatomic) UIButton *button_topRightView;
-@property (retain, nonatomic) UIButton *button_bottomLeftView;
-@property (retain, nonatomic) UIButton *button_bottomRightView;
-
-@property (retain, nonatomic) UIButton *button_topMiddleView;
-@property (retain, nonatomic) UIButton *button_middleLeftView;
-@property (retain, nonatomic) UIButton *button_middleMiddleView;
-@property (retain, nonatomic) UIButton *button_middleRightView;
-@property (retain, nonatomic) UIButton *button_bottomMiddleView;
-
-@property (retain, nonatomic) UIButton *button_back;
-@property (retain, nonatomic) UIButton *button_camera;
-@property (retain, nonatomic) UIButton *button_library;
-@property (retain, nonatomic) UIButton *button_refresh;
-@property (retain, nonatomic) UIButton *button_refresh2;
-@property (retain, nonatomic) UIButton *button_save;
-
-@property (retain, nonatomic) UIButton *button_four;
-@property (retain, nonatomic) UIButton *button_nine;
 
 //@property (readwrite)	CFURLRef		soundFileURLRef;
 //@property (readonly)	SystemSoundID	soundFileObject;
@@ -271,13 +228,12 @@ typedef enum SAVE_TO_TYPE{
 -(bool) useFlickr;
 -(void) printAvailMem;
 
--(UIImage *)getUploadImage;
-
 - (void) resetNumberModel;
 
 - (void)backToFour;
 - (void)showFourViewScreen;
 - (void)cancelUploasShowOneViewScreen;
+-(void)renderImage:(UIImage*)originalImage;
 
 @end
 

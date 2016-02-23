@@ -25,6 +25,14 @@ class InfoViewController: UIViewController {
         self.title = "Plastic Bullet"
         self.navigationController?.navigationBarHidden = false
     }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return false
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
+    }
 
     /*
     // MARK: - Navigation

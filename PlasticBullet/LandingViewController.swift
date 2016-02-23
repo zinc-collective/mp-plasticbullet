@@ -65,6 +65,14 @@ class LandingViewController: UIViewController  {
         // Dispose of any resources that can be recreated.
     }
     
+    override func prefersStatusBarHidden() -> Bool {
+        return false
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
+    }
+    
     
     @IBAction func didTapLibrary(sender: AnyObject) {
         print("LIBRARY")

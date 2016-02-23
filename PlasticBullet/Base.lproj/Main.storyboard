@@ -120,19 +120,19 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fAl-cY-xzZ" customClass="FilterView" customModule="PlasticBullet" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="207" height="336"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XGd-ZN-Unt" customClass="FilterView" customModule="PlasticBullet" customModuleProvider="target">
                                         <rect key="frame" x="207" y="0.0" width="207" height="336"/>
-                                        <color key="backgroundColor" red="1" green="0.022464787999999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jzY-ZE-RrS" customClass="FilterView" customModule="PlasticBullet" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="336" width="207" height="336"/>
-                                        <color key="backgroundColor" red="0.49109487347976355" green="0.55336596628442591" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="deY-qk-2ca" customClass="FilterView" customModule="PlasticBullet" customModuleProvider="target">
                                         <rect key="frame" x="207" y="336" width="207" height="336"/>
-                                        <color key="backgroundColor" red="0.7827222546" green="1" blue="0.49402308690000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.28627450980392155" green="0.28627450980392155" blue="0.28627450980392155" alpha="1" colorSpace="calibratedRGB"/>
@@ -206,6 +206,7 @@
                     <connections>
                         <outlet property="bottomLeftImage" destination="jzY-ZE-RrS" id="lil-HD-GaE"/>
                         <outlet property="bottomRightImage" destination="deY-qk-2ca" id="sfK-mr-de4"/>
+                        <outlet property="imagesView" destination="csX-Bu-LeK" id="DSh-2E-tZ6"/>
                         <outlet property="topLeftImage" destination="fAl-cY-xzZ" id="dCW-WB-FLi"/>
                         <outlet property="topRightImage" destination="XGd-ZN-Unt" id="ac2-dl-w0B"/>
                     </connections>

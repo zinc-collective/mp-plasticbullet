@@ -5,6 +5,9 @@
 
 
 #define TOOLBAR_OFFSET_HEIGHT 44
+#define ICON_SIZE 24
+#define DOT_SIZE 80
+#define BORDER_SIZE 5
 
 /*
  TODO
@@ -33,14 +36,14 @@
 
 #include <math.h>
 #import "mojoViewController.h"
-#import "mojoView.h"
-// #import "mojoAppDelegate.h"
+ #import "mojoAppDelegate.h"
+#import "DataTypeDef.h"
 // #import "PostToFacebookViewController.h"
 // #import "PostToFlickrViewController.h"
 
 #import "Utilities.h"
 
-#import <AssetsLibrary/AssetsLibrary.h>
+// #import <AssetsLibrary/AssetsLibrary.h>
 
 #ifdef __MOJO__
 //#include "Plugin_Render.h"
@@ -365,6 +368,7 @@ static ffRenderArguments ffRenderArgsArray[9];
 #endif
 
 @implementation mojoViewController
+@synthesize delegate;
 //@synthesize button1;
 @synthesize spinner;
 //@synthesize soundFileURLRef;
@@ -382,27 +386,6 @@ static ffRenderArguments ffRenderArgsArray[9];
 
 @synthesize toolbarView;
 @synthesize topbarView;
-
-@synthesize button_topLeftView;
-@synthesize button_topRightView;
-@synthesize button_bottomLeftView;
-@synthesize button_bottomRightView;
-
-@synthesize button_topMiddleView;
-@synthesize button_middleLeftView;
-@synthesize button_middleMiddleView;
-@synthesize button_middleRightView;
-@synthesize button_bottomMiddleView;
-
-@synthesize button_back;
-@synthesize button_camera;
-@synthesize button_library;
-@synthesize button_refresh;
-@synthesize button_refresh2;
-@synthesize button_save;
-
-@synthesize button_four;
-@synthesize button_nine;
 
 
 #ifdef __MOJO__
@@ -439,193 +422,6 @@ static UIImage *viewImageArray[9] = {nil};
 @synthesize shareProgressView;
 
 @synthesize nowInterfaceOrientation;
-
-
-
-- (void)setViewState
-{	
-	
-	//quadMode = (m_viewState == 1);	
-	
-	if(m_viewState == 2)
-	{
-		//quadMode = NO;
-		[button_save setHidden:NO];
-		[button_back setHidden:NO];		
-		[button_camera setHidden:YES];
-		[button_library setHidden:YES];	
-		if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-			[button_refresh setHidden:YES];	
-			[button_refresh2 setHidden:NO];	
-			
-			[button_four setHidden:YES];	
-			[button_nine setHidden:YES];
-		}
-		
-		//if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-		//			[button_refresh setFrame:CGRectMake(button_refresh.frame.origin.x + 220, button_refresh.frame.origin.y, button_refresh.frame.size.width, button_refresh.frame.size.height)];
-		//		}
-		
-		
-	}
-	else
-	{
-		//quadMode = YES;
-		[button_save setHidden:YES];
-		[button_back setHidden:YES];		
-		[button_camera setHidden:NO];
-		[button_library setHidden:NO];
-		if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-			[button_refresh setHidden:NO];
-			[button_refresh2 setHidden:YES];
-			[button_four setHidden:NO];	
-			[button_nine setHidden:NO];
-		}
-		
-		
-		
-		if (numberMode == 4) {
-			[button_four  setImage:[UIImage imageNamed:@"four_ipad.png"]  forState:UIControlStateNormal];
-			//[button_four  setImage:[UIImage imageNamed:@"four_ipad.png"]  forState:UIControlStateHighlighted];
-			[button_nine  setImage:[UIImage imageNamed:@"nine_down_ipad.png"]  forState:UIControlStateNormal];
-		} else {
-			[button_four  setImage:[UIImage imageNamed:@"four_down_ipad.png"] forState:UIControlStateNormal];
-			[button_nine  setImage:[UIImage imageNamed:@"nine_ipad.png"] forState:UIControlStateNormal];
-			//[button_nine  setImage:[UIImage imageNamed:@"nine_ipad.png"] forState:UIControlStateHighlighted];
-			
-		}
-		
-	}
-}
-
-- (void)activateButton:(int)i
-{
-	if(i == 0)
-	{
-		bool doRender = false;
-		switch(m_viewState)
-		{
-			case 0:
-				[self getExistingPicture];
-				break;
-			case 1:
-				[self getExistingPicture];
-				//m_viewState = 0;
-				break;
-			case 2:
-				// Goto Quad Mode
-				//back
-				[UIView beginAnimations:@"Rotate" context:nil];
-				[UIView  setAnimationDelegate:self];
-				[UIView setAnimationDidStopSelector:@selector (animationDidStopAndRender:finished:context:) ];
-				[UIView  setAnimationWillStartSelector:@selector (animationWillStart:context:) ];
-				numberMode = lastNumberMode;
-				
-				m_viewState = 1;
-				[self setWidgetGeometry]; // Account for rotation to set up animation start state
-				
-				[UIView commitAnimations];	
-				
-				//m_viewState = 2;
-				//				//numberMode = 1;
-				//				[self setWidgetGeometry]; // Account for rotation to set up animation start state
-				//				
-				//				m_viewState = 1;
-				
-				
-				//doRender = true;
-				break;
-		}
-		[self setViewState];
-		if(m_viewState == 1)
-		{
-			if(doRender)
-			{
-				
-				[UIView beginAnimations:@"RenderAnim" context:nil];
-				[UIView  setAnimationDelegate:self];
-				[UIView setAnimationDidStopSelector:@selector (animationDidStopAndRender:finished:context:) ];
-				[UIView  setAnimationWillStartSelector:@selector (animationWillStart:context:) ];
-				[self setWidgetGeometry];
-				[UIView commitAnimations];	
-			}
-			mojoView *pView = (mojoView *)self.view;
-			[pView setNeedsDisplay];	
-		}
-	}
-	else if(i==1)
-	{
-		switch(m_viewState)
-		{
-			case 1:
-				//m_viewState = 0;
-				[self getCameraPicture];
-				break;
-			case 2: 
-			{ //save and share
-			}
-		}		
-	}
-	
-	else if(i==3) {
-		if (numberMode == 4) {
-			return;
-		}
-		m_viewState = 1;
-		numberMode = 4;
-		
-		
-		[self setWidgetGeometry]; 
-		[self setViewState];
-		
-		//refresh
-		//Render regular
-		[self randomizeQuad:-2];
-		//mojoView *pView = (mojoView *)self.view;
-		//		[pView setNeedsDisplay];
-		
-	}
-	
-	else if(i==4) {
-		if (numberMode == 9) {
-			return;
-		}
-		
-		m_viewState = 1;
-		numberMode = 9;
-		
-		[self setWidgetGeometry]; 
-		[self setViewState];
-		
-		//refresh
-		//Render regular
-		[self randomizeQuad:-2];
-		//mojoView *pView = (mojoView *)self.view;
-		//		[pView setNeedsDisplay];
-	}
-	
-	else //refresh
-	{
-		switch(m_viewState)
-		{
-			case 0:
-				break;
-			case 1:
-			{
-				[self randomizeQuad:-1];
-				mojoView *pView = (mojoView *)self.view;
-				[pView setNeedsDisplay];
-				break;
-			}
-			case 2:
-			{
-				[self randomizeQuad:m_quadIndex];
-				mojoView *pView = (mojoView *)self.view;
-				[pView setNeedsDisplay];
-			}
-		}
-	}
-}
 
 
 static bool s_cameraPicture = false;
@@ -669,20 +465,10 @@ int loadTime = 0;
 	
 	
 	
-	//[self setWidgetGeometry];
-	[self setViewState];
+//	[self setWidgetGeometry];
+//	[self setViewState];
 	
 	
-	
-	mojoView *pView = (mojoView *)self.view;
-	
-#ifdef SUBVIEW
-	s_mySubView = [[UIView alloc] initWithFrame:CGRectMake(0, TOOLBAR_OFFSET_HEIGHT,320, 480-TOOLBAR_OFFSET_HEIGHT)];
-	[pView addSubview:s_mySubView];
-	[pView sendSubviewToBack:s_mySubView];
-#endif
-	
-	[pView setMojoViewController:self];
 	
 	//theLock = [[NSRecursiveLock alloc] init];
     [[UIAccelerometer sharedAccelerometer] setUpdateInterval:(1.0 / 40)];
@@ -765,25 +551,22 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 	pView.frame = CGRectMake(centerX - width*0.5, centerY - height*0.5, width, height);
 }
 
-- (void)setWidgetGeometry
-{
+- (void)setRotations {
+    
 	float rotate = 0.f;
+    float scale = 1.f;
+    
 	if(!isPortrait)
 	{
-		if(isInverted) { //left
+		if(isInverted) {
 			rotate = M_PI/2.0;
-			
-			//self.toolbarView.frame = CGRectMake(0, 0, 1024, 768);
-			//[self.toolbarView  setImage:[UIImage imageNamed:@"backcolor_left.png"]];
-			//self.toolbarView.frame = CGRectMake(0, 0, 768, 1024);
 		}
-		else { //rgiht
-			//self.toolbarView.frame = CGRectMake(0, 0, 1024, 768);
-			//[self.toolbarView  setImage:[UIImage imageNamed:@"backcolor_right.png"]];
-			//self.toolbarView.frame = CGRectMake(0, 0, 768, 1024);
-			
+		else {
 			rotate = -M_PI/2.0;
 		}
+        
+        // When in portrait, we need to shrink the images to fit the new aspect ratio
+        scale = topLeftView.frame.size.width / topLeftView.frame.size.height;
 	}
 	else
 	{
@@ -801,395 +584,436 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 		
 	}
 	
-	//UIImageView *imageViewArray[] = {bottomRightView, topRightView, bottomLeftView, topLeftView};
-	//	UIButton *button_imageViewArray[] = {button_bottomRightView, button_topRightView, button_bottomLeftView, button_topLeftView};
-	
-	UIImageView *imageViewArray[] = {topLeftView, topRightView, bottomLeftView, bottomRightView, topMiddleView, middleLeftView, middleMiddleView, middleRightView, bottomMiddleView};
-	UIButton *button_imageViewArray[] = {button_topLeftView, button_topRightView, button_bottomLeftView,  button_bottomRightView,  button_topMiddleView, button_middleLeftView, button_middleMiddleView, button_middleRightView, button_bottomMiddleView};
-	
-	//	UIImageView *imageViewArray[] = {topLeftView, topMiddleView, topRightView, middleLeftView, middleMiddleView, middleRightView, bottomLeftView, bottomMiddleView, bottomRightView };
-	//	UIButton *button_imageViewArray[] = {button_topLeftView, button_topMiddleView, button_topRightView, button_middleLeftView, button_middleMiddleView, button_middleRightView, button_bottomLeftView,  button_bottomMiddleView, button_bottomRightView};
-	
-	if(numberMode == 4)
-	{
-		for(int i=0; i<9; ++i)
-		{
-			[imageViewArray[i]  setHidden:YES];
-			
-		}
-		
-		for(int i=0; i<4; ++i)
-		{
-			
-			
-			[imageViewArray[i]  setHidden:NO];
-			//			[button_imageViewArray[i]  setHidden:NO];
-			//[button_imageViewArray[i]  setHidden: YES ];
-		}
-		
-	}
-	
-	else if (numberMode == 9) {
-		for(int i=0; i<9; ++i)
-		{
-			[imageViewArray[i]  setHidden:NO];
-			//			[button_imageViewArray[i]  setHidden:NO];
-			//[button_imageViewArray[i]  setHidden: YES ];
-		}
-	}
-	
-	else
-	{
-		for(int i=0; i<9; ++i)
-		{
-			[imageViewArray[i]  setHidden:YES];
-			
-		}
-		
-		for(int i=0; i<9; ++i)
-		{
-			[imageViewArray[i]  setHidden: i!=m_quadIndex ? YES : NO ];
-			//[button_imageViewArray[i]  setHidden: YES ];
-		}
-	}
-	
-	float width, height;
-	
-	
 	CGAffineTransform m = CGAffineTransformMakeRotation(rotate);
-	if(numberMode == 4)
-	{
-		if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-		{
-			
-			
-			if(isPortrait)
-			{
-				width = (768 - 3*BORDER_SIZE)/2;
-				height = (1024 - (TOOLBAR_OFFSET_HEIGHT + 3*BORDER_SIZE))/2;
-				
-				if(isInverted) {//down
-					topLeftView.frame = CGRectMake(BORDER_SIZE, BORDER_SIZE, width, height);
-					topRightView.frame = CGRectMake(width+2*BORDER_SIZE, BORDER_SIZE, width, height);
-					bottomLeftView.frame = CGRectMake(BORDER_SIZE, height+BORDER_SIZE*2, width, height);
-					bottomRightView.frame = CGRectMake(width+2*BORDER_SIZE, height+BORDER_SIZE*2, width, height);
-				} else { //up
-					topLeftView.frame = CGRectMake(BORDER_SIZE, TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE, width, height);
-					topRightView.frame = CGRectMake(width+2*BORDER_SIZE, TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE, width, height);
-					bottomLeftView.frame = CGRectMake(BORDER_SIZE, height+TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE*2, width, height);
-					bottomRightView.frame = CGRectMake(width+2*BORDER_SIZE, height+TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE*2, width, height);
-				}
-			}
-			else
-			{
-				width = (768 - (TOOLBAR_OFFSET_HEIGHT + 3*BORDER_SIZE))/2;
-				height = (1024 - 3*BORDER_SIZE)/2;
-				
-				if(isInverted) { //left
-					topLeftView.frame = CGRectMake(BORDER_SIZE, BORDER_SIZE, width, height);
-					topRightView.frame = CGRectMake(width+2*BORDER_SIZE, BORDER_SIZE, width, height);
-					bottomLeftView.frame = CGRectMake(BORDER_SIZE, height+BORDER_SIZE*2, width, height);
-					bottomRightView.frame = CGRectMake(width+2*BORDER_SIZE, height+BORDER_SIZE*2, width, height);
-				} else { //right
-					topLeftView.frame = CGRectMake(TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE, BORDER_SIZE, width, height);
-					topRightView.frame = CGRectMake(TOOLBAR_OFFSET_HEIGHT+width+2*BORDER_SIZE, BORDER_SIZE, width, height);
-					bottomLeftView.frame = CGRectMake(TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE, height+BORDER_SIZE*2, width, height);
-					bottomRightView.frame = CGRectMake(TOOLBAR_OFFSET_HEIGHT+width+2*BORDER_SIZE, height+BORDER_SIZE*2, width, height);
-					
-					
-					//topMiddleView.frame = CGRectMake(TOOLBAR_OFFSET_HEIGHT+width+2*BORDER_SIZE, BORDER_SIZE, width, height);					
-					//					middleLeftView.frame = CGRectMake(TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE, height +BORDER_SIZE*2, width, height);
-					//					middleMiddleView.frame = CGRectMake(TOOLBAR_OFFSET_HEIGHT+width+2*BORDER_SIZE, height+BORDER_SIZE*2, width, height);
-					//					middleRightView.frame = CGRectMake(TOOLBAR_OFFSET_HEIGHT+2*width+3*BORDER_SIZE, height+BORDER_SIZE*2, width, height);
-					//					bottomMiddleView.frame = CGRectMake(TOOLBAR_OFFSET_HEIGHT+width+2*BORDER_SIZE, 2*height+BORDER_SIZE*3, width, height);
-				}
-				
-			}
-			
-			topRightView.transform = m;
-			topMiddleView.transform = m;
-			topLeftView.transform = m;
-			middleRightView.transform = m;
-			middleMiddleView.transform = m;
-			middleLeftView.transform = m;
-			bottomRightView.transform = m;
-			bottomMiddleView.transform = m;
-			bottomLeftView.transform = m;
-			
-		}
-		else
-		{
-			width = (320 - 3*BORDER_SIZE)/2;
-			height = (480 - (TOOLBAR_OFFSET_HEIGHT + 3*BORDER_SIZE))/2;
-			
-			topLeftView.frame = CGRectMake(BORDER_SIZE, TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE, width, height);
-			topRightView.frame = CGRectMake(width+2*BORDER_SIZE, TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE, width, height);
-			bottomLeftView.frame = CGRectMake(BORDER_SIZE, height+TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE*2, width, height);
-			bottomRightView.frame = CGRectMake(width+2*BORDER_SIZE, height+TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE*2, width, height);
-			
-			topRightView.transform = m;
-			bottomRightView.transform = m;
-			topLeftView.transform = m;
-			bottomLeftView.transform = m;
-		}
-		
-	}
-	
-	else if (numberMode == 9) {
-		
-		if(isPortrait)
-		{
-			width = (768 - 4*BORDER_SIZE)/3;
-			height = (1024 - (TOOLBAR_OFFSET_HEIGHT + 4*BORDER_SIZE))/3;
-			
-			if(isInverted) {//down
-				topLeftView.frame = CGRectMake(BORDER_SIZE, BORDER_SIZE, width, height);
-				topMiddleView.frame = CGRectMake(width+2*BORDER_SIZE, BORDER_SIZE, width, height);
-				topRightView.frame = CGRectMake(2*width+3*BORDER_SIZE, BORDER_SIZE, width, height);
-				
-				middleLeftView.frame = CGRectMake(BORDER_SIZE, height+BORDER_SIZE*2, width, height);
-				middleMiddleView.frame = CGRectMake(width+2*BORDER_SIZE, height+BORDER_SIZE*2, width, height);
-				middleRightView.frame = CGRectMake(2*width+3*BORDER_SIZE, height+BORDER_SIZE*2, width, height);
-				
-				bottomLeftView.frame = CGRectMake(BORDER_SIZE, 2*height+BORDER_SIZE*3, width, height);
-				bottomMiddleView.frame = CGRectMake(width+2*BORDER_SIZE, 2*height+BORDER_SIZE*3, width, height);
-				bottomRightView.frame = CGRectMake(2*width+3*BORDER_SIZE, 2*height+BORDER_SIZE*3, width, height);
-			} else { //up
-				topLeftView.frame = CGRectMake(BORDER_SIZE, TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE, width, height);
-				topMiddleView.frame = CGRectMake(width+2*BORDER_SIZE, TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE, width, height);
-				topRightView.frame = CGRectMake(2*width+3*BORDER_SIZE, TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE, width, height);
-				
-				middleLeftView.frame = CGRectMake(BORDER_SIZE, height + TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE*2, width, height);
-				middleMiddleView.frame = CGRectMake(width+2*BORDER_SIZE, height + TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE*2, width, height);
-				middleRightView.frame = CGRectMake(2*width+3*BORDER_SIZE, height + TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE*2, width, height);
-				
-				bottomLeftView.frame = CGRectMake(BORDER_SIZE, 2*height+TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE*3, width, height);
-				bottomMiddleView.frame = CGRectMake(width+2*BORDER_SIZE, 2*height+TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE*3, width, height);
-				bottomRightView.frame = CGRectMake(2*width+3*BORDER_SIZE, 2*height+TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE*3, width, height);
-			}
-		}
-		else
-		{
-			
-			
-			width = (768 - (TOOLBAR_OFFSET_HEIGHT + 4*BORDER_SIZE))/3;
-			height = (1024 - 4*BORDER_SIZE)/3;
-			
-			if(isInverted) { //left
-				topLeftView.frame = CGRectMake(BORDER_SIZE, BORDER_SIZE, width, height);
-				topMiddleView.frame = CGRectMake(width+2*BORDER_SIZE, BORDER_SIZE, width, height);
-				topRightView.frame = CGRectMake(2*width+3*BORDER_SIZE, BORDER_SIZE, width, height);
-				
-				middleLeftView.frame = CGRectMake(BORDER_SIZE, height+BORDER_SIZE*2, width, height);
-				middleMiddleView.frame = CGRectMake(width+2*BORDER_SIZE, height+BORDER_SIZE*2, width, height);
-				middleRightView.frame = CGRectMake(2*width+3*BORDER_SIZE, height+BORDER_SIZE*2, width, height);
-				
-				bottomLeftView.frame = CGRectMake(BORDER_SIZE, 2*height+BORDER_SIZE*3, width, height);
-				bottomMiddleView.frame = CGRectMake(width+2*BORDER_SIZE, 2*height+BORDER_SIZE*3, width, height);
-				bottomRightView.frame = CGRectMake(2*width+3*BORDER_SIZE, 2*height+BORDER_SIZE*3, width, height);
-			} else { //right
-				
-				topLeftView.frame = CGRectMake(TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE, BORDER_SIZE, width, height);
-				topMiddleView.frame = CGRectMake(TOOLBAR_OFFSET_HEIGHT+width+2*BORDER_SIZE, BORDER_SIZE, width, height);
-				topRightView.frame = CGRectMake(TOOLBAR_OFFSET_HEIGHT+2*width+3*BORDER_SIZE, BORDER_SIZE, width, height);
-				
-				middleLeftView.frame = CGRectMake(TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE, height +BORDER_SIZE*2, width, height);
-				middleMiddleView.frame = CGRectMake(TOOLBAR_OFFSET_HEIGHT+width+2*BORDER_SIZE, height+BORDER_SIZE*2, width, height);
-				middleRightView.frame = CGRectMake(TOOLBAR_OFFSET_HEIGHT+2*width+3*BORDER_SIZE, height+BORDER_SIZE*2, width, height);
-				
-				bottomLeftView.frame = CGRectMake(TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE, 2*height+BORDER_SIZE*3, width, height);
-				bottomMiddleView.frame = CGRectMake(TOOLBAR_OFFSET_HEIGHT+width+2*BORDER_SIZE, 2*height+BORDER_SIZE*3, width, height);
-				bottomRightView.frame = CGRectMake(TOOLBAR_OFFSET_HEIGHT+2*width+3*BORDER_SIZE, 2*height+BORDER_SIZE*3, width, height);
-				
-				
-			}
-			
-		}
-		
-		topRightView.transform = m;
-		topMiddleView.transform = m;
-		topLeftView.transform = m;
-		middleRightView.transform = m;
-		middleMiddleView.transform = m;
-		middleLeftView.transform = m;
-		bottomRightView.transform = m;
-		bottomMiddleView.transform = m;
-		bottomLeftView.transform = m;
-		
-	}
-	
-	else //1up
-	{
-		if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-		{
-			
-			if(isPortrait)
-			{
-				width = 768;
-				height = 1024 - TOOLBAR_OFFSET_HEIGHT;
-				
-				if(isInverted) {//down
-					button_imageViewArray[m_quadIndex].frame = CGRectMake(0, 0, width, height);
-					imageViewArray[m_quadIndex].frame = CGRectMake(0, 0, width, height);
-				} else { //up
-					button_imageViewArray[m_quadIndex].frame = CGRectMake(0, TOOLBAR_OFFSET_HEIGHT, width, height);
-					imageViewArray[m_quadIndex].frame = CGRectMake(0, TOOLBAR_OFFSET_HEIGHT, width, height);
-				}
-			}
-			else
-			{
-				width = 768 - TOOLBAR_OFFSET_HEIGHT;
-				height = 1024;
-				
-				if(isInverted) { //left
-					button_imageViewArray[m_quadIndex].frame = CGRectMake(0, 0, width, height);
-					imageViewArray[m_quadIndex].frame = CGRectMake(0, 0, width, height);
-				} else { //right
-					button_imageViewArray[m_quadIndex].frame = CGRectMake(TOOLBAR_OFFSET_HEIGHT, 0, width, height);
-					imageViewArray[m_quadIndex].frame = CGRectMake(TOOLBAR_OFFSET_HEIGHT, 0, width, height);
-				}
-				
-			}
-		}
-		else
-		{
-			width = 320;
-			height = 480 - TOOLBAR_OFFSET_HEIGHT;
-			
-			button_imageViewArray[m_quadIndex].frame = CGRectMake(0, TOOLBAR_OFFSET_HEIGHT, width, height);
-			imageViewArray[m_quadIndex].frame = CGRectMake(0, TOOLBAR_OFFSET_HEIGHT, width, height);
-		}
-		
-		
-		
-		for (int i=0; i<9; i++)
-		{
-			// Still need to apply transform to all the hidden views to ensure when it pops back out, everything is fine.
-			//
-			imageViewArray[i].transform = m;
-			button_imageViewArray[i].transform = m;
-		}
-		
-		[[imageViewArray[m_quadIndex] superview] bringSubviewToFront: imageViewArray[m_quadIndex]];
-		[[button_imageViewArray[m_quadIndex] superview] bringSubviewToFront: button_imageViewArray[m_quadIndex]];
-		
-#ifdef SUBVIEW
-		if (s_mySubView)
-		{
-			// Adjust for device orientation change for correct pop up orientation
-			//
-			s_mySubView.transform = m;
-			s_mySubView.frame = CGRectMake(0, TOOLBAR_OFFSET_HEIGHT, 320, 480-TOOLBAR_OFFSET_HEIGHT);
-			[[s_mySubView superview] sendSubviewToBack: s_mySubView];
-		}
-#endif			
-		// To ensure any existing spinner continue if rotate orientation
-		//
-		[[spinner superview] bringSubviewToFront:spinner];
-	}
-	
-	// for test
-	//UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
-//													message:@"test" 
-//												   delegate:self
-//										  cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil];
-//	[alert show];
-//	[alert release];
-	
-	button_save.transform = m;
-	button_back.transform = m;
-	button_camera.transform = m;
-	button_library.transform = m;
-	button_refresh.transform = m;
-	button_refresh2.transform = m;
-	
-	button_four.transform = m;
-	button_nine.transform = m;
-	
-	//baiwei add for ipad bg rotate
-	if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-	{
-		toolbarView.transform = m;
-		
-		
-		if(!isPortrait)
-		{
-			if(isInverted) { //left
-				[self.toolbarView  setImage:[UIImage imageNamed:@"backcolor_left.png"]];
-				self.toolbarView.frame = CGRectMake(0, 0, 768, 1024);
-			}
-			else { //rgiht
-				[self.toolbarView  setImage:[UIImage imageNamed:@"backcolor_left.png"]];
-				self.toolbarView.frame = CGRectMake(0, 0, 768, 1024);
-				
-			}
-		}
-		else
-		{
-			if(isInverted) { //down
-				[self.toolbarView  setImage:[UIImage imageNamed:@"backcolor_up.png"]];
-				self.toolbarView.frame = CGRectMake(0, 0, 768, 1024);
-				
-			} else { //up
-				[self.toolbarView  setImage:[UIImage imageNamed:@"backcolor_up.png"]];
-				self.toolbarView.frame = CGRectMake(0, 0, 768, 1024);
-				
-			}
-			
-		}
-	}
-	
-	
-	if(doScale)
-	{
-		float yScale = width/height;
-		float xScale = height/width;
-		
-		if(numberMode == 4)
-		{
-			
-			scaleWidgetView(topRightView, xScale, yScale);
-			scaleWidgetView(topMiddleView, xScale, yScale);
-			scaleWidgetView(topLeftView, xScale, yScale);
-			scaleWidgetView(middleRightView, xScale, yScale);
-			scaleWidgetView(middleMiddleView, xScale, yScale);
-			scaleWidgetView(middleLeftView, xScale, yScale);
-			scaleWidgetView(bottomRightView, xScale, yScale);
-			scaleWidgetView(bottomMiddleView, xScale, yScale);
-			scaleWidgetView(bottomLeftView, xScale, yScale);
-		}
-		
-		else if (numberMode == 9) {
-			scaleWidgetView(topRightView, xScale, yScale);
-			scaleWidgetView(topMiddleView, xScale, yScale);
-			scaleWidgetView(topLeftView, xScale, yScale);
-			scaleWidgetView(middleRightView, xScale, yScale);
-			scaleWidgetView(middleMiddleView, xScale, yScale);
-			scaleWidgetView(middleLeftView, xScale, yScale);
-			scaleWidgetView(bottomRightView, xScale, yScale);
-			scaleWidgetView(bottomMiddleView, xScale, yScale);
-			scaleWidgetView(bottomLeftView, xScale, yScale);
-			
-			
-		}
-		
-		else
-		{
-			scaleWidgetView(imageViewArray[m_quadIndex], xScale, yScale);
-			//scaleWidgetView(button_imageViewArray[m_quadIndex], xScale, yScale);
-		}
-	}
-	
-	
-	mojoAppDelegate *app = (mojoAppDelegate*)[[UIApplication sharedApplication] delegate];
-	[app roteProgressView:m];
-    
-    //baiwei add for share progress rotate
-    if (shareProgressView != nil) {
-        shareProgressView.transform = m;
-    }
-    
+    CGAffineTransform n = CGAffineTransformMakeScale(scale, scale);
+    CGAffineTransform mn = CGAffineTransformConcat(m, n);
+
+	topRightView.transform = mn;
+	topMiddleView.transform = mn;
+	topLeftView.transform = mn;
+	middleRightView.transform = mn;
+	middleMiddleView.transform = mn;
+	middleLeftView.transform = mn;
+	bottomRightView.transform = mn;
+	bottomMiddleView.transform = mn;
+	bottomLeftView.transform = mn;
 }
+
+//- (void)setWidgetGeometry
+//{
+//	float rotate = 0.f;
+//	if(!isPortrait)
+//	{
+//		if(isInverted) { //left
+//			rotate = M_PI/2.0;
+//			
+//			//self.toolbarView.frame = CGRectMake(0, 0, 1024, 768);
+//			//[self.toolbarView  setImage:[UIImage imageNamed:@"backcolor_left.png"]];
+//			//self.toolbarView.frame = CGRectMake(0, 0, 768, 1024);
+//		}
+//		else { //rgiht
+//			//self.toolbarView.frame = CGRectMake(0, 0, 1024, 768);
+//			//[self.toolbarView  setImage:[UIImage imageNamed:@"backcolor_right.png"]];
+//			//self.toolbarView.frame = CGRectMake(0, 0, 768, 1024);
+//			
+//			rotate = -M_PI/2.0;
+//		}
+//	}
+//	else
+//	{
+//		if(isInverted) { //down
+//			//[self.toolbarView  setImage:[UIImage imageNamed:@"backcolor_down.png"]];
+//			//self.toolbarView.frame = CGRectMake(0, 0, 768, 1024);
+//			
+//			rotate = M_PI;
+//		} else { //up
+//			//[self.toolbarView  setImage:[UIImage imageNamed:@"backcolor_up.png"]];
+//			//self.toolbarView.frame = CGRectMake(0, 0, 768, 1024);
+//			
+//			rotate = 0.f;
+//		}
+//		
+//	}
+//	
+//	//UIImageView *imageViewArray[] = {bottomRightView, topRightView, bottomLeftView, topLeftView};
+//	//	UIButton *button_imageViewArray[] = {button_bottomRightView, button_topRightView, button_bottomLeftView, button_topLeftView};
+//	
+//	UIImageView *imageViewArray[] = {topLeftView, topRightView, bottomLeftView, bottomRightView, topMiddleView, middleLeftView, middleMiddleView, middleRightView, bottomMiddleView};
+//	UIButton *button_imageViewArray[] = {button_topLeftView, button_topRightView, button_bottomLeftView,  button_bottomRightView,  button_topMiddleView, button_middleLeftView, button_middleMiddleView, button_middleRightView, button_bottomMiddleView};
+//	
+//	//	UIImageView *imageViewArray[] = {topLeftView, topMiddleView, topRightView, middleLeftView, middleMiddleView, middleRightView, bottomLeftView, bottomMiddleView, bottomRightView };
+//	//	UIButton *button_imageViewArray[] = {button_topLeftView, button_topMiddleView, button_topRightView, button_middleLeftView, button_middleMiddleView, button_middleRightView, button_bottomLeftView,  button_bottomMiddleView, button_bottomRightView};
+//	
+//	if(numberMode == 4)
+//	{
+//		for(int i=0; i<9; ++i)
+//		{
+//			[imageViewArray[i]  setHidden:YES];
+//			
+//		}
+//		
+//		for(int i=0; i<4; ++i)
+//		{
+//			
+//			
+//			[imageViewArray[i]  setHidden:NO];
+//			//			[button_imageViewArray[i]  setHidden:NO];
+//			//[button_imageViewArray[i]  setHidden: YES ];
+//		}
+//		
+//	}
+//	
+//	else if (numberMode == 9) {
+//		for(int i=0; i<9; ++i)
+//		{
+//			[imageViewArray[i]  setHidden:NO];
+//			//			[button_imageViewArray[i]  setHidden:NO];
+//			//[button_imageViewArray[i]  setHidden: YES ];
+//		}
+//	}
+//	
+//	else
+//	{
+//		for(int i=0; i<9; ++i)
+//		{
+//			[imageViewArray[i]  setHidden:YES];
+//			
+//		}
+//		
+//		for(int i=0; i<9; ++i)
+//		{
+//			[imageViewArray[i]  setHidden: i!=m_quadIndex ? YES : NO ];
+//			//[button_imageViewArray[i]  setHidden: YES ];
+//		}
+//	}
+//	
+//	float width, height;
+//	
+//	
+//	CGAffineTransform m = CGAffineTransformMakeRotation(rotate);
+//	if(numberMode == 4)
+//	{
+//		if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+//		{
+//			
+//			
+//			if(isPortrait)
+//			{
+//				width = (768 - 3*BORDER_SIZE)/2;
+//				height = (1024 - (TOOLBAR_OFFSET_HEIGHT + 3*BORDER_SIZE))/2;
+//				
+//				if(isInverted) {//down
+//					topLeftView.frame = CGRectMake(BORDER_SIZE, BORDER_SIZE, width, height);
+//					topRightView.frame = CGRectMake(width+2*BORDER_SIZE, BORDER_SIZE, width, height);
+//					bottomLeftView.frame = CGRectMake(BORDER_SIZE, height+BORDER_SIZE*2, width, height);
+//					bottomRightView.frame = CGRectMake(width+2*BORDER_SIZE, height+BORDER_SIZE*2, width, height);
+//				} else { //up
+//					topLeftView.frame = CGRectMake(BORDER_SIZE, TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE, width, height);
+//					topRightView.frame = CGRectMake(width+2*BORDER_SIZE, TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE, width, height);
+//					bottomLeftView.frame = CGRectMake(BORDER_SIZE, height+TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE*2, width, height);
+//					bottomRightView.frame = CGRectMake(width+2*BORDER_SIZE, height+TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE*2, width, height);
+//				}
+//			}
+//			else
+//			{
+//				width = (768 - (TOOLBAR_OFFSET_HEIGHT + 3*BORDER_SIZE))/2;
+//				height = (1024 - 3*BORDER_SIZE)/2;
+//				
+//				if(isInverted) { //left
+//					topLeftView.frame = CGRectMake(BORDER_SIZE, BORDER_SIZE, width, height);
+//					topRightView.frame = CGRectMake(width+2*BORDER_SIZE, BORDER_SIZE, width, height);
+//					bottomLeftView.frame = CGRectMake(BORDER_SIZE, height+BORDER_SIZE*2, width, height);
+//					bottomRightView.frame = CGRectMake(width+2*BORDER_SIZE, height+BORDER_SIZE*2, width, height);
+//				} else { //right
+//					topLeftView.frame = CGRectMake(TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE, BORDER_SIZE, width, height);
+//					topRightView.frame = CGRectMake(TOOLBAR_OFFSET_HEIGHT+width+2*BORDER_SIZE, BORDER_SIZE, width, height);
+//					bottomLeftView.frame = CGRectMake(TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE, height+BORDER_SIZE*2, width, height);
+//					bottomRightView.frame = CGRectMake(TOOLBAR_OFFSET_HEIGHT+width+2*BORDER_SIZE, height+BORDER_SIZE*2, width, height);
+//					
+//					
+//					//topMiddleView.frame = CGRectMake(TOOLBAR_OFFSET_HEIGHT+width+2*BORDER_SIZE, BORDER_SIZE, width, height);					
+//					//					middleLeftView.frame = CGRectMake(TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE, height +BORDER_SIZE*2, width, height);
+//					//					middleMiddleView.frame = CGRectMake(TOOLBAR_OFFSET_HEIGHT+width+2*BORDER_SIZE, height+BORDER_SIZE*2, width, height);
+//					//					middleRightView.frame = CGRectMake(TOOLBAR_OFFSET_HEIGHT+2*width+3*BORDER_SIZE, height+BORDER_SIZE*2, width, height);
+//					//					bottomMiddleView.frame = CGRectMake(TOOLBAR_OFFSET_HEIGHT+width+2*BORDER_SIZE, 2*height+BORDER_SIZE*3, width, height);
+//				}
+//				
+//			}
+//			
+//			topRightView.transform = m;
+//			topMiddleView.transform = m;
+//			topLeftView.transform = m;
+//			middleRightView.transform = m;
+//			middleMiddleView.transform = m;
+//			middleLeftView.transform = m;
+//			bottomRightView.transform = m;
+//			bottomMiddleView.transform = m;
+//			bottomLeftView.transform = m;
+//			
+//		}
+//		else
+//		{
+//			width = (320 - 3*BORDER_SIZE)/2;
+//			height = (480 - (TOOLBAR_OFFSET_HEIGHT + 3*BORDER_SIZE))/2;
+//			
+//			topLeftView.frame = CGRectMake(BORDER_SIZE, TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE, width, height);
+//			topRightView.frame = CGRectMake(width+2*BORDER_SIZE, TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE, width, height);
+//			bottomLeftView.frame = CGRectMake(BORDER_SIZE, height+TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE*2, width, height);
+//			bottomRightView.frame = CGRectMake(width+2*BORDER_SIZE, height+TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE*2, width, height);
+//			
+//			topRightView.transform = m;
+//			bottomRightView.transform = m;
+//			topLeftView.transform = m;
+//			bottomLeftView.transform = m;
+//		}
+//		
+//	}
+//	
+//	else if (numberMode == 9) {
+//		
+//		if(isPortrait)
+//		{
+//			width = (768 - 4*BORDER_SIZE)/3;
+//			height = (1024 - (TOOLBAR_OFFSET_HEIGHT + 4*BORDER_SIZE))/3;
+//			
+//			if(isInverted) {//down
+//				topLeftView.frame = CGRectMake(BORDER_SIZE, BORDER_SIZE, width, height);
+//				topMiddleView.frame = CGRectMake(width+2*BORDER_SIZE, BORDER_SIZE, width, height);
+//				topRightView.frame = CGRectMake(2*width+3*BORDER_SIZE, BORDER_SIZE, width, height);
+//				
+//				middleLeftView.frame = CGRectMake(BORDER_SIZE, height+BORDER_SIZE*2, width, height);
+//				middleMiddleView.frame = CGRectMake(width+2*BORDER_SIZE, height+BORDER_SIZE*2, width, height);
+//				middleRightView.frame = CGRectMake(2*width+3*BORDER_SIZE, height+BORDER_SIZE*2, width, height);
+//				
+//				bottomLeftView.frame = CGRectMake(BORDER_SIZE, 2*height+BORDER_SIZE*3, width, height);
+//				bottomMiddleView.frame = CGRectMake(width+2*BORDER_SIZE, 2*height+BORDER_SIZE*3, width, height);
+//				bottomRightView.frame = CGRectMake(2*width+3*BORDER_SIZE, 2*height+BORDER_SIZE*3, width, height);
+//			} else { //up
+//				topLeftView.frame = CGRectMake(BORDER_SIZE, TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE, width, height);
+//				topMiddleView.frame = CGRectMake(width+2*BORDER_SIZE, TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE, width, height);
+//				topRightView.frame = CGRectMake(2*width+3*BORDER_SIZE, TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE, width, height);
+//				
+//				middleLeftView.frame = CGRectMake(BORDER_SIZE, height + TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE*2, width, height);
+//				middleMiddleView.frame = CGRectMake(width+2*BORDER_SIZE, height + TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE*2, width, height);
+//				middleRightView.frame = CGRectMake(2*width+3*BORDER_SIZE, height + TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE*2, width, height);
+//				
+//				bottomLeftView.frame = CGRectMake(BORDER_SIZE, 2*height+TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE*3, width, height);
+//				bottomMiddleView.frame = CGRectMake(width+2*BORDER_SIZE, 2*height+TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE*3, width, height);
+//				bottomRightView.frame = CGRectMake(2*width+3*BORDER_SIZE, 2*height+TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE*3, width, height);
+//			}
+//		}
+//		else
+//		{
+//			
+//			
+//			width = (768 - (TOOLBAR_OFFSET_HEIGHT + 4*BORDER_SIZE))/3;
+//			height = (1024 - 4*BORDER_SIZE)/3;
+//			
+//			if(isInverted) { //left
+//				topLeftView.frame = CGRectMake(BORDER_SIZE, BORDER_SIZE, width, height);
+//				topMiddleView.frame = CGRectMake(width+2*BORDER_SIZE, BORDER_SIZE, width, height);
+//				topRightView.frame = CGRectMake(2*width+3*BORDER_SIZE, BORDER_SIZE, width, height);
+//				
+//				middleLeftView.frame = CGRectMake(BORDER_SIZE, height+BORDER_SIZE*2, width, height);
+//				middleMiddleView.frame = CGRectMake(width+2*BORDER_SIZE, height+BORDER_SIZE*2, width, height);
+//				middleRightView.frame = CGRectMake(2*width+3*BORDER_SIZE, height+BORDER_SIZE*2, width, height);
+//				
+//				bottomLeftView.frame = CGRectMake(BORDER_SIZE, 2*height+BORDER_SIZE*3, width, height);
+//				bottomMiddleView.frame = CGRectMake(width+2*BORDER_SIZE, 2*height+BORDER_SIZE*3, width, height);
+//				bottomRightView.frame = CGRectMake(2*width+3*BORDER_SIZE, 2*height+BORDER_SIZE*3, width, height);
+//			} else { //right
+//				
+//				topLeftView.frame = CGRectMake(TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE, BORDER_SIZE, width, height);
+//				topMiddleView.frame = CGRectMake(TOOLBAR_OFFSET_HEIGHT+width+2*BORDER_SIZE, BORDER_SIZE, width, height);
+//				topRightView.frame = CGRectMake(TOOLBAR_OFFSET_HEIGHT+2*width+3*BORDER_SIZE, BORDER_SIZE, width, height);
+//				
+//				middleLeftView.frame = CGRectMake(TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE, height +BORDER_SIZE*2, width, height);
+//				middleMiddleView.frame = CGRectMake(TOOLBAR_OFFSET_HEIGHT+width+2*BORDER_SIZE, height+BORDER_SIZE*2, width, height);
+//				middleRightView.frame = CGRectMake(TOOLBAR_OFFSET_HEIGHT+2*width+3*BORDER_SIZE, height+BORDER_SIZE*2, width, height);
+//				
+//				bottomLeftView.frame = CGRectMake(TOOLBAR_OFFSET_HEIGHT+BORDER_SIZE, 2*height+BORDER_SIZE*3, width, height);
+//				bottomMiddleView.frame = CGRectMake(TOOLBAR_OFFSET_HEIGHT+width+2*BORDER_SIZE, 2*height+BORDER_SIZE*3, width, height);
+//				bottomRightView.frame = CGRectMake(TOOLBAR_OFFSET_HEIGHT+2*width+3*BORDER_SIZE, 2*height+BORDER_SIZE*3, width, height);
+//				
+//				
+//			}
+//			
+//		}
+//		
+//		topRightView.transform = m;
+//		topMiddleView.transform = m;
+//		topLeftView.transform = m;
+//		middleRightView.transform = m;
+//		middleMiddleView.transform = m;
+//		middleLeftView.transform = m;
+//		bottomRightView.transform = m;
+//		bottomMiddleView.transform = m;
+//		bottomLeftView.transform = m;
+//		
+//	}
+//	
+//	else //1up
+//	{
+//		if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+//		{
+//			
+//			if(isPortrait)
+//			{
+//				width = 768;
+//				height = 1024 - TOOLBAR_OFFSET_HEIGHT;
+//				
+//				if(isInverted) {//down
+//					button_imageViewArray[m_quadIndex].frame = CGRectMake(0, 0, width, height);
+//					imageViewArray[m_quadIndex].frame = CGRectMake(0, 0, width, height);
+//				} else { //up
+//					button_imageViewArray[m_quadIndex].frame = CGRectMake(0, TOOLBAR_OFFSET_HEIGHT, width, height);
+//					imageViewArray[m_quadIndex].frame = CGRectMake(0, TOOLBAR_OFFSET_HEIGHT, width, height);
+//				}
+//			}
+//			else
+//			{
+//				width = 768 - TOOLBAR_OFFSET_HEIGHT;
+//				height = 1024;
+//				
+//				if(isInverted) { //left
+//					button_imageViewArray[m_quadIndex].frame = CGRectMake(0, 0, width, height);
+//					imageViewArray[m_quadIndex].frame = CGRectMake(0, 0, width, height);
+//				} else { //right
+//					button_imageViewArray[m_quadIndex].frame = CGRectMake(TOOLBAR_OFFSET_HEIGHT, 0, width, height);
+//					imageViewArray[m_quadIndex].frame = CGRectMake(TOOLBAR_OFFSET_HEIGHT, 0, width, height);
+//				}
+//				
+//			}
+//		}
+//		else
+//		{
+//			width = 320;
+//			height = 480 - TOOLBAR_OFFSET_HEIGHT;
+//			
+//			button_imageViewArray[m_quadIndex].frame = CGRectMake(0, TOOLBAR_OFFSET_HEIGHT, width, height);
+//			imageViewArray[m_quadIndex].frame = CGRectMake(0, TOOLBAR_OFFSET_HEIGHT, width, height);
+//		}
+//		
+//		
+//		
+//		for (int i=0; i<9; i++)
+//		{
+//			// Still need to apply transform to all the hidden views to ensure when it pops back out, everything is fine.
+//			//
+//			imageViewArray[i].transform = m;
+//			button_imageViewArray[i].transform = m;
+//		}
+//		
+//		[[imageViewArray[m_quadIndex] superview] bringSubviewToFront: imageViewArray[m_quadIndex]];
+//		[[button_imageViewArray[m_quadIndex] superview] bringSubviewToFront: button_imageViewArray[m_quadIndex]];
+//		
+//#ifdef SUBVIEW
+//		if (s_mySubView)
+//		{
+//			// Adjust for device orientation change for correct pop up orientation
+//			//
+//			s_mySubView.transform = m;
+//			s_mySubView.frame = CGRectMake(0, TOOLBAR_OFFSET_HEIGHT, 320, 480-TOOLBAR_OFFSET_HEIGHT);
+//			[[s_mySubView superview] sendSubviewToBack: s_mySubView];
+//		}
+//#endif			
+//		// To ensure any existing spinner continue if rotate orientation
+//		//
+//		[[spinner superview] bringSubviewToFront:spinner];
+//	}
+//	
+//	// for test
+//	//UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
+////													message:@"test" 
+////												   delegate:self
+////										  cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil];
+////	[alert show];
+////	[alert release];
+//	
+//	button_save.transform = m;
+//	button_back.transform = m;
+//	button_camera.transform = m;
+//	button_library.transform = m;
+//	button_refresh.transform = m;
+//	button_refresh2.transform = m;
+//	
+//	button_four.transform = m;
+//	button_nine.transform = m;
+//	
+//	//baiwei add for ipad bg rotate
+//	if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+//	{
+//		toolbarView.transform = m;
+//		
+//		
+//		if(!isPortrait)
+//		{
+//			if(isInverted) { //left
+//				[self.toolbarView  setImage:[UIImage imageNamed:@"backcolor_left.png"]];
+//				self.toolbarView.frame = CGRectMake(0, 0, 768, 1024);
+//			}
+//			else { //rgiht
+//				[self.toolbarView  setImage:[UIImage imageNamed:@"backcolor_left.png"]];
+//				self.toolbarView.frame = CGRectMake(0, 0, 768, 1024);
+//				
+//			}
+//		}
+//		else
+//		{
+//			if(isInverted) { //down
+//				[self.toolbarView  setImage:[UIImage imageNamed:@"backcolor_up.png"]];
+//				self.toolbarView.frame = CGRectMake(0, 0, 768, 1024);
+//				
+//			} else { //up
+//				[self.toolbarView  setImage:[UIImage imageNamed:@"backcolor_up.png"]];
+//				self.toolbarView.frame = CGRectMake(0, 0, 768, 1024);
+//				
+//			}
+//			
+//		}
+//	}
+//	
+//	
+//	if(doScale)
+//	{
+//		float yScale = width/height;
+//		float xScale = height/width;
+//		
+//		if(numberMode == 4)
+//		{
+//			
+//			scaleWidgetView(topRightView, xScale, yScale);
+//			scaleWidgetView(topMiddleView, xScale, yScale);
+//			scaleWidgetView(topLeftView, xScale, yScale);
+//			scaleWidgetView(middleRightView, xScale, yScale);
+//			scaleWidgetView(middleMiddleView, xScale, yScale);
+//			scaleWidgetView(middleLeftView, xScale, yScale);
+//			scaleWidgetView(bottomRightView, xScale, yScale);
+//			scaleWidgetView(bottomMiddleView, xScale, yScale);
+//			scaleWidgetView(bottomLeftView, xScale, yScale);
+//		}
+//		
+//		else if (numberMode == 9) {
+//			scaleWidgetView(topRightView, xScale, yScale);
+//			scaleWidgetView(topMiddleView, xScale, yScale);
+//			scaleWidgetView(topLeftView, xScale, yScale);
+//			scaleWidgetView(middleRightView, xScale, yScale);
+//			scaleWidgetView(middleMiddleView, xScale, yScale);
+//			scaleWidgetView(middleLeftView, xScale, yScale);
+//			scaleWidgetView(bottomRightView, xScale, yScale);
+//			scaleWidgetView(bottomMiddleView, xScale, yScale);
+//			scaleWidgetView(bottomLeftView, xScale, yScale);
+//			
+//			
+//		}
+//		
+//		else
+//		{
+//			scaleWidgetView(imageViewArray[m_quadIndex], xScale, yScale);
+//			//scaleWidgetView(button_imageViewArray[m_quadIndex], xScale, yScale);
+//		}
+//	}
+//}
 
 - (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration 
 {
@@ -1214,8 +1038,6 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 			if (shake && ![workerThread isExecuting]) 
 			{
 				//			[self randomizeQuad index];
-				mojoView *pView = (mojoView *)self.view;
-				[pView setNeedsDisplay];	
 				return;
 			} 
 		}
@@ -1263,10 +1085,12 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 			[UIView  setAnimationWillStartSelector:@selector (animationWillStart:context:) ];
 			
 			doScale = true;
-			[self setWidgetGeometry];
+			[self setRotations];
 			doScale = false;
 			
-			[UIView commitAnimations];		
+			[UIView commitAnimations];
+            
+            [delegate didTransformOrientations:isPortrait];
 			return;
 		}
 		
@@ -1332,261 +1156,45 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 }
 
 
-
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-		if (nowInterfaceOrientation == UIInterfaceOrientationPortrait) {
-            if (numberMode == 1) {
-                button_back.hidden = NO;
-                button_save.hidden = NO;
-                button_refresh2.hidden = NO;
-                button_refresh.hidden = NO;
-
-            } else if (numberMode == 4 || numberMode == 9) {
-                button_library.hidden = NO;
-                button_camera.hidden = NO;
-                button_four.hidden = NO;
-                button_nine.hidden = NO;
-                button_refresh2.hidden = NO;
-                button_refresh.hidden = NO;
-
-            }
-            
-            [button_library setFrame:CGRectMake(0, -2, button_library.frame.size.width, button_library.frame.size.height)];
-			[button_back setFrame:CGRectMake(button_library.frame.origin.x, button_library.frame.origin.y, button_back.frame.size.width, button_back.frame.size.height)];
-			[button_save setFrame:CGRectMake(360, button_library.frame.origin.y, button_save.frame.size.width, button_save.frame.size.height)];
-			
-			[button_camera setFrame:CGRectMake(232, button_library.frame.origin.y, button_camera.frame.size.width, button_camera.frame.size.height)];
-			[button_refresh setFrame:CGRectMake(720, button_library.frame.origin.y, button_refresh.frame.size.width, button_refresh.frame.size.height)];
-			
-			[button_four setFrame:CGRectMake(465, button_library.frame.origin.y, button_four.frame.size.width, button_four.frame.size.height)];
-			[button_nine setFrame:CGRectMake(505, button_library.frame.origin.y, button_nine.frame.size.width, button_nine.frame.size.height)];
-			
-			
-			[button_refresh2 setFrame:CGRectMake(720, button_library.frame.origin.y, button_refresh2.frame.size.width, button_refresh2.frame.size.height)];
-
-        } else if (nowInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
-            if (numberMode == 1) {
-                button_back.hidden = NO;
-                button_save.hidden = NO;
-                button_refresh2.hidden = NO;
-                button_refresh.hidden = NO;
-
-            } else if (numberMode == 4 || numberMode == 9) {
-                button_library.hidden = NO;
-                button_camera.hidden = NO;
-                button_four.hidden = NO;
-                button_nine.hidden = NO;
-                button_refresh2.hidden = NO;
-                button_refresh.hidden = NO;
-
-            }
-            
-            [button_library setFrame:CGRectMake(720, 978, button_library.frame.size.width, button_library.frame.size.height)];
-			[button_back setFrame:CGRectMake(button_library.frame.origin.x, button_library.frame.origin.y, button_back.frame.size.width, button_back.frame.size.height)];
-			[button_save setFrame:CGRectMake(360, button_library.frame.origin.y, button_save.frame.size.width, button_save.frame.size.height)];
-			
-			[button_camera setFrame:CGRectMake(486, button_library.frame.origin.y, button_camera.frame.size.width, button_camera.frame.size.height)];
-			[button_refresh setFrame:CGRectMake(0, button_library.frame.origin.y, button_refresh.frame.size.width, button_refresh.frame.size.height)];
-			
-			[button_four setFrame:CGRectMake(253, button_library.frame.origin.y, button_four.frame.size.width, button_four.frame.size.height)];
-			[button_nine setFrame:CGRectMake(213, button_library.frame.origin.y, button_nine.frame.size.width, button_nine.frame.size.height)];
-			
-			[button_refresh2 setFrame:CGRectMake(0, button_library.frame.origin.y, button_refresh2.frame.size.width, button_refresh2.frame.size.height)];
-        } else if (nowInterfaceOrientation == UIInterfaceOrientationLandscapeRight) {
-            if (numberMode == 1) {
-                button_back.hidden = NO;
-                button_save.hidden = NO;
-                button_refresh2.hidden = NO;
-                button_refresh.hidden = NO;
-
-            } else if (numberMode == 4 || numberMode == 9) {
-                button_library.hidden = NO;
-                button_camera.hidden = NO;
-                button_four.hidden = NO;
-                button_nine.hidden = NO;
-                button_refresh2.hidden = NO;
-                button_refresh.hidden = NO;
-
-            }
-            
-            [button_library setFrame:CGRectMake(723, 5, button_library.frame.size.width, button_library.frame.size.height)];
-			[button_back setFrame:CGRectMake(button_library.frame.origin.x, button_library.frame.origin.y, button_back.frame.size.width, button_back.frame.size.height)];
-			[button_save setFrame:CGRectMake(button_library.frame.origin.x, 500, button_save.frame.size.width, button_save.frame.size.height)];
-			
-			[button_camera setFrame:CGRectMake(button_library.frame.origin.x, 317, button_camera.frame.size.width, button_camera.frame.size.height)];
-			
-			[button_four setFrame:CGRectMake(button_library.frame.origin.x, 635, button_four.frame.size.width, button_four.frame.size.height)];
-			[button_nine setFrame:CGRectMake(button_library.frame.origin.x, 675, button_nine.frame.size.width, button_nine.frame.size.height)];
-			
-			[button_refresh setFrame:CGRectMake(button_library.frame.origin.x, 970, button_refresh.frame.size.width, button_refresh.frame.size.height)];
-			
-			[button_refresh2 setFrame:CGRectMake(button_library.frame.origin.x, 970, button_refresh2.frame.size.width, button_refresh2.frame.size.height)];
-        } else {
-            if (numberMode == 1) {
-                button_back.hidden = NO;
-                button_save.hidden = NO;
-                button_refresh2.hidden = NO;
-                button_refresh.hidden = NO;
-
-            } else if (numberMode == 4 || numberMode == 9) {
-                button_library.hidden = NO;
-                button_camera.hidden = NO;
-                button_four.hidden = NO;
-                button_nine.hidden = NO;
-                button_refresh2.hidden = NO;
-                button_refresh.hidden = NO;
-
-            }
-            
-            [button_library setFrame:CGRectMake(-3, 970, button_library.frame.size.width, button_library.frame.size.height)];
-			[button_back setFrame:CGRectMake(button_library.frame.origin.x, button_library.frame.origin.y, button_back.frame.size.width, button_back.frame.size.height)];
-			[button_save setFrame:CGRectMake(button_library.frame.origin.x, 500, button_save.frame.size.width, button_save.frame.size.height)];
-			
-			[button_camera setFrame:CGRectMake(button_library.frame.origin.x, 657, button_camera.frame.size.width, button_camera.frame.size.height)];
-			[button_refresh setFrame:CGRectMake(button_library.frame.origin.x, 5, button_refresh.frame.size.width, button_refresh.frame.size.height)];
-			[button_refresh2 setFrame:CGRectMake(button_library.frame.origin.x, 5, button_refresh2.frame.size.width, button_refresh2.frame.size.height)];
-			
-			[button_four setFrame:CGRectMake(button_library.frame.origin.x, 338, button_four.frame.size.width, button_four.frame.size.height)];
-			[button_nine setFrame:CGRectMake(button_library.frame.origin.x, 298, button_nine.frame.size.width, button_nine.frame.size.height)];
-        }
-        
-        if (self.saveSharePopoverController.popoverVisible == YES) {
-			
-			
-			[self.saveSharePopoverController presentPopoverFromRect:self.button_save.frame
-															 inView:self.view
-										   permittedArrowDirections:UIPopoverArrowDirectionAny
-														   animated:NO];
-			
-			self.saveSharePopoverController.popoverContentSize = CGSizeMake(320, 480);
-			
-			
-			//self.saveSharePopoverController.contentSizeForViewInPopover = CGSizeMake(320, 1000);
-			
-		}
-        
-    }
-            
-}
-
-
-- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-	nowInterfaceOrientation = toInterfaceOrientation;
-	if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-		if (toInterfaceOrientation == UIInterfaceOrientationPortrait)
-		{
-			isPortrait = true;
-			isInverted = false;
-            
-            if (numberMode == 1) {
-                button_back.hidden = YES;
-                button_save.hidden = YES;
-                button_refresh2.hidden = YES;
-                button_refresh.hidden = YES;
-            } else if (numberMode == 4 || numberMode == 9) {
-                button_library.hidden = YES;
-                button_camera.hidden = YES;
-                button_four.hidden = YES;
-                button_nine.hidden = YES;
-                button_refresh2.hidden = YES;
-                button_refresh.hidden = YES;
-            }
-
-
-			
-		} else if (toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
-			isPortrait = true;
-			isInverted = true;
-            
-            if (numberMode == 1) {
-                button_back.hidden = YES;
-                button_save.hidden = YES;
-                button_refresh2.hidden = YES;
-                button_refresh.hidden = YES;
-
-            } else if (numberMode == 4 || numberMode == 9) {
-                button_library.hidden = YES;
-                button_camera.hidden = YES;
-                button_four.hidden = YES;
-                button_nine.hidden = YES;
-                button_refresh2.hidden = YES;
-                button_refresh.hidden = YES;
-
-            }
-            
-
-		} else if (toInterfaceOrientation == UIInterfaceOrientationLandscapeRight) {
-			isPortrait = false;
-			isInverted = true;
-            
-            if (numberMode == 1) {
-                button_back.hidden = YES;
-                button_save.hidden = YES;
-                button_refresh2.hidden = YES;
-                button_refresh.hidden = YES;
-
-            } else if (numberMode == 4 || numberMode == 9) {
-                button_library.hidden = YES;
-                button_camera.hidden = YES;
-                button_four.hidden = YES;
-                button_nine.hidden = YES;
-                button_refresh2.hidden = YES;
-                button_refresh.hidden = YES;
-
-            }
-            
-
-		} else {
-			isPortrait = false;
-			isInverted = false;
-            
-            if (numberMode == 1) {
-                button_back.hidden = YES;
-                button_save.hidden = YES;
-                button_refresh2.hidden = YES;
-                button_refresh.hidden = YES;
-
-            } else if (numberMode == 4 || numberMode == 9) {
-                button_library.hidden = YES;
-                button_camera.hidden = YES;
-                button_four.hidden = YES;
-                button_nine.hidden = YES;
-                button_refresh2.hidden = YES;
-                button_refresh.hidden = YES;
-
-            }
-            
-
-		}
-
-		
-		doScale = true;
-		[self setWidgetGeometry];
-		doScale = false;
-		
-		
-		if (self.saveSharePopoverController.popoverVisible == YES) {
-			
-			
-			[self.saveSharePopoverController presentPopoverFromRect:self.button_save.frame
-															 inView:self.view
-										   permittedArrowDirections:UIPopoverArrowDirectionAny
-														   animated:NO];
-			
-			self.saveSharePopoverController.popoverContentSize = CGSizeMake(320, 480);
-			
-			
-			//self.saveSharePopoverController.contentSizeForViewInPopover = CGSizeMake(320, 1000);
-			
-		}
-
-		
-		if (self.imagePickerPopover.popoverVisible == YES) {
-		}
-
-	}
-}
+//
+//- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+//	nowInterfaceOrientation = toInterfaceOrientation;
+//    
+//	isInverted = false;
+//	if (toInterfaceOrientation == UIInterfaceOrientationPortrait)
+//	{
+//		isPortrait = true;
+//    }
+//    else {
+//        isPortrait = false;
+//    }
+//    
+//		doScale = true;
+//		[self setWidgetGeometry];
+//		doScale = false;
+//		
+//		
+//		if (self.saveSharePopoverController.popoverVisible == YES) {
+//			
+//			
+//			[self.saveSharePopoverController presentPopoverFromRect:self.button_save.frame
+//															 inView:self.view
+//										   permittedArrowDirections:UIPopoverArrowDirectionAny
+//														   animated:NO];
+//			
+//			self.saveSharePopoverController.popoverContentSize = CGSizeMake(320, 480);
+//			
+//			
+//			//self.saveSharePopoverController.contentSizeForViewInPopover = CGSizeMake(320, 1000);
+//			
+//		}
+//
+//		
+//		if (self.imagePickerPopover.popoverVisible == YES) {
+//		}
+//
+//	}
+//}
 
 
 
@@ -1614,8 +1222,8 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 {
 	
 	UIImage *image = s_loadedImage;
-	int inputWidth = CGImageGetWidth( image.CGImage );
-	int inputHeight = CGImageGetHeight( image.CGImage );
+	int inputWidth = roundf(CGImageGetWidth( image.CGImage ));
+	int inputHeight = roundf(CGImageGetHeight( image.CGImage ));
 	
 	//NSLog(@"%@", fullImage);
 	
@@ -1628,16 +1236,16 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 	//		fullImage = nil;
 	//	}
 	
-	[Utilities printAvailMemory];
+//	[Utilities printAvailMemory];
 	
-	fullImage = [self createNewImage:&image imgWidth:inputWidth imgHeight:inputHeight imgParameter:-1];
+    UIImage * newFullImage = [self createNewImage:&image imgWidth:inputWidth imgHeight:inputHeight imgParameter:-1];
 	
-	CGSize size2 = fullImage.size;
+	CGSize size2 = newFullImage.size;
 	NSLog(@"load image size: %f : %f", size2.width,size2.height);
 	
 	// add by Guno
-	inputWidth = fullImageWidth = CGImageGetWidth( fullImage.CGImage );
-	inputHeight = fullImageHeight = CGImageGetHeight( fullImage.CGImage );
+	inputWidth = fullImageWidth = roundf(CGImageGetWidth( newFullImage.CGImage ));
+	inputHeight = fullImageHeight = roundf(CGImageGetHeight( newFullImage.CGImage ));
 	isFullImageLandscape = inputWidth > inputHeight;
 	// end Guno
 	
@@ -1741,17 +1349,11 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 	}
 	
 	//add by Guno
-	if (portraitImage1 != nil)
-		[portraitImage1 release];
-	portraitImage1 = [self createNewImage:&fullImage imgWidth:width1 imgHeight:height1 imgParameter:-1];
+	portraitImage1 = [self createNewImage:&newFullImage imgWidth:width1 imgHeight:height1 imgParameter:-1];
 	
-	if (portraitImage4 != nil)
-		[portraitImage4 release];
-	portraitImage4 = [self createNewImage:&fullImage imgWidth:width4 imgHeight:height4 imgParameter:-1];
+	portraitImage4 = [self createNewImage:&newFullImage imgWidth:width4 imgHeight:height4 imgParameter:-1];
 	
-	if (portraitImage9 != nil)
-		[portraitImage9 release];
-	portraitImage9 = [self createNewImage:&fullImage imgWidth:width9 imgHeight:height9 imgParameter:-1];
+	portraitImage9 = [self createNewImage:&newFullImage imgWidth:width9 imgHeight:height9 imgParameter:-1];
 	//end Guno
 	
 	switch (numberMode) {
@@ -1768,8 +1370,6 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 	
 	//#ifdef __DEBUG_PB__
 	[Utilities cacheToFileFromImage:fullImage filename:ORIGINAL_IMAGE_FILE_NAME];
-	[fullImage release];
-	fullImage = nil;
 	//#endif
 }
 
@@ -1927,8 +1527,6 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 	CGColorSpaceRef colorSpace=CGColorSpaceCreateDeviceRGB();
 	CGBitmapInfo bitmapInfo = CGImageGetBitmapInfo(sourceImage.CGImage);
 	
-	[sourceImage release];
-	
 	CGContextRef context = CGBitmapContextCreate(pout, _width, _height, 8, _width*4, colorSpace, bitmapInfo);
 	CGImageRef imageRef = CGBitmapContextCreateImage(context);
 	CGContextRelease(context);
@@ -1942,112 +1540,106 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 	
 	//UIImageWriteToSavedPhotosAlbum(newImage, self, nil, nil);
 	
-	return [newImage autorelease];
+    return newImage;
 	
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
 	
-	//UIInterfaceOrientation toInterfaceOrientation = self.interfaceOrientation;
-	
+// REFACTOR image metadata
+	UIInterfaceOrientation toInterfaceOrientation = self.interfaceOrientation;
+
 	//baiwei add for imageMetadata
 	UIImage *originalImage = [info objectForKey:UIImagePickerControllerOriginalImage];
-	mojoAppDelegate *appDelegate = (mojoAppDelegate*)[[UIApplication sharedApplication]delegate];
+    mojoAppDelegate *appDelegate = (mojoAppDelegate*)[mojoAppDelegate fakeAppDelegate];
+//
+//	if ( picker.sourceType == UIImagePickerControllerSourceTypeCamera ) //from camera
+//	{
+//		float version = [[[UIDevice currentDevice] systemVersion] floatValue];
+//		if (version > 4.1) {
+//			appDelegate.imageMetadata = [info objectForKey:@"UIImagePickerControllerMediaMetadata"];
+//			
+//			NSMutableDictionary *GPS = [[NSMutableDictionary alloc]init];
+//			NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+//			double latitude = [prefs doubleForKey: @"latitude"];
+//			double longitude = [prefs doubleForKey: @"longitude"];
+//			
+//			//[GPS setObject:@"126.603" forKey:@"ImgDirection"];
+//			//				[GPS setObject:@"T" forKey:@"ImgDirectionRef"];
+//			
+//			[GPS setObject:[NSNumber numberWithDouble:latitude] forKey:@"Latitude"];
+//			if (latitude > 0) {
+//				[GPS setObject:@"N" forKey:@"LatitudeRef"];
+//			} else {
+//				[GPS setObject:@"S" forKey:@"LatitudeRef"];
+//			}
+//			
+//			[GPS setObject:[NSNumber numberWithDouble:longitude] forKey:@"Longitude"];
+//			if (latitude > 0) {
+//				[GPS setObject:@"E" forKey:@"LongitudeRef"];
+//			} else {
+//				[GPS setObject:@"W" forKey:@"LongitudeRef"];
+//			}
+//			
+//			NSDate *date = [NSDate date];
+//			NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//			[formatter setDateFormat:@"HH:mm:ss"];
+//			NSString *dateString = [formatter stringFromDate:date];
+//			[GPS setObject:dateString forKey:@"TimeStamp"];
+//			
+//			[appDelegate.imageMetadata setObject:GPS forKey:@"{GPS}"];
+//			
+//			NSLog(@"imageMetadata2=%@", appDelegate.imageMetadata);
+//			
+//		} else {
+//			appDelegate.imageMetadata = nil;
+//		}
+//		
+//		
+//		if ([self isSaveCameraShot])
+//		{
+//			if (appDelegate.imageMetadata == nil) {
+//				UIImageWriteToSavedPhotosAlbum(originalImage, self, nil, nil); 
+//			} else {
+////                ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+////				CGImageRef imageMetadataRef=originalImage.CGImage;
+////				[library writeImageToSavedPhotosAlbum:imageMetadataRef metadata:appDelegate.imageMetadata completionBlock:^(NSURL *newURL, NSError *error) {
+////					if (error) {
+////					} else {
+////					}
+////				}];
+//			}
+//		}
+//	} else { //from Lib
+//		float version = [[[UIDevice currentDevice] systemVersion] floatValue];
+//		if (version > 4.1) {
+//			NSURL *assetURL = [info objectForKey:UIImagePickerControllerReferenceURL];
+//			
+//			ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+//			[library assetForURL:assetURL
+//					 resultBlock:^(ALAsset *asset)  {
+//						 NSDictionary *metadata = asset.defaultRepresentation.metadata;
+//						 
+//						 appDelegate.imageMetadata = [[NSMutableDictionary alloc] initWithDictionary:metadata];
+//						 
+//					 }
+//					failureBlock:^(NSError *error) {
+//					}];
+//		} else {
+//			appDelegate.imageMetadata = nil;	
+//		}
+//	}
+//	//end add
 	
-	if ( picker.sourceType == UIImagePickerControllerSourceTypeCamera ) //from camera
-	{
-		float version = [[[UIDevice currentDevice] systemVersion] floatValue];
-		if (version > 4.1) {
-			appDelegate.imageMetadata = [info objectForKey:@"UIImagePickerControllerMediaMetadata"];
-			
-			NSMutableDictionary *GPS = [[NSMutableDictionary alloc]init];
-			NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-			double latitude = [prefs doubleForKey: @"latitude"];
-			double longitude = [prefs doubleForKey: @"longitude"];
-			
-			//[GPS setObject:@"126.603" forKey:@"ImgDirection"];
-			//				[GPS setObject:@"T" forKey:@"ImgDirectionRef"];
-			
-			[GPS setObject:[NSNumber numberWithDouble:latitude] forKey:@"Latitude"];
-			if (latitude > 0) {
-				[GPS setObject:@"N" forKey:@"LatitudeRef"];
-			} else {
-				[GPS setObject:@"S" forKey:@"LatitudeRef"];
-			}
-			
-			[GPS setObject:[NSNumber numberWithDouble:longitude] forKey:@"Longitude"];
-			if (latitude > 0) {
-				[GPS setObject:@"E" forKey:@"LongitudeRef"];
-			} else {
-				[GPS setObject:@"W" forKey:@"LongitudeRef"];
-			}
-			
-			NSDate *date = [NSDate date];
-			NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-			[formatter setDateFormat:@"HH:mm:ss"];
-			NSString *dateString = [formatter stringFromDate:date];
-			[formatter release];
-			[GPS setObject:dateString forKey:@"TimeStamp"];
-			
-			[appDelegate.imageMetadata setObject:GPS forKey:@"{GPS}"];
-			
-			NSLog(@"imageMetadata2=%@", appDelegate.imageMetadata);
-			
-		} else {
-			appDelegate.imageMetadata = nil;
-		}
-		
-		
-		if ([self isSaveCameraShot])
-		{
-			if (appDelegate.imageMetadata == nil) {
-				UIImageWriteToSavedPhotosAlbum(originalImage, self, nil, nil); 
-			} else {
-				ALAssetsLibrary *library = [[[ALAssetsLibrary alloc] init] autorelease];
-				CGImageRef imageMetadataRef=originalImage.CGImage;
-				[library writeImageToSavedPhotosAlbum:imageMetadataRef metadata:appDelegate.imageMetadata completionBlock:^(NSURL *newURL, NSError *error) {
-					if (error) {
-					} else {
-					}
-				}];
-			}
-		}
-	} else { //from Lib
-		float version = [[[UIDevice currentDevice] systemVersion] floatValue];
-		if (version > 4.1) {
-			NSURL *assetURL = [info objectForKey:UIImagePickerControllerReferenceURL];
-			
-			ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-			[library assetForURL:assetURL
-					 resultBlock:^(ALAsset *asset)  {
-						 NSDictionary *metadata = asset.defaultRepresentation.metadata;
-						 
-						 appDelegate.imageMetadata = [[NSMutableDictionary alloc] initWithDictionary:metadata];
-						 
-					 }
-					failureBlock:^(NSError *error) {
-					}];
-			[library autorelease];
-		} else {
-			appDelegate.imageMetadata = nil;	
-		}
-	}
-	//end add
-	
-	
-	[appDelegate.window addSubview:self.view];
-	
-	[picker dismissModalViewControllerAnimated:YES];
 	
 	//s_isCameraPick = true;
 	
 	//baiwei add for dismisspopover
+}
+
+-(void)renderImage:(UIImage *)originalImage {
 	
-	//modify by jack
-	if(imagePickerPopover.popoverVisible)
-		[self.imagePickerPopover dismissPopoverAnimated:YES];
-	
-	m_isImageOnceLoaded = true;	
+	m_isImageOnceLoaded = true;
 	
 	//[self setWidgetGeometry];
 	
@@ -2058,7 +1650,6 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 		isRefresh[i] = NO;
 		if(viewImageArray[i])
 		{
-			[viewImageArray[i] release];
 			viewImageArray[i] = nil;
 		}
 	}
@@ -2070,12 +1661,12 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 	
 	//baiwei add for memery resolution
 	
-	appDelegate.highWidth = size.width;
-	appDelegate.highHeight = size.height;
-	appDelegate.midWidth = size.width*0.75;
-	appDelegate.midHeight = size.height*0.75;
-	appDelegate.lowWidth = size.width*0.5;
-	appDelegate.lowHeight = size.height*0.5;
+//	appDelegate.highWidth = size.width;
+//	appDelegate.highHeight = size.height;
+//	appDelegate.midWidth = size.width*0.75;
+//	appDelegate.midHeight = size.height*0.75;
+//	appDelegate.lowWidth = size.width*0.5;
+//	appDelegate.lowHeight = size.height*0.5;
 	
 	
 	if(size.width< 100 || size.height < 100){
@@ -2085,7 +1676,6 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 													   delegate:self
 											  cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil];
 		[alert show];
-		[alert release];
 		return;
 	}
 	float rat = 0;
@@ -2102,7 +1692,6 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 													   delegate:self
 											  cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil];
 		[alert show];
-		[alert release];
 		return;
 	}
 	
@@ -2116,7 +1705,6 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 													   delegate:self
 											  cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil];
 		[alert show];
-		[alert release];
 		return;
 	}
 	
@@ -2130,7 +1718,7 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 	
 	
 	//add by jack 0525
-	mojoAppDelegate *app = (mojoAppDelegate*)[[UIApplication sharedApplication] delegate];
+    mojoAppDelegate *app = (mojoAppDelegate*)[mojoAppDelegate fakeAppDelegate];
 	[app showInitialiationView];
 	[app hiddenProgressViewBar];
 	//end add
@@ -2140,8 +1728,8 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 	//iPhone 4 reverse contrast curve definition
 	NSString* machine = [self getDeviceName];
 	if ( [machine hasPrefix:@"iPhone3,"] && isImageFromCamera){
-		int inputWidth = CGImageGetWidth( originalImage.CGImage );
-		int inputHeight = CGImageGetHeight( originalImage.CGImage );
+		int inputWidth = roundf(CGImageGetWidth( originalImage.CGImage ));
+		int inputHeight = roundf(CGImageGetHeight( originalImage.CGImage ));
 		originalImage = [ImageProcess imageNewWithImage:originalImage scaledToSize:CGSizeMake(inputWidth, inputHeight)];
 		originalImage = [self uncontrastiPhone4Image:originalImage];
 	}
@@ -2153,18 +1741,6 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 	} else {
 		numberMode = 4;
 	}
-	
-	[self setWidgetGeometry]; 
-	m_viewState = 1;
-	[self setViewState];
-	
-	//add by jack
-	//	if (portraitImage!=nil)
-	//	{
-	//		[portraitImage release];
-	//		portraitImage = nil;
-	//	}
-	//end add
 	
 	[Utilities printAvailMemory];
 #ifdef CROP_RATIO_4_3
@@ -2193,8 +1769,6 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
  
  m_viewState = 1;
  m_isImageOnceLoaded = true;	
- [self setViewState];
- [self setWidgetGeometry];
  
  // Randomize and clear cache
  for(int i=0;i<4;i++)
@@ -2342,7 +1916,6 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 	if (doCrop)
 	{
 		CGImageRef tempRef = CGImageCreateWithImageInRect(tmpImg.CGImage, CGRectMake(xOffset, yOffset, cropWidth, cropHeight));
-		[tmpImg release];
 		resultImg = [[UIImage alloc]initWithCGImage:tempRef];
 		CGImageRelease(tempRef);		
 	}
@@ -2368,9 +1941,9 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 	
 	lastNumberMode = numberMode;
 	numberMode = 1;
-	[self setWidgetGeometry];
+//	[self setWidgetGeometry];
 	m_viewState = 2;
-	[self setViewState];
+//	[self setViewState];
 	
 	
 	[UIView commitAnimations];		
@@ -2387,118 +1960,97 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 {
 	if ((prevWidth != resolution) || !cvVigArtImg || !VigArtImg || !borderImg || !leakImg)
 	{		
-		if (cvVigArtImg)	
-		{
-			[cvVigArtImg release];
-			cvVigArtImg = nil;
-		}
-		if (VigArtImg)		
-		{
-			[VigArtImg release];
-			VigArtImg = nil;
-		}
-		if (borderImg)		
-		{
-			[borderImg release];
-			borderImg = nil;
-		}
-		if (leakImg) 		
-		{
-			[leakImg release];
-			leakImg = nil;
-		}
-		
 		switch (resolution) {
 			case 3000:
 			{
-				leakImg = [[UIImage imageNamed:PROCESS_LEAK_6K]retain];
+                leakImg = [UIImage imageNamed:PROCESS_LEAK_6K];
 				if (_landscape)
 				{
 					//					cvVigArtImg = [[UIImage imageNamed:PROCESS_VIGART_LANDSCAPE_2K]retain];
 					//					VigArtImg = [[UIImage imageNamed:PROCESS_SQRVIG_LANDSCAPE_2K]retain];
-					borderImg = [[UIImage imageNamed:PROCESS_BORDER_LANDSCAPE_4K]retain];
+                    borderImg = [UIImage imageNamed:PROCESS_BORDER_LANDSCAPE_4K];
 				}
 				else
 				{
 					//					cvVigArtImg = [[UIImage imageNamed:PROCESS_VIGART_2K]retain];
 					//					VigArtImg = [[UIImage imageNamed:PROCESS_SQRVIG_2K]retain];
-					borderImg = [[UIImage imageNamed:PROCESS_BORDER_4K]retain];
+                    borderImg = [UIImage imageNamed:PROCESS_BORDER_4K];
 				}
 			}
 				break;
 			case 2592:
-				leakImg = [[UIImage imageNamed:PROCESS_LEAK_2K]retain];
+                leakImg = [UIImage imageNamed:PROCESS_LEAK_2K];
 				if (_landscape)
 				{
 					//					cvVigArtImg = [[UIImage imageNamed:PROCESS_VIGART_LANDSCAPE_2K]retain];
 					//					VigArtImg = [[UIImage imageNamed:PROCESS_SQRVIG_LANDSCAPE_2K]retain];
-					borderImg = [[UIImage imageNamed:PROCESS_BORDER_LANDSCAPE_2K]retain];
+                    borderImg = [UIImage imageNamed:PROCESS_BORDER_LANDSCAPE_2K];
 				}
 				else
 				{
 					//					cvVigArtImg = [[UIImage imageNamed:PROCESS_VIGART_2K]retain];
 					//					VigArtImg = [[UIImage imageNamed:PROCESS_SQRVIG_2K]retain];
-					borderImg = [[UIImage imageNamed:PROCESS_BORDER_2K]retain];
+                    borderImg = [UIImage imageNamed:PROCESS_BORDER_2K];
 				}
 				break;
 			case 2048:
-				leakImg = [[UIImage imageNamed:PROCESS_LEAK_2K]retain];
+                leakImg = [UIImage imageNamed:PROCESS_LEAK_2K];
 				if (_landscape)
 				{
 					//					cvVigArtImg = [[UIImage imageNamed:PROCESS_VIGART_LANDSCAPE_2K]retain];
 					//					VigArtImg = [[UIImage imageNamed:PROCESS_SQRVIG_LANDSCAPE_2K]retain];
-					borderImg = [[UIImage imageNamed:PROCESS_BORDER_LANDSCAPE_2K]retain];
+                    borderImg = [UIImage imageNamed:PROCESS_BORDER_LANDSCAPE_2K];
 				}
 				else
 				{
 					//					cvVigArtImg = [[UIImage imageNamed:PROCESS_VIGART_2K]retain];
 					//					VigArtImg = [[UIImage imageNamed:PROCESS_SQRVIG_2K]retain];
-					borderImg = [[UIImage imageNamed:PROCESS_BORDER_2K]retain];
+                    borderImg = [UIImage imageNamed:PROCESS_BORDER_2K];
 				}
 				break;
 			case 1600:
-				leakImg = [[UIImage imageNamed:PROCESS_LEAK_1K]retain];
+                leakImg = [UIImage imageNamed:PROCESS_LEAK_1K];
 				if (_landscape)
 				{
 					//					cvVigArtImg = [[UIImage imageNamed:PROCESS_VIGART_LANDSCAPE_1K]retain];
 					//					VigArtImg = [[UIImage imageNamed:PROCESS_SQRVIG_LANDSCAPE_1K]retain];
-					borderImg = [[UIImage imageNamed:PROCESS_BORDER_LANDSCAPE_1K]retain];
+                    borderImg = [UIImage imageNamed:PROCESS_BORDER_LANDSCAPE_1K];
 				}
 				else
 				{
 					//					cvVigArtImg = [[UIImage imageNamed:PROCESS_VIGART_1K]retain];
 					//					VigArtImg = [[UIImage imageNamed:PROCESS_SQRVIG_1K]retain];
-					borderImg = [[UIImage imageNamed:PROCESS_BORDER_1K]retain];
+                    borderImg = [UIImage imageNamed:PROCESS_BORDER_1K];
 				}
 				break;
 			case 1024:
-				leakImg = [[UIImage imageNamed:PROCESS_LEAK_1K]retain];
+                leakImg = [UIImage imageNamed:PROCESS_LEAK_1K];
 				if (_landscape)
 				{
 					//					cvVigArtImg = [[UIImage imageNamed:PROCESS_VIGART_LANDSCAPE_1K]retain];
 					//					VigArtImg = [[UIImage imageNamed:PROCESS_SQRVIG_LANDSCAPE_1K]retain];
-					borderImg = [[UIImage imageNamed:PROCESS_BORDER_LANDSCAPE_1K]retain];
+                    borderImg = [UIImage imageNamed:PROCESS_BORDER_LANDSCAPE_1K];
 				}
 				else
 				{
 					//					cvVigArtImg = [[UIImage imageNamed:PROCESS_VIGART_1K]retain];
 					//					VigArtImg = [[UIImage imageNamed:PROCESS_SQRVIG_1K]retain];
-					borderImg = [[UIImage imageNamed:PROCESS_BORDER_1K]retain];
+                    borderImg = [UIImage imageNamed:PROCESS_BORDER_1K];
 				}
 				break;
 			case 800:
-				leakImg = [[UIImage imageNamed:PROCESS_LEAK]retain];
+                leakImg = [UIImage imageNamed:PROCESS_LEAK];
 				if (_landscape)
 				{
 					//					cvVigArtImg = [[UIImage imageNamed:PROCESS_VIGART_LANDSCAPE]retain];
 					//					VigArtImg = [[UIImage imageNamed:PROCESS_SQRVIG_LANDSCAPE]retain];
-					borderImg = [[UIImage imageNamed:PROCESS_BORDER_LANDSCAPE]retain];
+                    borderImg = [UIImage imageNamed:PROCESS_BORDER_LANDSCAPE];
 				}
 				else
 				{
 					//					cvVigArtImg = [[UIImage imageNamed:PROCESS_VIGART]retain];
 					//					VigArtImg = [[UIImage imageNamed:PROCESS_SQRVIG]retain];
-					borderImg = [[UIImage imageNamed:PROCESS_BORDER]retain];
+                    borderImg = [UIImage imageNamed:PROCESS_BORDER];
 				}
 				break;
 			default:
@@ -2525,8 +2077,6 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 	// Repare for Blurred Soft Image
 	//
 	if (blurImage){
-		[blurImage release];
-		
 		//safty release
 		blurImage = nil;
 	}
@@ -2546,13 +2096,11 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 		//		}
 		
 		blurImage = [Renderer blurImg:tmpImage2];
-		[tmpImage2 release];
 		if (blurImage)
 		{
 			tmpImage2 = [Renderer blurImg:blurImage];
 			if ( tmpImage2 )
 			{
-				[blurImage release];
 				blurImage = tmpImage2;
 			}
 		}
@@ -2622,7 +2170,7 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 		}
 		
 		
-		//UIImage *portraitImage = [pView getPortraitImage];
+        UIImage *portraitImageCopy = [UIImage imageWithCGImage:[self.portraitImage CGImage]];
 		width = CGImageGetWidth( portraitImage.CGImage );
 		height = CGImageGetHeight( portraitImage.CGImage );
 		
@@ -2643,12 +2191,11 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 			{
 				if(isRefresh[index]||(!viewImageArray[index]))
 				{
-					pOutputImage = [self createNewImage:&portraitImage imgWidth:width imgHeight:height imgParameter:index];
+					pOutputImage = [self createNewImage:&portraitImageCopy imgWidth:width imgHeight:height imgParameter:index];
 					if(pOutputImage)
 					{
 						if(viewImageArray[index])
 						{
-							[viewImageArray[index] release];
 							viewImageArray[index] = nil;
 						}
 						viewImageArray[index] = [[UIImage alloc] initWithCGImage:pOutputImage.CGImage];
@@ -2668,11 +2215,11 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 				if (ffRenderArgsArray[index].cachedPreviewImage)
 				{
 					NSString *filename = [NSString stringWithFormat:@FORMAT_PREVIEW,index ];
-					pOutputImage = [[[FileCache sharedCacher] cachedLocalImage:filename] retain];
+                    pOutputImage = [[FileCache sharedCacher] cachedLocalImage:filename];
 				}
 				else
 				{
-					pOutputImage = [self createNewImage:&portraitImage imgWidth:width imgHeight:height imgParameter:index];
+					pOutputImage = [self createNewImage:&portraitImageCopy imgWidth:width imgHeight:height imgParameter:index];
 					if (pOutputImage)
 					{
 						NSString *filename = [NSString stringWithFormat:@FORMAT_PREVIEW,index ];
@@ -2685,8 +2232,7 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 			if(pOutputImage)
 			{
 				[imageViewArray[index] performSelectorOnMainThread:@selector(setImage:) withObject:pOutputImage waitUntilDone:NO];	
-				[pOutputImage release];
-				[self performSelectorOnMainThread:@selector(animateImageView:) withObject:imageViewArray[index] waitUntilDone:NO];	
+				[self performSelectorOnMainThread:@selector(animateImageView:) withObject:imageViewArray[index] waitUntilDone:NO];
 			}
 			else
 				err = 1;
@@ -2752,7 +2298,6 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 					{
 						if(viewImageArray[index])
 						{
-							[viewImageArray[index] release];
 							viewImageArray[index] = nil;
 						}
 						viewImageArray[index] = [[UIImage alloc]initWithCGImage:pOutputImage.CGImage];
@@ -2772,7 +2317,7 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 				if (ffRenderArgsArray[index].cachedPreviewImage)
 				{
 					NSString *filename = [NSString stringWithFormat:@FORMAT_PREVIEW,index ];
-					pOutputImage = [[[FileCache sharedCacher] cachedLocalImage:filename] retain];
+                    pOutputImage = [[FileCache sharedCacher] cachedLocalImage:filename];
 				}
 				else
 				{
@@ -2789,7 +2334,6 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 			{
 				[imageViewArray[index] performSelectorOnMainThread:@selector(setImage:) withObject:pOutputImage waitUntilDone:NO];	
 				[self performSelectorOnMainThread:@selector(animateImageView:) withObject:imageViewArray[index] waitUntilDone:NO];	
-				[pOutputImage release];		
 			}
 			else
 				err = 1;	
@@ -2840,15 +2384,15 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 		
 		return;
 	} else {
-		mojoAppDelegate *appDelegate = (mojoAppDelegate*)[[UIApplication sharedApplication]delegate];
+        mojoAppDelegate *appDelegate = (mojoAppDelegate*)[mojoAppDelegate fakeAppDelegate];
 		[appDelegate.window addSubview:self.view];
 	}
 	
 	
 	m_viewState = 1;
 	
-	[self setWidgetGeometry];
-	[self setViewState];
+//	[self setWidgetGeometry];
+//	[self setViewState];
 	
 	
 	//	if(m_viewState == 1)
@@ -2881,7 +2425,7 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 	}
 	else if ( _index<9 )
 	{
-		[self newRenderArg:_index];
+    [self newRenderArg:_index];
 		isRefresh[_index] = YES;		
 	}
 	
@@ -2914,707 +2458,6 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
  }
  */
 
-- (void)startSaveBackground:(SAVE_TO)saveTo
-{
-    //int a = m_quadIndex;
-	saveToState = saveTo;
-	
-	[[NSUserDefaults standardUserDefaults] setInteger:saveToState forKey: @"saveToState"];
-	
-	//mojoAppDelegate *app = (mojoAppDelegate*)[[UIApplication sharedApplication] delegate];
-//	app.saveToState = saveTo;
-	
- 	float x = 320/2.0;
-	float y = (480-TOOLBAR_OFFSET_HEIGHT)/2.0;
-	
-	if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-	{
-		x = 768/2.0;
-		y = (1024-TOOLBAR_OFFSET_HEIGHT)/2.0;
-	}
-	
-	
-	float width = spinner.frame.size.width;
-	float height = spinner.frame.size.height;
-	spinner.frame = CGRectMake(x-width/2.0, TOOLBAR_OFFSET_HEIGHT + y-height/2.0, width, height);
-	if(workerThread != nil)
-	{
-		[workerThread cancel];
-		do
-		{
-			// Spin
-		}
-		while (![workerThread isFinished]);
-		[workerThread release];
-	}
-	
-	
-	//add by jack
-	//pass param to thread
-	NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d", saveTo], KEY_SAVE_TO,nil];
-	//end add
-	workerThread = [[NSThread alloc] initWithTarget:self selector:@selector(backgroundSaving:) object:dic];
-	[workerThread start];
-	
-}
-
-- (UIImage *)getUploadImage
-{
-	double downres = 1.0f;
-	if([self isHalfResolution])
-	{
-		downres = 0.5f;
-	}
-	else if ([self is3QuarterResolution] )
-	{
-		downres = 0.75f;
-	}
-	
-	fullImage = [Utilities imageFromFileCache:ORIGINAL_IMAGE_FILE_NAME];
-	//add by Guno
-	//	int inputWidth = CGImageGetWidth( fullImage.CGImage ) * downres;
-	//	int inputHeight = CGImageGetHeight( fullImage.CGImage ) * downres;
-	int inputWidth = fullImageWidth * downres;
-	int inputHeight = fullImageHeight * downres;
-	isFullImageLandscape = (inputWidth > inputHeight);
-	//end Guno
-	
-	// Prepare target source render image
-	// Need to deal with device memory limitation by first scale down the image and post scale the image after render
-	//
-	int width = inputWidth;
-	int height = inputHeight;
-	//CGSize maxRes = [self getMaxRenderResolution:CGSizeMake(width, height)];
-	//	if ((maxRes.width!=width) || (maxRes.height!=height))
-	//	{
-	//		width = maxRes.width;
-	//		height = maxRes.height;
-	//	}
-	//baiwei add for progress
-	mojoAppDelegate *app = (mojoAppDelegate*)[[UIApplication sharedApplication] delegate];
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	[app setResolution:[defaults integerForKey:@"resolution_select"]];
-	[app showProcessProgress:YES];
-	[app updateProgressDegree:0.0];
-	
-	UIImage *renderImage = [self createNewImage:&fullImage imgWidth:width imgHeight:height imgParameter:-1];
-	
-	//int tempWidth,tempHeight;
-	
-	int tempWidth = width;
-	int tempHeight = height;
-	//	if(CGImageGetWidth(portraitImage.CGImage)>CGImageGetHeight(portraitImage.CGImage))
-	//	{
-	//		tempWidth = width;
-	//		tempHeight = height;
-	//	}
-	//	else
-	//	{
-	//		tempWidth = width<height?width:height;
-	//		tempHeight = width>height?width:height;
-	//	}
-	
-	// Retreive from file cache if already rendered previously
-	//
-	bool re_cache = false;
-	UIImage *saveImage = nil;
-	if ( ffRenderArgsArray[m_quadIndex].cachedRenderImage )
-	{
-		NSString *filename = [NSString stringWithFormat:@FORMAT_RENDER,m_quadIndex ];
-		saveImage = [[[FileCache sharedCacher] cachedLocalImage:filename] retain];
-		if ( !saveImage )
-		{
-			ffRenderArgsArray[m_quadIndex].cachedRenderImage = false;
-		}
-		else if (tempWidth > CGImageGetWidth( saveImage.CGImage ))
-		{
-			// File cache is not hi res enough.  Need re-render
-			//
-			[saveImage release];
-			saveImage = nil;
-			re_cache = true;
-		}
-		else if (tempWidth < CGImageGetWidth( saveImage.CGImage ))
-		{
-			// Smaller target.  Just shrink down and finish.
-			//
-			UIImage *targetImage = [ImageProcess imageNewWithImage:saveImage scaledToSize:CGSizeMake(tempWidth, tempHeight)];
-			[saveImage release];
-			saveImage = targetImage;
-		}
-		
-	}
-	
-	BOOL isNeedCreateImage = NO;
-	
-	//mojoAppDelegate *app = (mojoAppDelegate*)[[UIApplication sharedApplication] delegate];
-	if ( !saveImage )
-	{
-		isNeedCreateImage = YES;
-		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-		[app setResolution:[defaults integerForKey:@"resolution_select"]];
-		//[app showProcessProgress:YES];
-		//		[app updateProgressDegree:0.0];
-		
-		// Do actual rendering
-		//
-		[self printAvailMem];
-		saveImage = [self createNewImage:&renderImage imgWidth:tempWidth imgHeight:tempHeight imgParameter:m_quadIndex];
-		[self printAvailMem];
-	}
-	
-	[app updateProgressDegree:1.0];
-	[app showProcessProgress:NO];
-	
-	return saveImage;
-	
-	//return saveImage2;
-}
-
-// Render full res and Save to Photo Album
-//
-- (void)backgroundSaving:(NSDictionary*)info
-{
-	isSaveToAlbum = true;
-	
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	[self performSelectorOnMainThread:@selector(startAnimating:) withObject:@"startAnimating" waitUntilDone:NO];
-	
-	sWorkerThread = workerThread;
-	
-	// Check the target render resolution
-	//
-	double downres = 1.0f;
-	if([self isHalfResolution])
-	{
-		downres = 0.5f;
-	}
-	else if ([self is3QuarterResolution] )
-	{
-		downres = 0.75f;
-	}
-	
-	//#ifdef __DEBUG_PB__
-	fullImage = [Utilities imageFromFileCache:ORIGINAL_IMAGE_FILE_NAME];
-	fullImageWidth = CGImageGetWidth( fullImage.CGImage );
-	fullImageHeight = CGImageGetHeight( fullImage.CGImage );	
-	//#endif
-	
-	int inputWidth = fullImageWidth * downres;
-	int inputHeight = fullImageHeight * downres;
-	
-	[Utilities printAvailMemory];
-	
-	// Prepare target source render image
-	// Need to deal with device memory limitation by first scale down the image and post scale the image after render
-	//
-	int width = inputWidth;
-	int height = inputHeight;
-	//CGSize maxRes = [self getMaxRenderResolution:CGSizeMake(width, height)];
-	//	if ((maxRes.width!=width) || (maxRes.height!=height))
-	//	{
-	//		width = maxRes.width;
-	//		height = maxRes.height;
-	//	}
-	UIImage *renderImage = [self createNewImage:&fullImage imgWidth:width imgHeight:height imgParameter:-1];
-	
-	int tempWidth = width;
-	int tempHeight = height;
-	//	int pWidth = CGImageGetWidth(portraitImage.CGImage);
-	//	int pHeight = CGImageGetHeight(portraitImage.CGImage);
-	//
-	//	if (pWidth <= pHeight)
-	//	{
-	//		tempWidth = width;
-	//		tempHeight = height;
-	//	}
-	//	else
-	//	{
-	//		tempWidth = width<height?width:height;
-	//		tempHeight = width>height?width:height;
-	//	}
-	
-	// Retreive from file cache if already rendered previously
-	//
-	bool re_cache = false;
-	UIImage *saveImage = nil;
-	if ( ffRenderArgsArray[m_quadIndex].cachedRenderImage )
-	{
-		NSString *filename = [NSString stringWithFormat:@FORMAT_RENDER,m_quadIndex ];
-		saveImage = [[[FileCache sharedCacher] cachedLocalImage:filename] retain];
-		if ( !saveImage )
-		{
-			ffRenderArgsArray[m_quadIndex].cachedRenderImage = false;
-		}
-		else if (tempWidth > CGImageGetWidth( saveImage.CGImage ))
-		{
-			// File cache is not hi res enough.  Need re-render
-			//
-			[saveImage release];
-			saveImage = nil;
-			re_cache = true;
-		}
-		else if (tempWidth < CGImageGetWidth( saveImage.CGImage ))
-		{
-			// Smaller target.  Just shrink down and finish.
-			//
-			UIImage *targetImage = [ImageProcess imageNewWithImage:saveImage scaledToSize:CGSizeMake(tempWidth, tempHeight)];
-			[saveImage release];
-			saveImage = targetImage;
-		}
-		
-	}
-	
-	BOOL isNeedCreateImage = NO;
-	
-	mojoAppDelegate *app = (mojoAppDelegate*)[[UIApplication sharedApplication] delegate];
-	if ( !saveImage )
-	{
-		isNeedCreateImage = YES;
-		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-		[app setResolution:[defaults integerForKey:@"resolution_select"]];
-		[app showProcessProgress:YES];
-		[app updateProgressDegree:0.0];
-		if(info)
-		{
-			int operation = [[info valueForKey:KEY_SAVE_TO] intValue];
-			switch (operation)
-			{
-				case SAVE_TO_ALBUM:
-				{
-					
-				}
-					break;
-				case SAVE_TO_FACEBOOK:
-				{
-					
-				}
-					break;
-				case SAVE_TO_FLICKR:
-				{
-					
-				}
-					break;
-			}
-		}
-		
-		// Do actual rendering
-		//
-		[self printAvailMem];
-		saveImage = [self createNewImage:&renderImage imgWidth:tempWidth imgHeight:tempHeight imgParameter:m_quadIndex];
-		[self printAvailMem];
-	}
-	
-	//NSLog(@"createNewImage end");
-	if(renderImage != nil)
-		[renderImage release];
-	
-	mojoAppDelegate *appDelegate = (mojoAppDelegate*)[[UIApplication sharedApplication]delegate];
-	
-	if(saveImage && ![workerThread isCancelled])
-	{
-		
-		if(info)
-		{
-			
-			int operation = [[info valueForKey:KEY_SAVE_TO] intValue];
-			
-			switch (operation)
-			{
-				case SAVE_TO_ALBUM:
-				{
-					// Always save to album regardless of cache
-					//
-					if (!isNeedCreateImage)
-					{
-						NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-						[app setResolution:[defaults integerForKey:@"resolution_select"]];
-						[app showProcessProgress:YES];
-						[app updateProgressDegree:1.0];
-					}
-					
-					[app setResolution:3];
-					[app showProcessProgress:YES];
-					
-					if ( !ffRenderArgsArray[m_quadIndex].cachedRenderImage || re_cache )
-					{
-						if (sPostRenderScale)
-						{
-							UIImage *targetImage = [ImageProcess imageNewWithImage:saveImage scaledToSize:sRenderTarget];
-							[saveImage release];
-							saveImage = targetImage;
-						}
-					}
-					
-#ifdef __DEBUG_PB__
-					NSLog(@"Prepare to save to Album");
-					//[Utilities printAvailMemory];
-#endif
-					//baiwei edit for metadata
-					
-					NSLog(@"saveMetaData=%@", appDelegate.imageMetadata);
-					if (appDelegate.imageMetadata == nil) {
-						UIImageWriteToSavedPhotosAlbum(saveImage, self, nil, nil); 
-					} else {
-						[appDelegate.imageMetadata setObject:[NSNumber numberWithInteger:saveImage.imageOrientation] forKey:@"Orientation"]; 
-						ALAssetsLibrary *library = [[[ALAssetsLibrary alloc] init] autorelease];
-						CGImageRef imageMetadataRef=saveImage.CGImage;
-						[library writeImageToSavedPhotosAlbum:imageMetadataRef metadata:appDelegate.imageMetadata completionBlock:^(NSURL *newURL, NSError *error) {
-							if (error) {
-							} else {
-							}
-						}];
-					}
-					//end edit
-					
-					if ( !ffRenderArgsArray[m_quadIndex].cachedRenderImage || re_cache )
-					{
-						NSString *filename = [NSString stringWithFormat:@FORMAT_RENDER,m_quadIndex ];
-						[[FileCache sharedCacher] cacheLocalImage:filename image:saveImage];
-						ffRenderArgsArray[m_quadIndex].cachedRenderImage = true;
-					}
-					else
-					{
-						// Waste some cycle to ensure the image is saved properly
-						//
-						NSString *filename = [NSString stringWithFormat:@FORMAT_RENDER,99 ];
-						[[FileCache sharedCacher] cacheLocalImage:filename image:saveImage];
-					}
-					
-					[app updateProgressDegree:1.0];
-					[app showProcessProgress:NO];
-                    
-                    //baiwei add back to Four
-                    [self backToFour];
-				}
-					break;
-				case SAVE_TO_FACEBOOK:
-				{
-					if ( !ffRenderArgsArray[m_quadIndex].cachedRenderImage || re_cache )
-					{
-						if(isNeedCreateImage){
-							[app setResolution:3];
-							[app showProcessProgress:YES];
-						}
-						
-						if (sPostRenderScale)
-						{
-							UIImage *targetImage = [ImageProcess imageNewWithImage:saveImage scaledToSize:sRenderTarget];
-							[saveImage release];
-							saveImage = targetImage;
-						}
-						
-						//baiwei edit for metadata
-						if (appDelegate.imageMetadata == nil) {
-							UIImageWriteToSavedPhotosAlbum(saveImage, self, nil, nil); 
-						} else {
-							[appDelegate.imageMetadata setObject:[NSNumber numberWithInteger:saveImage.imageOrientation] forKey:@"Orientation"]; 
-							ALAssetsLibrary *library = [[[ALAssetsLibrary alloc] init] autorelease];
-							CGImageRef imageMetadataRef=saveImage.CGImage;
-							[library writeImageToSavedPhotosAlbum:imageMetadataRef metadata:appDelegate.imageMetadata completionBlock:^(NSURL *newURL, NSError *error) {
-								if (error) {
-								} else {
-								}
-							}];
-						}
-						//end edit
-						
-						NSString *filename = [NSString stringWithFormat:@FORMAT_RENDER,m_quadIndex ];
-						[[FileCache sharedCacher] cacheLocalImage:filename image:saveImage];
-						ffRenderArgsArray[m_quadIndex].cachedRenderImage = true;
-					}
-					if(isNeedCreateImage){
-						[app updateProgressDegree:1.0];
-						[app showProcessProgress:NO];
-					}
-					
-					int width = CGImageGetWidth( saveImage.CGImage );
-					int height = CGImageGetHeight( saveImage.CGImage );
-					double scale = 1.0;
-					//					if ( width > height )
-					if ( isFullImageLandscape )
-					{
-						if (width > 800)
-						{
-							scale = 800.0 / width;
-							width = 800;
-							height = height * scale;
-						}
-						
-						if (height > 600)
-						{
-							scale = 600.0 / height;
-							width = width * scale;
-							height = 600;
-						}
-					}
-					else 
-					{
-						if (height > 800)
-						{
-							scale = 800.0 / height;
-							height = 800;
-							width = width * scale;
-						}
-						
-						if (width > 600)
-						{
-							scale = 600.0 / width;
-							height = height * scale;
-							width = 600;
-						}
-					}
-					
-					if (scale != 1.0)
-					{
-						UIImage *uploadImg = [ImageProcess imageNewWithImage:saveImage scaledToSize:CGSizeMake(width,height)];
-						[saveImage release];
-						saveImage = uploadImg;
-					}
-					
-					[self performSelectorOnMainThread:@selector(shareOnFacebook:) withObject:saveImage waitUntilDone:NO];
-				}
-					break;
-				case SAVE_TO_FLICKR:
-				{
-					if ( !ffRenderArgsArray[m_quadIndex].cachedRenderImage || re_cache)
-					{
-						if(isNeedCreateImage){
-							[app setResolution:3];
-							[app showProcessProgress:YES];
-						}
-						
-						if (sPostRenderScale)
-						{
-							UIImage *targetImage = [ImageProcess imageNewWithImage:saveImage scaledToSize:sRenderTarget];
-							[saveImage release];
-							saveImage = targetImage;
-						}
-						
-						//baiwei edit for metadata
-						if (appDelegate.imageMetadata == nil) {
-							UIImageWriteToSavedPhotosAlbum(saveImage, self, nil, nil); 
-						} else {
-							[appDelegate.imageMetadata setObject:[NSNumber numberWithInteger:saveImage.imageOrientation] forKey:@"Orientation"]; 
-							ALAssetsLibrary *library = [[[ALAssetsLibrary alloc] init] autorelease];
-							CGImageRef imageMetadataRef=saveImage.CGImage;
-							[library writeImageToSavedPhotosAlbum:imageMetadataRef metadata:appDelegate.imageMetadata completionBlock:^(NSURL *newURL, NSError *error) {
-								if (error) {
-								} else {
-								}
-							}];
-						}
-						//end edit
-						
-						NSString *filename = [NSString stringWithFormat:@FORMAT_RENDER,m_quadIndex ];
-						[[FileCache sharedCacher] cacheLocalImage:filename image:saveImage];
-						ffRenderArgsArray[m_quadIndex].cachedRenderImage = true;
-					}
-					if(isNeedCreateImage){
-						[app updateProgressDegree:1.0];
-						[app showProcessProgress:NO];
-					}
-					[self performSelectorOnMainThread:@selector(shareOnFlickr:) withObject:saveImage waitUntilDone:NO];
-				}
-					break;
-					
-				case SAVE_TO_TWITTER:
-				{
-					if ( !ffRenderArgsArray[m_quadIndex].cachedRenderImage || re_cache)
-					{
-						if(isNeedCreateImage){
-							[app setResolution:3];
-							[app showProcessProgress:YES];
-						}
-						
-						if (sPostRenderScale)
-						{
-							UIImage *targetImage = [ImageProcess imageNewWithImage:saveImage scaledToSize:sRenderTarget];
-							[saveImage release];
-							saveImage = targetImage;
-						}
-						
-						//baiwei edit for metadata
-						if (appDelegate.imageMetadata == nil) {
-							UIImageWriteToSavedPhotosAlbum(saveImage, self, nil, nil); 
-						} else {
-							[appDelegate.imageMetadata setObject:[NSNumber numberWithInteger:saveImage.imageOrientation] forKey:@"Orientation"]; 
-							ALAssetsLibrary *library = [[[ALAssetsLibrary alloc] init] autorelease];
-							CGImageRef imageMetadataRef=saveImage.CGImage;
-							[library writeImageToSavedPhotosAlbum:imageMetadataRef metadata:appDelegate.imageMetadata completionBlock:^(NSURL *newURL, NSError *error) {
-								if (error) {
-								} else {
-								}
-							}];
-						}
-						//end edit
-						
-						NSString *filename = [NSString stringWithFormat:@FORMAT_RENDER,m_quadIndex ];
-						[[FileCache sharedCacher] cacheLocalImage:filename image:saveImage];
-						ffRenderArgsArray[m_quadIndex].cachedRenderImage = true;
-					}
-					if(isNeedCreateImage){
-						[app updateProgressDegree:1.0];
-						[app showProcessProgress:NO];
-					}
-					[self performSelectorOnMainThread:@selector(shareOnTwitter:) withObject:saveImage waitUntilDone:NO];
-					
-				}
-					break;
-					
-				case SAVE_TO_TUMBLR:
-				{
-					if ( !ffRenderArgsArray[m_quadIndex].cachedRenderImage || re_cache)
-					{
-						if(isNeedCreateImage){
-							[app setResolution:3];
-							[app showProcessProgress:YES];
-						}
-						
-						if (sPostRenderScale)
-						{
-							UIImage *targetImage = [ImageProcess imageNewWithImage:saveImage scaledToSize:sRenderTarget];
-							[saveImage release];
-							saveImage = targetImage;
-						}
-						
-						//baiwei edit for metadata
-						if (appDelegate.imageMetadata == nil) {
-							UIImageWriteToSavedPhotosAlbum(saveImage, self, nil, nil); 
-						} else {
-							[appDelegate.imageMetadata setObject:[NSNumber numberWithInteger:saveImage.imageOrientation] forKey:@"Orientation"]; 
-							ALAssetsLibrary *library = [[[ALAssetsLibrary alloc] init] autorelease];
-							CGImageRef imageMetadataRef=saveImage.CGImage;
-							[library writeImageToSavedPhotosAlbum:imageMetadataRef metadata:appDelegate.imageMetadata completionBlock:^(NSURL *newURL, NSError *error) {
-								if (error) {
-								} else {
-								}
-							}];
-						}
-						//end edit
-						
-						NSString *filename = [NSString stringWithFormat:@FORMAT_RENDER,m_quadIndex ];
-						[[FileCache sharedCacher] cacheLocalImage:filename image:saveImage];
-						ffRenderArgsArray[m_quadIndex].cachedRenderImage = true;
-					}
-					if(isNeedCreateImage){
-						[app updateProgressDegree:1.0];
-						[app showProcessProgress:NO];
-					}
-					[self performSelectorOnMainThread:@selector(shareOnTumblr:) withObject:saveImage waitUntilDone:NO];
-					
-				}
-					break;
-					
-				case SAVE_TO_ALL:
-				{
-					if ( !ffRenderArgsArray[m_quadIndex].cachedRenderImage || re_cache)
-					{
-						if(isNeedCreateImage){
-							[app setResolution:3];
-							[app showProcessProgress:YES];
-						}
-						
-						if (sPostRenderScale)
-						{
-							UIImage *targetImage = [ImageProcess imageNewWithImage:saveImage scaledToSize:sRenderTarget];
-							[saveImage release];
-							saveImage = targetImage;
-						}
-						
-						//baiwei edit for metadata
-						if (appDelegate.imageMetadata == nil) {
-							UIImageWriteToSavedPhotosAlbum(saveImage, self, nil, nil); 
-						} else {
-							[appDelegate.imageMetadata setObject:[NSNumber numberWithInteger:saveImage.imageOrientation] forKey:@"Orientation"]; 
-							ALAssetsLibrary *library = [[[ALAssetsLibrary alloc] init] autorelease];
-							CGImageRef imageMetadataRef=saveImage.CGImage;
-							[library writeImageToSavedPhotosAlbum:imageMetadataRef metadata:appDelegate.imageMetadata completionBlock:^(NSURL *newURL, NSError *error) {
-								if (error) {
-								} else {
-								}
-							}];
-						}
-						//end edit
-						
-						NSString *filename = [NSString stringWithFormat:@FORMAT_RENDER,m_quadIndex ];
-						[[FileCache sharedCacher] cacheLocalImage:filename image:saveImage];
-						ffRenderArgsArray[m_quadIndex].cachedRenderImage = true;
-					}
-					if(isNeedCreateImage){
-						[app updateProgressDegree:1.0];
-						[app showProcessProgress:NO];
-					}
-					
-					
-					[self performSelectorOnMainThread:@selector(shareOnAll:) withObject:saveImage waitUntilDone:NO];
-					
-				}
-					break;
-					
-				default:
-					break;
-			}
-		}
-	}
-	if(isNeedCreateImage){
-		[app showProcessProgress:NO];
-	}
-	
-	if(saveImage != nil)
-		[saveImage release];
-	
-	
-	if(![workerThread isCancelled])
-		[self performSelectorOnMainThread:@selector(saveTerminated:) withObject:@"Finish" waitUntilDone:NO];
-	
- 	sWorkerThread = nil;
-	
-	[self performSelectorOnMainThread:@selector(saveStopAnimating:) withObject:@"saveStopAnimating" waitUntilDone:NO];
-	[pool release];
-	
-	isSaveToAlbum = false;
-}
-
-- (void)saveTerminated:(NSString *)answer
-{
-	//[self cancelSave];
-	
-	//baiwei edit for wrong toolbar state in 2011-5-13
-	//m_viewState = 1;
-	//	[self setViewState];
-	//	
-	//	
-	//	// Force Render
-	//	[self generateInputImages];
-	//	//[self renderImages];
-	//	//*
-	//	//m_viewState = 0;
-	//	//[self setViewState];
-	//	m_viewState = 1;
-	//	[self setWidgetGeometry];
-	
-	//[self startRenderBackground:false image:nil clearAlpha:true];
-	// */
-	/*
-	 if(s_isCameraPick)
-	 [self activateButton:1];
-	 else
-	 [self activateButton:0];
-	 //*/
-}
-
--(void)saveStopAnimating:(NSString *)answer
-{
-	[spinner stopAnimating];
-	[self startRenderBackground:false image:nil clearAlpha:true];
-    
-    //baiwei add for back to 4up
-    //[self back
-    
-
-	
-}
 
 - (void) refreshRendering{
 	[self startRenderBackground:true image:nil clearAlpha:false];
@@ -3631,9 +2474,6 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
     [UIView setAnimationDidStopSelector:@selector (animationDidStopAndRender:finished:context:) ];
     [UIView  setAnimationWillStartSelector:@selector (animationWillStart:context:) ];
     
-	[self setWidgetGeometry];
-	[self setViewState];
-    
     [UIView commitAnimations];
 	
 #else
@@ -3641,8 +2481,8 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 	numberMode = 4;
     m_viewState = 1;
     
-    [self setWidgetGeometry];
-    [self setViewState];
+//    [self setWidgetGeometry];
+//    [self setViewState];
 	
 	[NSTimer scheduledTimerWithTimeInterval:0.45 target:self selector:@selector(refreshRendering) userInfo:nil repeats:NO];
 	
@@ -3653,15 +2493,15 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 - (void)showFourViewScreen{
     m_viewState = 1;
     
-    //[self setWidgetGeometry];
-    [self setViewState];
+//    [self setWidgetGeometry];
+//    [self setViewState];
 }
 
 - (void)cancelUploasShowOneViewScreen{
     m_viewState = 2;
     
     //[self setWidgetGeometry];
-    [self setViewState];
+//    [self setViewState];
 }
 
 
@@ -3708,7 +2548,6 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 			// Spin
 		}
 		while (![workerThread isFinished]);
-		[workerThread release];
 	}
 	
 	if(clearAlpha)
@@ -3736,7 +2575,6 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 	
 	if(image!=nil)
 	{
-		[image retain];
 		s_loadedImage = image;
 		
 		CGSize size = s_loadedImage.size;
@@ -3760,7 +2598,6 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 //
 - (void)backgroundRenderingFull
 {
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	[self performSelectorOnMainThread:@selector(startAnimating:) withObject:@"startAnimating" waitUntilDone:NO];
 	
 	sWorkerThread = workerThread;
@@ -3775,7 +2612,7 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 		[self generateInputImages];
 		
 		//add by jack 0525
-		mojoAppDelegate *app = (mojoAppDelegate*)[[UIApplication sharedApplication] delegate];
+		mojoAppDelegate *app = (mojoAppDelegate*)[mojoAppDelegate fakeAppDelegate];
 		[app showProcessProgress:NO];
 		//end add
 		
@@ -3787,19 +2624,17 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 				isRefresh[i] = NO;
 				if(viewImageArray[i])
 				{
-					[viewImageArray[i] release];
 					viewImageArray[i] = nil;
 				}
 			}
 			//end add
 			[self renderImages];
 		}
-		[s_loadedImage release];
-		s_loadedImage = nil;	
+		s_loadedImage = nil;
 	}
 	else {
 		//add by jack 0525
-		mojoAppDelegate *app = (mojoAppDelegate*)[[UIApplication sharedApplication] delegate];
+        mojoAppDelegate *app = (mojoAppDelegate*)[mojoAppDelegate fakeAppDelegate];
 		[app showProcessProgress:NO];
 		//end add
 	}
@@ -3812,9 +2647,6 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 	
 	[self performSelectorOnMainThread:@selector(stopAnimating:) withObject:@"stopAnimating" waitUntilDone:NO];
 	
-	[pool release];
-	
-	
 	//[Utilities printAvailMemory];
 }
 
@@ -3822,7 +2654,6 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 //
 - (void)backgroundRenderingRegular
 {
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	[self performSelectorOnMainThread:@selector(startAnimating:) withObject:@"startAnimating" waitUntilDone:NO];
 	
 	sWorkerThread = workerThread;
@@ -3852,14 +2683,12 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 	sWorkerThread = nil;
 	
 	[self performSelectorOnMainThread:@selector(stopAnimating:) withObject:@"stopAnimating" waitUntilDone:NO];
-	[pool release];
 }
 
 // Render thumbnail
 //
 - (void)backgroundRenderingQuick
 {
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	[self performSelectorOnMainThread:@selector(startAnimating:) withObject:@"startAnimating" waitUntilDone:NO];
 	
 	sWorkerThread = workerThread;
@@ -3869,15 +2698,12 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 	sWorkerThread = nil;
 	
 	[self performSelectorOnMainThread:@selector(stopAnimating:) withObject:@"stopAnimating" waitUntilDone:NO];
-	[pool release];
 }
 
 - (void)renderTerminated:(NSString *)answer
 {
 	//[self playSystemSound];
 	//	[self cancelRender];
-	mojoView *pView = (mojoView *)self.view;		
-	[pView setNeedsDisplay];
 }
 
 -(void)startAnimating:(NSString *)answer
@@ -3913,113 +2739,47 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 	if(!m_isImageOnceLoaded)
 		return;
 	int index;
-	if(sender == button_topLeftView )
-	{
-		index = 0;
-	}
-	else if(sender == button_topRightView )
-	{
-		index = 1;
-	}
-	else if(sender == button_bottomLeftView )
-	{
-		index = 2;
-	}
-	else  if(sender == button_bottomRightView )
-	{
-		index = 3;
-	}
-	else  if(sender == button_topMiddleView )
-	{
-		index = 4;
-	}
-	else  if(sender == button_middleLeftView )
-	{
-		index = 5;
-	}
-	else  if(sender == button_middleMiddleView )
-	{
-		index = 6;
-	}
-	else  if(sender == button_middleRightView )
-	{
-		index = 7;
-	}
-	else  if(sender == button_bottomMiddleView )
-	{
-		index = 8;
-	}
-	else
-		return;
+//	if(sender == button_topLeftView )
+//	{
+//		index = 0;
+//	}
+//	else if(sender == button_topRightView )
+//	{
+//		index = 1;
+//	}
+//	else if(sender == button_bottomLeftView )
+//	{
+//		index = 2;
+//	}
+//	else  if(sender == button_bottomRightView )
+//	{
+//		index = 3;
+//	}
+//	else  if(sender == button_topMiddleView )
+//	{
+//		index = 4;
+//	}
+//	else  if(sender == button_middleLeftView )
+//	{
+//		index = 5;
+//	}
+//	else  if(sender == button_middleMiddleView )
+//	{
+//		index = 6;
+//	}
+//	else  if(sender == button_middleRightView )
+//	{
+//		index = 7;
+//	}
+//	else  if(sender == button_bottomMiddleView )
+//	{
+//		index = 8;
+//	}
+//	else
+//		return;
 	
-	[self selectQuad:index];
+//	[self selectQuad:index];
 	
-}
-
-- (IBAction)selectToolBarButton:(id)sender
-{
-	if(sender == button_save)
-	{
-		// If in the middle of saving.  Ignore event.
-		if (!isSaveToAlbum)
-		{
-			[self activateButton:1];
-		}
-	}
-	else if(sender == button_back)
-	{
-		// If in the middle of saving.  Ignore event.
-		
-		if (!isSaveToAlbum)
-		{
-			[self activateButton:0];
-		}
-	}
-	else if(sender == button_camera)
-	{
-		if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) 
-		{
-			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"No camera available.",nil) 
-														   delegate:nil 
-												  cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-			[alert show];
-			[alert release];
-			return;
-		}
-		else{
-			m_viewState = 1;
-			[self activateButton:1];
-		}
-	}
-	else if(sender == button_library)
-	{
-		[self activateButton:0];
-	}
-	else if(sender == button_refresh || sender == button_refresh2)
-	{
-		if ([workerThread isFinished])
-		{
-			[self activateButton:2];
-		}
-		//[self activateButton:2];
-	} 
-	
-	// baiwei add for ipad in 2011-5-12
-	else if (sender == button_four) {
-		button_four.highlighted = YES;
-		button_nine.highlighted = NO;
-		
-		[self activateButton:3];
-	}  else if (sender == button_nine) {
-		button_four.highlighted = NO;
-		button_nine.highlighted = YES;
-		
-		[self activateButton:4];
-	}
-	
-	
-	else
-		return;	
 }
 
 - (UIImage*) createNewImage:(UIImage **)_imagePtr
@@ -4126,12 +2886,6 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 		{
 			// Release all big assets and revert to small assets
 			//
-			
-			if (cvVigArtImg) [cvVigArtImg release];
-			if (VigArtImg) [VigArtImg release];
-			if (leakImg) [leakImg release];
-			if (borderImg) [borderImg release];
-			
 			cvVigArtImg = nil;
 			VigArtImg = nil;
 			leakImg = nil;
@@ -4286,7 +3040,8 @@ static CGPoint s_gestureStartPoint;
 			{
 				// As if Refresh button is click
 				//
-				[self selectToolBarButton:button_refresh];
+                // REFACTOR - support refreshing from here
+                [self.delegate didRefreshGesture];
 			}
 			
         } 
@@ -4355,59 +3110,59 @@ static CGPoint s_gestureStartPoint;
                         
 						
 						if (numberMode == 4) {
-							if ( currentLocation.x < nowFrameWidth/2 )
-							{
-								if ( currentLocation.y < TOOLBAR_OFFSET_HEIGHT+(nowFrameHeight-TOOLBAR_OFFSET_HEIGHT)/2 )
-								{
-                                    
-                                    
-									[self selectImageView:button_topLeftView];
-								}
-								else {
-									[self selectImageView:button_bottomLeftView];
-								}
-							}
-							else
-							{
-								if ( currentLocation.y < TOOLBAR_OFFSET_HEIGHT+(nowFrameHeight-TOOLBAR_OFFSET_HEIGHT)/2 )
-								{
-									[self selectImageView:button_topRightView];
-								}
-								else {
-									[self selectImageView:button_bottomRightView];
-								}
-							}
-						} else if (numberMode == 9) {
-							if ( currentLocation.x < nowFrameWidth/3 )
-							{
-								if ( currentLocation.y < TOOLBAR_OFFSET_HEIGHT+(nowFrameHeight-TOOLBAR_OFFSET_HEIGHT)/3 )
-								{
-									[self selectImageView:button_topLeftView];
-								} else if (TOOLBAR_OFFSET_HEIGHT+(nowFrameHeight-TOOLBAR_OFFSET_HEIGHT)/3 < currentLocation.y and currentLocation.y < TOOLBAR_OFFSET_HEIGHT+(nowFrameHeight-TOOLBAR_OFFSET_HEIGHT)*2/3) {
-									[self selectImageView:button_middleLeftView];
-								} else {
-									[self selectImageView:button_bottomLeftView];
-								}
-							} else if (nowFrameWidth/3 < currentLocation.x and currentLocation.x < nowFrameWidth*2/3) {
-								if ( currentLocation.y < TOOLBAR_OFFSET_HEIGHT+(nowFrameHeight-TOOLBAR_OFFSET_HEIGHT)/3 )
-								{
-									[self selectImageView:button_topMiddleView];
-								} else if (TOOLBAR_OFFSET_HEIGHT+(nowFrameHeight-TOOLBAR_OFFSET_HEIGHT)/3 < currentLocation.y and currentLocation.y < TOOLBAR_OFFSET_HEIGHT+(nowFrameHeight-TOOLBAR_OFFSET_HEIGHT)*2/3) {
-									[self selectImageView:button_middleMiddleView];
-								} else {
-									[self selectImageView:button_bottomMiddleView];
-								}
-							} else {
-								if ( currentLocation.y < TOOLBAR_OFFSET_HEIGHT+(nowFrameHeight-TOOLBAR_OFFSET_HEIGHT)/3 )
-								{
-									[self selectImageView:button_topRightView];
-								} else if (TOOLBAR_OFFSET_HEIGHT+(nowFrameHeight-TOOLBAR_OFFSET_HEIGHT)/3 < currentLocation.y and currentLocation.y < TOOLBAR_OFFSET_HEIGHT+(nowFrameHeight-TOOLBAR_OFFSET_HEIGHT)*2/3) {
-									[self selectImageView:button_middleRightView];
-								} else {
-									[self selectImageView:button_bottomRightView];
-								}
-							}
-							
+//							if ( currentLocation.x < nowFrameWidth/2 )
+//							{
+//								if ( currentLocation.y < TOOLBAR_OFFSET_HEIGHT+(nowFrameHeight-TOOLBAR_OFFSET_HEIGHT)/2 )
+//								{
+//                                    
+//                                    
+//									[self selectImageView:button_topLeftView];
+//								}
+//								else {
+//									[self selectImageView:button_bottomLeftView];
+//								}
+//							}
+//							else
+//							{
+//								if ( currentLocation.y < TOOLBAR_OFFSET_HEIGHT+(nowFrameHeight-TOOLBAR_OFFSET_HEIGHT)/2 )
+//								{
+//									[self selectImageView:button_topRightView];
+//								}
+//								else {
+//									[self selectImageView:button_bottomRightView];
+//								}
+//							}
+//						} else if (numberMode == 9) {
+//							if ( currentLocation.x < nowFrameWidth/3 )
+//							{
+//								if ( currentLocation.y < TOOLBAR_OFFSET_HEIGHT+(nowFrameHeight-TOOLBAR_OFFSET_HEIGHT)/3 )
+//								{
+//									[self selectImageView:button_topLeftView];
+//								} else if (TOOLBAR_OFFSET_HEIGHT+(nowFrameHeight-TOOLBAR_OFFSET_HEIGHT)/3 < currentLocation.y and currentLocation.y < TOOLBAR_OFFSET_HEIGHT+(nowFrameHeight-TOOLBAR_OFFSET_HEIGHT)*2/3) {
+//									[self selectImageView:button_middleLeftView];
+//								} else {
+//									[self selectImageView:button_bottomLeftView];
+//								}
+//							} else if (nowFrameWidth/3 < currentLocation.x and currentLocation.x < nowFrameWidth*2/3) {
+//								if ( currentLocation.y < TOOLBAR_OFFSET_HEIGHT+(nowFrameHeight-TOOLBAR_OFFSET_HEIGHT)/3 )
+//								{
+//									[self selectImageView:button_topMiddleView];
+//								} else if (TOOLBAR_OFFSET_HEIGHT+(nowFrameHeight-TOOLBAR_OFFSET_HEIGHT)/3 < currentLocation.y and currentLocation.y < TOOLBAR_OFFSET_HEIGHT+(nowFrameHeight-TOOLBAR_OFFSET_HEIGHT)*2/3) {
+//									[self selectImageView:button_middleMiddleView];
+//								} else {
+//									[self selectImageView:button_bottomMiddleView];
+//								}
+//							} else {
+//								if ( currentLocation.y < TOOLBAR_OFFSET_HEIGHT+(nowFrameHeight-TOOLBAR_OFFSET_HEIGHT)/3 )
+//								{
+//									[self selectImageView:button_topRightView];
+//								} else if (TOOLBAR_OFFSET_HEIGHT+(nowFrameHeight-TOOLBAR_OFFSET_HEIGHT)/3 < currentLocation.y and currentLocation.y < TOOLBAR_OFFSET_HEIGHT+(nowFrameHeight-TOOLBAR_OFFSET_HEIGHT)*2/3) {
+//									[self selectImageView:button_middleRightView];
+//								} else {
+//									[self selectImageView:button_bottomRightView];
+//								}
+//							}
+//							
 						}
 						
 						
