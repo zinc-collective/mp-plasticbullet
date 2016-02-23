@@ -119,50 +119,86 @@
                                 <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fAl-cY-xzZ" customClass="FilterView" customModule="PlasticBullet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="207" height="336"/>
+                                        <rect key="frame" x="4" y="4" width="201" height="330"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XGd-ZN-Unt" customClass="FilterView" customModule="PlasticBullet" customModuleProvider="target">
-                                        <rect key="frame" x="207" y="0.0" width="207" height="336"/>
+                                        <rect key="frame" x="209" y="4" width="201" height="330"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jzY-ZE-RrS" customClass="FilterView" customModule="PlasticBullet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="336" width="207" height="336"/>
+                                        <rect key="frame" x="4" y="338" width="201" height="330"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="deY-qk-2ca" customClass="FilterView" customModule="PlasticBullet" customModuleProvider="target">
-                                        <rect key="frame" x="207" y="336" width="207" height="336"/>
+                                        <rect key="frame" x="209" y="339" width="201" height="330"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.28627450980392155" green="0.28627450980392155" blue="0.28627450980392155" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="deY-qk-2ca" firstAttribute="height" secondItem="XGd-ZN-Unt" secondAttribute="height" id="00q-h8-Ldb"/>
+                                    <constraint firstItem="deY-qk-2ca" firstAttribute="top" secondItem="XGd-ZN-Unt" secondAttribute="bottom" constant="5" id="3fq-gm-jGr"/>
                                     <constraint firstItem="deY-qk-2ca" firstAttribute="leading" secondItem="jzY-ZE-RrS" secondAttribute="trailing" id="6cH-bW-NWd"/>
+                                    <constraint firstItem="XGd-ZN-Unt" firstAttribute="leading" secondItem="fAl-cY-xzZ" secondAttribute="trailing" constant="4" id="CcG-a2-JAO"/>
                                     <constraint firstAttribute="trailing" secondItem="deY-qk-2ca" secondAttribute="trailing" id="CpL-Pc-sRa"/>
                                     <constraint firstItem="deY-qk-2ca" firstAttribute="width" secondItem="XGd-ZN-Unt" secondAttribute="width" id="Cz9-5U-MjC"/>
-                                    <constraint firstItem="fAl-cY-xzZ" firstAttribute="trailing" secondItem="csX-Bu-LeK" secondAttribute="centerX" id="ErV-n7-YxL"/>
+                                    <constraint firstItem="XGd-ZN-Unt" firstAttribute="height" secondItem="fAl-cY-xzZ" secondAttribute="height" id="DfQ-iv-bvd"/>
+                                    <constraint firstItem="fAl-cY-xzZ" firstAttribute="trailing" secondItem="csX-Bu-LeK" secondAttribute="centerX" constant="-2" id="ErV-n7-YxL"/>
                                     <constraint firstItem="jzY-ZE-RrS" firstAttribute="top" secondItem="fAl-cY-xzZ" secondAttribute="bottom" id="Era-ZK-wq6"/>
-                                    <constraint firstItem="fAl-cY-xzZ" firstAttribute="leading" secondItem="csX-Bu-LeK" secondAttribute="leading" id="Fnt-6D-TSQ"/>
+                                    <constraint firstItem="deY-qk-2ca" firstAttribute="leading" secondItem="jzY-ZE-RrS" secondAttribute="trailing" constant="4" id="Fmb-VE-AKc"/>
+                                    <constraint firstItem="fAl-cY-xzZ" firstAttribute="leading" secondItem="csX-Bu-LeK" secondAttribute="leading" constant="4" id="Fnt-6D-TSQ"/>
+                                    <constraint firstItem="jzY-ZE-RrS" firstAttribute="width" secondItem="fAl-cY-xzZ" secondAttribute="width" id="GfF-iE-fKr"/>
+                                    <constraint firstItem="jzY-ZE-RrS" firstAttribute="height" secondItem="fAl-cY-xzZ" secondAttribute="height" id="IBk-7Y-kc3"/>
                                     <constraint firstItem="XGd-ZN-Unt" firstAttribute="height" secondItem="fAl-cY-xzZ" secondAttribute="height" id="KjQ-3U-qh4"/>
+                                    <constraint firstItem="deY-qk-2ca" firstAttribute="leading" secondItem="jzY-ZE-RrS" secondAttribute="trailing" id="Kxt-qh-h4a"/>
                                     <constraint firstAttribute="bottom" secondItem="deY-qk-2ca" secondAttribute="bottom" id="NFb-fP-3vv"/>
                                     <constraint firstItem="deY-qk-2ca" firstAttribute="top" secondItem="XGd-ZN-Unt" secondAttribute="bottom" id="OZC-kx-ZXe"/>
+                                    <constraint firstItem="deY-qk-2ca" firstAttribute="top" secondItem="XGd-ZN-Unt" secondAttribute="bottom" id="PRa-LI-Slr"/>
+                                    <constraint firstItem="jzY-ZE-RrS" firstAttribute="leading" secondItem="fAl-cY-xzZ" secondAttribute="leading" id="cfv-J4-HlU"/>
                                     <constraint firstItem="jzY-ZE-RrS" firstAttribute="height" secondItem="XGd-ZN-Unt" secondAttribute="height" id="dkD-5e-Cxv"/>
+                                    <constraint firstItem="deY-qk-2ca" firstAttribute="height" secondItem="fAl-cY-xzZ" secondAttribute="height" id="fx3-9M-LZa"/>
+                                    <constraint firstItem="XGd-ZN-Unt" firstAttribute="top" secondItem="fAl-cY-xzZ" secondAttribute="top" id="gFN-yQ-5H5"/>
                                     <constraint firstAttribute="bottom" secondItem="jzY-ZE-RrS" secondAttribute="bottom" id="hD4-mR-z9D"/>
+                                    <constraint firstItem="deY-qk-2ca" firstAttribute="height" secondItem="fAl-cY-xzZ" secondAttribute="height" id="hex-NN-VcC"/>
                                     <constraint firstItem="jzY-ZE-RrS" firstAttribute="leading" secondItem="csX-Bu-LeK" secondAttribute="leading" id="j5y-A5-9fg"/>
                                     <constraint firstAttribute="trailing" secondItem="XGd-ZN-Unt" secondAttribute="trailing" id="mbd-d9-Enw"/>
-                                    <constraint firstItem="fAl-cY-xzZ" firstAttribute="bottom" secondItem="csX-Bu-LeK" secondAttribute="centerY" id="pzF-33-BCx"/>
+                                    <constraint firstItem="deY-qk-2ca" firstAttribute="width" secondItem="fAl-cY-xzZ" secondAttribute="width" id="oMw-o5-5tC"/>
+                                    <constraint firstItem="fAl-cY-xzZ" firstAttribute="bottom" secondItem="csX-Bu-LeK" secondAttribute="centerY" constant="-2" id="pzF-33-BCx"/>
                                     <constraint firstItem="jzY-ZE-RrS" firstAttribute="width" secondItem="XGd-ZN-Unt" secondAttribute="width" id="qlS-fd-49p"/>
+                                    <constraint firstItem="XGd-ZN-Unt" firstAttribute="width" secondItem="fAl-cY-xzZ" secondAttribute="width" id="sA5-M1-Bpt"/>
                                     <constraint firstAttribute="bottom" secondItem="fAl-cY-xzZ" secondAttribute="bottom" constant="380" id="u1q-G5-JNW"/>
                                     <constraint firstItem="fAl-cY-xzZ" firstAttribute="leading" secondItem="csX-Bu-LeK" secondAttribute="leading" id="vYl-mK-rxk"/>
+                                    <constraint firstItem="XGd-ZN-Unt" firstAttribute="top" secondItem="fAl-cY-xzZ" secondAttribute="top" id="wU1-wU-RNI"/>
                                     <constraint firstItem="fAl-cY-xzZ" firstAttribute="trailing" secondItem="csX-Bu-LeK" secondAttribute="centerX" id="xgU-Bs-cXo"/>
+                                    <constraint firstItem="jzY-ZE-RrS" firstAttribute="top" secondItem="fAl-cY-xzZ" secondAttribute="bottom" constant="4" id="zht-Y7-o6W"/>
                                     <constraint firstItem="XGd-ZN-Unt" firstAttribute="width" secondItem="fAl-cY-xzZ" secondAttribute="width" id="zmg-S0-JWm"/>
+                                    <constraint firstItem="deY-qk-2ca" firstAttribute="width" secondItem="fAl-cY-xzZ" secondAttribute="width" id="znw-2d-Inr"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="u1q-G5-JNW"/>
                                         <exclude reference="vYl-mK-rxk"/>
                                         <exclude reference="xgU-Bs-cXo"/>
+                                        <exclude reference="KjQ-3U-qh4"/>
+                                        <exclude reference="gFN-yQ-5H5"/>
+                                        <exclude reference="mbd-d9-Enw"/>
+                                        <exclude reference="zmg-S0-JWm"/>
+                                        <exclude reference="Era-ZK-wq6"/>
+                                        <exclude reference="dkD-5e-Cxv"/>
+                                        <exclude reference="hD4-mR-z9D"/>
+                                        <exclude reference="j5y-A5-9fg"/>
+                                        <exclude reference="qlS-fd-49p"/>
+                                        <exclude reference="00q-h8-Ldb"/>
+                                        <exclude reference="6cH-bW-NWd"/>
+                                        <exclude reference="CpL-Pc-sRa"/>
+                                        <exclude reference="Cz9-5U-MjC"/>
+                                        <exclude reference="Kxt-qh-h4a"/>
+                                        <exclude reference="NFb-fP-3vv"/>
+                                        <exclude reference="OZC-kx-ZXe"/>
+                                        <exclude reference="PRa-LI-Slr"/>
+                                        <exclude reference="fx3-9M-LZa"/>
+                                        <exclude reference="oMw-o5-5tC"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -180,7 +216,7 @@
                             <constraint firstItem="csX-Bu-LeK" firstAttribute="width" secondItem="ODj-M2-xrU" secondAttribute="width" id="Qjq-k2-fHS"/>
                             <constraint firstItem="He0-za-joa" firstAttribute="leading" secondItem="ODj-M2-xrU" secondAttribute="leading" id="R2a-Gq-WBM"/>
                             <constraint firstAttribute="trailing" secondItem="csX-Bu-LeK" secondAttribute="trailing" id="T4w-KT-Amc"/>
-                            <constraint firstItem="fAl-cY-xzZ" firstAttribute="top" secondItem="He0-za-joa" secondAttribute="bottom" id="UC1-7A-xD0"/>
+                            <constraint firstItem="fAl-cY-xzZ" firstAttribute="top" secondItem="He0-za-joa" secondAttribute="bottom" constant="4" id="UC1-7A-xD0"/>
                             <constraint firstItem="fAl-cY-xzZ" firstAttribute="top" secondItem="8Ac-rf-SUS" secondAttribute="bottom" constant="44" id="a56-JH-ps1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="fAl-cY-xzZ" secondAttribute="centerX" constant="288" id="cic-1d-91E"/>
                             <constraint firstItem="He0-za-joa" firstAttribute="top" secondItem="8Ac-rf-SUS" secondAttribute="bottom" id="d3m-v4-3bR"/>
@@ -198,6 +234,7 @@
                                 <exclude reference="a56-JH-ps1"/>
                                 <exclude reference="cic-1d-91E"/>
                                 <exclude reference="ocD-BT-tSB"/>
+                                <exclude reference="Ptz-wW-9nf"/>
                             </mask>
                         </variation>
                     </view>

@@ -14,20 +14,15 @@ class FilterView: UIImageView {
     
 //    var padding:CGFloat = 4
     
-//    var image:UIImage
-    
     required init(coder aDecoder: NSCoder) {
-//        self.image = UIImage.init()
         super.init(coder: aDecoder)!
         self.contentMode = UIViewContentMode.ScaleAspectFit
-//        imageView.backgroundColor = UIColor.redColor()
-//        imageView.contentMode = UIViewContentMode.ScaleAspectFit
-//        addSubview(imageView)
     }
 
 //    override func layoutSubviews() {
 //        super.layoutSubviews()
-//        imageView.frame = CGRectInset(self.bounds, padding, padding)
+//        let size = self.frame.size
+//        imageView.frame = CGRectMake(padding, padding, size.width - (3/2) * padding, size.height - (3/2) * padding)
 //    }
     
     // this needs to be called in a background thread
