@@ -24,7 +24,7 @@ typedef enum SAVE_TO_TYPE{
 @class ProgressView;
 
 @protocol MojoDelegate
--(void)didTransformOrientations:(BOOL)isPortrait;
+-(void)didRotate:(BOOL)isPortrait rotation:(CGFloat)rot scale:(CGFloat)scale;
 -(void)didRefreshGesture;
 @end
 
@@ -109,7 +109,8 @@ typedef enum SAVE_TO_TYPE{
 @property (nonatomic, assign) UIInterfaceOrientation nowInterfaceOrientation;
 
 @property (retain, nonatomic)PostToAllViewController *postToAllViewController;
-@property (retain,nonatomic)UIImage *fullImage;
+@property (retain,nonatomic) UIImage *fullImage;
+@property (retain, nonatomic) UIImage *originalImage;
 @property(retain,nonatomic)UIImage *portraitImage;
 
 @property (retain, nonatomic) UIActivityIndicatorView *spinner;

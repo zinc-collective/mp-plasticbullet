@@ -16,6 +16,10 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
     @IBOutlet weak var bottomRightImage: FilterView!
     @IBOutlet weak var imagesView: UIView!
     
+    @IBOutlet weak var libraryButton: UIButton!
+    @IBOutlet weak var cameraButton: UIButton!
+    @IBOutlet weak var refreshButton: UIButton!
+    
     var image:UIImage?
     
     var mojo:mojoViewController = mojoViewController.init()
@@ -119,8 +123,13 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
             // VigArtImg is null
     }
     
-    func didTransformOrientations(isPortrait: Bool) {
-        print("SWITCHING!", isPortrait)
+    func didRotate(isPortrait: Bool, rotation: CGFloat, scale: CGFloat) {
+        let m = CGAffineTransformMakeRotation(rotation);
+//        let v = self.libraryButton.valueForKey("view") as! UIView
+//        v.transform = m
+        self.libraryButton.transform = m
+        self.cameraButton.transform = m
+        self.refreshButton.transform = m
     }
     
 //    func updateImages() {

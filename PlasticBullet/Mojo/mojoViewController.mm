@@ -369,6 +369,7 @@ static ffRenderArguments ffRenderArgsArray[9];
 
 @implementation mojoViewController
 @synthesize delegate;
+@synthesize originalImage;
 //@synthesize button1;
 @synthesize spinner;
 //@synthesize soundFileURLRef;
@@ -535,22 +536,6 @@ int loadTime = 0;
 }
 
 
-static void scaleWidgetView(UIView *pView, float xScale, float yScale)
-{
-	CGRect r = pView.frame;
-	float originX = r.origin.x;
-	float originY = r.origin.y;
-	float width = r.size.width;
-	float height = r.size.height;
-	float centerX = originX + width*0.5;
-	float centerY = originY + height*0.5;
-	
-	width /= xScale;
-	height /= yScale;
-	
-	pView.frame = CGRectMake(centerX - width*0.5, centerY - height*0.5, width, height);
-}
-
 - (void)setRotations {
     
 	float rotate = 0.f;
@@ -566,7 +551,8 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 		}
         
         // When in portrait, we need to shrink the images to fit the new aspect ratio
-        scale = topLeftView.frame.size.width / topLeftView.frame.size.height;
+        // if they don't MATCH
+        // shoot
 	}
 	else
 	{
@@ -583,6 +569,15 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 		}
 		
 	}
+    
+    // in the "unnatural" orientation. Always requires scaling!
+    // convert to units of view width
+    if (!isPortrait) {
+        CGFloat widthScale = self.topLeftView.bounds.size.width / self.originalImage.size.width;
+        CGFloat heightScale = self.topLeftView.bounds.size.height / self.originalImage.size.height;
+        CGFloat imageScale = MIN(widthScale, heightScale);
+        scale = self.topLeftView.bounds.size.width / (imageScale * self.originalImage.size.height);
+    }
 	
 	CGAffineTransform m = CGAffineTransformMakeRotation(rotate);
     CGAffineTransform n = CGAffineTransformMakeScale(scale, scale);
@@ -597,6 +592,12 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 	bottomRightView.transform = mn;
 	bottomMiddleView.transform = mn;
 	bottomLeftView.transform = mn;
+    
+    [delegate didRotate:isPortrait rotation:rotate scale:scale];
+}
+
+- (BOOL)isOriginalImagePortrait {
+    return self.originalImage.size.width < self.originalImage.size.height;
 }
 
 //- (void)setWidgetGeometry
@@ -1090,7 +1091,6 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 			
 			[UIView commitAnimations];
             
-            [delegate didTransformOrientations:isPortrait];
 			return;
 		}
 		
@@ -1637,8 +1637,9 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 	//baiwei add for dismisspopover
 }
 
--(void)renderImage:(UIImage *)originalImage {
+-(void)renderImage:(UIImage *)image {
 	
+    self.originalImage = nil;
 	m_isImageOnceLoaded = true;
 	
 	//[self setWidgetGeometry];
@@ -1656,7 +1657,7 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 	
 	
 	
-	CGSize size = originalImage.size;
+	CGSize size = image.size;
 	NSLog(@"load image size: %f : %f", size.width,size.height);
 	
 	//baiwei add for memery resolution
@@ -1711,10 +1712,10 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 	
 	//Added by jack
 	//Cache the raw data of image
-	//[Utilities cacheToRawDataFromImage:originalImage filename:ORIGINAL_IMAGE_FILE_NAME];
-	//[Utilities cacheToRawDataFromImage:originalImage filename:RENDER_SOURCE_FILE_NAME];
+	//[Utilities cacheToRawDataFromImage:image filename:ORIGINAL_IMAGE_FILE_NAME];
+	//[Utilities cacheToRawDataFromImage:image filename:RENDER_SOURCE_FILE_NAME];
 	
-	if(originalImage == nil)return;
+	if(image == nil)return;
 	
 	
 	//add by jack 0525
@@ -1728,10 +1729,10 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 	//iPhone 4 reverse contrast curve definition
 	NSString* machine = [self getDeviceName];
 	if ( [machine hasPrefix:@"iPhone3,"] && isImageFromCamera){
-		int inputWidth = roundf(CGImageGetWidth( originalImage.CGImage ));
-		int inputHeight = roundf(CGImageGetHeight( originalImage.CGImage ));
-		originalImage = [ImageProcess imageNewWithImage:originalImage scaledToSize:CGSizeMake(inputWidth, inputHeight)];
-		originalImage = [self uncontrastiPhone4Image:originalImage];
+		int inputWidth = roundf(CGImageGetWidth( image.CGImage ));
+		int inputHeight = roundf(CGImageGetHeight( image.CGImage ));
+		image = [ImageProcess imageNewWithImage:image scaledToSize:CGSizeMake(inputWidth, inputHeight)];
+		image = [self uncontrastiPhone4Image:image];
 	}
 	//end add
 	
@@ -1744,18 +1745,19 @@ static void scaleWidgetView(UIView *pView, float xScale, float yScale)
 	
 	[Utilities printAvailMemory];
 #ifdef CROP_RATIO_4_3
-	UIImage *tmpImage = [self prepSourceImg:originalImage];
+	UIImage *tmpImage = [self prepSourceImg:image];
 	[self prepTmpImg:tmpImage];
 	
 	[self startRenderBackground:true image:tmpImage clearAlpha:true];
-	[tmpImage release];
 #else
-	UIImage *tmpImage = originalImage;
+	UIImage *tmpImage = image;
 	[self prepTmpImg:tmpImage];
 	
 	//CGSize size2 = tmpImage.size;
 	//	NSLog(@"load image size: %f : %f", size2.width,size2.height);
 	
+    self.originalImage = image;
+    
 	[self startRenderBackground:true image:tmpImage clearAlpha:true];
 #endif
 	[Utilities printAvailMemory];
