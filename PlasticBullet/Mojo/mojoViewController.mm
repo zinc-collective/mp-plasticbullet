@@ -409,11 +409,6 @@ static UIImage *viewImageArray[9] = {nil};
 @synthesize navigationFacebook;
 @synthesize flickrSession;
 
-@synthesize imagePickerPopover;
-@synthesize imagePicker;
-
-@synthesize saveSharePopoverController;
-
 @synthesize saveToState;
 
 @synthesize postToAllViewController;
@@ -438,14 +433,6 @@ int loadTime = 0;
 	[super viewDidLoad];
 	
 	NSLog(@"=====");
-	if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-	{
-		//init picker
-		imagePicker = [[UIImagePickerController alloc] init];
-		imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-		imagePicker.delegate = self;
-    
-	}
 	
 	m_isImageOnceLoaded = false;
 	doScale = false;
@@ -1487,8 +1474,8 @@ int loadTime = 0;
 	CFRelease(theData);
 	
 	
-	int _width = CGImageGetWidth(sourceImage.CGImage);
-	int _height = CGImageGetHeight(sourceImage.CGImage);	
+	int _width = roundf(CGImageGetWidth(sourceImage.CGImage));
+	int _height = roundf(CGImageGetHeight(sourceImage.CGImage));
 	CFDataRef sourceData = CGDataProviderCopyData(CGImageGetDataProvider(sourceImage.CGImage));
 	int *m_sourcedata = (int *)CFDataGetBytePtr(sourceData);
 	uint8_t *sourceb = (unsigned char *)&m_sourcedata[0];

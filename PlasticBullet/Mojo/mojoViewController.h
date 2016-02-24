@@ -79,11 +79,6 @@ typedef enum SAVE_TO_TYPE{
 	UINavigationController *navigationFacebook;
 	
 	
-	UIPopoverController *imagePickerPopover;
-	UIImagePickerController *imagePicker;
-	
-	UIPopoverController *saveSharePopoverController;
-	
 	UIImage * saveImage2;
 	
 	NSMutableDictionary *imageMetadata;
@@ -146,10 +141,7 @@ typedef enum SAVE_TO_TYPE{
 @property (nonatomic, retain) PostToFlickrViewController *flickrSession;
 
 
-@property (nonatomic, retain) UIPopoverController *imagePickerPopover;
 @property (nonatomic, retain) UIImagePickerController *imagePicker;
-
-@property (nonatomic, retain) UIPopoverController *saveSharePopoverController;
 
 @property (nonatomic) SAVE_TO saveToState;
 

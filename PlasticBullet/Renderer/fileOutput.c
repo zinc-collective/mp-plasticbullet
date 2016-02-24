@@ -32,7 +32,7 @@ int readFile(unsigned char*output, const char* filepath, size_t offset, size_t l
 	
 	if(fp){
 		fseek(fp, offset, SEEK_SET);
-		iRes = fread(output, sizeof(uint8_t), length, fp);
+		iRes = (int)fread(output, sizeof(uint8_t), length, fp);
 		fclose(fp);
 	}
 	
@@ -54,6 +54,6 @@ int appendFile(FILE *fp, const char* input, long length){
 	if(!fp)return 0;
 	
 	//int iRes = fputs(input, fp);
-	int iRes = fwrite (input,1 , length, fp );
+	int iRes = (int)fwrite (input,1 , length, fp );
 	return iRes;
 }

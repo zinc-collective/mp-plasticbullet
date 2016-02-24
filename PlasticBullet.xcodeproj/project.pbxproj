@@ -145,7 +145,6 @@
 		78E2E7A31C7B7FA200B5A91A /* vigArt_400x300px.png in Resources */ = {isa = PBXBuildFile; fileRef = 78E2E72C1C7B7FA200B5A91A /* vigArt_400x300px.png */; };
 		78E2E7A41C7B7FA200B5A91A /* vigArt_75x100px.png in Resources */ = {isa = PBXBuildFile; fileRef = 78E2E72D1C7B7FA200B5A91A /* vigArt_75x100px.png */; };
 		78E2E7A81C7B80D100B5A91A /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E2E7A71C7B80D100B5A91A /* FilterView.swift */; };
-		78E2E7AE1C7B820E00B5A91A /* FilterImage.mm in Sources */ = {isa = PBXBuildFile; fileRef = 78E2E7AD1C7B820E00B5A91A /* FilterImage.mm */; };
 		78E2E7D61C7B859400B5A91A /* fastBlur.c in Sources */ = {isa = PBXBuildFile; fileRef = 78E2E7CA1C7B859400B5A91A /* fastBlur.c */; };
 		78E2E7D81C7B859400B5A91A /* fileOutput.c in Sources */ = {isa = PBXBuildFile; fileRef = 78E2E7CE1C7B859400B5A91A /* fileOutput.c */; };
 		78E2E7D91C7B859400B5A91A /* ImageProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E2E7D11C7B859400B5A91A /* ImageProcess.m */; };
@@ -161,7 +160,7 @@
 		7881D5911C78DFB9000255F9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		7881D5931C78EDC9000255F9 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		7881D5951C78F7C4000255F9 /* FilterPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterPickerViewController.swift; sourceTree = "<group>"; };
-		78B6A24A1C76780500AE58F7 /* PlasticBullet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlasticBullet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		78B6A24A1C76780500AE58F7 /* Plastic Bullet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Plastic Bullet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78B6A24D1C76780500AE58F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78B6A24F1C76780500AE58F7 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		78B6A2521C76780500AE58F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -304,8 +303,6 @@
 		78E2E72D1C7B7FA200B5A91A /* vigArt_75x100px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vigArt_75x100px.png; sourceTree = "<group>"; };
 		78E2E7A71C7B80D100B5A91A /* FilterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		78E2E7A91C7B815D00B5A91A /* PlasticBullet-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PlasticBullet-Bridging-Header.h"; sourceTree = "<group>"; };
-		78E2E7AD1C7B820E00B5A91A /* FilterImage.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FilterImage.mm; sourceTree = "<group>"; };
-		78E2E7AF1C7B824200B5A91A /* FilterImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilterImage.h; sourceTree = "<group>"; };
 		78E2E7C81C7B859400B5A91A /* DataFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataFile.h; sourceTree = "<group>"; };
 		78E2E7C91C7B859400B5A91A /* DataTypeDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataTypeDef.h; sourceTree = "<group>"; };
 		78E2E7CA1C7B859400B5A91A /* fastBlur.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fastBlur.c; sourceTree = "<group>"; };
@@ -353,8 +350,6 @@
 			children = (
 				7881D5951C78F7C4000255F9 /* FilterPickerViewController.swift */,
 				78E2E7A71C7B80D100B5A91A /* FilterView.swift */,
-				78E2E7AF1C7B824200B5A91A /* FilterImage.h */,
-				78E2E7AD1C7B820E00B5A91A /* FilterImage.mm */,
 			);
 			name = Filters;
 			sourceTree = "<group>";
@@ -374,7 +369,7 @@
 		78B6A24B1C76780500AE58F7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				78B6A24A1C76780500AE58F7 /* PlasticBullet.app */,
+				78B6A24A1C76780500AE58F7 /* Plastic Bullet.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -574,9 +569,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		78B6A2491C76780500AE58F7 /* PlasticBullet */ = {
+		78B6A2491C76780500AE58F7 /* Plastic Bullet */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 78B6A25C1C76780500AE58F7 /* Build configuration list for PBXNativeTarget "PlasticBullet" */;
+			buildConfigurationList = 78B6A25C1C76780500AE58F7 /* Build configuration list for PBXNativeTarget "Plastic Bullet" */;
 			buildPhases = (
 				176A0F38D2845A6873322EE6 /* Check Pods Manifest.lock */,
 				78B6A2461C76780500AE58F7 /* Sources */,
@@ -589,9 +584,9 @@
 			);
 			dependencies = (
 			);
-			name = PlasticBullet;
+			name = "Plastic Bullet";
 			productName = PlasticBullet;
-			productReference = 78B6A24A1C76780500AE58F7 /* PlasticBullet.app */;
+			productReference = 78B6A24A1C76780500AE58F7 /* Plastic Bullet.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -623,7 +618,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				78B6A2491C76780500AE58F7 /* PlasticBullet */,
+				78B6A2491C76780500AE58F7 /* Plastic Bullet */,
 			);
 		};
 /* End PBXProject section */
@@ -825,7 +820,6 @@
 				7881D5941C78EDC9000255F9 /* InfoViewController.swift in Sources */,
 				78B6A24E1C76780500AE58F7 /* AppDelegate.swift in Sources */,
 				7881D5961C78F7C4000255F9 /* FilterPickerViewController.swift in Sources */,
-				78E2E7AE1C7B820E00B5A91A /* FilterImage.mm in Sources */,
 				78E2E7D91C7B859400B5A91A /* ImageProcess.m in Sources */,
 				78E2E7D61C7B859400B5A91A /* fastBlur.c in Sources */,
 				78E2E6B51C7B7C1100B5A91A /* Style.swift in Sources */,
@@ -952,7 +946,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = PlasticBullet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.juststartgo.PlasticBullet;
+				PRODUCT_BUNDLE_IDENTIFIER = com.redgiantsoftware.iphone.plasticbullet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "PlasticBullet/PlasticBullet-Bridging-Header.h";
@@ -970,7 +964,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = PlasticBullet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.juststartgo.PlasticBullet;
+				PRODUCT_BUNDLE_IDENTIFIER = com.redgiantsoftware.iphone.plasticbullet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "PlasticBullet/PlasticBullet-Bridging-Header.h";
@@ -989,7 +983,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		78B6A25C1C76780500AE58F7 /* Build configuration list for PBXNativeTarget "PlasticBullet" */ = {
+		78B6A25C1C76780500AE58F7 /* Build configuration list for PBXNativeTarget "Plastic Bullet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				78B6A25D1C76780500AE58F7 /* Debug */,

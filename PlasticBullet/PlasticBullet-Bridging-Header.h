@@ -4,5 +4,4 @@
 
 #import "DataTypeDef.h"
 #import "Renderer.h"
-#import "FilterImage.h"
 #import "mojoViewController.h"

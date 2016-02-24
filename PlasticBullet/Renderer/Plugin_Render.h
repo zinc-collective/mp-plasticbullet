@@ -225,15 +225,15 @@ typedef struct
 
 
 
-static float SmoothStep(float a, float b, float x)
-{
-    if (x < a) 
-		return 0.0f;
-    else if (x >= b) 
-		return 1.0f;
-    x = (x - a) / (b - a);
-    return (x * x * (3.0f - 2.0f * x));
-}
+//static float SmoothStep(float a, float b, float x)
+//{
+//    if (x < a) 
+//		return 0.0f;
+//    else if (x >= b) 
+//		return 1.0f;
+//    x = (x - a) / (b - a);
+//    return (x * x * (3.0f - 2.0f * x));
+//}
 
 static float SmoothStepFast(float a, float b, float x)
 {
