@@ -142,9 +142,6 @@
 - (void)saveBackground{
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-}
-
 - (void) removeLoadingView {
 }
 

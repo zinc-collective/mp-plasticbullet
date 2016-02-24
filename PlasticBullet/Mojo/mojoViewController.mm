@@ -79,11 +79,8 @@ static int lastNumberMode = 9;
 
 //static bool isNineMode = false;
 
-static int s_isCameraPick = false;
 //static UIActionSheet *actionSheet = nil;
-static bool isActionSheetViewOn = false;
-static int actionSheetNo = 0;
-static CGSize sRenderTarget;	
+static CGSize sRenderTarget;
 static bool sPostRenderScale = false;
 
 //add by Guno
@@ -420,8 +417,6 @@ static UIImage *viewImageArray[9] = {nil};
 @synthesize nowInterfaceOrientation;
 
 
-static bool s_cameraPicture = false;
-
 
 int loadTime = 0;
 - (void)viewDidLoad 
@@ -440,7 +435,6 @@ int loadTime = 0;
 	m_quadIndex = 0;
 	isPortrait = true;	
 	isSaveToAlbum = false;
-	m_viewState = 1;
 	workerThread = nil;
 	
 	if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
@@ -459,9 +453,6 @@ int loadTime = 0;
 	
 	
 	//theLock = [[NSRecursiveLock alloc] init];
-    [[UIAccelerometer sharedAccelerometer] setUpdateInterval:(1.0 / 40)];
-    [[UIAccelerometer sharedAccelerometer] setDelegate:self];	
-	
 	//baiwei add for ipad rotate
 	//[self willAnimateRotationToInterfaceOrientation:initInterfaceOrientation duration:1];
 	
@@ -1003,85 +994,82 @@ int loadTime = 0;
 //	}
 //}
 
-- (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration 
+- (void)setAcceleration:(CMAcceleration)acceleration
 {
-	if(UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
-		const float violence = 1.5;
-		static BOOL beenhere;
-		BOOL shake = FALSE;
-		static int numTries = 0;
-		
-		
-		if (!beenhere) 
-		{
-			beenhere = TRUE;
-			if (acceleration.x > violence * 1.5 || acceleration.x < (-1.5* violence))
-				shake = TRUE;
-			if (acceleration.y > violence * 2 || acceleration.y < (-2 * violence))
-				shake = TRUE;
-			if (acceleration.z > violence * 3 || acceleration.z < (-3 * violence))
-				shake = TRUE;
-			if(shake)
-				numTries = 0;
-			if (shake && ![workerThread isExecuting]) 
-			{
-				//			[self randomizeQuad index];
-				return;
-			} 
-		}
-		
-		beenhere = FALSE;
-		
-		// TODO - Other angles
-		bool doTransform = false;
-		const float kMinValue = 0.5f;
-		const float kMaxValue = 1.f-kMinValue;
-		const int NUM_TRIES = 4;
-		
-		if(fabs(acceleration.x) >= kMaxValue && fabs(acceleration.y) <= kMinValue && isPortrait)
-		{
-			numTries++;
-			if(numTries>NUM_TRIES)
-			{
-				doTransform = true;
-				isPortrait = false;
-				isInverted = acceleration.x<0.f;
-			}
-		}
-		else if(fabs(acceleration.y) >= kMaxValue  && fabs(acceleration.x) <= kMinValue && !isPortrait)
-		{
-			numTries++;
-			if(numTries>NUM_TRIES)
-			{
-				doTransform = true;
-				isPortrait = true;
-				isInverted = acceleration.y>0.f;
-			}
-		}
-		
-		if(doTransform)
-		{
-			numTries = 0;
-			[UIView beginAnimations:@"Rotate" context:nil];
-			
-			[UIView  setAnimationDelegate:self];
-			
-			[UIView  setAnimationCurve: UIViewAnimationCurveEaseInOut];
-			[UIView  setAnimationDuration:(NSTimeInterval)0.4];
-			
-			[UIView setAnimationDidStopSelector:@selector (animationDidStop:finished:context:) ];
-			[UIView  setAnimationWillStartSelector:@selector (animationWillStart:context:) ];
-			
-			doScale = true;
-			[self setRotations];
-			doScale = false;
-			
-			[UIView commitAnimations];
-            
-			return;
-		}
-		
-	}
+    const float violence = 1.5;
+    static BOOL beenhere;
+    BOOL shake = FALSE;
+    static int numTries = 0;
+    
+    
+    if (!beenhere) 
+    {
+        beenhere = TRUE;
+        if (acceleration.x > violence * 1.5 || acceleration.x < (-1.5* violence))
+            shake = TRUE;
+        if (acceleration.y > violence * 2 || acceleration.y < (-2 * violence))
+            shake = TRUE;
+        if (acceleration.z > violence * 3 || acceleration.z < (-3 * violence))
+            shake = TRUE;
+        if(shake)
+            numTries = 0;
+        if (shake && ![workerThread isExecuting]) 
+        {
+            //			[self randomizeQuad index];
+            return;
+        } 
+    }
+    
+    beenhere = FALSE;
+    
+    // TODO - Other angles
+    bool doTransform = false;
+    const float kMinValue = 0.5f;
+    const float kMaxValue = 1.f-kMinValue;
+    const int NUM_TRIES = 4;
+    
+    if(fabs(acceleration.x) >= kMaxValue && fabs(acceleration.y) <= kMinValue && isPortrait)
+    {
+        numTries++;
+        if(numTries>NUM_TRIES)
+        {
+            doTransform = true;
+            isPortrait = false;
+            isInverted = acceleration.x<0.f;
+        }
+    }
+    else if(fabs(acceleration.y) >= kMaxValue  && fabs(acceleration.x) <= kMinValue && !isPortrait)
+    {
+        numTries++;
+        if(numTries>NUM_TRIES)
+        {
+            doTransform = true;
+            isPortrait = true;
+            isInverted = acceleration.y>0.f;
+        }
+    }
+    
+    if(doTransform)
+    {
+        numTries = 0;
+        [UIView beginAnimations:@"Rotate" context:nil];
+        
+        [UIView  setAnimationDelegate:self];
+        
+        [UIView  setAnimationCurve: UIViewAnimationCurveEaseInOut];
+        [UIView  setAnimationDuration:(NSTimeInterval)0.4];
+        
+        [UIView setAnimationDidStopSelector:@selector (animationDidStop:finished:context:) ];
+        [UIView  setAnimationWillStartSelector:@selector (animationWillStart:context:) ];
+        
+        doScale = true;
+        [self setRotations];
+        doScale = false;
+        
+        [UIView commitAnimations];
+        
+        return;
+    }
 	
 }
 
@@ -1129,17 +1117,6 @@ int loadTime = 0;
 		return NO;
 	}
 	
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-	//if (s_isCameraPick == true) {
-	//		return;
-	//	}
-	
-	if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-		[self willAnimateRotationToInterfaceOrientation:self.interfaceOrientation duration:0];
-        [self didRotateFromInterfaceOrientation:self.interfaceOrientation];
-	}
 }
 
 
@@ -1209,8 +1186,8 @@ int loadTime = 0;
 {
 	
 	UIImage *image = s_loadedImage;
-	int inputWidth = roundf(CGImageGetWidth( image.CGImage ));
-	int inputHeight = roundf(CGImageGetHeight( image.CGImage ));
+	CGFloat inputWidth = CGImageGetWidth( image.CGImage );
+	CGFloat inputHeight = CGImageGetHeight( image.CGImage );
 	
 	//NSLog(@"%@", fullImage);
 	
@@ -1440,8 +1417,8 @@ int loadTime = 0;
 	
 	UIImage* lutImage = [UIImage imageNamed:@"iPhone4uncontrastLUT.png"];
 	
-	int theWidth = CGImageGetWidth(lutImage.CGImage);
-	int theHeight = CGImageGetHeight(lutImage.CGImage);
+	int theWidth = roundf(CGImageGetWidth(lutImage.CGImage));
+	int theHeight = roundf(CGImageGetHeight(lutImage.CGImage));
 	CFDataRef theData = CGDataProviderCopyData(CGImageGetDataProvider(lutImage.CGImage));
 	int *m_data = (int *)CFDataGetBytePtr(theData);
 	
@@ -1531,14 +1508,14 @@ int loadTime = 0;
 	
 }
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
-	
+//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+//
 // REFACTOR image metadata
-	UIInterfaceOrientation toInterfaceOrientation = self.interfaceOrientation;
-
-	//baiwei add for imageMetadata
-	UIImage *originalImage = [info objectForKey:UIImagePickerControllerOriginalImage];
-    mojoAppDelegate *appDelegate = (mojoAppDelegate*)[mojoAppDelegate fakeAppDelegate];
+//	UIInterfaceOrientation toInterfaceOrientation = self.interfaceOrientation;
+//
+//	baiwei add for imageMetadata
+//	UIImage *originalImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+//    mojoAppDelegate *appDelegate = (mojoAppDelegate*)[mojoAppDelegate fakeAppDelegate];
 //
 //	if ( picker.sourceType == UIImagePickerControllerSourceTypeCamera ) //from camera
 //	{
@@ -1617,12 +1594,12 @@ int loadTime = 0;
 //		}
 //	}
 //	//end add
-	
-	
-	//s_isCameraPick = true;
-	
-	//baiwei add for dismisspopover
-}
+//	
+//
+//	//s_isCameraPick = true;
+//	
+//	//baiwei add for dismisspopover
+//}
 
 -(void)renderImage:(UIImage *)image {
 	
@@ -1649,6 +1626,7 @@ int loadTime = 0;
 	
 	//baiwei add for memery resolution
 	
+// REFACTOR: warnings for min / max size images. worth it?
 //	appDelegate.highWidth = size.width;
 //	appDelegate.highHeight = size.height;
 //	appDelegate.midWidth = size.width*0.75;
@@ -1657,44 +1635,44 @@ int loadTime = 0;
 //	appDelegate.lowHeight = size.height*0.5;
 	
 	
-	if(size.width< 100 || size.height < 100){
-		
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
-														message:NSLocalizedString(@"Min Resolution limit", nil) 
-													   delegate:self
-											  cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil];
-		[alert show];
-		return;
-	}
-	float rat = 0;
-	if(size.width > size.height){
-		rat = size.width/size.height;
-	}
-	else {
-		rat = size.height/size.width;
-	}
-	
-	if(rat > 5.0){
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
-														message:NSLocalizedString(@"Aspecr Ratio Limit", nil)
-													   delegate:self
-											  cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil];
-		[alert show];
-		return;
-	}
-	
-	double maxSize = [self getLimitResolution];
-	if(size.width*size.height > maxSize){
-		int iMax = maxSize/10000-10;
-		iMax = iMax/100;
-		NSString *alertMsg = [NSString stringWithFormat:NSLocalizedString(@"Max Resolution limit",nil),iMax];
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
-														message:alertMsg
-													   delegate:self
-											  cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil];
-		[alert show];
-		return;
-	}
+//	if(size.width< 100 || size.height < 100){
+//		
+//		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
+//														message:NSLocalizedString(@"Min Resolution limit", nil) 
+//													   delegate:self
+//											  cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil];
+//		[alert show];
+//		return;
+//	}
+//	float rat = 0;
+//	if(size.width > size.height){
+//		rat = size.width/size.height;
+//	}
+//	else {
+//		rat = size.height/size.width;
+//	}
+//	
+//	if(rat > 5.0){
+//		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
+//														message:NSLocalizedString(@"Aspecr Ratio Limit", nil)
+//													   delegate:self
+//											  cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil];
+//		[alert show];
+//		return;
+//	}
+//	
+//	double maxSize = [self getLimitResolution];
+//	if(size.width*size.height > maxSize){
+//		int iMax = maxSize/10000-10;
+//		iMax = iMax/100;
+//		NSString *alertMsg = [NSString stringWithFormat:NSLocalizedString(@"Max Resolution limit",nil),iMax];
+//		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
+//														message:alertMsg
+//													   delegate:self
+//											  cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil];
+//		[alert show];
+//		return;
+//	}
 	
 	
 	//Added by jack
@@ -1823,10 +1801,10 @@ int loadTime = 0;
 	}
 	
 	bool doCrop = false;
-	int xOffset;
-	int yOffset;
-	int cropWidth;
-	int cropHeight;
+	int xOffset = 0;
+	int yOffset = 0;
+	int cropWidth = 0;
+	int cropHeight = 0;
 	UIImage *resultImg = nil;
 	
 	if((fabs(originalWidth/originalHeight-standardValue)<tolerance) || 
@@ -1930,12 +1908,7 @@ int loadTime = 0;
 	
 	lastNumberMode = numberMode;
 	numberMode = 1;
-//	[self setWidgetGeometry];
-	m_viewState = 2;
-//	[self setViewState];
-	
-	
-	[UIView commitAnimations];		
+	[UIView commitAnimations];
 }
 
 -(void)animateImageView:(UIImageView *)imageView
@@ -2056,8 +2029,8 @@ int loadTime = 0;
 #ifdef __MOJO__
 #else //__PlasticBullet__
 	
-	int width = CGImageGetWidth(_image.CGImage);
-	int height = CGImageGetHeight(_image.CGImage);
+	int width = roundf(CGImageGetWidth(_image.CGImage));
+	int height = roundf(CGImageGetHeight(_image.CGImage));
 	
 	prevWidth = 0;
 	//    [self prepTmpArt:800 landscape:width > height ];
@@ -2103,7 +2076,8 @@ int loadTime = 0;
 - (int)renderImages
 {
 	//mojoView *pView = (mojoView *)self.view;
-	int width, height;
+    CGFloat width = 0;
+    CGFloat height = 0;
 	int numRenderIndexs = 1;
 	int renderIndex = 0;
 	
@@ -2176,8 +2150,8 @@ int loadTime = 0;
 				
 			}
 			UIImage *pOutputImage = nil;
-			if(m_viewState==1)
-			{
+//			if(m_viewState==1)
+//			{
 				if(isRefresh[index]||(!viewImageArray[index]))
 				{
 					pOutputImage = [self createNewImage:&portraitImageCopy imgWidth:width imgHeight:height imgParameter:index];
@@ -2198,25 +2172,25 @@ int loadTime = 0;
 				{
 					pOutputImage = [[UIImage alloc] initWithCGImage:viewImageArray[index].CGImage];
 				}
-			}//*
-			else if(m_viewState==2)
-			{
-				if (ffRenderArgsArray[index].cachedPreviewImage)
-				{
-					NSString *filename = [NSString stringWithFormat:@FORMAT_PREVIEW,index ];
-                    pOutputImage = [[FileCache sharedCacher] cachedLocalImage:filename];
-				}
-				else
-				{
-					pOutputImage = [self createNewImage:&portraitImageCopy imgWidth:width imgHeight:height imgParameter:index];
-					if (pOutputImage)
-					{
-						NSString *filename = [NSString stringWithFormat:@FORMAT_PREVIEW,index ];
-						[[FileCache sharedCacher] cacheLocalImage:filename image:pOutputImage];
-						ffRenderArgsArray[index].cachedPreviewImage = true;
-					}
-				}
-			}
+//			}
+//			else if(m_viewState==2)
+//			{
+//				if (ffRenderArgsArray[index].cachedPreviewImage)
+//				{
+//					NSString *filename = [NSString stringWithFormat:@FORMAT_PREVIEW,index ];
+//                    pOutputImage = [[FileCache sharedCacher] cachedLocalImage:filename];
+//				}
+//				else
+//				{
+//					pOutputImage = [self createNewImage:&portraitImageCopy imgWidth:width imgHeight:height imgParameter:index];
+//					if (pOutputImage)
+//					{
+//						NSString *filename = [NSString stringWithFormat:@FORMAT_PREVIEW,index ];
+//						[[FileCache sharedCacher] cacheLocalImage:filename image:pOutputImage];
+//						ffRenderArgsArray[index].cachedPreviewImage = true;
+//					}
+//				}
+//			}
 			//NSLog(@"pOutputImage = %d", [viewImageArray[index] retainCount]);
 			if(pOutputImage)
 			{
@@ -2277,8 +2251,8 @@ int loadTime = 0;
 				index = renderOrder[renderIndex];
 			}
 			UIImage *pOutputImage = nil;
-			if(m_viewState==1)
-			{
+//			if(m_viewState==1)
+//			{
 				//		NSLog(@"m_viewState=1");
 				if(isRefresh[index] || !viewImageArray[index] ) 
 				{
@@ -2300,25 +2274,25 @@ int loadTime = 0;
 				{
 					pOutputImage = [[UIImage alloc]initWithCGImage:viewImageArray[index].CGImage];
 				}
-			}//*
-			else if(m_viewState==2)
-			{
-				if (ffRenderArgsArray[index].cachedPreviewImage)
-				{
-					NSString *filename = [NSString stringWithFormat:@FORMAT_PREVIEW,index ];
-                    pOutputImage = [[FileCache sharedCacher] cachedLocalImage:filename];
-				}
-				else
-				{
-					pOutputImage = [self createNewImage:&landscapeImage imgWidth:width imgHeight:height imgParameter:index];
-					if (pOutputImage)
-					{
-						NSString *filename = [NSString stringWithFormat:@FORMAT_PREVIEW,index ];
-						[[FileCache sharedCacher] cacheLocalImage:filename image:pOutputImage];
-						ffRenderArgsArray[index].cachedPreviewImage = true;
-					}
-				}
-			}
+//			}//*
+//			else if(m_viewState==2)
+//			{
+//				if (ffRenderArgsArray[index].cachedPreviewImage)
+//				{
+//					NSString *filename = [NSString stringWithFormat:@FORMAT_PREVIEW,index ];
+//                    pOutputImage = [[FileCache sharedCacher] cachedLocalImage:filename];
+//				}
+//				else
+//				{
+//					pOutputImage = [self createNewImage:&landscapeImage imgWidth:width imgHeight:height imgParameter:index];
+//					if (pOutputImage)
+//					{
+//						NSString *filename = [NSString stringWithFormat:@FORMAT_PREVIEW,index ];
+//						[[FileCache sharedCacher] cacheLocalImage:filename image:pOutputImage];
+//						ffRenderArgsArray[index].cachedPreviewImage = true;
+//					}
+//				}
+//			}
 			if(pOutputImage)
 			{
 				[imageViewArray[index] performSelectorOnMainThread:@selector(setImage:) withObject:pOutputImage waitUntilDone:NO];	
@@ -2358,50 +2332,7 @@ int loadTime = 0;
  [self startRenderBackground:false image:nil clearAlpha:true];
  }
  */
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-	
-	
-	
-	[picker dismissModalViewControllerAnimated:YES];
-	
-	if ( !m_isImageOnceLoaded )
-	{
-		// Nothing is picked yet. Go back to the splash screen
-		//
-		//mojoAppDelegate *appDelegate = (mojoAppDelegate*)[[UIApplication sharedApplication]delegate];
-		//[appDelegate.window addSubview:appDelegate.navigationStart.view];
-		
-		return;
-	} else {
-        mojoAppDelegate *appDelegate = (mojoAppDelegate*)[mojoAppDelegate fakeAppDelegate];
-		[appDelegate.window addSubview:self.view];
-	}
-	
-	
-	m_viewState = 1;
-	
-//	[self setWidgetGeometry];
-//	[self setViewState];
-	
-	
-	//	if(m_viewState == 1)
-	//{
-	/*
-	 #if 0
-	 [self startRenderBackground clearAlpha:true];
-	 #endif		*/
-	//	mojoView *pView = (mojoView *)self.view;
-	//[pView setNeedsDisplay];	
-	//}
-	[self startRenderBackground:false image:nil clearAlpha:true];
-	
-}
-/*
- - (void)showMenu
- {
- // REMOVE
- }
- */
+
 - (void)randomizeQuad:(int)_index
 {
 	if (_index == -1 || _index == -2)
@@ -2427,10 +2358,6 @@ int loadTime = 0;
 	
 }
 
-- (int) getViewState
-{
-	return m_viewState;
-}
 /*
  // Respond to a tap on the System Sound button
  - (void)playSystemSound
@@ -2451,49 +2378,6 @@ int loadTime = 0;
 - (void) refreshRendering{
 	[self startRenderBackground:true image:nil clearAlpha:false];
 }
-- (void)backToFour {
-
-	
-#if 0
-	numberMode = 4;
-    m_viewState = 1;
-	
-    [UIView beginAnimations:@"Rotate" context:nil];
-    [UIView  setAnimationDelegate:self];
-    [UIView setAnimationDidStopSelector:@selector (animationDidStopAndRender:finished:context:) ];
-    [UIView  setAnimationWillStartSelector:@selector (animationWillStart:context:) ];
-    
-    [UIView commitAnimations];
-	
-#else
-	
-	numberMode = 4;
-    m_viewState = 1;
-    
-//    [self setWidgetGeometry];
-//    [self setViewState];
-	
-	[NSTimer scheduledTimerWithTimeInterval:0.45 target:self selector:@selector(refreshRendering) userInfo:nil repeats:NO];
-	
-	
-#endif
-
-}
-- (void)showFourViewScreen{
-    m_viewState = 1;
-    
-//    [self setWidgetGeometry];
-//    [self setViewState];
-}
-
-- (void)cancelUploasShowOneViewScreen{
-    m_viewState = 2;
-    
-    //[self setWidgetGeometry];
-//    [self setViewState];
-}
-
-
 /*
  -(bool)cancelSave
  {
@@ -2723,11 +2607,11 @@ int loadTime = 0;
  }
  */
 
-- (IBAction)selectImageView:(id)sender
-{
-	if(!m_isImageOnceLoaded)
-		return;
-	int index;
+//- (IBAction)selectImageView:(id)sender
+//{
+//	if(!m_isImageOnceLoaded)
+//		return;
+//	int index;
 //	if(sender == button_topLeftView )
 //	{
 //		index = 0;
@@ -2766,10 +2650,10 @@ int loadTime = 0;
 //	}
 //	else
 //		return;
-	
+//	
 //	[self selectQuad:index];
-	
-}
+//	
+//}
 
 - (UIImage*) createNewImage:(UIImage **)_imagePtr
 				   imgWidth:(float)_width
@@ -3040,133 +2924,6 @@ static CGPoint s_gestureStartPoint;
     }
 	
 }
-- (void) touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event 
-{
-	NSSet *allTouches = [event allTouches];	
-    switch ([allTouches count]) {
-        case 1: 
-		{
-            UITouch *touch = [[allTouches allObjects] objectAtIndex:0];
-            switch (touch.tapCount) 
-			{
-                case 1: 
-				{	
-					if (m_viewState == 1)
-					{
-						float nowFrameWidth  = 320.0;
-						float nowFrameHeight = 480.0;
-						if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-						{
-							nowFrameWidth  = 768.0;
-							nowFrameHeight = 1024.0;
-						}
-						
-						CGPoint currentLocation = [touch locationInView:self.view];	
-                        
-                        //baiwei add for toolbar click
-                        if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-                            if (nowInterfaceOrientation == UIInterfaceOrientationPortrait)
-                            {
-                                if (currentLocation.y < TOOLBAR_OFFSET_HEIGHT) {
-                                    return;
-                                }
-                                
-                            } else if (nowInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
-                                if (currentLocation.y > 1024 - TOOLBAR_OFFSET_HEIGHT) {
-                                    return;
-                                }
-                                
-                                
-                            } else if (nowInterfaceOrientation == UIInterfaceOrientationLandscapeRight) {
-                                if (currentLocation.x > 768 - TOOLBAR_OFFSET_HEIGHT) {
-                                    return;
-                                }
-                                
-                                
-                            } else {
-                                
-                                if (currentLocation.x < TOOLBAR_OFFSET_HEIGHT ) {
-                                    return;
-                                }
-                                
-                            }
-                        } else { //iphone
-                            if (currentLocation.y < TOOLBAR_OFFSET_HEIGHT) {
-                                return;
-                            }
-                        }
-                        
-                        
-						
-						if (numberMode == 4) {
-//							if ( currentLocation.x < nowFrameWidth/2 )
-//							{
-//								if ( currentLocation.y < TOOLBAR_OFFSET_HEIGHT+(nowFrameHeight-TOOLBAR_OFFSET_HEIGHT)/2 )
-//								{
-//                                    
-//                                    
-//									[self selectImageView:button_topLeftView];
-//								}
-//								else {
-//									[self selectImageView:button_bottomLeftView];
-//								}
-//							}
-//							else
-//							{
-//								if ( currentLocation.y < TOOLBAR_OFFSET_HEIGHT+(nowFrameHeight-TOOLBAR_OFFSET_HEIGHT)/2 )
-//								{
-//									[self selectImageView:button_topRightView];
-//								}
-//								else {
-//									[self selectImageView:button_bottomRightView];
-//								}
-//							}
-//						} else if (numberMode == 9) {
-//							if ( currentLocation.x < nowFrameWidth/3 )
-//							{
-//								if ( currentLocation.y < TOOLBAR_OFFSET_HEIGHT+(nowFrameHeight-TOOLBAR_OFFSET_HEIGHT)/3 )
-//								{
-//									[self selectImageView:button_topLeftView];
-//								} else if (TOOLBAR_OFFSET_HEIGHT+(nowFrameHeight-TOOLBAR_OFFSET_HEIGHT)/3 < currentLocation.y and currentLocation.y < TOOLBAR_OFFSET_HEIGHT+(nowFrameHeight-TOOLBAR_OFFSET_HEIGHT)*2/3) {
-//									[self selectImageView:button_middleLeftView];
-//								} else {
-//									[self selectImageView:button_bottomLeftView];
-//								}
-//							} else if (nowFrameWidth/3 < currentLocation.x and currentLocation.x < nowFrameWidth*2/3) {
-//								if ( currentLocation.y < TOOLBAR_OFFSET_HEIGHT+(nowFrameHeight-TOOLBAR_OFFSET_HEIGHT)/3 )
-//								{
-//									[self selectImageView:button_topMiddleView];
-//								} else if (TOOLBAR_OFFSET_HEIGHT+(nowFrameHeight-TOOLBAR_OFFSET_HEIGHT)/3 < currentLocation.y and currentLocation.y < TOOLBAR_OFFSET_HEIGHT+(nowFrameHeight-TOOLBAR_OFFSET_HEIGHT)*2/3) {
-//									[self selectImageView:button_middleMiddleView];
-//								} else {
-//									[self selectImageView:button_bottomMiddleView];
-//								}
-//							} else {
-//								if ( currentLocation.y < TOOLBAR_OFFSET_HEIGHT+(nowFrameHeight-TOOLBAR_OFFSET_HEIGHT)/3 )
-//								{
-//									[self selectImageView:button_topRightView];
-//								} else if (TOOLBAR_OFFSET_HEIGHT+(nowFrameHeight-TOOLBAR_OFFSET_HEIGHT)/3 < currentLocation.y and currentLocation.y < TOOLBAR_OFFSET_HEIGHT+(nowFrameHeight-TOOLBAR_OFFSET_HEIGHT)*2/3) {
-//									[self selectImageView:button_middleRightView];
-//								} else {
-//									[self selectImageView:button_bottomRightView];
-//								}
-//							}
-//							
-						}
-						
-						
-					}
-				}
-					break;
-				default:
-					break;
-            }
-        }
-			break;
-		default:
-			break;
-	}
-}
 
 // Get default save camera original setting
 //
@@ -3174,12 +2931,6 @@ static CGPoint s_gestureStartPoint;
 {
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	return [defaults boolForKey:@"save_camera_shot"];
-}
-
-- (int) isHalfResolution
-{
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	return [defaults integerForKey:@"resolution_select"]==0;
 }
 
 - (bool) is3QuarterResolution

@@ -334,7 +334,7 @@
 	int *m_borderdata = (int *)CFDataGetBytePtr(borderdata);
 	unsigned char* pBorderb = (unsigned char *)&m_borderdata[0];
 
-	int outHeightStart, outHeightEnd, outWidthStart, outWidthEnd, inStartX, inStartStepX, inStartStepY;
+	int outHeightStart = 0, outHeightEnd = 0, outWidthStart = 0, outWidthEnd = 0, inStartX = 0, inStartStepX = 0, inStartStepY = 0;
 	switch (_borderSide) {
 		case BORDER_LEFT:
 			outHeightStart = 0;
@@ -573,7 +573,7 @@
 	}
 	
 	
-	if ([Utilities cacheToRawDataFromImageBuffer:poutb length:buffer_len filename:TMP_BORDER_FILE_NAME])
+	if ([Utilities cacheToRawDataFromImageBuffer:(char*)poutb length:buffer_len filename:TMP_BORDER_FILE_NAME])
 	{
 		free(poutb);
 		return TRUE;
@@ -1440,7 +1440,7 @@ int progressCodeCallback( double completion )
 			
 			if (fp)
 			{
-				if ( [Utilities appendImageBufferToCacheFile:fp imageBuffer:tile_poutb length:tile_length] != tile_length )
+				if ( [Utilities appendImageBufferToCacheFile:fp imageBuffer:(char*)tile_poutb length:tile_length] != tile_length )
 				{
 					[Utilities closeFile:fp];
 					free(tile_poutb);

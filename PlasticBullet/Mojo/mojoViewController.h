@@ -9,6 +9,7 @@
 #include <AudioToolbox/AudioToolbox.h>
 #import "DataTypeDef.h"
 #import <CoreLocation/CoreLocation.h>
+#import <CoreMotion/CoreMotion.h>
 
 
 //add by jack
@@ -45,7 +46,6 @@ typedef enum SAVE_TO_TYPE{
 	IBOutlet	UIImageView *middleRightView;
 	IBOutlet	UIImageView *bottomMiddleView;
 	
-	int m_viewState;
 //	CFURLRef		soundFileURLRef;
 //	SystemSoundID	soundFileObject;	
 	int m_quadIndex;
@@ -150,48 +150,17 @@ typedef enum SAVE_TO_TYPE{
 @property (nonatomic, retain) ProgressView *shareProgressView;
 
 
-- (void)setViewState;
-- (void)activateButton:(int)i;
-- (void)getCameraPicture;
-- (void)getCameraRoll;
-- (void)getExistingPicture;
 - (int)renderImages;
-//- (void)showMenu;
-//- (void)renderAmount:(float)xAmount yArgAmount:(float)yAmount;
-//- (bool)getQuadMode;
 - (void)selectQuad:(int)index;
 - (void)randomizeQuad:(int)_index;
 - (void) generateInputImages;
-- (int) getViewState;
-//- (void) playSystemSound;
-//- (void) playAlertSound;
 
-//modify by jack
-- (void)startSaveBackground:(SAVE_TO)saveTo;
-
-//info: key = @"saveto"
-- (void)backgroundSaving:(NSDictionary*)info;
-
-- (void)saveTerminated:(NSString *)answer;
-//- (bool)cancelSave;
-
-
-//add by jack
-- (void)shareOnFacebook:(UIImage*)image;
-- (void)shareOnFlickr:(UIImage*)image;
 
 - (void)startRenderBackground:(bool)renderInputs image:(UIImage *)image  clearAlpha:(bool)clearAlpha;
 - (void)backgroundRenderingFull;
 - (void)backgroundRenderingRegular;
 - (void)backgroundRenderingQuick;
 - (void)renderTerminated:(NSString *)answer;
-//- (bool)cancelRender;
-
-//- (void) renderRedraw;
-- (void)setWidgetGeometry;
-- (IBAction)selectImageView:(id)sender;
-
-- (IBAction)selectToolBarButton:(id)sender;
 
 -(void)startAnimating:(NSString *)answer;
 -(void)stopAnimating:(NSString *)answer;
@@ -205,13 +174,9 @@ typedef enum SAVE_TO_TYPE{
 -(UIImage *)createNewImage:(UIImage **)_imagePtr imgWidth:(float)_width imgHeight:(float)_height imgParameter:(int)_index;
 -(void) newRenderArg:(int)_index;
 
-#ifdef __MOJO__
-#else //__PlasticBullet__
 -(ffRenderArguments)randomImgParameter;
-#endif
 
 -(bool) isSaveCameraShot;
--(int) isHalfResolution;
 -(bool) is3QuarterResolution;
 -(CGSize) getMaxResolution;
 -(CGSize) getMaxRenderResolution:(CGSize)imgres;
@@ -223,10 +188,9 @@ typedef enum SAVE_TO_TYPE{
 
 - (void) resetNumberModel;
 
-- (void)backToFour;
-- (void)showFourViewScreen;
-- (void)cancelUploasShowOneViewScreen;
 -(void)renderImage:(UIImage*)originalImage;
+
+- (void)setAcceleration:(CMAcceleration)acceleration;
 
 @end
 

@@ -45,9 +45,9 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
         if let img = image {
             updateImage(img)
         }
-        // Do any additional setup after loading the view.
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -55,8 +55,27 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBarHidden = false
-        self.title = "UMMM"
+        
+        let app = UIApplication.sharedApplication().delegate as! AppDelegate
+        let motion = app.motion
+        
+        // this interval was in the old code at 1/40. Slowing it down makes it less responsive
+        motion.accelerometerUpdateInterval = 1 / 40
+        motion.startAccelerometerUpdatesToQueue(NSOperationQueue.mainQueue(), withHandler:
+            {data, error in
+                if let a = data?.acceleration {
+                    self.mojo.setAcceleration(a)
+                }
+            }
+        )
     }
+    
+    override func viewWillDisappear(animated: Bool) {
+        let app = UIApplication.sharedApplication().delegate as! AppDelegate
+        let motion = app.motion
+        motion.stopAccelerometerUpdates()
+    }
+
     
     override func prefersStatusBarHidden() -> Bool {
         return true;

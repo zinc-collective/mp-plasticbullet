@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		7881D58F1C78DAA8000255F9 /* PBCircleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7881D58E1C78DAA8000255F9 /* PBCircleLabel.swift */; };
-		7881D5921C78DFB9000255F9 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 7881D5911C78DFB9000255F9 /* README.md */; };
 		7881D5941C78EDC9000255F9 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7881D5931C78EDC9000255F9 /* InfoViewController.swift */; };
 		7881D5961C78F7C4000255F9 /* FilterPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7881D5951C78F7C4000255F9 /* FilterPickerViewController.swift */; };
+		78A3DF761C7E0CE000C757BD /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 78A3DF751C7E0CE000C757BD /* Settings.bundle */; };
 		78B6A24E1C76780500AE58F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6A24D1C76780500AE58F7 /* AppDelegate.swift */; };
 		78B6A2501C76780500AE58F7 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6A24F1C76780500AE58F7 /* LandingViewController.swift */; };
 		78B6A2531C76780500AE58F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78B6A2511C76780500AE58F7 /* Main.storyboard */; };
@@ -22,7 +22,6 @@
 		78C0151F1C7BB739009C382C /* mojoViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 78C0151D1C7BB739009C382C /* mojoViewController.mm */; };
 		78C015221C7BB7FA009C382C /* FileCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C015211C7BB7FA009C382C /* FileCache.m */; };
 		78C015251C7BBB0B009C382C /* mojoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C015241C7BBB0B009C382C /* mojoAppDelegate.m */; };
-		78E2E6B11C7B739100B5A91A /* todo.md in Sources */ = {isa = PBXBuildFile; fileRef = 78E2E6B01C7B739100B5A91A /* todo.md */; };
 		78E2E6B31C7B780300B5A91A /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E2E6B21C7B780300B5A91A /* NavigationController.swift */; };
 		78E2E6B51C7B7C1100B5A91A /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E2E6B41C7B7C1100B5A91A /* Style.swift */; };
 		78E2E72E1C7B7FA200B5A91A /* border_1200x1600px.png in Resources */ = {isa = PBXBuildFile; fileRef = 78E2E6B71C7B7FA200B5A91A /* border_1200x1600px.png */; };
@@ -157,9 +156,11 @@
 		2334246BEB39A7EFB887843E /* Pods-PlasticBullet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlasticBullet.release.xcconfig"; path = "Pods/Target Support Files/Pods-PlasticBullet/Pods-PlasticBullet.release.xcconfig"; sourceTree = "<group>"; };
 		72FDE293A2423CFDAC10758C /* Pods-PlasticBullet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlasticBullet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PlasticBullet/Pods-PlasticBullet.debug.xcconfig"; sourceTree = "<group>"; };
 		7881D58E1C78DAA8000255F9 /* PBCircleLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PBCircleLabel.swift; path = Landing/PBCircleLabel.swift; sourceTree = "<group>"; };
-		7881D5911C78DFB9000255F9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		7881D5931C78EDC9000255F9 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		7881D5951C78F7C4000255F9 /* FilterPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterPickerViewController.swift; sourceTree = "<group>"; };
+		78A3DF711C7E0A4800C757BD /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		78A3DF721C7E0A4800C757BD /* todo.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = todo.md; sourceTree = "<group>"; };
+		78A3DF751C7E0CE000C757BD /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		78B6A24A1C76780500AE58F7 /* Plastic Bullet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Plastic Bullet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78B6A24D1C76780500AE58F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78B6A24F1C76780500AE58F7 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
@@ -179,7 +180,6 @@
 		78C015211C7BB7FA009C382C /* FileCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileCache.m; sourceTree = "<group>"; };
 		78C015231C7BBB0B009C382C /* mojoAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mojoAppDelegate.h; sourceTree = "<group>"; };
 		78C015241C7BBB0B009C382C /* mojoAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mojoAppDelegate.m; sourceTree = "<group>"; };
-		78E2E6B01C7B739100B5A91A /* todo.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = todo.md; sourceTree = "<group>"; };
 		78E2E6B21C7B780300B5A91A /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		78E2E6B41C7B7C1100B5A91A /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		78E2E6B71C7B7FA200B5A91A /* border_1200x1600px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = border_1200x1600px.png; sourceTree = "<group>"; };
@@ -357,8 +357,8 @@
 		78B6A2411C76780500AE58F7 = {
 			isa = PBXGroup;
 			children = (
-				7881D5911C78DFB9000255F9 /* README.md */,
-				78E2E6B01C7B739100B5A91A /* todo.md */,
+				78A3DF711C7E0A4800C757BD /* README.md */,
+				78A3DF721C7E0A4800C757BD /* todo.md */,
 				78B6A24C1C76780500AE58F7 /* PlasticBullet */,
 				78B6A24B1C76780500AE58F7 /* Products */,
 				C4C535EA535B43828A23B836 /* Pods */,
@@ -386,6 +386,7 @@
 				7881D5971C78F7C8000255F9 /* Filters */,
 				78B6A2561C76780500AE58F7 /* LaunchScreen.storyboard */,
 				78B6A2541C76780500AE58F7 /* Assets.xcassets */,
+				78A3DF751C7E0CE000C757BD /* Settings.bundle */,
 				78B6A2591C76780500AE58F7 /* Info.plist */,
 				78C015191C7BB739009C382C /* Mojo */,
 				78E2E7C71C7B859400B5A91A /* Renderer */,
@@ -674,6 +675,7 @@
 				78E2E7821C7B7FA200B5A91A /* flexBorders_02_smooth_edge_00008.png in Resources */,
 				78E2E7731C7B7FA200B5A91A /* flexBorders_02_bp1_edge_00003.png in Resources */,
 				78E2E78A1C7B7FA200B5A91A /* flexBorders_02_soft_edge_00006.png in Resources */,
+				78A3DF761C7E0CE000C757BD /* Settings.bundle in Resources */,
 				78E2E7371C7B7FA200B5A91A /* flexBorders_00_bp1_edge_00003.png in Resources */,
 				78E2E7811C7B7FA200B5A91A /* flexBorders_02_smooth_edge_00007.png in Resources */,
 				78E2E73C1C7B7FA200B5A91A /* flexBorders_00_bp1_edge_00008.png in Resources */,
@@ -812,7 +814,6 @@
 				78E2E7D81C7B859400B5A91A /* fileOutput.c in Sources */,
 				78E2E6B31C7B780300B5A91A /* NavigationController.swift in Sources */,
 				78B6A2501C76780500AE58F7 /* LandingViewController.swift in Sources */,
-				7881D5921C78DFB9000255F9 /* README.md in Sources */,
 				78C015141C7BACF2009C382C /* Plugin_Render.mm in Sources */,
 				78C0151F1C7BB739009C382C /* mojoViewController.mm in Sources */,
 				7881D58F1C78DAA8000255F9 /* PBCircleLabel.swift in Sources */,
@@ -825,7 +826,6 @@
 				78E2E6B51C7B7C1100B5A91A /* Style.swift in Sources */,
 				78C0150C1C7B9165009C382C /* Renderer.m in Sources */,
 				78E2E7A81C7B80D100B5A91A /* FilterView.swift in Sources */,
-				78E2E6B11C7B739100B5A91A /* todo.md in Sources */,
 				78C0150F1C7B91F4009C382C /* Utilities.m in Sources */,
 				78E2E7DA1C7B859400B5A91A /* pb_render.c in Sources */,
 			);
@@ -951,6 +951,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "PlasticBullet/PlasticBullet-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -968,6 +969,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "PlasticBullet/PlasticBullet-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

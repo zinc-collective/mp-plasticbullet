@@ -12,7 +12,7 @@
         <!--Navigation Controller-->
         <scene sceneID="df2-ep-u5h">
             <objects>
-                <navigationController modalTransitionStyle="flipHorizontal" id="hwJ-Of-5OJ" customClass="NavigationController" customModule="PlasticBullet" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController modalTransitionStyle="flipHorizontal" id="hwJ-Of-5OJ" customClass="NavigationController" customModule="Plastic_Bullet" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="RqV-1u-YWX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -30,7 +30,7 @@
         <!--Info View Controller-->
         <scene sceneID="B9R-N2-0ph">
             <objects>
-                <viewController id="0fh-ly-n7p" userLabel="Info View Controller" customClass="InfoViewController" customModule="PlasticBullet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="0fh-ly-n7p" userLabel="Info View Controller" customClass="InfoViewController" customModule="Plastic_Bullet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uB5-T2-HSH"/>
                         <viewControllerLayoutGuide type="bottom" id="kCu-M1-arz"/>
@@ -78,7 +78,7 @@
         <!--Filters View Controller-->
         <scene sceneID="lf6-H7-z6g">
             <objects>
-                <viewController id="ATz-sP-9fS" userLabel="Filters View Controller" customClass="FilterPickerViewController" customModule="PlasticBullet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ATz-sP-9fS" userLabel="Filters View Controller" customClass="FilterPickerViewController" customModule="Plastic_Bullet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8Ac-rf-SUS"/>
                         <viewControllerLayoutGuide type="bottom" id="428-G9-xRK"/>
@@ -90,19 +90,19 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="csX-Bu-LeK">
                                 <rect key="frame" x="0.0" y="44" width="414" height="692"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fAl-cY-xzZ" customClass="FilterView" customModule="PlasticBullet" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fAl-cY-xzZ" customClass="FilterView" customModule="Plastic_Bullet" customModuleProvider="target">
                                         <rect key="frame" x="4" y="4" width="201" height="340"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XGd-ZN-Unt" customClass="FilterView" customModule="PlasticBullet" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XGd-ZN-Unt" customClass="FilterView" customModule="Plastic_Bullet" customModuleProvider="target">
                                         <rect key="frame" x="209" y="4" width="201" height="340"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jzY-ZE-RrS" customClass="FilterView" customModule="PlasticBullet" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jzY-ZE-RrS" customClass="FilterView" customModule="Plastic_Bullet" customModuleProvider="target">
                                         <rect key="frame" x="4" y="348" width="201" height="340"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="deY-qk-2ca" customClass="FilterView" customModule="PlasticBullet" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="deY-qk-2ca" customClass="FilterView" customModule="Plastic_Bullet" customModuleProvider="target">
                                         <rect key="frame" x="209" y="348" width="201" height="340"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
@@ -291,7 +291,7 @@
         <!--Landing View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" userLabel="Landing View Controller" customClass="LandingViewController" customModule="PlasticBullet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" userLabel="Landing View Controller" customClass="LandingViewController" customModule="Plastic_Bullet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -328,7 +328,7 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="164" placeholderIntrinsicHeight="164" translatesAutoresizingMaskIntoConstraints="NO" id="9hM-0K-z0N" userLabel="Library Text" customClass="PBCircleLabel" customModule="PlasticBullet" customModuleProvider="target">
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="164" placeholderIntrinsicHeight="164" translatesAutoresizingMaskIntoConstraints="NO" id="9hM-0K-z0N" userLabel="Camera Text" customClass="PBCircleLabel" customModule="Plastic_Bullet" customModuleProvider="target">
                                 <rect key="frame" x="242" y="322" width="164" height="164"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -349,7 +349,7 @@
                                     <action selector="didTapCamera:" destination="dkx-z0-nzr" eventType="touchUpInside" id="gi3-eZ-WFp"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="164" placeholderIntrinsicHeight="164" translatesAutoresizingMaskIntoConstraints="NO" id="vHw-zz-8Rf" customClass="PBCircleLabel" customModule="PlasticBullet" customModuleProvider="target">
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="164" placeholderIntrinsicHeight="164" translatesAutoresizingMaskIntoConstraints="NO" id="vHw-zz-8Rf" customClass="PBCircleLabel" customModule="Plastic_Bullet" customModuleProvider="target">
                                 <rect key="frame" x="165" y="412" width="164" height="164"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>

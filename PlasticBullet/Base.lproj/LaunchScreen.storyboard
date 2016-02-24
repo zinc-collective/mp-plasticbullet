@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -14,14 +15,37 @@
                         <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Launch" translatesAutoresizingMaskIntoConstraints="NO" id="sMX-bY-Q8T">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="sMX-bY-Q8T" secondAttribute="height" multiplier="9:16" id="pqG-cj-etd"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="sMX-bY-Q8T" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="YGE-S9-DUy"/>
+                            <constraint firstItem="sMX-bY-Q8T" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="YoB-cf-L2T"/>
+                            <constraint firstAttribute="trailing" secondItem="sMX-bY-Q8T" secondAttribute="trailing" id="dJ5-UZ-isq"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="sMX-bY-Q8T" secondAttribute="bottom" id="qzf-zQ-wTQ"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="qzf-zQ-wTQ"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Launch" width="375" height="666"/>
+    </resources>
 </document>
