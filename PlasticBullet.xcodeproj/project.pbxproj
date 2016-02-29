@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		787396671C84C2BB005F5E4B /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787396661C84C2BB005F5E4B /* GridLayout.swift */; };
+		787396691C84CB73005F5E4B /* FilterGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787396681C84CB72005F5E4B /* FilterGridView.swift */; };
 		7881D58F1C78DAA8000255F9 /* PBCircleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7881D58E1C78DAA8000255F9 /* PBCircleLabel.swift */; };
 		7881D5941C78EDC9000255F9 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7881D5931C78EDC9000255F9 /* InfoViewController.swift */; };
 		7881D5961C78F7C4000255F9 /* FilterPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7881D5951C78F7C4000255F9 /* FilterPickerViewController.swift */; };
@@ -155,6 +157,8 @@
 		0893F224447775751EA92B24 /* Pods_PlasticBullet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlasticBullet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2334246BEB39A7EFB887843E /* Pods-PlasticBullet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlasticBullet.release.xcconfig"; path = "Pods/Target Support Files/Pods-PlasticBullet/Pods-PlasticBullet.release.xcconfig"; sourceTree = "<group>"; };
 		72FDE293A2423CFDAC10758C /* Pods-PlasticBullet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlasticBullet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PlasticBullet/Pods-PlasticBullet.debug.xcconfig"; sourceTree = "<group>"; };
+		787396661C84C2BB005F5E4B /* GridLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
+		787396681C84CB72005F5E4B /* FilterGridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterGridView.swift; sourceTree = "<group>"; };
 		7881D58E1C78DAA8000255F9 /* PBCircleLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PBCircleLabel.swift; path = Landing/PBCircleLabel.swift; sourceTree = "<group>"; };
 		7881D5931C78EDC9000255F9 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		7881D5951C78F7C4000255F9 /* FilterPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterPickerViewController.swift; sourceTree = "<group>"; };
@@ -348,8 +352,11 @@
 		7881D5971C78F7C8000255F9 /* Filters */ = {
 			isa = PBXGroup;
 			children = (
+				787396661C84C2BB005F5E4B /* GridLayout.swift */,
+				787396681C84CB72005F5E4B /* FilterGridView.swift */,
 				7881D5951C78F7C4000255F9 /* FilterPickerViewController.swift */,
 				78E2E7A71C7B80D100B5A91A /* FilterView.swift */,
+				78B6A2561C76780500AE58F7 /* LaunchScreen.storyboard */,
 			);
 			name = Filters;
 			sourceTree = "<group>";
@@ -384,7 +391,6 @@
 				78E2E7A91C7B815D00B5A91A /* PlasticBullet-Bridging-Header.h */,
 				7881D5901C78DAAE000255F9 /* Landing */,
 				7881D5971C78F7C8000255F9 /* Filters */,
-				78B6A2561C76780500AE58F7 /* LaunchScreen.storyboard */,
 				78B6A2541C76780500AE58F7 /* Assets.xcassets */,
 				78A3DF751C7E0CE000C757BD /* Settings.bundle */,
 				78B6A2591C76780500AE58F7 /* Info.plist */,
@@ -810,7 +816,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				787396671C84C2BB005F5E4B /* GridLayout.swift in Sources */,
 				78C015221C7BB7FA009C382C /* FileCache.m in Sources */,
+				787396691C84CB73005F5E4B /* FilterGridView.swift in Sources */,
 				78E2E7D81C7B859400B5A91A /* fileOutput.c in Sources */,
 				78E2E6B31C7B780300B5A91A /* NavigationController.swift in Sources */,
 				78B6A2501C76780500AE58F7 /* LandingViewController.swift in Sources */,

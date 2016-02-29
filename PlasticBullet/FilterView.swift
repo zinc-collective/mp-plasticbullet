@@ -17,6 +17,11 @@ class FilterView: UIImageView {
         super.init(coder: aDecoder)!
         self.contentMode = UIViewContentMode.ScaleAspectFit
     }
+    
+//    required init() {
+//        super.init(image: nil)
+//        self.contentMode = UIViewContentMode.ScaleAspectFit
+//    }
 
 //    override func layoutSubviews() {
 //        super.layoutSubviews()
