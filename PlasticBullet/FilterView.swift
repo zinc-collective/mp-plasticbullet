@@ -11,7 +11,6 @@ import UIKit
 class FilterView: UIImageView {
     
 //    var imageView:UIImageView = UIImageView.init()
-    
 //    var padding:CGFloat = 4
     
     required init(coder aDecoder: NSCoder) {

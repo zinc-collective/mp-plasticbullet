@@ -87,25 +87,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="csX-Bu-LeK">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="csX-Bu-LeK">
                                 <rect key="frame" x="0.0" y="44" width="414" height="692"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fAl-cY-xzZ" customClass="FilterView" customModule="Plastic_Bullet" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fAl-cY-xzZ" customClass="FilterView" customModule="Plastic_Bullet" customModuleProvider="target">
                                         <rect key="frame" x="4" y="4" width="201" height="340"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="88e-Jd-jhx" appends="YES" id="Lb4-d7-pq5"/>
+                                        </connections>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XGd-ZN-Unt" customClass="FilterView" customModule="Plastic_Bullet" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XGd-ZN-Unt" customClass="FilterView" customModule="Plastic_Bullet" customModuleProvider="target">
                                         <rect key="frame" x="209" y="4" width="201" height="340"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="JNI-Fo-GM5" appends="YES" id="4EE-aC-uwc"/>
+                                        </connections>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jzY-ZE-RrS" customClass="FilterView" customModule="Plastic_Bullet" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jzY-ZE-RrS" customClass="FilterView" customModule="Plastic_Bullet" customModuleProvider="target">
                                         <rect key="frame" x="4" y="348" width="201" height="340"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="r6L-QN-SJU" appends="YES" id="LOv-JW-uFl"/>
+                                        </connections>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="deY-qk-2ca" customClass="FilterView" customModule="Plastic_Bullet" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="deY-qk-2ca" customClass="FilterView" customModule="Plastic_Bullet" customModuleProvider="target">
                                         <rect key="frame" x="209" y="348" width="201" height="340"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="Ipj-Ir-Uxk" appends="YES" id="OUi-01-Gqy"/>
+                                        </connections>
                                     </view>
+                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8yy-uF-PXl" userLabel="Focused Image View" customClass="FilterView" customModule="Plastic_Bullet" customModuleProvider="target">
+                                        <rect key="frame" x="4" y="4" width="406" height="684"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.28627450980392155" green="0.28627450980392155" blue="0.28627450980392155" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -116,15 +132,18 @@
                                     <constraint firstAttribute="trailing" secondItem="deY-qk-2ca" secondAttribute="trailing" id="CpL-Pc-sRa"/>
                                     <constraint firstItem="deY-qk-2ca" firstAttribute="width" secondItem="XGd-ZN-Unt" secondAttribute="width" id="Cz9-5U-MjC"/>
                                     <constraint firstItem="XGd-ZN-Unt" firstAttribute="height" secondItem="fAl-cY-xzZ" secondAttribute="height" id="DfQ-iv-bvd"/>
+                                    <constraint firstItem="8yy-uF-PXl" firstAttribute="width" secondItem="csX-Bu-LeK" secondAttribute="width" constant="-8" id="Dsa-cv-t2d"/>
                                     <constraint firstItem="fAl-cY-xzZ" firstAttribute="trailing" secondItem="csX-Bu-LeK" secondAttribute="centerX" constant="-2" id="ErV-n7-YxL"/>
                                     <constraint firstItem="jzY-ZE-RrS" firstAttribute="top" secondItem="fAl-cY-xzZ" secondAttribute="bottom" id="Era-ZK-wq6"/>
                                     <constraint firstItem="deY-qk-2ca" firstAttribute="leading" secondItem="jzY-ZE-RrS" secondAttribute="trailing" constant="4" id="Fmb-VE-AKc"/>
                                     <constraint firstItem="fAl-cY-xzZ" firstAttribute="leading" secondItem="csX-Bu-LeK" secondAttribute="leading" constant="4" id="Fnt-6D-TSQ"/>
                                     <constraint firstItem="jzY-ZE-RrS" firstAttribute="width" secondItem="fAl-cY-xzZ" secondAttribute="width" id="GfF-iE-fKr"/>
                                     <constraint firstItem="jzY-ZE-RrS" firstAttribute="height" secondItem="fAl-cY-xzZ" secondAttribute="height" id="IBk-7Y-kc3"/>
+                                    <constraint firstItem="8yy-uF-PXl" firstAttribute="top" secondItem="csX-Bu-LeK" secondAttribute="top" constant="4" id="IWc-xS-Pyi"/>
                                     <constraint firstItem="XGd-ZN-Unt" firstAttribute="height" secondItem="fAl-cY-xzZ" secondAttribute="height" id="KjQ-3U-qh4"/>
                                     <constraint firstItem="deY-qk-2ca" firstAttribute="leading" secondItem="jzY-ZE-RrS" secondAttribute="trailing" id="Kxt-qh-h4a"/>
                                     <constraint firstAttribute="bottom" secondItem="deY-qk-2ca" secondAttribute="bottom" id="NFb-fP-3vv"/>
+                                    <constraint firstItem="8yy-uF-PXl" firstAttribute="leading" secondItem="csX-Bu-LeK" secondAttribute="leading" constant="4" id="Num-Vy-aNB"/>
                                     <constraint firstItem="deY-qk-2ca" firstAttribute="top" secondItem="XGd-ZN-Unt" secondAttribute="bottom" id="OZC-kx-ZXe"/>
                                     <constraint firstItem="deY-qk-2ca" firstAttribute="top" secondItem="XGd-ZN-Unt" secondAttribute="bottom" id="PRa-LI-Slr"/>
                                     <constraint firstItem="jzY-ZE-RrS" firstAttribute="leading" secondItem="fAl-cY-xzZ" secondAttribute="leading" id="cfv-J4-HlU"/>
@@ -174,7 +193,7 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V9e-oz-3AK">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V9e-oz-3AK" userLabel="Toolbar">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eyc-Zb-pug">
@@ -199,6 +218,17 @@
                                             <action selector="didTapCamera:" destination="ATz-sP-9fS" eventType="touchUpInside" id="9dh-r4-hhg"/>
                                         </connections>
                                     </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Zt-iY-EkK" userLabel="Share Button">
+                                        <rect key="frame" x="185" y="0.0" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="UaO-Lo-tqb"/>
+                                            <constraint firstAttribute="width" constant="44" id="bPE-mw-RzF"/>
+                                        </constraints>
+                                        <state key="normal" image="share"/>
+                                        <connections>
+                                            <action selector="didTapShare:" destination="ATz-sP-9fS" eventType="touchUpInside" id="fTO-xt-syd"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QEl-aV-jbe">
                                         <rect key="frame" x="362" y="0.0" width="44" height="44"/>
                                         <constraints>
@@ -208,6 +238,17 @@
                                         <state key="normal" image="refresh"/>
                                         <connections>
                                             <action selector="didTapRefresh:" destination="ATz-sP-9fS" eventType="touchUpInside" id="OKc-dG-pQo"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ZM-le-Tth" userLabel="Back Button">
+                                        <rect key="frame" x="8" y="0.0" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="HeV-qf-yyS"/>
+                                            <constraint firstAttribute="width" constant="44" id="IhD-9W-Ix9"/>
+                                        </constraints>
+                                        <state key="normal" image="back"/>
+                                        <connections>
+                                            <action selector="didTapBack:" destination="ATz-sP-9fS" eventType="touchUpInside" id="pzs-98-Cpn"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -221,6 +262,8 @@
                                     <constraint firstItem="YIq-Kr-ma3" firstAttribute="leading" secondItem="Eyc-Zb-pug" secondAttribute="trailing" constant="20" id="JLk-iu-OBz"/>
                                     <constraint firstAttribute="height" constant="44" id="OPD-wi-TmB"/>
                                     <constraint firstItem="Eyc-Zb-pug" firstAttribute="top" secondItem="V9e-oz-3AK" secondAttribute="top" id="RmG-xa-045"/>
+                                    <constraint firstItem="6Zt-iY-EkK" firstAttribute="top" secondItem="V9e-oz-3AK" secondAttribute="top" id="Sae-Pn-Shm"/>
+                                    <constraint firstItem="6Zt-iY-EkK" firstAttribute="centerX" secondItem="V9e-oz-3AK" secondAttribute="centerX" id="ULa-WB-EDB"/>
                                     <constraint firstItem="QEl-aV-jbe" firstAttribute="top" secondItem="V9e-oz-3AK" secondAttribute="top" id="Xyt-LV-KYh"/>
                                     <constraint firstItem="Eyc-Zb-pug" firstAttribute="leading" secondItem="V9e-oz-3AK" secondAttribute="leading" constant="8" id="apz-xc-c6K"/>
                                     <constraint firstAttribute="trailing" secondItem="QEl-aV-jbe" secondAttribute="trailing" constant="8" id="bf3-Oo-8h3"/>
@@ -246,6 +289,7 @@
                             <constraint firstItem="csX-Bu-LeK" firstAttribute="leading" secondItem="ODj-M2-xrU" secondAttribute="leading" id="82x-vw-syA"/>
                             <constraint firstAttribute="trailingMargin" secondItem="csX-Bu-LeK" secondAttribute="trailing" constant="-20" id="IMp-mZ-ZsB"/>
                             <constraint firstItem="V9e-oz-3AK" firstAttribute="width" secondItem="ODj-M2-xrU" secondAttribute="width" id="Iid-ER-8Po"/>
+                            <constraint firstItem="8yy-uF-PXl" firstAttribute="height" secondItem="ODj-M2-xrU" secondAttribute="height" constant="-52" id="MAj-R7-hDv"/>
                             <constraint firstAttribute="trailing" secondItem="V9e-oz-3AK" secondAttribute="trailing" id="NoQ-RS-bxj"/>
                             <constraint firstItem="V9e-oz-3AK" firstAttribute="leading" secondItem="ODj-M2-xrU" secondAttribute="leading" id="OqF-Ko-ZvQ"/>
                             <constraint firstItem="428-G9-xRK" firstAttribute="top" secondItem="csX-Bu-LeK" secondAttribute="bottom" id="Q1O-iu-TMd"/>
@@ -270,21 +314,49 @@
                             </mask>
                         </variation>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem systemItem="action" id="5UR-B5-XCq"/>
+                        <barButtonItem title="Item" id="CVh-9k-px3"/>
+                    </toolbarItems>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
+                        <outlet property="backButton" destination="0ZM-le-Tth" id="kNp-vt-LWx"/>
                         <outlet property="bottomLeftImage" destination="jzY-ZE-RrS" id="lil-HD-GaE"/>
                         <outlet property="bottomRightImage" destination="deY-qk-2ca" id="sfK-mr-de4"/>
                         <outlet property="cameraButton" destination="YIq-Kr-ma3" id="TPL-Wp-Wp4"/>
+                        <outlet property="focusedImage" destination="8yy-uF-PXl" id="Krl-3B-vly"/>
                         <outlet property="imagesView" destination="csX-Bu-LeK" id="DSh-2E-tZ6"/>
                         <outlet property="libraryButton" destination="Eyc-Zb-pug" id="F5Y-dq-0MX"/>
                         <outlet property="refreshButton" destination="QEl-aV-jbe" id="DgU-yw-vZb"/>
+                        <outlet property="shareButton" destination="6Zt-iY-EkK" id="9uG-n0-tV3"/>
                         <outlet property="topLeftImage" destination="fAl-cY-xzZ" id="dCW-WB-FLi"/>
                         <outlet property="topRightImage" destination="XGd-ZN-Unt" id="ac2-dl-w0B"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hpw-kk-x2w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="88e-Jd-jhx" userLabel="Top Left Tap">
+                    <connections>
+                        <action selector="didTapImage:" destination="ATz-sP-9fS" id="LHo-Va-921"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="JNI-Fo-GM5" userLabel="Top Right Tap">
+                    <connections>
+                        <action selector="didTapImage:" destination="ATz-sP-9fS" id="yPs-Zm-cxW"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="r6L-QN-SJU" userLabel="Bottom Left Tap">
+                    <connections>
+                        <action selector="didTapImage:" destination="ATz-sP-9fS" id="seK-Fp-xqM"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="Ipj-Ir-Uxk" userLabel="Bottom Right Tap">
+                    <connections>
+                        <action selector="didTapImage:" destination="ATz-sP-9fS" id="46I-Gg-76X"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-276" y="-254"/>
         </scene>
@@ -550,8 +622,10 @@
         <image name="Landing Logobar" width="320" height="38"/>
         <image name="Library Button" width="101" height="101"/>
         <image name="Library Button Highlight" width="101" height="101"/>
+        <image name="back" width="24" height="24"/>
         <image name="camera" width="21" height="21"/>
         <image name="library" width="21" height="21"/>
         <image name="refresh" width="21" height="21"/>
+        <image name="share" width="25" height="25"/>
     </resources>
 </document>

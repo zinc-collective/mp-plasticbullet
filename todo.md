@@ -11,11 +11,11 @@ TODO
 - [x] hide status bar in filters view
 
 REST OF THIS WEEK
-- [ ] fix warnings
-- [ ] get app in a beta program thing
-- [ ] spinner when they are generating. App delegate spinner?
+- [x] fix warnings
+- [x] get app in a beta program thing
 
 NEXT WEEK
+- [ ] spinner when they are generating. App delegate spinner?
 - [ ] focused mode - should fill the screen
     - [ ] detect tap
     - [ ] expand image. Switch to growth mode (find in main code)
@@ -25,3 +25,7 @@ NEXT WEEK
 - [ ] share
     - [ ] bring up system thing
     - [ ] export image
+
+CLEANUP
+- [ ] is the old certificate around? To get rid of that warning.
+- [ ] should we transfer the app to juststartgo? new account?

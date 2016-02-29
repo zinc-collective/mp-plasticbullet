@@ -10,15 +10,21 @@ import UIKit
 
 class FilterPickerViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MojoDelegate {
     
+    @IBOutlet weak var focusedImage: FilterView!
     @IBOutlet weak var topLeftImage: FilterView!
     @IBOutlet weak var topRightImage: FilterView!
     @IBOutlet weak var bottomLeftImage: FilterView!
     @IBOutlet weak var bottomRightImage: FilterView!
     @IBOutlet weak var imagesView: UIView!
     
+    weak var selectedImage: FilterView?
+    
     @IBOutlet weak var libraryButton: UIButton!
     @IBOutlet weak var cameraButton: UIButton!
     @IBOutlet weak var refreshButton: UIButton!
+    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var shareButton: UIButton!
+    
     
     var image:UIImage?
     
@@ -27,6 +33,12 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
     var allImageViews:[FilterView] {
         get {
             return [topLeftImage, topRightImage, bottomLeftImage, bottomRightImage]
+        }
+    }
+    
+    var allButtons:[UIButton] {
+        get {
+            return [libraryButton, cameraButton, refreshButton, backButton, shareButton]
         }
     }
     
@@ -88,6 +100,14 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
         }
     }
     
+    @IBAction func didTapBack(sender: AnyObject) {
+        self.unfocusImage()
+    }
+    
+    @IBAction func didTapShare(sender: AnyObject) {
+        print("SHARE")
+    }
+    
     func didRefreshGesture() {
         if let img = image {
             updateImage(img)
@@ -134,42 +154,87 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
     func updateImage(image:UIImage) {
         print("UPDATE IMAGE", image)
         mojo.renderImage(image)
-        // set blurImage
-        // prepTmpArt: resolution landscape
-            // leakImg = [UIImage imageNamed:PROCESS_LEAK_6K]
-            // borderImg = [UIImage imageNamed:PROCESS_BORDER_LANDSCAPE_2K]
-            // cvVigArtImg null
-            // VigArtImg is null
     }
     
     func didRotate(isPortrait: Bool, rotation: CGFloat, scale: CGFloat) {
         let m = CGAffineTransformMakeRotation(rotation);
-//        let v = self.libraryButton.valueForKey("view") as! UIView
-//        v.transform = m
-        self.libraryButton.transform = m
-        self.cameraButton.transform = m
-        self.refreshButton.transform = m
+        self.allButtons.forEach { (button) -> () in
+            button.transform = m
+        }
     }
     
-//    func updateImages() {
-//        if let img = self.image {
-////            let view = self.allImageViews[0]
-////            view.renderImage(img, renderArgs: renderArgs, blurImage: nil, cvVigArtImage: nil, sqrVigArtImage: nil, leakImage: nil, borderImage: nil)
-//            allImageViews.forEach({(view: FilterView) -> () in
-//                view.renderImage(img, renderArgs: renderArgs, blurImage: nil, cvVigArtImage: nil, sqrVigArtImage: nil, leakImage: nil, borderImage: nil)
-//            })
-//        }
-//    }
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func didTapImage(gesture: UITapGestureRecognizer) {
+        
+        // First, hide all
+        let view = gesture.view as! FilterView
+        self.focusImage(view)
+        
     }
-    */
-
+    
+    func focusImage(view:FilterView) {
+        
+        // I'm in "focused" mode
+        
+        // fully hide the original, put the focused image equal to its size
+        view.hidden = true
+        self.selectedImage = view
+        self.focusedImage.frame = view.frame
+        self.focusedImage.hidden = false
+        self.focusedImage.image = view.image
+        
+        
+        // Update buttons
+        self.cameraButton.hidden = true
+        self.libraryButton.hidden = true
+        self.backButton.hidden = false
+        self.shareButton.hidden = false
+        
+        
+        // animate them fading and the focused growing
+        UIView.animateWithDuration(0.7) { () -> Void in
+            
+            self.allImageViews.forEach { (filterView) -> () in
+                filterView.alpha = 0.0
+            }
+            
+            self.focusedImage.layoutIfNeeded()
+        }
+    }
+    
+    func unfocusImage() {
+        
+        // we should animate the image back down
+        // then show everything else
+        // Update buttons
+        // Maybe I should physically grow that one... 
+        // save the original constraints...
+        // and go from there
+        
+        // Update buttons
+        self.cameraButton.hidden = false
+        self.libraryButton.hidden = false
+        self.backButton.hidden = true
+        self.shareButton.hidden = true
+        
+        self.focusedImage.hidden = true
+        self.allImageViews.forEach { (filterView) -> () in
+            filterView.hidden = false
+        }
+        
+        if let view = self.selectedImage {
+            UIView.animateWithDuration(0.7, animations: {
+                self.focusedImage.frame = view.frame
+                self.focusedImage.image = view.image
+                
+                self.allImageViews.forEach { (filterView) -> () in
+                    filterView.alpha = 1.0
+                }
+                
+            }, completion: { (stopped) -> Void in
+                self.focusedImage.hidden = true
+                view.hidden = false
+                self.selectedImage = nil
+            })
+        }
+    }
 }
