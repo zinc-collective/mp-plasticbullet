@@ -230,26 +230,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hpw-kk-x2w" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="88e-Jd-jhx" userLabel="Top Left Tap">
-                    <connections>
-                        <action selector="didTapImage:" destination="ATz-sP-9fS" id="LHo-Va-921"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer id="JNI-Fo-GM5" userLabel="Top Right Tap">
-                    <connections>
-                        <action selector="didTapImage:" destination="ATz-sP-9fS" id="yPs-Zm-cxW"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer id="r6L-QN-SJU" userLabel="Bottom Left Tap">
-                    <connections>
-                        <action selector="didTapImage:" destination="ATz-sP-9fS" id="seK-Fp-xqM"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer id="Ipj-Ir-Uxk" userLabel="Bottom Right Tap">
-                    <connections>
-                        <action selector="didTapImage:" destination="ATz-sP-9fS" id="46I-Gg-76X"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-276" y="-254"/>
         </scene>

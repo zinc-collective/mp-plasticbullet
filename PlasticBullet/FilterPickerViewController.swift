@@ -57,6 +57,10 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
         self.imagesView.addSubview(self.bottomLeftImage)
         self.imagesView.addSubview(self.bottomRightImage)
         
+        self.allImageViews.forEach { (filterView) in
+            filterView.onTap = self.focusImage
+        }
+        
         mojo.delegate = self
         mojo.topLeftView = self.topLeftImage
         mojo.topRightView = self.topRightImage
@@ -69,6 +73,10 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
         if let img = image {
             updateImage(img)
         }
+    }
+    
+    override func viewWillLayoutSubviews() {
+        self.imagesView.layoutGrid()
     }
     
     override func didReceiveMemoryWarning() {
@@ -174,13 +182,13 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
         }
     }
     
-    @IBAction func didTapImage(gesture: UITapGestureRecognizer) {
-        
-        // First, hide all
-        let view = gesture.view as! FilterView
-        self.focusImage(view)
-        
-    }
+//    @IBAction func didTapImage(view: FilterView) {
+//        
+//        // First, hide all
+////        let view = gesture.view as! FilterView
+////        self.focusImage(view)
+//        
+//    }
     
     func focusImage(view:FilterView) {
         
@@ -203,6 +211,7 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
         self.libraryButton.hidden = true
         self.backButton.hidden = false
         self.shareButton.hidden = false
+        self.imagesView.focusView(view)
         
         // animate them fading and the focused growing
 //        UIView.animateWithDuration(0.7) { () -> Void in
@@ -216,25 +225,27 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
     }
     
     func unfocusImage() {
-//        
-//        // we should animate the image back down
-//        // then show everything else
-//        // Update buttons
-//        // Maybe I should physically grow that one... 
-//        // save the original constraints...
-//        // and go from there
-//        
-//        // Update buttons
-//        self.cameraButton.hidden = false
-//        self.libraryButton.hidden = false
-//        self.backButton.hidden = true
-//        self.shareButton.hidden = true
-//        
+        
+        // we should animate the image back down
+        // then show everything else
+        // Update buttons
+        // Maybe I should physically grow that one... 
+        // save the original constraints...
+        // and go from there
+        
+        // Update buttons
+        self.cameraButton.hidden = false
+        self.libraryButton.hidden = false
+        self.backButton.hidden = true
+        self.shareButton.hidden = true
+        
+        self.imagesView.removeFocus()
+        
 //        self.focusedImage.hidden = true
 //        self.allImageViews.forEach { (filterView) -> () in
 //            filterView.hidden = false
 //        }
-//        
+//
 //        if let view = self.selectedImage {
 //            UIView.animateWithDuration(0.7, animations: {
 //                self.focusedImage.frame = view.frame
