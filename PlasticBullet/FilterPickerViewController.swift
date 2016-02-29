@@ -16,7 +16,7 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
     var bottomRightImage: FilterView
     @IBOutlet weak var imagesView: FilterGridView!
     
-    weak var selectedImage: FilterView?
+    var selectedImage: UIImage?
     
     @IBOutlet weak var libraryButton: UIButton!
     @IBOutlet weak var cameraButton: UIButton!
@@ -125,6 +125,11 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
     
     @IBAction func didTapShare(sender: AnyObject) {
         print("SHARE")
+        
+        if let img = self.selectedImage {
+            let activity = UIActivityViewController(activityItems: [img], applicationActivities: nil)
+            self.presentViewController(activity, animated: true, completion: nil)
+        }
     }
     
     func didRefreshGesture() {
@@ -182,56 +187,22 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
         }
     }
     
-//    @IBAction func didTapImage(view: FilterView) {
-//        
-//        // First, hide all
-////        let view = gesture.view as! FilterView
-////        self.focusImage(view)
-//        
-//    }
-    
     func focusImage(view:FilterView) {
-        
-        // I'm in "focused" mode
-        
-        // fully hide the original, put the focused image equal to its size
-//        view.hidden = true
-        
-//        self.imagesView.removeConstraints(cs)
-//        self.view.removeConstraints(cs)
-//        self.imagesView.addConstraints(self.focusedConstraints(view))
-//        print(view.constraints)
-        
-//        self.focusedImage.frame = view.frame
-//        self.focusedImage.hidden = false
-//        self.focusedImage.image = view.image
         
         // Update buttons
         self.cameraButton.hidden = true
         self.libraryButton.hidden = true
         self.backButton.hidden = false
         self.shareButton.hidden = false
+        
+        // Focus the view
         self.imagesView.focusView(view)
         
-        // animate them fading and the focused growing
-//        UIView.animateWithDuration(0.7) { () -> Void in
-        
-//            self.allImageViews.forEach { (filterView) -> () in
-//                filterView.alpha = 0.0
-//            }
-            
-//            view.layoutIfNeeded()
-//        }
+        // Remember which one we've focused
+        self.selectedImage = view.image
     }
     
     func unfocusImage() {
-        
-        // we should animate the image back down
-        // then show everything else
-        // Update buttons
-        // Maybe I should physically grow that one... 
-        // save the original constraints...
-        // and go from there
         
         // Update buttons
         self.cameraButton.hidden = false
@@ -239,27 +210,9 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
         self.backButton.hidden = true
         self.shareButton.hidden = true
         
+        // Defocus the view
         self.imagesView.removeFocus()
         
-//        self.focusedImage.hidden = true
-//        self.allImageViews.forEach { (filterView) -> () in
-//            filterView.hidden = false
-//        }
-//
-//        if let view = self.selectedImage {
-//            UIView.animateWithDuration(0.7, animations: {
-//                self.focusedImage.frame = view.frame
-//                self.focusedImage.image = view.image
-//                
-//                self.allImageViews.forEach { (filterView) -> () in
-//                    filterView.alpha = 1.0
-//                }
-//                
-//            }, completion: { (stopped) -> Void in
-//                self.focusedImage.hidden = true
-//                view.hidden = false
-//                self.selectedImage = nil
-//            })
-//        }
+        self.selectedImage = nil
     }
 }
