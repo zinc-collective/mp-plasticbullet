@@ -14,10 +14,11 @@ REST OF THIS WEEK
 - [x] fix warnings
 - [x] get app in a beta program thing
 
-NEXT WEEK
-- [ ] spinner when they are generating. App delegate spinner?
+FINAL TOUCHES
 - [x] focused mode - should fill the screen
 - [x] share
+- [ ] spinner when they are generating. App delegate spinner?
+- [ ] avoid generating all the images when in focused mode
 
 CLEANUP
 - [ ] is the old certificate around? To get rid of that warning.

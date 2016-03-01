@@ -368,7 +368,7 @@ static ffRenderArguments ffRenderArgsArray[9];
 @synthesize delegate;
 @synthesize originalImage;
 //@synthesize button1;
-@synthesize spinner;
+//@synthesize spinner;
 //@synthesize soundFileURLRef;
 //@synthesize soundFileObject;
 @synthesize topLeftView;
@@ -571,7 +571,7 @@ int loadTime = 0;
 	bottomMiddleView.transform = mn;
 	bottomLeftView.transform = mn;
     
-    [delegate didRotate:isPortrait rotation:rotate scale:scale];
+    [delegate mojoDidRotate:isPortrait rotation:rotate scale:scale];
 }
 
 - (BOOL)isOriginalImagePortrait {
@@ -2408,11 +2408,11 @@ int loadTime = 0;
 		y = (1024-TOOLBAR_OFFSET_HEIGHT)/2.0;
 	}
 	
-	float width = spinner.frame.size.width;
-	float height = spinner.frame.size.height;
-	spinner.frame = CGRectMake(x-width/2.0, TOOLBAR_OFFSET_HEIGHT + y-height/2.0, width, height);
-	[[spinner superview] bringSubviewToFront:spinner];
-	//	[spinner startAnimating];	
+//	float width = spinner.frame.size.width;
+//	float height = spinner.frame.size.height;
+//	spinner.frame = CGRectMake(x-width/2.0, TOOLBAR_OFFSET_HEIGHT + y-height/2.0, width, height);
+//	[[spinner superview] bringSubviewToFront:spinner];
+	//	[spinner startAnimating];
 	if(workerThread != nil)
 	{
 		[workerThread cancel];
@@ -2581,12 +2581,14 @@ int loadTime = 0;
 
 -(void)startAnimating:(NSString *)answer
 {
-	[spinner startAnimating];
+//	[spinner startAnimating];
+    [self.delegate mojoIsWorking:YES];
 }
 
 -(void)stopAnimating:(NSString *)answer
 {
-	[spinner stopAnimating];
+//	[spinner stopAnimating];
+    [self.delegate mojoIsWorking:NO];
 }
 /*
  -(bool)cancelRender
@@ -2914,7 +2916,7 @@ static CGPoint s_gestureStartPoint;
 				// As if Refresh button is click
 				//
                 // REFACTOR - support refreshing from here
-                [self.delegate didRefreshGesture];
+                [self.delegate mojoDidRefreshGesture];
 			}
 			
         } 

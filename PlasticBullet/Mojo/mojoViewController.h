@@ -25,14 +25,15 @@ typedef enum SAVE_TO_TYPE{
 @class ProgressView;
 
 @protocol MojoDelegate
--(void)didRotate:(BOOL)isPortrait rotation:(CGFloat)rot scale:(CGFloat)scale;
--(void)didRefreshGesture;
+-(void)mojoDidRotate:(BOOL)isPortrait rotation:(CGFloat)rot scale:(CGFloat)scale;
+-(void)mojoDidRefreshGesture;
+-(void)mojoIsWorking:(BOOL)working;
 @end
 
 @interface mojoViewController : UIViewController <UIPopoverControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, UIAccelerometerDelegate, CLLocationManagerDelegate> {
 //	IBOutlet	UIButton *button1;
     
-	IBOutlet	UIActivityIndicatorView *spinner;
+//	IBOutlet	UIActivityIndicatorView *spinner;
 	IBOutlet	UIImageView *topLeftView;
 	IBOutlet	UIImageView *topRightView;
 	IBOutlet	UIImageView *bottomLeftView;
@@ -108,7 +109,7 @@ typedef enum SAVE_TO_TYPE{
 @property (retain, nonatomic) UIImage *originalImage;
 @property(retain,nonatomic)UIImage *portraitImage;
 
-@property (retain, nonatomic) UIActivityIndicatorView *spinner;
+//@property (retain, nonatomic) UIActivityIndicatorView *spinner;
 @property (retain, nonatomic) UIImageView *topLeftView;
 @property (retain, nonatomic) UIImageView *topRightView;
 @property (retain, nonatomic) UIImageView *bottomLeftView;

@@ -24,6 +24,7 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
     
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     var image:UIImage?
     
@@ -128,12 +129,6 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
         }
     }
     
-    func didRefreshGesture() {
-        if let img = image {
-            updateImage(img)
-        }
-    }
-    
     
     @IBAction func didTapCamera(sender: AnyObject) {
         print("CAMERA")
@@ -176,12 +171,6 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
         mojo.renderImage(image)
     }
     
-    func didRotate(isPortrait: Bool, rotation: CGFloat, scale: CGFloat) {
-        let m = CGAffineTransformMakeRotation(rotation);
-        self.allButtons.forEach { (button) -> () in
-            button.transform = m
-        }
-    }
     
     func focusImage(view:FilterView) {
         
@@ -210,5 +199,32 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
         self.imagesView.removeFocus()
         
         self.selectedImage = nil
+    }
+    
+    // ------------------------------------------------------------
+    
+    
+    func mojoDidRotate(isPortrait: Bool, rotation: CGFloat, scale: CGFloat) {
+        let m = CGAffineTransformMakeRotation(rotation);
+        self.allButtons.forEach { (button) -> () in
+            button.transform = m
+        }
+    }
+    
+    func mojoDidRefreshGesture() {
+        if let img = image {
+            updateImage(img)
+        }
+    }
+    
+    func mojoIsWorking(working: Bool) {
+        if (working) {
+            spinner.hidden = false
+            spinner.startAnimating()
+        }
+        else {
+            spinner.hidden = true
+            spinner.stopAnimating()
+        }
     }
 }

@@ -91,6 +91,9 @@
                                 <rect key="frame" x="2" y="46" width="410" height="688"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="rKt-v2-egO">
+                                <rect key="frame" x="189" y="349" width="37" height="37"/>
+                            </activityIndicatorView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V9e-oz-3AK" userLabel="Toolbar">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                 <subviews>
@@ -188,6 +191,7 @@
                         <constraints>
                             <constraint firstItem="csX-Bu-LeK" firstAttribute="top" secondItem="V9e-oz-3AK" secondAttribute="bottom" constant="2" id="28W-sB-lcc"/>
                             <constraint firstItem="csX-Bu-LeK" firstAttribute="leading" secondItem="ODj-M2-xrU" secondAttribute="leading" id="82x-vw-syA"/>
+                            <constraint firstItem="rKt-v2-egO" firstAttribute="centerX" secondItem="ODj-M2-xrU" secondAttribute="centerX" id="8Kl-cL-wSa"/>
                             <constraint firstAttribute="trailingMargin" secondItem="csX-Bu-LeK" secondAttribute="trailing" constant="-20" id="IMp-mZ-ZsB"/>
                             <constraint firstItem="V9e-oz-3AK" firstAttribute="width" secondItem="ODj-M2-xrU" secondAttribute="width" id="Iid-ER-8Po"/>
                             <constraint firstAttribute="trailing" secondItem="V9e-oz-3AK" secondAttribute="trailing" id="NoQ-RS-bxj"/>
@@ -199,6 +203,7 @@
                             <constraint firstItem="csX-Bu-LeK" firstAttribute="leading" secondItem="ODj-M2-xrU" secondAttribute="leadingMargin" constant="-20" id="dd9-vz-xrC"/>
                             <constraint firstItem="V9e-oz-3AK" firstAttribute="top" secondItem="8Ac-rf-SUS" secondAttribute="bottom" id="gm8-0Z-deP"/>
                             <constraint firstItem="428-G9-xRK" firstAttribute="top" secondItem="csX-Bu-LeK" secondAttribute="bottom" constant="2" id="mud-ev-FqN"/>
+                            <constraint firstItem="rKt-v2-egO" firstAttribute="centerY" secondItem="ODj-M2-xrU" secondAttribute="centerY" id="oPn-gM-gDR"/>
                             <constraint firstItem="V9e-oz-3AK" firstAttribute="top" secondItem="8Ac-rf-SUS" secondAttribute="bottom" id="uX0-KJ-Xr9"/>
                             <constraint firstAttribute="trailing" secondItem="csX-Bu-LeK" secondAttribute="trailing" constant="2" id="uk3-zL-GGg"/>
                             <constraint firstItem="csX-Bu-LeK" firstAttribute="top" secondItem="8Ac-rf-SUS" secondAttribute="bottom" constant="44" id="vFV-VE-GNY"/>
@@ -227,6 +232,7 @@
                         <outlet property="libraryButton" destination="Eyc-Zb-pug" id="F5Y-dq-0MX"/>
                         <outlet property="refreshButton" destination="QEl-aV-jbe" id="DgU-yw-vZb"/>
                         <outlet property="shareButton" destination="6Zt-iY-EkK" id="9uG-n0-tV3"/>
+                        <outlet property="spinner" destination="rKt-v2-egO" id="w8y-Hd-C24"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hpw-kk-x2w" userLabel="First Responder" sceneMemberID="firstResponder"/>
