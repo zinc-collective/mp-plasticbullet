@@ -16,16 +16,9 @@ REST OF THIS WEEK
 
 NEXT WEEK
 - [ ] spinner when they are generating. App delegate spinner?
-- [ ] focused mode - should fill the screen
-    - [ ] detect tap
-    - [ ] expand image. Switch to growth mode (find in main code)
-    - [ ] title bar: back button works
-    - [ ] title bar: share button
-    - [ ] title bar: refresh button still works
-- [ ] share
-    - [ ] bring up system thing
-    - [ ] export image
+- [x] focused mode - should fill the screen
+- [x] share
 
 CLEANUP
 - [ ] is the old certificate around? To get rid of that warning.
-- [ ] should we transfer the app to juststartgo? new account?
+- [ ] transfer app to Just Start Go

@@ -23,6 +23,17 @@ class FilterGridView: UIView {
         super.init(coder: aDecoder)!
     }
     
+    
+    override func layoutSubviews() {
+        if let fview = self.focusedView {
+            self.layoutFocus(fview)
+        }
+        else {
+            self.layoutGrid()
+        }
+    }
+    
+    
     func layoutGrid() {
         let framesAndViews = self.grid.layout(self.subviews, parentSize: self.bounds.size, rows: self.rows, cols: self.cols)
         framesAndViews.forEach { (frame, view) -> () in
@@ -31,14 +42,18 @@ class FilterGridView: UIView {
         }
     }
     
+    func layoutFocus(view:UIView) {
+        let fullFrame = CGRectInset(self.bounds, self.spacing/2, self.spacing/2)
+        view.frame = fullFrame
+    }
+    
     // handle the animating etc yo!
     func focusView(view:UIView) {
         self.focusedView = view
         view.layer.zPosition = 1
         
         UIView.animateWithDuration(animationDuration, animations: {
-            let fullFrame = CGRectInset(self.bounds, self.spacing/2, self.spacing/2)
-            view.frame = fullFrame
+            self.layoutFocus(view)
             
             self.unfocusedViews().forEach { view in
                 view.alpha = 0
