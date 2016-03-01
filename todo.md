@@ -17,8 +17,17 @@ REST OF THIS WEEK
 FINAL TOUCHES
 - [x] focused mode - should fill the screen
 - [x] share
-- [ ] spinner when they are generating. App delegate spinner?
-- [ ] avoid generating all the images when in focused mode
+- [x] spinner when they are generating. App delegate spinner?
+- [x] avoid generating all the images when in focused mode. No. Don't worry about it
+- [x] fix layout warning somehow
+- [ ] WAIT FOR DREW - Help text (localized?)
+- [ ] WAIT FOR DREW - Localize button labels
+
+IPAD SUPPORT
+- [x] background image
+- [x] logo bar
+- [ ] align buttons
+- [ ] more items in the grid
 
 CLEANUP
 - [ ] is the old certificate around? To get rid of that warning.

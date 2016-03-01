@@ -23,14 +23,17 @@ class LandingViewController: UIViewController  {
     @IBOutlet weak var libraryLeft: NSLayoutConstraint!
     @IBOutlet weak var libraryTop: NSLayoutConstraint!
     
+    // constraints
+    @IBOutlet weak var backgroundAspect: NSLayoutConstraint!
+    @IBOutlet weak var barAspect: NSLayoutConstraint!
+    @IBOutlet weak var libraryTextAspect: NSLayoutConstraint!
+    
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBarHidden = true
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         // Determine how large the phone is compared to Interface Builder
         let IB_MANUAL_WIDTH = CGFloat(414)
@@ -58,7 +61,40 @@ class LandingViewController: UIViewController  {
         
         cameraLeft.constant = cameraLeft.constant * scale
         cameraTop.constant = cameraTop.constant * scale
+        
+        
+        if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+            tweakConstraintsForIPad()
+        }
     }
+    
+    func tweakConstraintsForIPad() {
+        
+        // ignore aspect ratios for background and bar, using the fallbacks in the storyboard
+        backgroundAspect.priority = 100
+        barAspect.priority = 100
+        
+        // manually set position of buttons
+        cameraLeft.constant = 656
+        libraryLeft.constant = 556
+        libraryTop.constant = 824
+        
+        // manually set font
+        let font = UIFont(name: "Helvetica Bold", size: 24.0)
+        cameraText.font = font
+        libraryText.font = font
+        
+        libraryTextAspect.priority = 100
+        
+//        libraryLeft.constant = 656
+//        cameraTop.constant = 100
+//        libraryLeft.constant = 100
+//        libraryTop.constant = 100
+    }
+    
+//    override func viewDidLayoutSubviews() {
+//        print(self.view.frame)
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

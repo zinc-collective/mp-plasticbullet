@@ -14,38 +14,12 @@
       "scale" : "3x"
     },
     {
-      "idiom" : "iphone",
-      "scale" : "1x",
-      "width-class" : "compact"
-    },
-    {
-      "idiom" : "iphone",
-      "scale" : "2x",
-      "width-class" : "compact"
-    },
-    {
-      "idiom" : "iphone",
-      "scale" : "3x",
-      "width-class" : "compact"
-    },
-    {
       "idiom" : "ipad",
       "scale" : "1x"
     },
     {
       "idiom" : "ipad",
-      "filename" : "pb_bg_iPad2.png",
-      "scale" : "2x"
-    },
-    {
-      "idiom" : "ipad",
-      "scale" : "1x",
-      "width-class" : "compact"
-    },
-    {
-      "idiom" : "ipad",
       "filename" : "pb_bg_iPad.png",
-      "width-class" : "compact",
       "scale" : "2x"
     }
   ],
