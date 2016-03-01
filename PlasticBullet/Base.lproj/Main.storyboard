@@ -59,7 +59,7 @@
                                         <rect key="frame" x="8" y="8" width="398" height="656"/>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                 </subviews>
@@ -311,6 +311,10 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bVI-k8-u9n" userLabel="Camera Button">
                                 <rect key="frame" x="274" y="353" width="101" height="101"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" priority="500" constant="120" id="hHp-tb-sNG"/>
+                                    <constraint firstAttribute="width" secondItem="bVI-k8-u9n" secondAttribute="height" multiplier="1:1" id="ooh-gA-HlN"/>
+                                </constraints>
                                 <state key="normal" image="Camera Button"/>
                                 <state key="highlighted" image="Camera Button Highlight"/>
                                 <connections>
@@ -334,8 +338,18 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4aM-bp-86k" userLabel="Library Button">
                                 <rect key="frame" x="196" y="443" width="101" height="101"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" priority="500" constant="120" id="BHY-DX-mvc"/>
+                                    <constraint firstAttribute="width" priority="500" constant="120" id="Rxi-fR-Xqf"/>
+                                    <constraint firstAttribute="width" secondItem="4aM-bp-86k" secondAttribute="height" multiplier="1:1" id="xxu-zi-uVU"/>
+                                </constraints>
                                 <state key="normal" image="Library Button"/>
                                 <state key="highlighted" image="Library Button Highlight"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Rxi-fR-Xqf"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <action selector="didTapLibrary:" destination="dkx-z0-nzr" eventType="touchUpInside" id="cnM-R4-JiZ"/>
                                 </connections>
@@ -458,6 +472,7 @@
                                 <exclude reference="Dno-wY-qyJ"/>
                                 <exclude reference="LJA-zD-Xlc"/>
                                 <exclude reference="OXB-Ow-FRr"/>
+                                <exclude reference="Rbv-F1-x5f"/>
                                 <exclude reference="U8C-Bu-N57"/>
                                 <exclude reference="VGp-kn-1eW"/>
                                 <exclude reference="XBl-bC-U5j"/>
@@ -473,6 +488,7 @@
                                 <exclude reference="oQb-Ar-7Rx"/>
                                 <exclude reference="r8z-r7-83k"/>
                                 <exclude reference="zUB-Lk-OVO"/>
+                                <exclude reference="DA0-3b-h8n"/>
                                 <exclude reference="4KX-C3-TYj"/>
                                 <exclude reference="6Z7-mJ-HW4"/>
                                 <exclude reference="7OL-V2-XDo"/>
@@ -511,9 +527,11 @@
                         <outlet property="backgroundAspect" destination="dlX-F0-2Id" id="mdM-GO-evM"/>
                         <outlet property="barAspect" destination="UUw-8i-zcu" id="zem-TN-3E3"/>
                         <outlet property="cameraLeft" destination="AtP-t4-kZa" id="eYY-9l-f3m"/>
+                        <outlet property="cameraProportionalHeight" destination="T0x-kN-pzM" id="lMg-qn-xES"/>
                         <outlet property="cameraText" destination="9hM-0K-z0N" id="q3N-ry-Wdw"/>
                         <outlet property="cameraTop" destination="Fg9-E7-yM0" id="ws2-qr-LjV"/>
                         <outlet property="libraryLeft" destination="O9S-v0-T80" id="Nd3-oG-qPR"/>
+                        <outlet property="libraryProportionalHeight" destination="NJY-LM-GT2" id="4Zk-fE-zFc"/>
                         <outlet property="libraryText" destination="vHw-zz-8Rf" id="IwI-Vu-g7j"/>
                         <outlet property="libraryTextAspect" destination="IUn-8v-pbs" id="tLy-Qz-BWq"/>
                         <outlet property="libraryTop" destination="knc-wC-ujX" id="8WM-63-2aS"/>
@@ -525,14 +543,14 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Camera Button" width="101" height="101"/>
-        <image name="Camera Button Highlight" width="101" height="101"/>
+        <image name="Camera Button" width="110" height="110"/>
+        <image name="Camera Button Highlight" width="110" height="110"/>
         <image name="Info" width="38" height="38"/>
         <image name="Info+" width="39" height="39"/>
-        <image name="Landing Background" width="213" height="320"/>
+        <image name="Landing Background" width="320" height="480"/>
         <image name="Landing Logobar" width="320" height="38"/>
-        <image name="Library Button" width="101" height="101"/>
-        <image name="Library Button Highlight" width="101" height="101"/>
+        <image name="Library Button" width="110" height="110"/>
+        <image name="Library Button Highlight" width="110" height="110"/>
         <image name="back" width="24" height="24"/>
         <image name="camera" width="21" height="21"/>
         <image name="library" width="21" height="21"/>

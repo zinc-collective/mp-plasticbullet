@@ -27,6 +27,8 @@ class LandingViewController: UIViewController  {
     @IBOutlet weak var backgroundAspect: NSLayoutConstraint!
     @IBOutlet weak var barAspect: NSLayoutConstraint!
     @IBOutlet weak var libraryTextAspect: NSLayoutConstraint!
+    @IBOutlet weak var libraryProportionalHeight: NSLayoutConstraint!
+    @IBOutlet weak var cameraProportionalHeight: NSLayoutConstraint!
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBarHidden = true
@@ -75,7 +77,9 @@ class LandingViewController: UIViewController  {
         barAspect.priority = 100
         
         // manually set position of buttons
-        cameraLeft.constant = 656
+        cameraLeft.constant = 655
+        print(cameraTop.constant)
+        cameraTop.constant += 1
         libraryLeft.constant = 556
         libraryTop.constant = 824
         
@@ -84,7 +88,9 @@ class LandingViewController: UIViewController  {
         cameraText.font = font
         libraryText.font = font
         
-        libraryTextAspect.priority = 100
+        libraryProportionalHeight.priority = 100
+        cameraProportionalHeight.priority = 100
+//        libraryTextAspect.priority = 100
         
 //        libraryLeft.constant = 656
 //        cameraTop.constant = 100

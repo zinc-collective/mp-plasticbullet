@@ -6,20 +6,20 @@
     },
     {
       "idiom" : "iphone",
+      "filename" : "pb_bg@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "iphone",
-      "filename" : "pb_bg@2x.png",
       "scale" : "3x"
     },
     {
       "idiom" : "ipad",
+      "filename" : "pb_bg_iPad.png",
       "scale" : "1x"
     },
     {
       "idiom" : "ipad",
-      "filename" : "pb_bg_iPad.png",
       "scale" : "2x"
     }
   ],
