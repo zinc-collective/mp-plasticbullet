@@ -14,6 +14,15 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
     var topRightImage: FilterView
     var bottomLeftImage: FilterView
     var bottomRightImage: FilterView
+    
+    var topMiddleImage: FilterView
+    var middleLeftImage: FilterView
+    var middleMiddleImage: FilterView
+    var middleRightImage: FilterView
+    var bottomMiddleView: FilterView
+    
+    var gridSize:GRID_MODE = GRID_9
+    
     @IBOutlet weak var imagesView: FilterGridView!
     
     var selectedImage: UIImage?
@@ -32,7 +41,7 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
     
     var allImageViews:[FilterView] {
         get {
-            return [topLeftImage, topRightImage, bottomLeftImage, bottomRightImage]
+            return [topLeftImage, topRightImage, bottomLeftImage, bottomRightImage, topMiddleImage, middleLeftImage, middleMiddleImage, middleRightImage, bottomMiddleView]
         }
     }
     
@@ -43,10 +52,18 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
     }
     
     required init(coder dec: NSCoder) {
+        
         self.topLeftImage = FilterView(coder: dec)
         self.topRightImage = FilterView(coder: dec)
         self.bottomLeftImage = FilterView(coder: dec)
         self.bottomRightImage = FilterView(coder: dec)
+        
+        self.topMiddleImage = FilterView(coder: dec)
+        self.middleLeftImage = FilterView(coder: dec)
+        self.middleMiddleImage = FilterView(coder: dec)
+        self.middleRightImage = FilterView(coder: dec)
+        self.bottomMiddleView = FilterView(coder: dec)
+        
         super.init(coder: dec)!
     }
     
@@ -58,15 +75,34 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
         self.imagesView.addSubview(self.bottomLeftImage)
         self.imagesView.addSubview(self.bottomRightImage)
         
+        if gridSize == GRID_9 {
+            self.imagesView.addSubview(self.topMiddleImage)
+            self.imagesView.addSubview(self.middleLeftImage)
+            self.imagesView.addSubview(self.middleMiddleImage)
+            self.imagesView.addSubview(self.middleRightImage)
+            self.imagesView.addSubview(self.bottomMiddleView)
+            
+            self.imagesView.rows = 3
+            self.imagesView.cols = 3
+        }
+        
         self.allImageViews.forEach { (filterView) in
             filterView.onTap = self.focusImage
         }
         
         mojo.delegate = self
+        mojo.initGrid(self.gridSize)
         mojo.topLeftView = self.topLeftImage
         mojo.topRightView = self.topRightImage
         mojo.bottomLeftView = self.bottomLeftImage
         mojo.bottomRightView = self.bottomRightImage
+        
+        mojo.topMiddleView = self.topMiddleImage
+        mojo.middleLeftView = self.middleLeftImage
+        mojo.middleMiddleView = self.middleMiddleImage
+        mojo.middleRightView = self.middleRightImage
+        mojo.bottomMiddleView = self.bottomMiddleView
+        
         mojo.view = self.imagesView
         
         mojo.viewDidLoad()
@@ -185,6 +221,8 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
         
         // Remember which one we've focused
         self.selectedImage = view.image
+        
+        self.mojo.focusImage(view)
     }
     
     func unfocusImage() {
@@ -199,6 +237,7 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
         self.imagesView.removeFocus()
         
         self.selectedImage = nil
+        mojo.defocusImage()
     }
     
     // ------------------------------------------------------------

@@ -12,10 +12,10 @@ class FilterGridView: UIView {
     
     // I can tell it to stop, because it's in focused mode, etc
     let grid = GridLayout()
-    let rows = 2
-    let cols = 2
-    let spacing:CGFloat = 4
-    let animationDuration = 0.5
+    var rows = 2
+    var cols = 2
+    var spacing:CGFloat = 4
+    var animationDuration = 0.5
     
     var focusedView: UIView?
     
@@ -72,7 +72,6 @@ class FilterGridView: UIView {
             self.focusedView = nil
             
             self.unfocusedViews().forEach { view in
-                view.alpha = 0.0
                 view.hidden = false
             }
             

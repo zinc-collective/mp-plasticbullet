@@ -17,6 +17,11 @@ typedef enum SAVE_TO_TYPE{
 	SAVE_TO_ALBUM = 0,
 }SAVE_TO;
 
+typedef enum GRID_MODE {
+    GRID_4 = 4,
+    GRID_9 = 9
+}GRID_MODE;
+
 #define KEY_SAVE_TO		@"saveto"
 //end add
 
@@ -49,7 +54,6 @@ typedef enum SAVE_TO_TYPE{
 	
 //	CFURLRef		soundFileURLRef;
 //	SystemSoundID	soundFileObject;	
-	int m_quadIndex;
 	NSThread *workerThread;
 	bool isPortrait;
 	bool isSaveToAlbum;
@@ -97,9 +101,12 @@ typedef enum SAVE_TO_TYPE{
     UIInterfaceOrientation nowInterfaceOrientation;
     
     ProgressView *shareProgressView;
-	
+    
+    int numberMode;
+    GRID_MODE gridMode;
 }
 
+@property (weak, nonatomic) UIImageView * focusedView;
 @property (weak, nonatomic) id<MojoDelegate> delegate;
 
 @property (nonatomic, assign) UIInterfaceOrientation nowInterfaceOrientation;
@@ -146,13 +153,13 @@ typedef enum SAVE_TO_TYPE{
 
 @property (nonatomic) SAVE_TO saveToState;
 
-@property (nonatomic, assign) int m_quadIndex;
-
 @property (nonatomic, retain) ProgressView *shareProgressView;
 
+- (void)focusImage:(UIImageView *)focusedView;
+- (void)defocusImage;
+- (void)initGrid:(GRID_MODE)gridMode;
 
 - (int)renderImages;
-- (void)selectQuad:(int)index;
 - (void)randomizeQuad:(int)_index;
 - (void) generateInputImages;
 
@@ -178,16 +185,8 @@ typedef enum SAVE_TO_TYPE{
 -(ffRenderArguments)randomImgParameter;
 
 -(bool) isSaveCameraShot;
--(bool) is3QuarterResolution;
--(CGSize) getMaxResolution;
--(CGSize) getMaxRenderResolution:(CGSize)imgres;
 -(NSString *)getDeviceName;
--(bool) isLowRes;
--(bool) useFacebook;
--(bool) useFlickr;
 -(void) printAvailMem;
-
-- (void) resetNumberModel;
 
 -(void)renderImage:(UIImage*)originalImage;
 

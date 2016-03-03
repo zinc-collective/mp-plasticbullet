@@ -26,8 +26,11 @@ FINAL TOUCHES
 IPAD SUPPORT
 - [x] background image
 - [x] logo bar
-- [ ] align buttons
+- [x] align buttons
 - [ ] more items in the grid
+- [ ] sharing crashes on iPad, requires
+- [ ] focused view is really low-res on the iPad
+- [ ] defocus view
 
 CLEANUP
 - [ ] is the old certificate around? To get rid of that warning.
