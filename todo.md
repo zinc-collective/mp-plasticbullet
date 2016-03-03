@@ -20,18 +20,21 @@ FINAL TOUCHES
 - [x] spinner when they are generating. App delegate spinner?
 - [x] avoid generating all the images when in focused mode. No. Don't worry about it
 - [x] fix layout warning somehow
-- [ ] WAIT FOR DREW - Help text (localized?)
-- [ ] WAIT FOR DREW - Localize button labels
 
 IPAD SUPPORT
 - [x] background image
 - [x] logo bar
 - [x] align buttons
-- [ ] more items in the grid
-- [ ] sharing crashes on iPad, requires
-- [ ] focused view is really low-res on the iPad
-- [ ] defocus view
+- [x] more items in the grid
+- [x] sharing crashes on iPad, requires
+- [x] focused view is really low-res on the iPad
+- [x] defocus view
 
-CLEANUP
-- [ ] is the old certificate around? To get rid of that warning.
-- [ ] transfer app to Just Start Go
+- [ ] Info Screen
+
+-- LATER -------------------------
+- [ ] Localize Help text
+- [ ] Localize Button Labels
+
+RELEASE
+- [ ] Make sure new organization is set up
