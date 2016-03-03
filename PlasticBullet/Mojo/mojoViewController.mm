@@ -1897,15 +1897,15 @@ int loadTime = 0;
 //		[bottomMiddleView setImage:nil];
 //		[bottomRightView setImage:nil];
 		
-//		[topLeftView setAlpha:0.f];
-//		[topMiddleView setAlpha:0.f];
-//		[topRightView setAlpha:0.f];
-//		[middleLeftView setAlpha:0.f];
-//		[middleMiddleView setAlpha:0.f];
-//		[middleRightView setAlpha:0.f];
-//		[bottomLeftView setAlpha:0.f];
-//		[bottomMiddleView setAlpha:0.f];
-//		[bottomRightView setAlpha:0.f];
+		[topLeftView setAlpha:0.f];
+		[topMiddleView setAlpha:0.f];
+		[topRightView setAlpha:0.f];
+		[middleLeftView setAlpha:0.f];
+		[middleMiddleView setAlpha:0.f];
+		[middleRightView setAlpha:0.f];
+		[bottomLeftView setAlpha:0.f];
+		[bottomMiddleView setAlpha:0.f];
+		[bottomRightView setAlpha:0.f];
 	}
 	
 	if(image!=nil)
