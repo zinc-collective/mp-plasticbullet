@@ -552,6 +552,7 @@
                         <outlet property="cameraProportionalHeight" destination="T0x-kN-pzM" id="lMg-qn-xES"/>
                         <outlet property="cameraText" destination="9hM-0K-z0N" id="q3N-ry-Wdw"/>
                         <outlet property="cameraTop" destination="Fg9-E7-yM0" id="ws2-qr-LjV"/>
+                        <outlet property="libraryButton" destination="4aM-bp-86k" id="o2w-qf-aZn"/>
                         <outlet property="libraryLeft" destination="O9S-v0-T80" id="Nd3-oG-qPR"/>
                         <outlet property="libraryProportionalHeight" destination="NJY-LM-GT2" id="4Zk-fE-zFc"/>
                         <outlet property="libraryText" destination="vHw-zz-8Rf" id="IwI-Vu-g7j"/>

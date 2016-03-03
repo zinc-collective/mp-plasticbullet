@@ -21,7 +21,7 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
     var middleRightImage: FilterView
     var bottomMiddleView: FilterView
     
-    var gridSize:GRID_MODE = GRID_9
+    var gridSize:GRID_MODE
     
     @IBOutlet weak var imagesView: FilterGridView!
     
@@ -52,6 +52,12 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
     }
     
     required init(coder dec: NSCoder) {
+        
+        if UI_USER_INTERFACE_IDIOM() == .Pad {
+            gridSize = GRID_9
+        } else {
+            gridSize = GRID_4
+        }
         
         self.topLeftImage = FilterView(coder: dec)
         self.topRightImage = FilterView(coder: dec)
@@ -161,6 +167,9 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
         
         if let img = self.selectedImage {
             let activity = UIActivityViewController(activityItems: [img], applicationActivities: nil)
+            activity.popoverPresentationController?.sourceView = self.view
+            activity.popoverPresentationController?.sourceRect = self.shareButton.frame
+            
             self.presentViewController(activity, animated: true, completion: nil)
         }
     }
@@ -183,6 +192,9 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
             picker.delegate = self
             picker.allowsEditing = false
             picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+            picker.modalPresentationStyle = UIModalPresentationStyle.Popover
+            picker.popoverPresentationController?.sourceView = self.view
+            picker.popoverPresentationController?.sourceRect = self.libraryButton.frame
             self.presentViewController(picker, animated: true, completion: nil)
         }
     }

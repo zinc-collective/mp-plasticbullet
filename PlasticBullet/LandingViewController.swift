@@ -10,10 +10,11 @@ import UIKit
 import AVFoundation
 import XMCircleType
 
-class LandingViewController: UIViewController  {
+class LandingViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
     
     @IBOutlet weak var background: UIImageView!
     
+    @IBOutlet weak var libraryButton: UIButton!
     
     @IBOutlet weak var cameraText: PBCircleLabel!
     @IBOutlet weak var cameraLeft: NSLayoutConstraint!
@@ -116,14 +117,12 @@ class LandingViewController: UIViewController  {
     
     @IBAction func didTapLibrary(sender: AnyObject) {
         print("LIBRARY")
-        let nav = self.navigationController as! NavigationController
-        nav.openLibrary()
+        openLibrary()
     }
     
     @IBAction func didTapCamera(sender: AnyObject) {
         print("CAMERA")
-        let nav = self.navigationController as! NavigationController
-        nav.openCamera()
+        openCamera()
     }
     
     @IBAction func didTapInfo(sender: AnyObject) {
@@ -132,5 +131,38 @@ class LandingViewController: UIViewController  {
         print(self.navigationController)
         nav.openInfo()
     }
+    
+    func openLibrary() {
+        if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary)) {
+            let picker = UIImagePickerController.init()
+            picker.delegate = self
+            picker.allowsEditing = false
+            picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+            picker.modalPresentationStyle = .Popover
+            picker.popoverPresentationController?.sourceView = self.view
+            picker.popoverPresentationController?.sourceRect = self.libraryButton.frame
+            self.presentViewController(picker, animated: true, completion: nil)
+        }
+    }
+    
+    func openCamera() {
+        if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)) {
+            let picker = UIImagePickerController.init()
+            picker.delegate = self
+            picker.allowsEditing = false
+            picker.sourceType = UIImagePickerControllerSourceType.Camera
+            self.presentViewController(picker, animated: true, completion: nil)
+        }
+    }
+    
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        let chosenImage = info[UIImagePickerControllerOriginalImage]
+        
+        picker.dismissViewControllerAnimated(true, completion: nil)
+        self.navigationController?.performSegueWithIdentifier("Filters", sender: chosenImage)
+    }
+    
+    
 }
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NavigationController: UINavigationController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class NavigationController: UINavigationController, UINavigationControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,26 +26,6 @@ class NavigationController: UINavigationController, UIImagePickerControllerDeleg
         print("Close info")
     }
     
-    func openLibrary() {
-        if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary)) {
-            let picker = UIImagePickerController.init()
-            picker.delegate = self
-            picker.allowsEditing = false
-            picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-            self.presentViewController(picker, animated: true, completion: nil)
-        }
-    }
-    
-    func openCamera() {
-        if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)) {
-            let picker = UIImagePickerController.init()
-            picker.delegate = self
-            picker.allowsEditing = false
-            picker.sourceType = UIImagePickerControllerSourceType.Camera
-            self.presentViewController(picker, animated: true, completion: nil)
-        }
-    }
-    
     func openInfo() {
         print("INFO")
         self.performSegueWithIdentifier("Info", sender: self)
@@ -53,13 +33,6 @@ class NavigationController: UINavigationController, UIImagePickerControllerDeleg
     
     @IBAction func closeInfo(segue:UIStoryboardSegue) {
         print("Close info")
-    }
-    
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        let chosenImage = info[UIImagePickerControllerOriginalImage]
-        
-        picker.dismissViewControllerAnimated(true, completion: nil)
-        self.performSegueWithIdentifier("Filters", sender: chosenImage)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
