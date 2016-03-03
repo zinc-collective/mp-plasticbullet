@@ -289,10 +289,12 @@
                                     <constraint firstAttribute="height" constant="38" id="CjV-JF-izv"/>
                                     <constraint firstAttribute="height" priority="500" constant="79" id="P67-B3-umW"/>
                                     <constraint firstAttribute="width" secondItem="qYe-a8-TiL" secondAttribute="height" multiplier="160:19" id="UUw-8i-zcu"/>
+                                    <constraint firstAttribute="width" secondItem="qYe-a8-TiL" secondAttribute="height" multiplier="768:79" priority="500" id="Z9r-q2-wdr"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="CjV-JF-izv"/>
+                                        <exclude reference="P67-B3-umW"/>
                                     </mask>
                                 </variation>
                             </imageView>
@@ -317,6 +319,11 @@
                                 </constraints>
                                 <state key="normal" image="Camera Button"/>
                                 <state key="highlighted" image="Camera Button Highlight"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="hHp-tb-sNG"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <action selector="didTapCamera:" destination="dkx-z0-nzr" eventType="touchUpInside" id="gi3-eZ-WFp"/>
                                 </connections>
@@ -347,6 +354,7 @@
                                 <state key="highlighted" image="Library Button Highlight"/>
                                 <variation key="default">
                                     <mask key="constraints">
+                                        <exclude reference="BHY-DX-mvc"/>
                                         <exclude reference="Rxi-fR-Xqf"/>
                                     </mask>
                                 </variation>

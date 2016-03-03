@@ -77,19 +77,19 @@ class LandingViewController: UIViewController  {
         barAspect.priority = 100
         
         // manually set position of buttons
-        cameraLeft.constant = 655
-        print(cameraTop.constant)
-        cameraTop.constant += 1
-        libraryLeft.constant = 556
-        libraryTop.constant = 824
+//        cameraLeft.constant = 655
+//        print(cameraTop.constant)
+//        cameraTop.constant += 1
+//        libraryLeft.constant = 556
+//        libraryTop.constant = 824
         
         // manually set font
-        let font = UIFont(name: "Helvetica Bold", size: 24.0)
-        cameraText.font = font
-        libraryText.font = font
+//        let font = UIFont(name: "Helvetica Bold", size: 24.0)
+//        cameraText.font = font
+//        libraryText.font = font
         
-        libraryProportionalHeight.priority = 100
-        cameraProportionalHeight.priority = 100
+//        libraryProportionalHeight.priority = 100
+//        cameraProportionalHeight.priority = 100
 //        libraryTextAspect.priority = 100
         
 //        libraryLeft.constant = 656
