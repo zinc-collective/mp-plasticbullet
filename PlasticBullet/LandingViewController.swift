@@ -41,6 +41,11 @@ class LandingViewController: UIViewController  {
         let IB_MANUAL_WIDTH = CGFloat(414)
         let scale = view.frame.size.width / IB_MANUAL_WIDTH
         
+        // -- ipad change constraints before altering...
+        if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+            tweakConstraintsForIPad()
+        }
+        
         // -- circular text labels --------------------------------------------
         
         let font = UIFont(name: "Helvetica Bold", size: 18.0 * scale)
@@ -64,10 +69,6 @@ class LandingViewController: UIViewController  {
         cameraLeft.constant = cameraLeft.constant * scale
         cameraTop.constant = cameraTop.constant * scale
         
-        
-        if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
-            tweakConstraintsForIPad()
-        }
     }
     
     func tweakConstraintsForIPad() {
@@ -77,19 +78,20 @@ class LandingViewController: UIViewController  {
         barAspect.priority = 100
         
         // manually set position of buttons
-//        cameraLeft.constant = 655
-//        print(cameraTop.constant)
-//        cameraTop.constant += 1
-//        libraryLeft.constant = 556
-//        libraryTop.constant = 824
+        print(cameraLeft.constant, cameraTop.constant)
+        cameraLeft.constant = 353
+        
+        print(libraryLeft.constant, libraryTop.constant)
+        libraryLeft.constant = 300
+        libraryTop.constant = 444
         
         // manually set font
 //        let font = UIFont(name: "Helvetica Bold", size: 24.0)
 //        cameraText.font = font
 //        libraryText.font = font
         
-//        libraryProportionalHeight.priority = 100
-//        cameraProportionalHeight.priority = 100
+        libraryProportionalHeight.priority = 100
+        cameraProportionalHeight.priority = 100
 //        libraryTextAspect.priority = 100
         
 //        libraryLeft.constant = 656

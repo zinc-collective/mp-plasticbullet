@@ -345,6 +345,7 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4aM-bp-86k" userLabel="Library Button">
                                 <rect key="frame" x="196" y="443" width="101" height="101"/>
+                                <color key="backgroundColor" red="1" green="0.022464787999999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" priority="500" constant="120" id="BHY-DX-mvc"/>
                                     <constraint firstAttribute="width" priority="500" constant="120" id="Rxi-fR-Xqf"/>
@@ -384,8 +385,10 @@
                             <constraint firstAttribute="trailingMargin" secondItem="bVI-k8-u9n" secondAttribute="trailing" constant="77" id="6po-96-nSX"/>
                             <constraint firstItem="qYe-a8-TiL" firstAttribute="top" relation="lessThanOrEqual" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="480" id="7OL-V2-XDo"/>
                             <constraint firstAttribute="trailingMargin" secondItem="qYe-a8-TiL" secondAttribute="trailing" constant="-20" id="8oq-S4-Tlv"/>
+                            <constraint firstItem="4aM-bp-86k" firstAttribute="height" secondItem="iA8-o7-982" secondAttribute="height" multiplier="110:1024" priority="500" id="A5O-MG-B6h"/>
                             <constraint firstItem="bVI-k8-u9n" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="325" id="AtP-t4-kZa"/>
                             <constraint firstAttribute="trailing" secondItem="bVI-k8-u9n" secondAttribute="trailing" constant="96" id="Bvu-kq-Ase"/>
+                            <constraint firstItem="bVI-k8-u9n" firstAttribute="height" secondItem="iA8-o7-982" secondAttribute="height" multiplier="110:1024" priority="500" id="CRP-iF-Q2M"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" relation="greaterThanOrEqual" secondItem="qYe-a8-TiL" secondAttribute="bottom" id="CVK-ar-3x6"/>
                             <constraint firstItem="4aM-bp-86k" firstAttribute="width" secondItem="iA8-o7-982" secondAttribute="height" multiplier="13:80" id="DA0-3b-h8n"/>
                             <constraint firstItem="qYe-a8-TiL" firstAttribute="top" relation="greaterThanOrEqual" secondItem="iA8-o7-982" secondAttribute="top" constant="-38" id="DMZ-hY-FTT"/>
