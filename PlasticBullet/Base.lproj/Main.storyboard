@@ -345,7 +345,6 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4aM-bp-86k" userLabel="Library Button">
                                 <rect key="frame" x="196" y="443" width="101" height="101"/>
-                                <color key="backgroundColor" red="1" green="0.055976856370000001" blue="0.180435348" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" priority="500" constant="120" id="BHY-DX-mvc"/>
                                     <constraint firstAttribute="width" priority="500" constant="120" id="Rxi-fR-Xqf"/>
@@ -378,6 +377,7 @@
                             <constraint firstItem="9hM-0K-z0N" firstAttribute="centerX" secondItem="bVI-k8-u9n" secondAttribute="centerX" id="0TP-tB-nf3"/>
                             <constraint firstItem="bVI-k8-u9n" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="129" id="1IT-2o-0zx"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="iA8-o7-982" secondAttribute="bottom" priority="800" id="1OU-fP-nkg"/>
+                            <constraint firstItem="9hM-0K-z0N" firstAttribute="height" secondItem="bVI-k8-u9n" secondAttribute="height" multiplier="200:110" priority="500" id="1Uu-Rs-t3R"/>
                             <constraint firstItem="9hM-0K-z0N" firstAttribute="centerY" secondItem="bVI-k8-u9n" secondAttribute="centerY" id="4Ic-Mh-RD7"/>
                             <constraint firstAttribute="trailing" secondItem="qYe-a8-TiL" secondAttribute="trailing" id="4KX-C3-TYj"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="bVI-k8-u9n" secondAttribute="bottom" constant="215" id="4kH-Qi-kl2"/>
@@ -385,6 +385,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="bVI-k8-u9n" secondAttribute="trailing" constant="77" id="6po-96-nSX"/>
                             <constraint firstItem="qYe-a8-TiL" firstAttribute="top" relation="lessThanOrEqual" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="480" id="7OL-V2-XDo"/>
                             <constraint firstAttribute="trailingMargin" secondItem="qYe-a8-TiL" secondAttribute="trailing" constant="-20" id="8oq-S4-Tlv"/>
+                            <constraint firstItem="9hM-0K-z0N" firstAttribute="height" secondItem="bVI-k8-u9n" secondAttribute="height" multiplier="164:101" id="94y-x2-Wmw"/>
                             <constraint firstItem="4aM-bp-86k" firstAttribute="height" secondItem="iA8-o7-982" secondAttribute="height" multiplier="110:1024" priority="700" id="A5O-MG-B6h"/>
                             <constraint firstItem="bVI-k8-u9n" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="325" id="AtP-t4-kZa"/>
                             <constraint firstAttribute="trailing" secondItem="bVI-k8-u9n" secondAttribute="trailing" constant="96" id="Bvu-kq-Ase"/>
@@ -392,6 +393,7 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" relation="greaterThanOrEqual" secondItem="qYe-a8-TiL" secondAttribute="bottom" id="CVK-ar-3x6"/>
                             <constraint firstItem="4aM-bp-86k" firstAttribute="height" secondItem="iA8-o7-982" secondAttribute="height" multiplier="110:1024" priority="800" id="CaH-D4-IJt"/>
                             <constraint firstItem="4aM-bp-86k" firstAttribute="width" secondItem="iA8-o7-982" secondAttribute="height" multiplier="13:80" id="DA0-3b-h8n"/>
+                            <constraint firstItem="vHw-zz-8Rf" firstAttribute="height" secondItem="4aM-bp-86k" secondAttribute="height" multiplier="164:101" id="DGY-vm-XSY"/>
                             <constraint firstItem="qYe-a8-TiL" firstAttribute="top" relation="greaterThanOrEqual" secondItem="iA8-o7-982" secondAttribute="top" constant="-38" id="DMZ-hY-FTT"/>
                             <constraint firstItem="bVI-k8-u9n" firstAttribute="width" secondItem="iA8-o7-982" secondAttribute="height" multiplier="13:80" id="DPf-Rd-V8P"/>
                             <constraint firstItem="bVI-k8-u9n" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="30" id="Dno-wY-qyJ"/>
@@ -399,8 +401,8 @@
                             <constraint firstItem="bVI-k8-u9n" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="404" id="Fg9-E7-yM0"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="qYe-a8-TiL" secondAttribute="bottom" priority="250" id="GHz-7Z-9zw"/>
                             <constraint firstItem="qYe-a8-TiL" firstAttribute="trailing" secondItem="iA8-o7-982" secondAttribute="trailing" id="Hhx-mH-drt"/>
-                            <constraint firstItem="vHw-zz-8Rf" firstAttribute="width" secondItem="4aM-bp-86k" secondAttribute="height" multiplier="164:101" id="IUn-8v-pbs"/>
                             <constraint firstAttribute="trailing" secondItem="iA8-o7-982" secondAttribute="trailing" id="Jag-pf-qdr"/>
+                            <constraint firstItem="vHw-zz-8Rf" firstAttribute="height" secondItem="4aM-bp-86k" secondAttribute="height" id="Kdd-jG-JAb"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" relation="lessThanOrEqual" secondItem="qYe-a8-TiL" secondAttribute="bottom" constant="50" id="LDR-tZ-4U5"/>
                             <constraint firstItem="bVI-k8-u9n" firstAttribute="trailing" secondItem="iA8-o7-982" secondAttribute="trailing" id="LJA-zD-Xlc"/>
                             <constraint firstItem="9hM-0K-z0N" firstAttribute="width" secondItem="bVI-k8-u9n" secondAttribute="height" multiplier="164:101" id="Msl-LN-Aa0"/>
@@ -424,6 +426,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="iA8-o7-982" secondAttribute="trailing" constant="-20" id="XOj-5E-bEZ"/>
                             <constraint firstItem="qYe-a8-TiL" firstAttribute="top" relation="greaterThanOrEqual" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="442" id="Z0P-0M-Zvj"/>
                             <constraint firstItem="bVI-k8-u9n" firstAttribute="height" secondItem="iA8-o7-982" secondAttribute="height" multiplier="110:1024" priority="800" id="ZO3-Ci-BhJ"/>
+                            <constraint firstItem="vHw-zz-8Rf" firstAttribute="height" secondItem="4aM-bp-86k" secondAttribute="height" multiplier="200:110" priority="500" id="Zro-uW-GHw"/>
                             <constraint firstItem="iA8-o7-982" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="a9n-KG-cZp"/>
                             <constraint firstItem="vHw-zz-8Rf" firstAttribute="centerX" secondItem="4aM-bp-86k" secondAttribute="centerX" id="aXd-BJ-s3O"/>
                             <constraint firstItem="bVI-k8-u9n" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="129" id="ab1-Df-LcV"/>
@@ -473,21 +476,12 @@
                                 <exclude reference="eeG-ip-kd5"/>
                                 <exclude reference="q79-na-W5s"/>
                                 <exclude reference="zEz-yo-ql5"/>
-                                <exclude reference="4KX-C3-TYj"/>
-                                <exclude reference="6Z7-mJ-HW4"/>
-                                <exclude reference="7OL-V2-XDo"/>
-                                <exclude reference="8oq-S4-Tlv"/>
-                                <exclude reference="DMZ-hY-FTT"/>
-                                <exclude reference="F54-T9-ALm"/>
-                                <exclude reference="NdM-fG-kY5"/>
-                                <exclude reference="UbA-8c-mTS"/>
-                                <exclude reference="Wfw-5E-6Jm"/>
-                                <exclude reference="Z0P-0M-Zvj"/>
-                                <exclude reference="kjq-Er-m4h"/>
-                                <exclude reference="l5p-s7-zlW"/>
-                                <exclude reference="ygJ-aA-efB"/>
+                                <exclude reference="1Uu-Rs-t3R"/>
+                                <exclude reference="Msl-LN-Aa0"/>
                                 <exclude reference="fFr-56-Ppd"/>
+                                <exclude reference="Kdd-jG-JAb"/>
                                 <exclude reference="SCC-aq-wKv"/>
+                                <exclude reference="Zro-uW-GHw"/>
                                 <exclude reference="hke-bx-JAo"/>
                                 <exclude reference="rvz-jL-Ndh"/>
                                 <exclude reference="sA3-sA-RhQ"/>
@@ -517,6 +511,19 @@
                                 <exclude reference="zUB-Lk-OVO"/>
                                 <exclude reference="A5O-MG-B6h"/>
                                 <exclude reference="DA0-3b-h8n"/>
+                                <exclude reference="4KX-C3-TYj"/>
+                                <exclude reference="6Z7-mJ-HW4"/>
+                                <exclude reference="7OL-V2-XDo"/>
+                                <exclude reference="8oq-S4-Tlv"/>
+                                <exclude reference="DMZ-hY-FTT"/>
+                                <exclude reference="F54-T9-ALm"/>
+                                <exclude reference="NdM-fG-kY5"/>
+                                <exclude reference="UbA-8c-mTS"/>
+                                <exclude reference="Wfw-5E-6Jm"/>
+                                <exclude reference="Z0P-0M-Zvj"/>
+                                <exclude reference="kjq-Er-m4h"/>
+                                <exclude reference="l5p-s7-zlW"/>
+                                <exclude reference="ygJ-aA-efB"/>
                                 <exclude reference="4kH-Qi-kl2"/>
                                 <exclude reference="CVK-ar-3x6"/>
                                 <exclude reference="LDR-tZ-4U5"/>
@@ -548,7 +555,6 @@
                         <outlet property="libraryLeft" destination="O9S-v0-T80" id="Nd3-oG-qPR"/>
                         <outlet property="libraryProportionalHeight" destination="NJY-LM-GT2" id="4Zk-fE-zFc"/>
                         <outlet property="libraryText" destination="vHw-zz-8Rf" id="IwI-Vu-g7j"/>
-                        <outlet property="libraryTextAspect" destination="IUn-8v-pbs" id="tLy-Qz-BWq"/>
                         <outlet property="libraryTop" destination="knc-wC-ujX" id="8WM-63-2aS"/>
                     </connections>
                 </viewController>

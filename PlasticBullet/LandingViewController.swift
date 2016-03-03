@@ -26,7 +26,6 @@ class LandingViewController: UIViewController  {
     // constraints
     @IBOutlet weak var backgroundAspect: NSLayoutConstraint!
     @IBOutlet weak var barAspect: NSLayoutConstraint!
-    @IBOutlet weak var libraryTextAspect: NSLayoutConstraint!
     @IBOutlet weak var libraryProportionalHeight: NSLayoutConstraint!
     @IBOutlet weak var cameraProportionalHeight: NSLayoutConstraint!
     
@@ -42,13 +41,15 @@ class LandingViewController: UIViewController  {
         let scale = view.frame.size.width / IB_MANUAL_WIDTH
         
         // -- ipad change constraints before altering...
+        var fontSize:CGFloat = 18.0
         if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
             tweakConstraintsForIPad()
+            fontSize = 12.0
         }
         
         // -- circular text labels --------------------------------------------
         
-        let font = UIFont(name: "Helvetica Bold", size: 18.0 * scale)
+        let font = UIFont(name: "Helvetica Bold", size: fontSize * scale)
         let color = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.0)
         
         cameraText.text = "Camera"
@@ -92,12 +93,7 @@ class LandingViewController: UIViewController  {
         
         libraryProportionalHeight.priority = 100
         cameraProportionalHeight.priority = 100
-//        libraryTextAspect.priority = 100
         
-//        libraryLeft.constant = 656
-//        cameraTop.constant = 100
-//        libraryLeft.constant = 100
-//        libraryTop.constant = 100
     }
     
 //    override func viewDidLayoutSubviews() {
