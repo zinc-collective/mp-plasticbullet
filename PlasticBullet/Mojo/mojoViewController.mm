@@ -1552,7 +1552,7 @@ int loadTime = 0;
 	} else if (numberMode == 9) {
 		numRenderIndexs = 9;
 	} else {
-        renderIndex = [imageViewArray indexOfObject:self.focusedView];
+        renderIndex = (int)[imageViewArray indexOfObject:self.focusedView];
         isRefresh[renderIndex] = YES;
 		numRenderIndexs = renderIndex+1;
 	}

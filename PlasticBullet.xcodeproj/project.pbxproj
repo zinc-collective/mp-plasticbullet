@@ -17,7 +17,6 @@
 		78B6A2501C76780500AE58F7 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6A24F1C76780500AE58F7 /* LandingViewController.swift */; };
 		78B6A2531C76780500AE58F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78B6A2511C76780500AE58F7 /* Main.storyboard */; };
 		78B6A2551C76780500AE58F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78B6A2541C76780500AE58F7 /* Assets.xcassets */; };
-		78B6A2581C76780500AE58F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78B6A2561C76780500AE58F7 /* LaunchScreen.storyboard */; };
 		78C0150C1C7B9165009C382C /* Renderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C0150B1C7B9165009C382C /* Renderer.m */; };
 		78C0150F1C7B91F4009C382C /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C0150E1C7B91F4009C382C /* Utilities.m */; };
 		78C015141C7BACF2009C382C /* Plugin_Render.mm in Sources */ = {isa = PBXBuildFile; fileRef = 78C015121C7BACF2009C382C /* Plugin_Render.mm */; };
@@ -170,7 +169,6 @@
 		78B6A24F1C76780500AE58F7 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		78B6A2521C76780500AE58F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		78B6A2541C76780500AE58F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		78B6A2571C76780500AE58F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		78B6A2591C76780500AE58F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78C0150A1C7B9165009C382C /* Renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Renderer.h; sourceTree = "<group>"; };
 		78C0150B1C7B9165009C382C /* Renderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Renderer.m; sourceTree = "<group>"; };
@@ -356,7 +354,6 @@
 				787396681C84CB72005F5E4B /* FilterGridView.swift */,
 				7881D5951C78F7C4000255F9 /* FilterPickerViewController.swift */,
 				78E2E7A71C7B80D100B5A91A /* FilterView.swift */,
-				78B6A2561C76780500AE58F7 /* LaunchScreen.storyboard */,
 			);
 			name = Filters;
 			sourceTree = "<group>";
@@ -721,7 +718,6 @@
 				78E2E7541C7B7FA200B5A91A /* flexBorders_01_bp1_edge_00002.png in Resources */,
 				78E2E7A21C7B7FA200B5A91A /* vigArt_300x400px.png in Resources */,
 				78E2E7941C7B7FA200B5A91A /* leaks_420x2100px_old.png in Resources */,
-				78B6A2581C76780500AE58F7 /* LaunchScreen.storyboard in Resources */,
 				78E2E7591C7B7FA200B5A91A /* flexBorders_01_bp1_edge_00007.png in Resources */,
 				78E2E7341C7B7FA200B5A91A /* flexBorders_00_bp1_edge_00000.png in Resources */,
 				78E2E7491C7B7FA200B5A91A /* flexBorders_00_soft_edge_00001.png in Resources */,
@@ -850,14 +846,6 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		78B6A2561C76780500AE58F7 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				78B6A2571C76780500AE58F7 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -949,6 +937,7 @@
 			baseConfigurationReference = 72FDE293A2423CFDAC10758C /* Pods-PlasticBullet.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -968,6 +957,7 @@
 			baseConfigurationReference = 2334246BEB39A7EFB887843E /* Pods-PlasticBullet.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

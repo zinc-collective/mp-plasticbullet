@@ -29,8 +29,8 @@ IPAD SUPPORT
 - [x] sharing crashes on iPad, requires
 - [x] focused view is really low-res on the iPad
 - [x] defocus view
-
-- [ ] Info Screen
+- [x] Info Screen
+- [x] iPad launch images
 
 -- LATER -------------------------
 - [ ] Localize Help text
