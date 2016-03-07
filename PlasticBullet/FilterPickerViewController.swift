@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FilterPickerViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MojoDelegate {
+class FilterPickerViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MojoDelegate, RenderDelegate {
     
     var topLeftImage: FilterView
     var topRightImage: FilterView
@@ -25,7 +25,7 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
     
     @IBOutlet weak var imagesView: FilterGridView!
     
-    var selectedImage: UIImage?
+    var selectedImage: UIImageView?
     
     @IBOutlet weak var libraryButton: UIButton!
     @IBOutlet weak var cameraButton: UIButton!
@@ -38,6 +38,7 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
     var image:UIImage?
     
     var mojo:mojoViewController = mojoViewController.init()
+    var renderer:Renderer = Renderer.init()
     
     var allImageViews:[FilterView] {
         get {
@@ -111,6 +112,9 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
         
         mojo.view = self.imagesView
         
+        self.renderer.delegate = self
+        mojo.renderer = self.renderer
+        
         mojo.viewDidLoad()
         
         if let img = image {
@@ -165,7 +169,9 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
     @IBAction func didTapShare(sender: AnyObject) {
         print("SHARE")
         
-        if let img = self.selectedImage {
+        if let view = self.selectedImage {
+            let img = self.mojo.fullyRenderedImage(view)
+            print("SHARING IMAGE", img.size)
             let activity = UIActivityViewController(activityItems: [img], applicationActivities: nil)
             activity.popoverPresentationController?.sourceView = self.view
             activity.popoverPresentationController?.sourceRect = self.shareButton.frame
@@ -232,7 +238,8 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
         self.imagesView.focusView(view)
         
         // Remember which one we've focused
-        self.selectedImage = view.image
+        // umm... no, we need the full-res image
+        self.selectedImage = view
         
         self.mojo.focusImage(view)
     }
@@ -277,5 +284,9 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
             spinner.hidden = true
             spinner.stopAnimating()
         }
+    }
+    
+    func renderProgress(percent: Float) {
+        print("RENDER PROGRESS!!!", percent)
     }
 }

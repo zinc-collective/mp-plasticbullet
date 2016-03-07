@@ -79,8 +79,6 @@ NSThread *sWorkerThread = nil;
 //static UIActionSheet *actionSheet = nil;
 
 //add by Guno
-static int fullImageWidth = 0;
-static int fullImageHeight = 0;
 static UIImage *portraitImage1 = nil;
 static UIImage *portraitImage4 = nil;
 static UIImage *portraitImage9 = nil;
@@ -361,6 +359,7 @@ static ffRenderArguments ffRenderArgsArray[9];
 
 @implementation mojoViewController
 @synthesize delegate;
+@synthesize renderer;
 @synthesize originalImage;
 //@synthesize button1;
 //@synthesize spinner;
@@ -393,7 +392,6 @@ static ffRenderArguments ffRenderArgsArray[9];
 
 
 //@synthesize pView;
-@synthesize fullImage;
 @synthesize portraitImage;
 //save small pictures array
 static UIImage *viewImageArray[9] = {nil};
@@ -721,8 +719,6 @@ int loadTime = 0;
 	CGFloat inputWidth = CGImageGetWidth( image.CGImage );
 	CGFloat inputHeight = CGImageGetHeight( image.CGImage );
 	
-	//NSLog(@"%@", fullImage);
-	
 	//int retainCount1 = [fullImage retainCount];
 	//	
 	//	// FullSize
@@ -740,8 +736,9 @@ int loadTime = 0;
 	NSLog(@"load image size: %f : %f", size2.width,size2.height);
 	
 	// add by Guno
-	inputWidth = fullImageWidth = roundf(CGImageGetWidth( newFullImage.CGImage ));
-	inputHeight = fullImageHeight = roundf(CGImageGetHeight( newFullImage.CGImage ));
+	inputWidth = roundf(CGImageGetWidth( newFullImage.CGImage ));
+	inputHeight = roundf(CGImageGetHeight( newFullImage.CGImage ));
+    
 	isFullImageLandscape = inputWidth > inputHeight;
 	// end Guno
 	
@@ -865,7 +862,7 @@ int loadTime = 0;
 	}
 	
 	//#ifdef __DEBUG_PB__
-	[Utilities cacheToFileFromImage:fullImage filename:ORIGINAL_IMAGE_FILE_NAME];
+	[Utilities cacheToFileFromImage:newFullImage filename:ORIGINAL_IMAGE_FILE_NAME];
 	//#endif
 }
 
@@ -1522,10 +1519,10 @@ int loadTime = 0;
 		//			tmpImage2 = [ImageProcess imageNewWithImage:_image scaledToSize:CGSizeMake(240,320)];
 		//		}
 		
-		blurImage = [Renderer blurImg:tmpImage2];
+		blurImage = [self.renderer blurImg:tmpImage2];
 		if (blurImage)
 		{
-			tmpImage2 = [Renderer blurImg:blurImage];
+			tmpImage2 = [self.renderer blurImg:blurImage];
 			if ( tmpImage2 )
 			{
 				blurImage = tmpImage2;
@@ -1617,6 +1614,7 @@ int loadTime = 0;
 				if(isRefresh[index]||(!viewImageArray[index]))
 				{
 					pOutputImage = [self createNewImage:&portraitImageCopy imgWidth:width imgHeight:height imgParameter:index];
+                    
 					if(pOutputImage)
 					{
 						if(viewImageArray[index])
@@ -2207,7 +2205,7 @@ int loadTime = 0;
 			}
 		}
 		
-		UIImage *resultImg = [Renderer imageWithSourceImg:_imagePtr  softImage:blurImage cvVigArtImage:cvVigArtImg cvOpacity:pRenderArgs.cvOpacity SqrVigArtImage:VigArtImg sqrScaleX:pRenderArgs.sqrScaleX sqrScaleY:pRenderArgs.sqrScaleY leakImage:leakImg leakRGB:pRenderArgs.leakTintRGB randStartYIndex1:pRenderArgs.startY1 randStartYIndex2:pRenderArgs.startY2 randStartYIndex3:pRenderArgs.startY3
+		UIImage *resultImg = [self.renderer imageWithSourceImg:_imagePtr  softImage:blurImage cvVigArtImage:cvVigArtImg cvOpacity:pRenderArgs.cvOpacity SqrVigArtImage:VigArtImg sqrScaleX:pRenderArgs.sqrScaleX sqrScaleY:pRenderArgs.sqrScaleY leakImage:leakImg leakRGB:pRenderArgs.leakTintRGB randStartYIndex1:pRenderArgs.startY1 randStartYIndex2:pRenderArgs.startY2 randStartYIndex3:pRenderArgs.startY3
 												imageSize:_size  diffusionOpacity:pRenderArgs.difOpacity SqrVignette:pRenderArgs.SqrOpacity Leakopacity:pRenderArgs.opacity3D CCRGBMaxMinValue:pRenderArgs.CCRGBMaxMin
 												  monoRGB:pRenderArgs.rgbValue desatBlendrand:pRenderArgs.blendrand desatRandNum:pRenderArgs.randNum 
 											  borderImage: borderImg 
@@ -2448,6 +2446,61 @@ static CGPoint s_gestureStartPoint;
 	NSLog(@"AVAILABLE MEMORY %d",maxSize);
 	free (membuffer);
 #endif
+}
+
+- (UIImage*)fullyRenderedImage:(UIImageView*)view
+{
+    
+    NSArray * imageViewArray = @[self.topLeftView, self.topRightView, self.bottomLeftView, self.bottomRightView, self.topMiddleView, self.middleLeftView, self.middleMiddleView, self.middleRightView, self.bottomMiddleView];
+    int renderIndex = (int)[imageViewArray indexOfObject:view];
+    int m_quadIndex = renderIndex;
+	
+	UIImage * fullImage = [Utilities imageFromFileCache:ORIGINAL_IMAGE_FILE_NAME];
+	CGFloat fullImageWidth = CGImageGetWidth( fullImage.CGImage );
+	CGFloat fullImageHeight = CGImageGetHeight( fullImage.CGImage );
+	
+	CGFloat width = fullImageWidth;
+	CGFloat height = fullImageHeight;
+    
+	UIImage *renderImage = [self createNewImage:&fullImage imgWidth:width imgHeight:height imgParameter:-1];
+	
+	int tempWidth = width;
+	int tempHeight = height;
+	
+	bool re_cache = false;
+	UIImage *saveImage = nil;
+	if ( ffRenderArgsArray[m_quadIndex].cachedRenderImage )
+	{
+		NSString *filename = [NSString stringWithFormat:@FORMAT_RENDER,m_quadIndex ];
+        saveImage = [[FileCache sharedCacher] cachedLocalImage:filename];
+		if ( !saveImage )
+		{
+			ffRenderArgsArray[m_quadIndex].cachedRenderImage = false;
+		}
+		else if (tempWidth > CGImageGetWidth( saveImage.CGImage ))
+		{
+			// File cache is not hi res enough.  Need re-render
+			//
+			saveImage = nil;
+			re_cache = true;
+		}
+		else if (tempWidth < CGImageGetWidth( saveImage.CGImage ))
+		{
+			// Smaller target.  Just shrink down and finish.
+			//
+			UIImage *targetImage = [ImageProcess imageNewWithImage:saveImage scaledToSize:CGSizeMake(tempWidth, tempHeight)];
+			saveImage = targetImage;
+		}
+		
+	}
+	
+//	mojoAppDelegate *app = (mojoAppDelegate*)[[UIApplication sharedApplication] delegate];
+	if ( !saveImage )
+	{
+		saveImage = [self createNewImage:&renderImage imgWidth:tempWidth imgHeight:tempHeight imgParameter:m_quadIndex];
+	}
+    
+    return saveImage;
 }
 
 @end

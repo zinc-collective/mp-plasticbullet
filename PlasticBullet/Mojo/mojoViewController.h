@@ -10,6 +10,7 @@
 #import "DataTypeDef.h"
 #import <CoreLocation/CoreLocation.h>
 #import <CoreMotion/CoreMotion.h>
+#import "Renderer.h"
 
 
 //add by jack
@@ -71,7 +72,6 @@ typedef enum GRID_MODE {
 	int prevWidth;
 #endif
 	
-	UIImage *fullImage;
 	UIImage *portraitImage;
 	BOOL isFullImageLandscape;
 
@@ -108,11 +108,11 @@ typedef enum GRID_MODE {
 
 @property (weak, nonatomic) UIImageView * focusedView;
 @property (weak, nonatomic) id<MojoDelegate> delegate;
+@property (weak, nonatomic) Renderer * renderer;
 
 @property (nonatomic, assign) UIInterfaceOrientation nowInterfaceOrientation;
 
 @property (retain, nonatomic)PostToAllViewController *postToAllViewController;
-@property (retain,nonatomic) UIImage *fullImage;
 @property (retain, nonatomic) UIImage *originalImage;
 @property(retain,nonatomic)UIImage *portraitImage;
 
@@ -191,6 +191,7 @@ typedef enum GRID_MODE {
 -(void)renderImage:(UIImage*)originalImage;
 
 - (void)setAcceleration:(CMAcceleration)acceleration;
+- (UIImage*)fullyRenderedImage:(UIImageView*)view;
 
 @end
 

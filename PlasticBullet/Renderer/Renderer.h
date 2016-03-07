@@ -10,11 +10,16 @@
 #import <UIKit/UIKit.h>
 #import "DataTypeDef.h"
 
+@protocol RenderDelegate
+-(void)renderProgress:(float)progress;
+@end
 
 @interface Renderer : NSObject
 {
 
 }
+
+@property (weak, nonatomic) id<RenderDelegate> delegate;
 
 //+(UIImage *)borderFlip:(UIImage *)_image  randomX:(double)_x randomY:(double)_y;
 //
@@ -32,7 +37,7 @@
 //			randomBorderScale:(double)randBorderScale 
 //		  randomBorderDoScale:(double)randBorderDoScale;
 
-+(BOOL) multiplyBorder:(NSString*)path
+-(BOOL) multiplyBorder:(NSString*)path
 			  longside:(int)_longside
 			 shortside:(int)_shortside
 			borderSide:(int)_borderSide
@@ -41,7 +46,7 @@
 		 buffer_height:(int)_height
 	 randomBorderScale:(double)randBorderScale;
 
-+(BOOL) prepareBorderType:(int)_borderType
+-(BOOL) prepareBorderType:(int)_borderType
 					width:(int)_width
 				   height:(int)_height
 			   borderLeft:(int)_borderLeft
@@ -53,7 +58,7 @@
 			  isLandscape:(bool)_isLandscape;
 
 
-+(BOOL) prepareSoftBlurImage:(UIImage *)_sourceImg softImage:(UIImage *)_softImg width:(int)_width height:(int)_height hiRes:(bool)_hiRes ;
+-(BOOL) prepareSoftBlurImage:(UIImage *)_sourceImg softImage:(UIImage *)_softImg width:(int)_width height:(int)_height hiRes:(bool)_hiRes ;
 ;
 
 //+(UIImage *) prepareCircleVignetteImage:(UIImage *)_cvVigArt 
@@ -66,7 +71,7 @@
 //							  sqrScaleX:(double)_sqrX 
 //							  sqrScaleY:(double)_sqrY;
 
-+(UIImage*)leakWithImage:(UIImage *)_sourceImage
+-(UIImage*)leakWithImage:(UIImage *)_sourceImage
 			leakArtWidth:(int)leakWidth 
 		   leakArtHeight:(int)leakHeight 
 			   landscape:(int)isLandscape
@@ -80,7 +85,7 @@
 //+(UIImage*)LeakRotateWithImage:(UIImage *)image 
 //				  scaledToSize:(CGSize)newSize;
 
-+(BOOL) prepareLeakImage:(UIImage *)_leakImg 
+-(BOOL) prepareLeakImage:(UIImage *)_leakImg
 						width:(int)_width 
 					   height:(int)_height
 						  RGB:(ffColor3D)_leakRgb 
@@ -91,14 +96,14 @@
 				   hiRes:(bool)_hiRes
 			 isLandscape:(bool)_isLandscape;
 
-+(UIImage*)blurImg:(UIImage *)_image;
-+(BOOL)slowBlurImg:(UIImage *)_image;
-+(unsigned char *)blurImgFile:(NSString*)filename width:(int)_width height:(int)_height startProgress:(float)_startProgress progressDuration:(float)_progressDuration hiRes:(bool)_hiRes ;
+-(UIImage*)blurImg:(UIImage *)_image;
+-(BOOL)slowBlurImg:(UIImage *)_image;
+-(unsigned char *)blurImgFile:(NSString*)filename width:(int)_width height:(int)_height startProgress:(float)_startProgress progressDuration:(float)_progressDuration hiRes:(bool)_hiRes ;
 
-+(int) progressUpdate:(double)degree;
-+(void) progressSetResolution:(double)degree;
+-(int) progressUpdate:(double)degree;
+-(void) progressSetResolution:(double)degree;
 
-+(unsigned char *)tileRender:(NSString *)sourceFile
+-(unsigned char *)tileRender:(NSString *)sourceFile
 				   softImage:(NSString *)softFile
 				   cvOpacity:(double)cvOpacity
 				   sqrScaleX:(double)_sqrX 
@@ -118,7 +123,7 @@
 					  height:(int)_height
 					   hiRes:(bool)_hiRes ;
 
-+(UIImage*)imageWithSourceImg:(UIImage **)_sourceImgPtr softImage:(UIImage *)_softImg 
+-(UIImage*)imageWithSourceImg:(UIImage **)_sourceImgPtr softImage:(UIImage *)_softImg 
 	cvVigArtImage:(UIImage *)_cvVigArt 
 	cvOpacity:(double)cvOpacity
 	SqrVigArtImage:(UIImage *)_sqrVigArt 

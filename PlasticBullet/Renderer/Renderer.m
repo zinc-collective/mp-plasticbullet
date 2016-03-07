@@ -210,7 +210,7 @@
 //	return FALSE;
 //}
 //
-+(BOOL) prepareSoftBlurImage:(UIImage *)_sourceImg softImage:(UIImage *)_softImg width:(int)_width height:(int)_height hiRes:(bool)_hiRes	
+-(BOOL) prepareSoftBlurImage:(UIImage *)_sourceImg softImage:(UIImage *)_softImg width:(int)_width height:(int)_height hiRes:(bool)_hiRes
 
 {
 	bool useLowMemMethod = !_sourceImg;
@@ -231,7 +231,7 @@
 		{
 			//NSLog(@"blur step1");
 			[Utilities printDateTime];
-			softImgBuffer = [Renderer blurImgFile:RENDER_SOURCE_FILE_NAME width:_width height:_height startProgress:0.05 progressDuration:0.1 hiRes:_hiRes];
+			softImgBuffer = [self blurImgFile:RENDER_SOURCE_FILE_NAME width:_width height:_height startProgress:0.05 progressDuration:0.1 hiRes:_hiRes];
 
 			if (!softImgBuffer) {
 				return FALSE;
@@ -245,7 +245,7 @@
 				
 				//NSLog(@"blur step2");
 				[Utilities printDateTime];
-				softImgBuffer = [Renderer blurImgFile:TMP_SOFTIMAGE_FILE_NAME width:_width height:_height startProgress:0.15 progressDuration:0.1 hiRes:_hiRes];
+				softImgBuffer = [self blurImgFile:TMP_SOFTIMAGE_FILE_NAME width:_width height:_height startProgress:0.15 progressDuration:0.1 hiRes:_hiRes];
 
 				if (!softImgBuffer) {
 					return FALSE;
@@ -264,8 +264,8 @@
 			return FALSE;			
 		}
 		else {
-			softImg = [Renderer blurImg:_sourceImg];
-			UIImage *softImg2 = [Renderer blurImg:softImg];
+			softImg = [self blurImg:_sourceImg];
+			UIImage *softImg2 = [self blurImg:softImg];
 			if ( softImg2 )
 			{
 //				[softImg release];
@@ -297,7 +297,7 @@
 #define BORDER_BOTTOM 3
 
 
-+(BOOL) multiplyBorder:(NSString*)path
+-(BOOL) multiplyBorder:(NSString*)path
 			  longside:(int)_longside
 			 shortside:(int)_shortside
 			borderSide:(int)_borderSide
@@ -407,7 +407,7 @@
 	return TRUE;
 }
 
-+(BOOL) prepareBorderType:(int)_borderType
+-(BOOL) prepareBorderType:(int)_borderType
 					width:(int)_width
 				   height:(int)_height
 			   borderLeft:(int)_borderLeft
@@ -792,7 +792,7 @@
 //
 #pragma mark Leak
 static CGBitmapInfo generic_bitmapInfo;
-+(UIImage *)leakWithImage:(UIImage *)_sourceImage leakArtWidth:(int)leakWidth leakArtHeight:(int)leakHeight landscape:(int)isLandscape aspectRatio:(float)ratio RGB:(ffColor3D)_leakRgb OpacityValue:(ffOpacity3D)_leakopacity3d randStartYIndex1:(float)startIndex1 randStartYIndex2:(float)startIndex2 randStartYIndex3:(float)startIndex3
+-(UIImage *)leakWithImage:(UIImage *)_sourceImage leakArtWidth:(int)leakWidth leakArtHeight:(int)leakHeight landscape:(int)isLandscape aspectRatio:(float)ratio RGB:(ffColor3D)_leakRgb OpacityValue:(ffOpacity3D)_leakopacity3d randStartYIndex1:(float)startIndex1 randStartYIndex2:(float)startIndex2 randStartYIndex3:(float)startIndex3
 {
 	int width = leakWidth;
 	int height = width*ratio;
@@ -975,7 +975,7 @@ static CGBitmapInfo generic_bitmapInfo;
 //}
 
 #pragma mark Leak prepare
-+(BOOL) prepareLeakImage:(UIImage *)_leakImg 
+-(BOOL) prepareLeakImage:(UIImage *)_leakImg
 						width:(int)_width 
 					   height:(int)_height
 						  RGB:(ffColor3D)_leakRgb 
@@ -1027,7 +1027,7 @@ static CGBitmapInfo generic_bitmapInfo;
 	float ratio = _isLandscape ? (1.0 * _width / _height) : (1.0 * _height / _width);
 	if (ratio > 5.0) ratio = 5.0;
 	
-	UIImage *leakImg1 = [Renderer leakWithImage:leakImg leakArtWidth:leakWidth leakArtHeight:leakHeight landscape:(int)_isLandscape aspectRatio:ratio RGB:_leakRgb OpacityValue:_leakopacity3d randStartYIndex1:startIndex1 randStartYIndex2:startIndex2 randStartYIndex3:startIndex3];
+	UIImage *leakImg1 = [self leakWithImage:leakImg leakArtWidth:leakWidth leakArtHeight:leakHeight landscape:(int)_isLandscape aspectRatio:ratio RGB:_leakRgb OpacityValue:_leakopacity3d randStartYIndex1:startIndex1 randStartYIndex2:startIndex2 randStartYIndex3:startIndex3];
 	
 	leakImg = [ImageProcess imageNewWithImage:leakImg1 scaledToSize:CGSizeMake(_width, _height)];
 	
@@ -1042,7 +1042,7 @@ static CGBitmapInfo generic_bitmapInfo;
 
 #pragma mark Prepare SoftImg
 #define RADIUS 5 //5
-+(unsigned char *)blurImgFile:(NSString*)filename width:(int)_width height:(int)_height startProgress:(float)_startProgress progressDuration:(float)_progressDuration hiRes:(bool)_hiRes
+-(unsigned char *)blurImgFile:(NSString*)filename width:(int)_width height:(int)_height startProgress:(float)_startProgress progressDuration:(float)_progressDuration hiRes:(bool)_hiRes
 {
 	int rowbytes = _width * 4;
 	int buffer_length = rowbytes * _height;
@@ -1163,7 +1163,7 @@ static CGBitmapInfo generic_bitmapInfo;
 //	return softImg;
 }
 
-+(UIImage *)blurImg:(UIImage *)_image
+-(UIImage *)blurImg:(UIImage *)_image
 {	
 	int theWidth = roundf(CGImageGetWidth(_image.CGImage));
 	int theHeight = roundf(CGImageGetHeight(_image.CGImage));
@@ -1193,7 +1193,7 @@ static CGBitmapInfo generic_bitmapInfo;
 }	
 
 #pragma mark Prepare SoftImg
-+(BOOL)slowBlurImg:(UIImage *)_image;
+-(BOOL)slowBlurImg:(UIImage *)_image;
 {
 	int theWidth = roundf(CGImageGetWidth(_image.CGImage));
 	int theHeight = roundf(CGImageGetHeight(_image.CGImage));
@@ -1212,57 +1212,29 @@ static CGBitmapInfo generic_bitmapInfo;
 	return YES;
 }
 
-+(int) progressUpdate:(double)degree
+-(int) progressUpdate:(double)degree
 {
-//	mojoAppDelegate *app = (mojoAppDelegate*)[[UIApplication sharedApplication] delegate];
-//	[app updateProgressDegree:degree];
-//	
-//	if ([app isCancel])
-//	{
-//		[app showProcessProgress:NO];
-//		
-//		//baiwei add for change resolution
-//		[app didStopRender];
-//		return -1;
-//	}
+    [self.delegate renderProgress:(float)degree];
 	return 0;
 }
 
-+(void) progressSetResolution:(double)degree
+-(void) progressSetResolution:(double)degree
 {
-//	mojoAppDelegate *app = (mojoAppDelegate*)[[UIApplication sharedApplication] delegate];
-//	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//	int resolution = [defaults integerForKey:@"resolution_select"];
-//	[app setResolution:resolution];
-//	
-//	//[app showProcessProgress:YES];
-//	[app updateProgressDegree:degree];
+    [self.delegate renderProgress:(float)degree];
 }
 
 // C progress callback used by the renderer
 //
-int progressCodeCallback( double completion )
+int progressCodeCallback( double completion, void * context )
 {
-//	double start = 0.0;
-//	double degree = start + completion / ( 1.0 - start);
-//	
-//	mojoAppDelegate *app = (mojoAppDelegate*)[[UIApplication sharedApplication] delegate];
-//	[app updateProgressDegree:degree];
-//	
-//	if ([app isCancel])
-//	{
-//		[app showProcessProgress:NO];
-//		
-//		//baiwei add for change resolution
-//		[app didStopRender];
-//		return -1;
-//	}
+    Renderer * self = (__bridge Renderer *)(context);
+    [self.delegate renderProgress:(float)completion];
 	return 0;
 }
 
 
 #pragma mark 所有计算方法汇总
-+(unsigned char *)tileRender:(NSString *)sourceFile
+-(unsigned char *)tileRender:(NSString *)sourceFile
 				   softImage:(NSString *)softFile
 					 cvOpacity:(double)cvOpacity
 					 sqrScaleX:(double)_sqrX 
@@ -1394,7 +1366,7 @@ int progressCodeCallback( double completion )
 		tile_poutb = pb_tile_render(
 							  _width, tile_height, h, _height, randNum,
 							  nil, nil, m_softdata, m_sourcedata, m_leakdata, m_borderdata,
-							  blendrand, _sqrX, _sqrY, _hiRes? (&progressCodeCallback) : NULL
+							  blendrand, _sqrX, _sqrY, (__bridge void *)(self), _hiRes? (&progressCodeCallback) : NULL
 							  );
 
 //		if(_hiRes){
@@ -1482,7 +1454,7 @@ int progressCodeCallback( double completion )
 
 }
 
-+(UIImage *)imageWithSourceImg:(UIImage **)_sourceImgPtr		// can't be nil
+-(UIImage *)imageWithSourceImg:(UIImage **)_sourceImgPtr		// can't be nil
 					 softImage:(UIImage *)_softImg			// can be nil; will regenerate
 				 cvVigArtImage:(UIImage *)_cvVigArt			// can be nil; will regenerate
 					 cvOpacity:(double)cvOpacity
