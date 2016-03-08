@@ -370,10 +370,30 @@ Product Management:  Sean Safreed
                                     </mask>
                                 </variation>
                             </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4jz-qo-sVF">
+                                <rect key="frame" x="87" y="359" width="240" height="63"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rendering Full Image" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="moJ-Wq-Fzj">
+                                        <rect key="frame" x="8" y="12" width="224" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="U1Z-CX-LXL">
+                                        <rect key="frame" x="8" y="45" width="224" height="2"/>
+                                    </progressView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="E3a-3h-MOV"/>
+                                    <constraint firstAttribute="height" constant="63" id="eUD-1L-zRC"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.28627450980000002" green="0.28627450980000002" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="csX-Bu-LeK" firstAttribute="top" secondItem="V9e-oz-3AK" secondAttribute="bottom" constant="2" id="28W-sB-lcc"/>
+                            <constraint firstItem="4jz-qo-sVF" firstAttribute="centerX" secondItem="csX-Bu-LeK" secondAttribute="centerX" id="4W9-x8-JHH"/>
                             <constraint firstItem="csX-Bu-LeK" firstAttribute="leading" secondItem="ODj-M2-xrU" secondAttribute="leading" id="82x-vw-syA"/>
                             <constraint firstItem="rKt-v2-egO" firstAttribute="centerX" secondItem="ODj-M2-xrU" secondAttribute="centerX" id="8Kl-cL-wSa"/>
                             <constraint firstAttribute="trailingMargin" secondItem="csX-Bu-LeK" secondAttribute="trailing" constant="-20" id="IMp-mZ-ZsB"/>
@@ -386,6 +406,7 @@ Product Management:  Sean Safreed
                             <constraint firstItem="csX-Bu-LeK" firstAttribute="leading" secondItem="ODj-M2-xrU" secondAttribute="leading" constant="2" id="d7H-mC-OjR"/>
                             <constraint firstItem="csX-Bu-LeK" firstAttribute="leading" secondItem="ODj-M2-xrU" secondAttribute="leadingMargin" constant="-20" id="dd9-vz-xrC"/>
                             <constraint firstItem="V9e-oz-3AK" firstAttribute="top" secondItem="8Ac-rf-SUS" secondAttribute="bottom" id="gm8-0Z-deP"/>
+                            <constraint firstItem="4jz-qo-sVF" firstAttribute="centerY" secondItem="csX-Bu-LeK" secondAttribute="centerY" id="mTV-FI-xm9"/>
                             <constraint firstItem="428-G9-xRK" firstAttribute="top" secondItem="csX-Bu-LeK" secondAttribute="bottom" constant="2" id="mud-ev-FqN"/>
                             <constraint firstItem="rKt-v2-egO" firstAttribute="centerY" secondItem="ODj-M2-xrU" secondAttribute="centerY" id="oPn-gM-gDR"/>
                             <constraint firstItem="V9e-oz-3AK" firstAttribute="top" secondItem="8Ac-rf-SUS" secondAttribute="bottom" id="uX0-KJ-Xr9"/>
@@ -414,6 +435,8 @@ Product Management:  Sean Safreed
                         <outlet property="cameraButton" destination="YIq-Kr-ma3" id="TPL-Wp-Wp4"/>
                         <outlet property="imagesView" destination="csX-Bu-LeK" id="DSh-2E-tZ6"/>
                         <outlet property="libraryButton" destination="Eyc-Zb-pug" id="F5Y-dq-0MX"/>
+                        <outlet property="progressBar" destination="U1Z-CX-LXL" id="NPw-eI-2ec"/>
+                        <outlet property="progressContainer" destination="4jz-qo-sVF" id="Xu4-mb-R2D"/>
                         <outlet property="refreshButton" destination="QEl-aV-jbe" id="DgU-yw-vZb"/>
                         <outlet property="shareButton" destination="6Zt-iY-EkK" id="9uG-n0-tV3"/>
                         <outlet property="spinner" destination="rKt-v2-egO" id="w8y-Hd-C24"/>

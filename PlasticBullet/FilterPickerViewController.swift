@@ -34,6 +34,8 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
     @IBOutlet weak var shareButton: UIButton!
     
     @IBOutlet weak var spinner: UIActivityIndicatorView!
+    @IBOutlet weak var progressContainer: UIView!
+    @IBOutlet weak var progressBar: UIProgressView!
     
     var image:UIImage?
     
@@ -168,15 +170,21 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
     
     @IBAction func didTapShare(sender: AnyObject) {
         print("SHARE")
+        self.progressBar.progress = 0.0
+        self.progressContainer.hidden = false
         
         if let view = self.selectedImage {
-            let img = self.mojo.fullyRenderedImage(view)
-            print("SHARING IMAGE", img.size)
-            let activity = UIActivityViewController(activityItems: [img], applicationActivities: nil)
-            activity.popoverPresentationController?.sourceView = self.view
-            activity.popoverPresentationController?.sourceRect = self.shareButton.frame
-            
-            self.presentViewController(activity, animated: true, completion: nil)
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
+                let img = self.mojo.fullyRenderedImage(view)
+                print("SHARING IMAGE", img.size)
+                let activity = UIActivityViewController(activityItems: [img], applicationActivities: nil)
+                activity.popoverPresentationController?.sourceView = self.view
+                activity.popoverPresentationController?.sourceRect = self.shareButton.frame
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.progressContainer.hidden = true
+                    self.presentViewController(activity, animated: true, completion: nil)
+                }
+            }
         }
     }
     
@@ -187,7 +195,7 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
             let picker = UIImagePickerController.init()
             picker.delegate = self
             picker.allowsEditing = false
-            picker.sourceType = UIImagePickerControllerSourceType.Camera
+            picker.sourceType = .Camera
             self.presentViewController(picker, animated: true, completion: nil)
         }
     }
@@ -197,7 +205,7 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
             let picker = UIImagePickerController.init()
             picker.delegate = self
             picker.allowsEditing = false
-            picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+            picker.sourceType = .PhotoLibrary
             picker.modalPresentationStyle = UIModalPresentationStyle.Popover
             picker.popoverPresentationController?.sourceView = self.view
             picker.popoverPresentationController?.sourceRect = self.libraryButton.frame
@@ -214,8 +222,16 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
         print(chosenImage)
         
         self.image = chosenImage
+        
+        // save the original image
+        if (NSUserDefaults.standardUserDefaults().boolForKey("save_camera_shot") && picker.sourceType == .Camera) {
+            UIImageWriteToSavedPhotosAlbum(chosenImage, nil, nil, nil);
+        }
+        
+        // update the view
         updateImage(chosenImage)
         
+        // ditch the picker
         picker.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -287,6 +303,8 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
     }
     
     func renderProgress(percent: Float) {
-        print("RENDER PROGRESS!!!", percent)
+        dispatch_async(dispatch_get_main_queue()) {
+            self.progressBar.progress = percent
+        }
     }
 }

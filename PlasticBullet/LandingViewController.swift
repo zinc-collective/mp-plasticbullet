@@ -157,7 +157,12 @@ class LandingViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        let chosenImage = info[UIImagePickerControllerOriginalImage]
+        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        
+        // save the original image
+        if (NSUserDefaults.standardUserDefaults().boolForKey("save_camera_shot") && picker.sourceType == .Camera) {
+            UIImageWriteToSavedPhotosAlbum(chosenImage, nil, nil, nil);
+        }
         
         picker.dismissViewControllerAnimated(true, completion: nil)
         self.navigationController?.performSegueWithIdentifier("Filters", sender: chosenImage)
