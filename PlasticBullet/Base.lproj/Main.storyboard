@@ -273,6 +273,10 @@ Product Management:  Sean Safreed
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="csX-Bu-LeK" customClass="FilterGridView" customModule="Plastic_Bullet" customModuleProvider="target">
                                 <rect key="frame" x="2" y="46" width="410" height="688"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="WxC-mD-gbu" appends="YES" id="viz-nb-jhJ"/>
+                                </connections>
                             </view>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="rKt-v2-egO">
                                 <rect key="frame" x="189" y="349" width="37" height="37"/>
@@ -441,6 +445,11 @@ Product Management:  Sean Safreed
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hpw-kk-x2w" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="8pJ-7M-kEJ" userLabel="Exit" sceneMemberID="exit"/>
+                <swipeGestureRecognizer direction="left" id="WxC-mD-gbu">
+                    <connections>
+                        <action selector="didTapRefresh:" destination="ATz-sP-9fS" id="UkV-KB-fXX"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="130" y="-1260"/>
         </scene>

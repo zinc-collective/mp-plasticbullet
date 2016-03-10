@@ -2333,59 +2333,6 @@ int loadTime = 0;
 #endif
 
 
-#define kGestureXVariance 200
-#define kGestureYVariance 200
-static CGPoint s_gestureStartPoint;
-
-#pragma mark -
-#pragma mark touch
-- (void) touchesCanceled 
-{
-}
-- (void) touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event 
-{
-	NSSet *allTouches = [event allTouches];
-    switch ([allTouches count]) {
-        case 1: {
-            UITouch *touch = [[allTouches allObjects] objectAtIndex:0];
-            CGPoint currentLocation = [touch locationInView:self.view];
-			s_gestureStartPoint = currentLocation;
-			
-        }
-			break;
-        default:
-            break;
-    }
-}
-
-- (void) touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event 
-{
-	NSSet *allTouches = [event allTouches];
-    switch ([allTouches count]) 
-	{
-        case 1: 
-		{
-			UITouch *touch = [[allTouches allObjects] objectAtIndex:0];
-			CGPoint currentLocation = [touch locationInView:self.view];			
-			
-			float deltaX = currentLocation.x - s_gestureStartPoint.x;
-			float deltaY = currentLocation.y - s_gestureStartPoint.y;
-			
-			if(fabsf(deltaX) >= kGestureXVariance || fabsf(deltaY) >= kGestureYVariance)
-			{
-				// As if Refresh button is click
-				//
-                // REFACTOR - support refreshing from here
-                [self.delegate mojoDidRefreshGesture];
-			}
-			
-        } 
-			break;
-        default:
-            break;
-    }
-	
-}
 
 // Get default save camera original setting
 //
