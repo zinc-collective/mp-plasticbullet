@@ -487,6 +487,9 @@ int loadTime = 0;
 
 - (void)defocusImage {
     numberMode = (int)gridMode;
+    [self startRenderBackground:true image:nil clearAlpha:true];
+    self.focusedView.alpha = 1.0;
+    self.focusedView = nil;
 }
 
 - (void)initGrid:(GRID_MODE)mode {
@@ -1141,7 +1144,7 @@ int loadTime = 0;
 	for(int i=0;i<9;i++)
 	{
 		[self newRenderArg:i];
-		isRefresh[i] = NO;
+		isRefresh[i] = YES;
 		if(viewImageArray[i])
 		{
 			viewImageArray[i] = nil;
@@ -1544,9 +1547,9 @@ int loadTime = 0;
 	int renderIndex = 0;
     NSArray * imageViewArray = @[self.topLeftView, self.topRightView, self.bottomLeftView, self.bottomRightView, self.topMiddleView, self.middleLeftView, self.middleMiddleView, self.middleRightView, self.bottomMiddleView];
 	
-	if (numberMode == 4) {
+	if (numberMode == GRID_4) {
 		numRenderIndexs = 4;
-	} else if (numberMode == 9) {
+	} else if (numberMode == GRID_9) {
 		numRenderIndexs = 9;
 	} else {
         renderIndex = (int)[imageViewArray indexOfObject:self.focusedView];
@@ -1599,7 +1602,7 @@ int loadTime = 0;
 		
 		for(; renderIndex<numRenderIndexs; ++renderIndex)
 		{
-			int index = renderIndex;
+            int index = renderIndex;
 			if(numberMode == 4 || numberMode == 9) {
 				if (isInverted == true) {
 					index = renderOrder[renderIndex];
@@ -2395,10 +2398,14 @@ int loadTime = 0;
 #endif
 }
 
+- (NSArray*)allImages {
+    return @[self.topLeftView, self.topRightView, self.bottomLeftView, self.bottomRightView, self.topMiddleView, self.middleLeftView, self.middleMiddleView, self.middleRightView, self.bottomMiddleView];
+}
+
 - (UIImage*)fullyRenderedImage:(UIImageView*)view
 {
     
-    NSArray * imageViewArray = @[self.topLeftView, self.topRightView, self.bottomLeftView, self.bottomRightView, self.topMiddleView, self.middleLeftView, self.middleMiddleView, self.middleRightView, self.bottomMiddleView];
+    NSArray * imageViewArray = self.allImages;
     int renderIndex = (int)[imageViewArray indexOfObject:view];
     int m_quadIndex = renderIndex;
 	
