@@ -29,16 +29,30 @@ class FilterGridView: UIView {
             self.layoutFocus(fview)
         }
         else {
-            self.layoutGrid()
+            self.layoutAll(self.layoutGridFrames())
         }
     }
     
     
-    func layoutGrid() {
-        let framesAndViews = self.grid.layout(self.subviews, parentSize: self.bounds.size, rows: self.rows, cols: self.cols)
+//    func layoutGrid() {
+//        let framesAndViews = self.grid.layout(self.subviews, parentSize: self.bounds.size, rows: self.rows, cols: self.cols)
+//        framesAndViews.forEach { (frame, view) -> () in
+//            let inset = CGRectInset(frame, self.spacing/2, self.spacing/2)
+//            view.frame = inset
+//        }
+//    }
+    
+    func layoutAll(framesAndViews: [(CGRect, UIView)]) {
         framesAndViews.forEach { (frame, view) -> () in
+            view.frame = frame
+        }
+    }
+    
+    func layoutGridFrames() -> [(CGRect, UIView)] {
+        let framesAndViews = self.grid.layout(self.subviews, parentSize: self.bounds.size, rows: self.rows, cols: self.cols)
+        return framesAndViews.map { (frame, view) -> (CGRect, UIView) in
             let inset = CGRectInset(frame, self.spacing/2, self.spacing/2)
-            view.frame = inset
+            return (inset, view)
         }
     }
     
@@ -55,13 +69,13 @@ class FilterGridView: UIView {
         UIView.animateWithDuration(animationDuration, animations: {
             self.layoutFocus(view)
             
-            self.unfocusedViews().forEach { view in
+            self.otherViews(view).forEach { view in
                 view.alpha = 0
             }
             
         }, completion: { stop in
             // hide them to counteract the alpha animation in mojoViewController
-            self.unfocusedViews().forEach { view in
+            self.otherViews(view).forEach { view in
                 view.hidden = true
             }
         })
@@ -71,25 +85,41 @@ class FilterGridView: UIView {
         if let focused = self.focusedView {
             self.focusedView = nil
             
-            self.unfocusedViews().forEach { view in
+            self.otherViews(focused).forEach { view in
                 view.hidden = false
             }
             
+            // do not animate the unfocused views
+            let frames = self.layoutGridFrames()
+            frames.forEach { (frame, view) in
+                if (view != focused) {
+                    view.frame = frame
+                }
+            }
+            
             UIView.animateWithDuration(animationDuration, animations: {
-                self.layoutGrid()
                 
-                self.unfocusedViews().forEach { view in
+                // animate only the focused view
+                frames.forEach { (frame, view) in
+                    if (view == focused) {
+                        view.frame = frame
+                    }
+                }
+                
+                self.otherViews(focused).forEach { view in
                     view.alpha = 1.0
                 }
+                
                 
             }, completion: { stop in
                 focused.layer.zPosition = 0
             })
+            
         
         }
     }
     
-    func unfocusedViews() -> [UIView] {
-        return self.subviews.filter({ v in v != self.focusedView })
+    func otherViews(focused:UIView) -> [UIView] {
+        return self.subviews.filter({ v in v != focused })
     }
 }
