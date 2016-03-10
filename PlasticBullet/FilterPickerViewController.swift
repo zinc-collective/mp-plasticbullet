@@ -27,7 +27,7 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
     
     var selectedImage: UIImageView?
     
-    @IBOutlet weak var libraryButton: UIButton!
+//    @IBOutlet weak var libraryButton: UIButton!
     @IBOutlet weak var cameraButton: UIButton!
     @IBOutlet weak var refreshButton: UIButton!
     @IBOutlet weak var backButton: UIButton!
@@ -50,7 +50,7 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
     
     var allButtons:[UIButton] {
         get {
-            return [libraryButton, cameraButton, refreshButton, backButton, shareButton]
+            return [cameraButton, refreshButton, backButton, shareButton]
         }
     }
     
@@ -189,29 +189,28 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
     }
     
     
-    @IBAction func didTapCamera(sender: AnyObject) {
-        print("CAMERA")
-        if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)) {
-            let picker = UIImagePickerController.init()
-            picker.delegate = self
-            picker.allowsEditing = false
-            picker.sourceType = .Camera
-            self.presentViewController(picker, animated: true, completion: nil)
-        }
-    }
+//    @IBAction func didTapCamera(sender: AnyObject) {
+//        if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)) {
+//            let picker = UIImagePickerController.init()
+//            picker.delegate = self
+//            picker.allowsEditing = false
+//            picker.sourceType = .Camera
+//            self.presentViewController(picker, animated: true, completion: nil)
+//        }
+//    }
     
-    @IBAction func didTapLibrary(sender: AnyObject) {
-        if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary)) {
-            let picker = UIImagePickerController.init()
-            picker.delegate = self
-            picker.allowsEditing = false
-            picker.sourceType = .PhotoLibrary
-            picker.modalPresentationStyle = UIModalPresentationStyle.Popover
-            picker.popoverPresentationController?.sourceView = self.view
-            picker.popoverPresentationController?.sourceRect = self.libraryButton.frame
-            self.presentViewController(picker, animated: true, completion: nil)
-        }
-    }
+//    @IBAction func didTapLibrary(sender: AnyObject) {
+//        if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary)) {
+//            let picker = UIImagePickerController.init()
+//            picker.delegate = self
+//            picker.allowsEditing = false
+//            picker.sourceType = .PhotoLibrary
+//            picker.modalPresentationStyle = UIModalPresentationStyle.Popover
+//            picker.popoverPresentationController?.sourceView = self.view
+//            picker.popoverPresentationController?.sourceRect = self.libraryButton.frame
+//            self.presentViewController(picker, animated: true, completion: nil)
+//        }
+//    }
     
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
@@ -246,7 +245,7 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
         
         // Update buttons
         self.cameraButton.hidden = true
-        self.libraryButton.hidden = true
+//        self.libraryButton.hidden = true
         self.backButton.hidden = false
         self.shareButton.hidden = false
         
@@ -264,7 +263,7 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
         
         // Update buttons
         self.cameraButton.hidden = false
-        self.libraryButton.hidden = false
+//        self.libraryButton.hidden = false
         self.backButton.hidden = true
         self.shareButton.hidden = true
         

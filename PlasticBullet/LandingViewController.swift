@@ -127,9 +127,7 @@ class LandingViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     @IBAction func didTapInfo(sender: AnyObject) {
         print("INFO")
-        let nav = self.navigationController as! NavigationController
-        print(self.navigationController)
-        nav.openInfo()
+        self.performSegueWithIdentifier("Info", sender: self)
     }
     
     func openLibrary() {
@@ -165,9 +163,22 @@ class LandingViewController: UIViewController, UIImagePickerControllerDelegate, 
         }
         
         picker.dismissViewControllerAnimated(true, completion: nil)
-        self.navigationController?.performSegueWithIdentifier("Filters", sender: chosenImage)
+        self.performSegueWithIdentifier("Filters", sender: chosenImage)
     }
     
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "Filters") {
+            let image = sender as! UIImage
+            let filters = segue.destinationViewController as! FilterPickerViewController
+            filters.image = image
+        }
+    }
+    
+    
+    @IBAction func unwindToLanding(segue:UIStoryboardSegue) {
+        
+    }
     
 }
 

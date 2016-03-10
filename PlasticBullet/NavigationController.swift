@@ -22,27 +22,6 @@ class NavigationController: UINavigationController, UINavigationControllerDelega
     }
     
     
-    @IBAction func woot(segue:UIStoryboardSegue) {
-        print("Close info")
-    }
-    
-    func openInfo() {
-        print("INFO")
-        self.performSegueWithIdentifier("Info", sender: self)
-    }
-    
-    @IBAction func closeInfo(segue:UIStoryboardSegue) {
-        print("Close info")
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (segue.identifier == "Filters") {
-            let image = sender as! UIImage
-            let filters = segue.destinationViewController as! FilterPickerViewController
-            filters.image = image
-        }
-    }
-    
     
     
     /*

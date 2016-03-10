@@ -13,19 +13,18 @@
         <scene sceneID="df2-ep-u5h">
             <objects>
                 <navigationController modalTransitionStyle="flipHorizontal" id="hwJ-Of-5OJ" customClass="NavigationController" customModule="Plastic_Bullet" customModuleProvider="target" sceneMemberID="viewController">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="RqV-1u-YWX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="JSA-fc-QV7"/>
-                        <segue destination="0fh-ly-n7p" kind="presentation" identifier="Info" id="AwG-nl-7Oq"/>
-                        <segue destination="ATz-sP-9fS" kind="presentation" identifier="Filters" modalTransitionStyle="flipHorizontal" id="guq-71-EFk"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UCL-xh-97V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-276" y="-1136"/>
+            <point key="canvasLocation" x="-888" y="-1260"/>
         </scene>
         <!--Info View Controller-->
         <scene sceneID="B9R-N2-0ph">
@@ -46,7 +45,7 @@
                                         <barButtonItem key="leftBarButtonItem" title="Close" id="ULx-PD-qEb">
                                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
-                                                <segue destination="iwt-VJ-oTD" kind="unwind" unwindAction="closeInfo:" id="VhW-Tg-bia"/>
+                                                <segue destination="iwt-VJ-oTD" kind="unwind" unwindAction="unwindToLanding:" id="9qM-vi-H79"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -257,7 +256,7 @@ Product Management:  Sean Safreed
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gGb-Fo-6mc" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="iwt-VJ-oTD" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="375" y="-264"/>
+            <point key="canvasLocation" x="-381" y="-380"/>
         </scene>
         <!--Filters View Controller-->
         <scene sceneID="lf6-H7-z6g">
@@ -281,27 +280,13 @@ Product Management:  Sean Safreed
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V9e-oz-3AK" userLabel="Toolbar">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eyc-Zb-pug">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eyc-Zb-pug">
                                         <rect key="frame" x="8" y="0.0" width="44" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="mqZ-yH-MSI"/>
                                             <constraint firstAttribute="width" constant="44" id="wdT-Sm-lU4"/>
                                         </constraints>
                                         <state key="normal" image="library"/>
-                                        <connections>
-                                            <action selector="didTapLibrary:" destination="ATz-sP-9fS" eventType="touchUpInside" id="BMe-DF-cop"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YIq-Kr-ma3">
-                                        <rect key="frame" x="60" y="0.0" width="44" height="44"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="LfO-6H-P9D"/>
-                                            <constraint firstAttribute="width" constant="44" id="PvK-dM-WBN"/>
-                                        </constraints>
-                                        <state key="normal" image="camera"/>
-                                        <connections>
-                                            <action selector="didTapCamera:" destination="ATz-sP-9fS" eventType="touchUpInside" id="9dh-r4-hhg"/>
-                                        </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Zt-iY-EkK" userLabel="Share Button">
                                         <rect key="frame" x="185" y="0.0" width="44" height="44"/>
@@ -336,6 +321,17 @@ Product Management:  Sean Safreed
                                             <action selector="didTapBack:" destination="ATz-sP-9fS" eventType="touchUpInside" id="pzs-98-Cpn"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YIq-Kr-ma3">
+                                        <rect key="frame" x="8" y="0.0" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="LfO-6H-P9D"/>
+                                            <constraint firstAttribute="width" constant="44" id="PvK-dM-WBN"/>
+                                        </constraints>
+                                        <state key="normal" image="camera"/>
+                                        <connections>
+                                            <segue destination="8pJ-7M-kEJ" kind="unwind" unwindAction="unwindToLanding:" id="B4n-Vb-dx2"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -356,6 +352,7 @@ Product Management:  Sean Safreed
                                     <constraint firstAttribute="trailing" secondItem="QEl-aV-jbe" secondAttribute="trailing" constant="8" id="bf3-Oo-8h3"/>
                                     <constraint firstItem="YIq-Kr-ma3" firstAttribute="leading" secondItem="Eyc-Zb-pug" secondAttribute="trailing" constant="8" id="jiU-PM-BJL"/>
                                     <constraint firstItem="QEl-aV-jbe" firstAttribute="centerY" secondItem="V9e-oz-3AK" secondAttribute="centerY" id="kMT-2c-wV4"/>
+                                    <constraint firstItem="YIq-Kr-ma3" firstAttribute="leading" secondItem="V9e-oz-3AK" secondAttribute="leading" constant="8" id="myO-f9-fYQ"/>
                                     <constraint firstItem="YIq-Kr-ma3" firstAttribute="top" secondItem="V9e-oz-3AK" secondAttribute="top" id="vg7-F4-0pZ"/>
                                 </constraints>
                                 <variation key="default">
@@ -365,6 +362,7 @@ Product Management:  Sean Safreed
                                         <exclude reference="8WT-h8-f6I"/>
                                         <exclude reference="Cou-j0-8zx"/>
                                         <exclude reference="JLk-iu-OBz"/>
+                                        <exclude reference="jiU-PM-BJL"/>
                                         <exclude reference="2qP-hG-UWk"/>
                                         <exclude reference="kMT-2c-wV4"/>
                                     </mask>
@@ -434,7 +432,6 @@ Product Management:  Sean Safreed
                         <outlet property="backButton" destination="0ZM-le-Tth" id="kNp-vt-LWx"/>
                         <outlet property="cameraButton" destination="YIq-Kr-ma3" id="TPL-Wp-Wp4"/>
                         <outlet property="imagesView" destination="csX-Bu-LeK" id="DSh-2E-tZ6"/>
-                        <outlet property="libraryButton" destination="Eyc-Zb-pug" id="F5Y-dq-0MX"/>
                         <outlet property="progressBar" destination="U1Z-CX-LXL" id="NPw-eI-2ec"/>
                         <outlet property="progressContainer" destination="4jz-qo-sVF" id="Xu4-mb-R2D"/>
                         <outlet property="refreshButton" destination="QEl-aV-jbe" id="DgU-yw-vZb"/>
@@ -443,8 +440,9 @@ Product Management:  Sean Safreed
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hpw-kk-x2w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="8pJ-7M-kEJ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-276" y="-254"/>
+            <point key="canvasLocation" x="130" y="-1260"/>
         </scene>
         <!--Landing View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -747,11 +745,13 @@ Product Management:  Sean Safreed
                         <outlet property="libraryProportionalHeight" destination="NJY-LM-GT2" id="4Zk-fE-zFc"/>
                         <outlet property="libraryText" destination="vHw-zz-8Rf" id="IwI-Vu-g7j"/>
                         <outlet property="libraryTop" destination="knc-wC-ujX" id="8WM-63-2aS"/>
+                        <segue destination="ATz-sP-9fS" kind="presentation" identifier="Filters" modalTransitionStyle="flipHorizontal" id="WIB-KF-bk1"/>
+                        <segue destination="0fh-ly-n7p" kind="presentation" identifier="Info" id="hD6-k0-0N3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-895" y="-264"/>
+            <point key="canvasLocation" x="-381" y="-1260"/>
         </scene>
     </scenes>
     <resources>
