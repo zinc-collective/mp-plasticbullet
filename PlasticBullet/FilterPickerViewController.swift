@@ -163,22 +163,37 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
     
     @IBAction func didTapShare(sender: AnyObject) {
         print("SHARE")
-        self.progressBar.progress = 0.0
-        self.progressContainer.hidden = false
         
-        if let view = self.selectedImage {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
-                let img = self.mojo.fullyRenderedImage(view)
-                print("SHARING IMAGE", img.size)
-                let activity = UIActivityViewController(activityItems: [img], applicationActivities: nil)
-                activity.popoverPresentationController?.sourceView = self.view
-                activity.popoverPresentationController?.sourceRect = self.shareButton.frame
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.progressContainer.hidden = true
-                    self.presentViewController(activity, animated: true, completion: nil)
-                }
-            }
-        }
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let vc = sb.instantiateViewControllerWithIdentifier("Share") as! AsdfViewController
+        vc.image = self.selectedImage?.image
+        self.presentViewController(vc, animated: true, completion: nil)
+        
+//        if let view = self.selectedImage, thumbnail = view.image {
+//            let activity = ImageActivityItemProvider(image: thumbnail) {
+//                
+//                print("GENERATING...")
+//                dispatch_async(dispatch_get_main_queue()) {
+//                    self.progressBar.progress = 0.0
+//                    self.progressContainer.hidden = false
+//                }
+//                
+//                let fullImage = self.mojo.fullyRenderedImage(view)
+//                print("SHARING IMAGE", fullImage.size)
+//                
+//                dispatch_async(dispatch_get_main_queue()) {
+//                    self.progressContainer.hidden = true
+//                }
+//                
+//                return fullImage
+//            }
+//        
+//            let share = UIActivityViewController(activityItems: [activity], applicationActivities: nil)
+//            share.modalPresentationStyle = .Popover
+//            share.popoverPresentationController?.sourceView = self.view
+//            share.popoverPresentationController?.sourceRect = self.shareButton.frame
+//            self.presentViewController(share, animated: true, completion: nil)
+//        }
     }
     
     

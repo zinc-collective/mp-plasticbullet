@@ -258,6 +258,44 @@ Product Management:  Sean Safreed
             </objects>
             <point key="canvasLocation" x="-381" y="-380"/>
         </scene>
+        <!--Asdf View Controller-->
+        <scene sceneID="aRu-SH-mVV">
+            <objects>
+                <viewController storyboardIdentifier="Share" id="sxh-eH-LCl" customClass="AsdfViewController" customModule="Plastic_Bullet" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nKe-al-9mw"/>
+                        <viewControllerLayoutGuide type="bottom" id="zMp-G5-syL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AFQ-Ny-9aY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="OHg-AK-9SH">
+                                <rect key="frame" x="20" y="28" width="121" height="29"/>
+                                <segments>
+                                    <segment title="First"/>
+                                    <segment title="Second"/>
+                                </segments>
+                            </segmentedControl>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vhj-jN-uIT">
+                                <rect key="frame" x="0.0" y="73" width="414" height="327"/>
+                                <connections>
+                                    <segue destination="RJa-f0-Zdk" kind="embed" id="r3l-h6-1fu"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="414" height="400"/>
+                    <connections>
+                        <outlet property="asdf" destination="Vhj-jN-uIT" id="FAz-Cl-uEz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OKD-vn-u2d" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="178" y="-512"/>
+        </scene>
         <!--Filters View Controller-->
         <scene sceneID="lf6-H7-z6g">
             <objects>
@@ -373,7 +411,7 @@ Product Management:  Sean Safreed
                                 </variation>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4jz-qo-sVF">
-                                <rect key="frame" x="87" y="359" width="240" height="63"/>
+                                <rect key="frame" x="87" y="100" width="240" height="63"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rendering Full Image" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="moJ-Wq-Fzj">
                                         <rect key="frame" x="8" y="12" width="224" height="21"/>
@@ -402,6 +440,7 @@ Product Management:  Sean Safreed
                             <constraint firstItem="V9e-oz-3AK" firstAttribute="width" secondItem="ODj-M2-xrU" secondAttribute="width" id="Iid-ER-8Po"/>
                             <constraint firstAttribute="trailing" secondItem="V9e-oz-3AK" secondAttribute="trailing" id="NoQ-RS-bxj"/>
                             <constraint firstItem="V9e-oz-3AK" firstAttribute="leading" secondItem="ODj-M2-xrU" secondAttribute="leading" id="OqF-Ko-ZvQ"/>
+                            <constraint firstItem="4jz-qo-sVF" firstAttribute="top" secondItem="8Ac-rf-SUS" secondAttribute="bottom" constant="100" id="PPJ-Aa-dIr"/>
                             <constraint firstItem="428-G9-xRK" firstAttribute="top" secondItem="csX-Bu-LeK" secondAttribute="bottom" id="Q1O-iu-TMd"/>
                             <constraint firstItem="csX-Bu-LeK" firstAttribute="width" secondItem="ODj-M2-xrU" secondAttribute="width" id="Qjq-k2-fHS"/>
                             <constraint firstAttribute="trailing" secondItem="csX-Bu-LeK" secondAttribute="trailing" id="T4w-KT-Amc"/>
@@ -423,6 +462,7 @@ Product Management:  Sean Safreed
                                 <exclude reference="T4w-KT-Amc"/>
                                 <exclude reference="dd9-vz-xrC"/>
                                 <exclude reference="vFV-VE-GNY"/>
+                                <exclude reference="mTV-FI-xm9"/>
                                 <exclude reference="Q1O-iu-TMd"/>
                             </mask>
                         </variation>
@@ -762,6 +802,14 @@ Product Management:  Sean Safreed
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-381" y="-1260"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="yYw-g7-cZA">
+            <objects>
+                <viewController id="RJa-f0-Zdk" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M9I-5u-7aA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="178" y="80.5"/>
         </scene>
     </scenes>
     <resources>
