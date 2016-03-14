@@ -258,44 +258,6 @@ Product Management:  Sean Safreed
             </objects>
             <point key="canvasLocation" x="-381" y="-380"/>
         </scene>
-        <!--Asdf View Controller-->
-        <scene sceneID="aRu-SH-mVV">
-            <objects>
-                <viewController storyboardIdentifier="Share" id="sxh-eH-LCl" customClass="AsdfViewController" customModule="Plastic_Bullet" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="nKe-al-9mw"/>
-                        <viewControllerLayoutGuide type="bottom" id="zMp-G5-syL"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="AFQ-Ny-9aY">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="OHg-AK-9SH">
-                                <rect key="frame" x="20" y="28" width="121" height="29"/>
-                                <segments>
-                                    <segment title="First"/>
-                                    <segment title="Second"/>
-                                </segments>
-                            </segmentedControl>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vhj-jN-uIT">
-                                <rect key="frame" x="0.0" y="73" width="414" height="327"/>
-                                <connections>
-                                    <segue destination="RJa-f0-Zdk" kind="embed" id="r3l-h6-1fu"/>
-                                </connections>
-                            </containerView>
-                        </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </view>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="414" height="400"/>
-                    <connections>
-                        <outlet property="asdf" destination="Vhj-jN-uIT" id="FAz-Cl-uEz"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OKD-vn-u2d" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="178" y="-512"/>
-        </scene>
         <!--Filters View Controller-->
         <scene sceneID="lf6-H7-z6g">
             <objects>
@@ -478,6 +440,7 @@ Product Management:  Sean Safreed
                         <outlet property="imagesView" destination="csX-Bu-LeK" id="DSh-2E-tZ6"/>
                         <outlet property="progressBar" destination="U1Z-CX-LXL" id="NPw-eI-2ec"/>
                         <outlet property="progressContainer" destination="4jz-qo-sVF" id="Xu4-mb-R2D"/>
+                        <outlet property="progressTop" destination="PPJ-Aa-dIr" id="gnH-n4-yKC"/>
                         <outlet property="refreshButton" destination="QEl-aV-jbe" id="DgU-yw-vZb"/>
                         <outlet property="refreshSwipe" destination="vis-fl-zjg" id="FbZ-tJ-lgY"/>
                         <outlet property="shareButton" destination="6Zt-iY-EkK" id="9uG-n0-tV3"/>
@@ -802,14 +765,6 @@ Product Management:  Sean Safreed
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-381" y="-1260"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="yYw-g7-cZA">
-            <objects>
-                <viewController id="RJa-f0-Zdk" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="M9I-5u-7aA" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="178" y="80.5"/>
         </scene>
     </scenes>
     <resources>

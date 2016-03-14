@@ -37,6 +37,8 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
     @IBOutlet weak var progressContainer: UIView!
     @IBOutlet weak var progressBar: UIProgressView!
     
+    @IBOutlet weak var progressTop: NSLayoutConstraint!
+    
     var image:UIImage?
     
     var mojo:mojoViewController = mojoViewController.init()
@@ -127,6 +129,11 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
         
         // Orientation changes
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "orientationDidChange", name:UIDeviceOrientationDidChangeNotification, object: nil)
+        
+        
+        if PBDevice().userInterfaceIdiom == .Pad {
+            self.progressTop.constant = 500
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -164,36 +171,31 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
     @IBAction func didTapShare(sender: AnyObject) {
         print("SHARE")
         
-        let sb = UIStoryboard(name: "Main", bundle: nil)
-        let vc = sb.instantiateViewControllerWithIdentifier("Share") as! AsdfViewController
-        vc.image = self.selectedImage?.image
-        self.presentViewController(vc, animated: true, completion: nil)
+        if let view = self.selectedImage, thumbnail = view.image {
+            let activity = ImageActivityItemProvider(image: thumbnail) {
+                
+                print("GENERATING...")
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.progressBar.progress = 0.0
+                    self.progressContainer.hidden = false
+                }
+                
+                let fullImage = self.mojo.fullyRenderedImage(view)
+                print("SHARING IMAGE", fullImage.size)
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.progressContainer.hidden = true
+                }
+                
+                return fullImage
+            }
         
-//        if let view = self.selectedImage, thumbnail = view.image {
-//            let activity = ImageActivityItemProvider(image: thumbnail) {
-//                
-//                print("GENERATING...")
-//                dispatch_async(dispatch_get_main_queue()) {
-//                    self.progressBar.progress = 0.0
-//                    self.progressContainer.hidden = false
-//                }
-//                
-//                let fullImage = self.mojo.fullyRenderedImage(view)
-//                print("SHARING IMAGE", fullImage.size)
-//                
-//                dispatch_async(dispatch_get_main_queue()) {
-//                    self.progressContainer.hidden = true
-//                }
-//                
-//                return fullImage
-//            }
-//        
-//            let share = UIActivityViewController(activityItems: [activity], applicationActivities: nil)
-//            share.modalPresentationStyle = .Popover
-//            share.popoverPresentationController?.sourceView = self.view
-//            share.popoverPresentationController?.sourceRect = self.shareButton.frame
-//            self.presentViewController(share, animated: true, completion: nil)
-//        }
+            let share = UIActivityViewController(activityItems: [activity], applicationActivities: nil)
+            share.modalPresentationStyle = .Popover
+            share.popoverPresentationController?.sourceView = self.view
+            share.popoverPresentationController?.sourceRect = self.shareButton.frame
+            self.presentViewController(share, animated: true, completion: nil)
+        }
     }
     
     

@@ -12,7 +12,6 @@
 		7881D58F1C78DAA8000255F9 /* PBCircleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7881D58E1C78DAA8000255F9 /* PBCircleLabel.swift */; };
 		7881D5941C78EDC9000255F9 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7881D5931C78EDC9000255F9 /* InfoViewController.swift */; };
 		7881D5961C78F7C4000255F9 /* FilterPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7881D5951C78F7C4000255F9 /* FilterPickerViewController.swift */; };
-		788D22791C971A31002BDF7C /* AsdfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788D22781C971A31002BDF7C /* AsdfViewController.swift */; };
 		78A3DF761C7E0CE000C757BD /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 78A3DF751C7E0CE000C757BD /* Settings.bundle */; };
 		78B6A24E1C76780500AE58F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6A24D1C76780500AE58F7 /* AppDelegate.swift */; };
 		78B6A2501C76780500AE58F7 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6A24F1C76780500AE58F7 /* LandingViewController.swift */; };
@@ -150,7 +149,6 @@
 		78E2E7D81C7B859400B5A91A /* fileOutput.c in Sources */ = {isa = PBXBuildFile; fileRef = 78E2E7CE1C7B859400B5A91A /* fileOutput.c */; };
 		78E2E7D91C7B859400B5A91A /* ImageProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E2E7D11C7B859400B5A91A /* ImageProcess.m */; };
 		78E2E7DA1C7B859400B5A91A /* pb_render.c in Sources */ = {isa = PBXBuildFile; fileRef = 78E2E7D21C7B859400B5A91A /* pb_render.c */; };
-		78F278631C970B6500287042 /* ImageActivitySource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F278621C970B6500287042 /* ImageActivitySource.swift */; };
 		78F278651C9713DA00287042 /* ImageActivityItemProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F278641C9713DA00287042 /* ImageActivityItemProvider.swift */; };
 		7DB9009B93DFA315DE326BB3 /* Pods_PlasticBullet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0893F224447775751EA92B24 /* Pods_PlasticBullet.framework */; };
 /* End PBXBuildFile section */
@@ -164,7 +162,6 @@
 		7881D58E1C78DAA8000255F9 /* PBCircleLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PBCircleLabel.swift; path = Landing/PBCircleLabel.swift; sourceTree = "<group>"; };
 		7881D5931C78EDC9000255F9 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		7881D5951C78F7C4000255F9 /* FilterPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterPickerViewController.swift; sourceTree = "<group>"; };
-		788D22781C971A31002BDF7C /* AsdfViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsdfViewController.swift; sourceTree = "<group>"; };
 		78A3DF711C7E0A4800C757BD /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		78A3DF721C7E0A4800C757BD /* todo.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = todo.md; sourceTree = "<group>"; };
 		78A3DF751C7E0CE000C757BD /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
@@ -319,7 +316,6 @@
 		78E2E7D11C7B859400B5A91A /* ImageProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageProcess.m; sourceTree = "<group>"; };
 		78E2E7D21C7B859400B5A91A /* pb_render.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pb_render.c; sourceTree = "<group>"; };
 		78E2E7D31C7B859400B5A91A /* pb_render.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pb_render.h; sourceTree = "<group>"; };
-		78F278621C970B6500287042 /* ImageActivitySource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageActivitySource.swift; sourceTree = "<group>"; };
 		78F278641C9713DA00287042 /* ImageActivityItemProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageActivityItemProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -360,9 +356,7 @@
 				787396681C84CB72005F5E4B /* FilterGridView.swift */,
 				7881D5951C78F7C4000255F9 /* FilterPickerViewController.swift */,
 				78E2E7A71C7B80D100B5A91A /* FilterView.swift */,
-				78F278621C970B6500287042 /* ImageActivitySource.swift */,
 				78F278641C9713DA00287042 /* ImageActivityItemProvider.swift */,
-				788D22781C971A31002BDF7C /* AsdfViewController.swift */,
 			);
 			name = Filters;
 			sourceTree = "<group>";
@@ -830,8 +824,6 @@
 				78C015141C7BACF2009C382C /* Plugin_Render.mm in Sources */,
 				78C0151F1C7BB739009C382C /* mojoViewController.mm in Sources */,
 				7881D58F1C78DAA8000255F9 /* PBCircleLabel.swift in Sources */,
-				788D22791C971A31002BDF7C /* AsdfViewController.swift in Sources */,
-				78F278631C970B6500287042 /* ImageActivitySource.swift in Sources */,
 				78C015251C7BBB0B009C382C /* mojoAppDelegate.m in Sources */,
 				7881D5941C78EDC9000255F9 /* InfoViewController.swift in Sources */,
 				78B6A24E1C76780500AE58F7 /* AppDelegate.swift in Sources */,
