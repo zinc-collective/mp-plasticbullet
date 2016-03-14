@@ -42,6 +42,8 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
     var mojo:mojoViewController = mojoViewController.init()
     var renderer:Renderer = Renderer.init()
     
+    @IBOutlet var refreshSwipe: UISwipeGestureRecognizer!
+    
     var allImageViews:[FilterView] {
         get {
             return [topLeftImage, topRightImage, bottomLeftImage, bottomRightImage, topMiddleImage, middleLeftImage, middleMiddleImage, middleRightImage, bottomMiddleView]
@@ -122,6 +124,9 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
         if let img = image {
             updateImage(img)
         }
+        
+        // Orientation changes
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "orientationDidChange", name:UIDeviceOrientationDidChangeNotification, object: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -132,24 +137,12 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBarHidden = false
         
-        let app = UIApplication.sharedApplication().delegate as! AppDelegate
-        let motion = app.motion
-        
-        // this interval was in the old code at 1/40. Slowing it down makes it less responsive
-        motion.accelerometerUpdateInterval = 1 / 40
-        motion.startAccelerometerUpdatesToQueue(NSOperationQueue.mainQueue(), withHandler:
-            {data, error in
-                if let a = data?.acceleration {
-                    self.mojo.setAcceleration(a)
-                }
-            }
-        )
+        // See PlasticBullet-Bridging-Header.h
+        PBDevice().beginGeneratingDeviceOrientationNotifications()
     }
     
     override func viewWillDisappear(animated: Bool) {
-        let app = UIApplication.sharedApplication().delegate as! AppDelegate
-        let motion = app.motion
-        motion.stopAccelerometerUpdates()
+        PBDevice().endGeneratingDeviceOrientationNotifications()
     }
 
     
@@ -274,15 +267,8 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
         mojo.defocusImage()
     }
     
-    // ------------------------------------------------------------
+    // Mojo Delegate ////////////////////////////////////////////////////////
     
-    
-    func mojoDidRotate(isPortrait: Bool, rotation: CGFloat, scale: CGFloat) {
-        let m = CGAffineTransformMakeRotation(rotation);
-        self.allButtons.forEach { (button) -> () in
-            button.transform = m
-        }
-    }
     
     func mojoDidRefreshGesture() {
         if let img = image {
@@ -301,9 +287,62 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
         }
     }
     
+    
+    // ----------------------------------------------------------------
+    
     func renderProgress(percent: Float) {
         dispatch_async(dispatch_get_main_queue()) {
             self.progressBar.progress = percent
         }
+    }
+    
+    
+    // Rotations /////////////////////////////////////////////////////
+    
+    func orientationDidChange() {
+        
+        let orientation = PBDevice().orientation
+        var rotate : CGFloat = 0.0
+        
+        if (orientation == .Portrait) {
+            rotate = 0.0
+            refreshSwipe.direction = .Left
+        }
+        
+        else if (orientation == .LandscapeLeft){
+			rotate = CGFloat(M_PI)/2.0
+            refreshSwipe.direction = .Up
+        }
+        
+        else if (orientation == .PortraitUpsideDown) {
+            rotate = CGFloat(M_PI)
+            refreshSwipe.direction = .Right
+        }
+        
+        else {
+            rotate = -CGFloat(M_PI)/2.0
+            refreshSwipe.direction = .Down
+        }
+        
+        
+        let m = CGAffineTransformMakeRotation(CGFloat(rotate));
+        UIView.animateWithDuration(0.4) {
+            self.allButtons.forEach { (button) -> () in
+                button.transform = m
+            }
+        }
+        
+        // in the "unnatural" orientation. Always requires scaling!
+        var scale : CGFloat = 1.0
+        if (orientation == .LandscapeLeft || orientation == .LandscapeRight) {
+            if let img = self.image {
+                let widthScale = topLeftImage.bounds.size.width / img.size.width;
+                let heightScale = topLeftImage.bounds.size.height / img.size.height;
+                let imageScale = min(widthScale, heightScale);
+                scale = topLeftImage.bounds.size.width / (imageScale * img.size.height);
+            }
+        }
+        
+        mojo.setRotations(rotate, scale: scale)
     }
 }

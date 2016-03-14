@@ -31,7 +31,6 @@ typedef enum GRID_MODE {
 @class ProgressView;
 
 @protocol MojoDelegate
--(void)mojoDidRotate:(BOOL)isPortrait rotation:(CGFloat)rot scale:(CGFloat)scale;
 -(void)mojoDidRefreshGesture;
 -(void)mojoIsWorking:(BOOL)working;
 @end
@@ -190,8 +189,9 @@ typedef enum GRID_MODE {
 
 -(void)renderImage:(UIImage*)originalImage;
 
-- (void)setAcceleration:(CMAcceleration)acceleration;
 - (UIImage*)fullyRenderedImage:(UIImageView*)view;
+
+- (void)setRotations:(CGFloat)rotate scale:(CGFloat)scale;
 
 @end
 

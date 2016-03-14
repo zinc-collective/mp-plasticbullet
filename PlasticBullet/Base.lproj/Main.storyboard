@@ -275,7 +275,7 @@ Product Management:  Sean Safreed
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="WxC-mD-gbu" appends="YES" id="viz-nb-jhJ"/>
+                                    <outletCollection property="gestureRecognizers" destination="vis-fl-zjg" appends="YES" id="2vG-y2-xHE"/>
                                 </connections>
                             </view>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="rKt-v2-egO">
@@ -439,15 +439,16 @@ Product Management:  Sean Safreed
                         <outlet property="progressBar" destination="U1Z-CX-LXL" id="NPw-eI-2ec"/>
                         <outlet property="progressContainer" destination="4jz-qo-sVF" id="Xu4-mb-R2D"/>
                         <outlet property="refreshButton" destination="QEl-aV-jbe" id="DgU-yw-vZb"/>
+                        <outlet property="refreshSwipe" destination="vis-fl-zjg" id="FbZ-tJ-lgY"/>
                         <outlet property="shareButton" destination="6Zt-iY-EkK" id="9uG-n0-tV3"/>
                         <outlet property="spinner" destination="rKt-v2-egO" id="w8y-Hd-C24"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hpw-kk-x2w" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="8pJ-7M-kEJ" userLabel="Exit" sceneMemberID="exit"/>
-                <swipeGestureRecognizer direction="left" id="WxC-mD-gbu">
+                <swipeGestureRecognizer direction="left" id="vis-fl-zjg">
                     <connections>
-                        <action selector="didTapRefresh:" destination="ATz-sP-9fS" id="UkV-KB-fXX"/>
+                        <action selector="didTapRefresh:" destination="ATz-sP-9fS" id="Nia-Px-VQW"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>

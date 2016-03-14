@@ -507,146 +507,31 @@ int loadTime = 0;
 	[prefs removeObjectForKey:@"longitude"];
 }
 
-- (void)setRotations {
-    
-	float rotate = 0.f;
-    float scale = 1.f;
-    
-	if(!isPortrait)
-	{
-		if(isInverted) {
-			rotate = M_PI/2.0;
-		}
-		else {
-			rotate = -M_PI/2.0;
-		}
-        
-        // When in portrait, we need to shrink the images to fit the new aspect ratio
-        // if they don't MATCH
-        // shoot
-	}
-	else
-	{
-		if(isInverted) { //down
-			//[self.toolbarView  setImage:[UIImage imageNamed:@"backcolor_down.png"]];
-			//self.toolbarView.frame = CGRectMake(0, 0, 768, 1024);
-			
-			rotate = M_PI;
-		} else { //up
-			//[self.toolbarView  setImage:[UIImage imageNamed:@"backcolor_up.png"]];
-			//self.toolbarView.frame = CGRectMake(0, 0, 768, 1024);
-			
-			rotate = 0.f;
-		}
-		
-	}
-    
-    // in the "unnatural" orientation. Always requires scaling!
-    // convert to units of view width
-    if (!isPortrait) {
-        CGFloat widthScale = self.topLeftView.bounds.size.width / self.originalImage.size.width;
-        CGFloat heightScale = self.topLeftView.bounds.size.height / self.originalImage.size.height;
-        CGFloat imageScale = MIN(widthScale, heightScale);
-        scale = self.topLeftView.bounds.size.width / (imageScale * self.originalImage.size.height);
-    }
-	
+
+- (void)setRotations:(CGFloat)rotate scale:(CGFloat)scale
+{
 	CGAffineTransform m = CGAffineTransformMakeRotation(rotate);
     CGAffineTransform n = CGAffineTransformMakeScale(scale, scale);
     CGAffineTransform mn = CGAffineTransformConcat(m, n);
-
-	topRightView.transform = mn;
-	topMiddleView.transform = mn;
-	topLeftView.transform = mn;
-	middleRightView.transform = mn;
-	middleMiddleView.transform = mn;
-	middleLeftView.transform = mn;
-	bottomRightView.transform = mn;
-	bottomMiddleView.transform = mn;
-	bottomLeftView.transform = mn;
     
-    [delegate mojoDidRotate:isPortrait rotation:rotate scale:scale];
+    [UIView animateWithDuration:0.4 animations:^(void) {
+    	self.topRightView.transform = mn;
+    	self.topMiddleView.transform = mn;
+    	self.topLeftView.transform = mn;
+    	self.middleRightView.transform = mn;
+    	self.middleMiddleView.transform = mn;
+    	self.middleLeftView.transform = mn;
+    	self.bottomRightView.transform = mn;
+    	self.bottomMiddleView.transform = mn;
+    	self.bottomLeftView.transform = mn;
+    }];
 }
+
 
 - (BOOL)isOriginalImagePortrait {
     return self.originalImage.size.width < self.originalImage.size.height;
 }
 
-
-- (void)setAcceleration:(CMAcceleration)acceleration
-{
-    const float violence = 1.5;
-    static BOOL beenhere;
-    BOOL shake = FALSE;
-    static int numTries = 0;
-    
-    
-    if (!beenhere) 
-    {
-        beenhere = TRUE;
-        if (acceleration.x > violence * 1.5 || acceleration.x < (-1.5* violence))
-            shake = TRUE;
-        if (acceleration.y > violence * 2 || acceleration.y < (-2 * violence))
-            shake = TRUE;
-        if (acceleration.z > violence * 3 || acceleration.z < (-3 * violence))
-            shake = TRUE;
-        if(shake)
-            numTries = 0;
-        if (shake && ![workerThread isExecuting]) 
-        {
-            //			[self randomizeQuad index];
-            return;
-        } 
-    }
-    
-    beenhere = FALSE;
-    
-    // TODO - Other angles
-    bool doTransform = false;
-    const float kMinValue = 0.5f;
-    const float kMaxValue = 1.f-kMinValue;
-    const int NUM_TRIES = 4;
-    
-    if(fabs(acceleration.x) >= kMaxValue && fabs(acceleration.y) <= kMinValue && isPortrait)
-    {
-        numTries++;
-        if(numTries>NUM_TRIES)
-        {
-            doTransform = true;
-            isPortrait = false;
-            isInverted = acceleration.x<0.f;
-        }
-    }
-    else if(fabs(acceleration.y) >= kMaxValue  && fabs(acceleration.x) <= kMinValue && !isPortrait)
-    {
-        numTries++;
-        if(numTries>NUM_TRIES)
-        {
-            doTransform = true;
-            isPortrait = true;
-            isInverted = acceleration.y>0.f;
-        }
-    }
-    
-    if(doTransform)
-    {
-        numTries = 0;
-        [UIView beginAnimations:@"Rotate" context:nil];
-        
-        [UIView  setAnimationDelegate:self];
-        
-        [UIView  setAnimationCurve: UIViewAnimationCurveEaseInOut];
-        [UIView  setAnimationDuration:(NSTimeInterval)0.4];
-        
-        doScale = true;
-        [self setRotations];
-        doScale = false;
-        
-        [UIView commitAnimations];
-        
-        return;
-    }
-	
-}
 
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
