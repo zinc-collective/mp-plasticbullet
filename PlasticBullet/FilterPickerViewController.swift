@@ -37,12 +37,12 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
     @IBOutlet weak var progressContainer: UIView!
     @IBOutlet weak var progressBar: UIProgressView!
     
-    @IBOutlet weak var progressTop: NSLayoutConstraint!
-    
     var image:UIImage?
     
     var mojo:mojoViewController = mojoViewController.init()
     var renderer:Renderer = Renderer.init()
+    
+    var share:UIActivityViewController?
     
     @IBOutlet var refreshSwipe: UISwipeGestureRecognizer!
     
@@ -129,11 +129,6 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
         
         // Orientation changes
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "orientationDidChange", name:UIDeviceOrientationDidChangeNotification, object: nil)
-        
-        
-        if PBDevice().userInterfaceIdiom == .Pad {
-            self.progressTop.constant = 500
-        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -176,6 +171,7 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
                 
                 print("GENERATING...")
                 dispatch_async(dispatch_get_main_queue()) {
+                    self.share?.dismissViewControllerAnimated(true, completion: nil)
                     self.progressBar.progress = 0.0
                     self.progressContainer.hidden = false
                 }
@@ -195,6 +191,7 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
             share.popoverPresentationController?.sourceView = self.view
             share.popoverPresentationController?.sourceRect = self.shareButton.frame
             self.presentViewController(share, animated: true, completion: nil)
+            self.share = share
         }
     }
     
