@@ -284,13 +284,16 @@ Product Management:  Sean Safreed
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V9e-oz-3AK" userLabel="Toolbar">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                 <subviews>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eyc-Zb-pug">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eyc-Zb-pug">
                                         <rect key="frame" x="8" y="0.0" width="44" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="mqZ-yH-MSI"/>
                                             <constraint firstAttribute="width" constant="44" id="wdT-Sm-lU4"/>
                                         </constraints>
                                         <state key="normal" image="library"/>
+                                        <connections>
+                                            <action selector="didTapLibrary:" destination="ATz-sP-9fS" eventType="touchUpInside" id="nPG-9u-RmV"/>
+                                        </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Zt-iY-EkK" userLabel="Share Button">
                                         <rect key="frame" x="185" y="0.0" width="44" height="44"/>
@@ -326,14 +329,14 @@ Product Management:  Sean Safreed
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YIq-Kr-ma3">
-                                        <rect key="frame" x="8" y="0.0" width="44" height="44"/>
+                                        <rect key="frame" x="60" y="0.0" width="44" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="LfO-6H-P9D"/>
                                             <constraint firstAttribute="width" constant="44" id="PvK-dM-WBN"/>
                                         </constraints>
                                         <state key="normal" image="camera"/>
                                         <connections>
-                                            <segue destination="8pJ-7M-kEJ" kind="unwind" unwindAction="unwindToLanding:" id="B4n-Vb-dx2"/>
+                                            <action selector="didTapCamera:" destination="ATz-sP-9fS" eventType="touchUpInside" id="FUM-Vv-34E"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -356,7 +359,7 @@ Product Management:  Sean Safreed
                                     <constraint firstAttribute="trailing" secondItem="QEl-aV-jbe" secondAttribute="trailing" constant="8" id="bf3-Oo-8h3"/>
                                     <constraint firstItem="YIq-Kr-ma3" firstAttribute="leading" secondItem="Eyc-Zb-pug" secondAttribute="trailing" constant="8" id="jiU-PM-BJL"/>
                                     <constraint firstItem="QEl-aV-jbe" firstAttribute="centerY" secondItem="V9e-oz-3AK" secondAttribute="centerY" id="kMT-2c-wV4"/>
-                                    <constraint firstItem="YIq-Kr-ma3" firstAttribute="leading" secondItem="V9e-oz-3AK" secondAttribute="leading" constant="8" id="myO-f9-fYQ"/>
+                                    <constraint firstItem="YIq-Kr-ma3" firstAttribute="leading" secondItem="V9e-oz-3AK" secondAttribute="leading" constant="60" id="myO-f9-fYQ"/>
                                     <constraint firstItem="YIq-Kr-ma3" firstAttribute="top" secondItem="V9e-oz-3AK" secondAttribute="top" id="vg7-F4-0pZ"/>
                                 </constraints>
                                 <variation key="default">
@@ -440,6 +443,7 @@ Product Management:  Sean Safreed
                         <outlet property="backButton" destination="0ZM-le-Tth" id="kNp-vt-LWx"/>
                         <outlet property="cameraButton" destination="YIq-Kr-ma3" id="TPL-Wp-Wp4"/>
                         <outlet property="imagesView" destination="csX-Bu-LeK" id="DSh-2E-tZ6"/>
+                        <outlet property="libraryButton" destination="Eyc-Zb-pug" id="30F-Cf-udq"/>
                         <outlet property="progressBar" destination="U1Z-CX-LXL" id="NPw-eI-2ec"/>
                         <outlet property="progressContainer" destination="4jz-qo-sVF" id="Xu4-mb-R2D"/>
                         <outlet property="refreshButton" destination="QEl-aV-jbe" id="DgU-yw-vZb"/>
@@ -449,7 +453,6 @@ Product Management:  Sean Safreed
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hpw-kk-x2w" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="8pJ-7M-kEJ" userLabel="Exit" sceneMemberID="exit"/>
                 <swipeGestureRecognizer direction="left" id="vis-fl-zjg">
                     <connections>
                         <action selector="didTapRefresh:" destination="ATz-sP-9fS" id="Nia-Px-VQW"/>
