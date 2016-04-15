@@ -171,7 +171,6 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
                 
                 print("GENERATING...")
                 dispatch_async(dispatch_get_main_queue()) {
-                    self.share?.dismissViewControllerAnimated(true, completion: nil)
                     self.progressBar.progress = 0.0
                     self.progressContainer.hidden = false
                 }
@@ -318,24 +317,21 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
         let orientation = PBDevice().orientation
         var rotate : CGFloat = 0.0
         
-        if (orientation == .Portrait) {
+        switch orientation {
+        case .Portrait:
             rotate = 0.0
             refreshSwipe.direction = .Left
-        }
-        
-        else if (orientation == .LandscapeLeft){
+        case .LandscapeLeft:
 			rotate = CGFloat(M_PI)/2.0
             refreshSwipe.direction = .Up
-        }
-        
-        else if (orientation == .PortraitUpsideDown) {
+        case .PortraitUpsideDown:
             rotate = CGFloat(M_PI)
             refreshSwipe.direction = .Right
-        }
-        
-        else {
+        case .LandscapeRight:
             rotate = -CGFloat(M_PI)/2.0
             refreshSwipe.direction = .Down
+        default:
+            return
         }
         
         
