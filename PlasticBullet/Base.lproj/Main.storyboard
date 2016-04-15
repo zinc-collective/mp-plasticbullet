@@ -376,7 +376,7 @@ Product Management:  Sean Safreed
                                 </variation>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4jz-qo-sVF">
-                                <rect key="frame" x="87" y="52" width="240" height="63"/>
+                                <rect key="frame" x="87" y="45" width="240" height="63"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Preparing" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="moJ-Wq-Fzj">
                                         <rect key="frame" x="8" y="12" width="224" height="21"/>
@@ -397,7 +397,9 @@ Product Management:  Sean Safreed
                         </subviews>
                         <color key="backgroundColor" red="0.28627450980000002" green="0.28627450980000002" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="4jz-qo-sVF" firstAttribute="top" secondItem="V9e-oz-3AK" secondAttribute="bottom" constant="8" id="1Tp-AF-Z9B"/>
+                            <constraint firstItem="4jz-qo-sVF" firstAttribute="top" secondItem="V9e-oz-3AK" secondAttribute="bottom" constant="1" id="1Tp-AF-Z9B">
+                                <variation key="heightClass=regular-widthClass=regular" constant="310"/>
+                            </constraint>
                             <constraint firstItem="csX-Bu-LeK" firstAttribute="top" secondItem="V9e-oz-3AK" secondAttribute="bottom" constant="2" id="28W-sB-lcc"/>
                             <constraint firstItem="4jz-qo-sVF" firstAttribute="centerX" secondItem="csX-Bu-LeK" secondAttribute="centerX" id="4W9-x8-JHH"/>
                             <constraint firstItem="csX-Bu-LeK" firstAttribute="leading" secondItem="ODj-M2-xrU" secondAttribute="leading" id="82x-vw-syA"/>
