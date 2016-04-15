@@ -128,7 +128,7 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
         }
         
         // Orientation changes
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "orientationDidChange", name:UIDeviceOrientationDidChangeNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FilterPickerViewController.orientationDidChange), name:UIDeviceOrientationDidChangeNotification, object: nil)
     }
     
     override func didReceiveMemoryWarning() {

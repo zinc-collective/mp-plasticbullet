@@ -18,7 +18,7 @@ class FilterView: UIImageView {
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
-        self.tap = UITapGestureRecognizer(target: self, action: "didTap")
+        self.tap = UITapGestureRecognizer(target: self, action: #selector(FilterView.didTap))
         self.addGestureRecognizer(self.tap)
         self.contentMode = UIViewContentMode.ScaleAspectFit
     }
