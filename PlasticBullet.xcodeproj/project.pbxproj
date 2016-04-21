@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		782B81DB1CC537D1005E30BC /* ImageMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782B81DA1CC537D1005E30BC /* ImageMetadata.swift */; };
+		782B81DD1CC53C0F005E30BC /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 782B81DC1CC53C0F005E30BC /* ImageIO.framework */; };
 		787396671C84C2BB005F5E4B /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787396661C84C2BB005F5E4B /* GridLayout.swift */; };
 		787396691C84CB73005F5E4B /* FilterGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787396681C84CB72005F5E4B /* FilterGridView.swift */; };
 		7881D58F1C78DAA8000255F9 /* PBCircleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7881D58E1C78DAA8000255F9 /* PBCircleLabel.swift */; };
@@ -157,6 +159,8 @@
 		0893F224447775751EA92B24 /* Pods_PlasticBullet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlasticBullet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2334246BEB39A7EFB887843E /* Pods-PlasticBullet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlasticBullet.release.xcconfig"; path = "Pods/Target Support Files/Pods-PlasticBullet/Pods-PlasticBullet.release.xcconfig"; sourceTree = "<group>"; };
 		72FDE293A2423CFDAC10758C /* Pods-PlasticBullet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlasticBullet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PlasticBullet/Pods-PlasticBullet.debug.xcconfig"; sourceTree = "<group>"; };
+		782B81DA1CC537D1005E30BC /* ImageMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageMetadata.swift; sourceTree = "<group>"; };
+		782B81DC1CC53C0F005E30BC /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		787396661C84C2BB005F5E4B /* GridLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
 		787396681C84CB72005F5E4B /* FilterGridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterGridView.swift; sourceTree = "<group>"; };
 		7881D58E1C78DAA8000255F9 /* PBCircleLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PBCircleLabel.swift; path = Landing/PBCircleLabel.swift; sourceTree = "<group>"; };
@@ -324,6 +328,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				782B81DD1CC53C0F005E30BC /* ImageIO.framework in Frameworks */,
 				7DB9009B93DFA315DE326BB3 /* Pods_PlasticBullet.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -334,6 +339,7 @@
 		16F425962B6D1F5432EB52C8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				782B81DC1CC53C0F005E30BC /* ImageIO.framework */,
 				0893F224447775751EA92B24 /* Pods_PlasticBullet.framework */,
 			);
 			name = Frameworks;
@@ -357,6 +363,7 @@
 				7881D5951C78F7C4000255F9 /* FilterPickerViewController.swift */,
 				78E2E7A71C7B80D100B5A91A /* FilterView.swift */,
 				78F278641C9713DA00287042 /* ImageActivityItemProvider.swift */,
+				782B81DA1CC537D1005E30BC /* ImageMetadata.swift */,
 			);
 			name = Filters;
 			sourceTree = "<group>";
@@ -829,6 +836,7 @@
 				78B6A24E1C76780500AE58F7 /* AppDelegate.swift in Sources */,
 				7881D5961C78F7C4000255F9 /* FilterPickerViewController.swift in Sources */,
 				78E2E7D91C7B859400B5A91A /* ImageProcess.m in Sources */,
+				782B81DB1CC537D1005E30BC /* ImageMetadata.swift in Sources */,
 				78E2E7D61C7B859400B5A91A /* fastBlur.c in Sources */,
 				78E2E6B51C7B7C1100B5A91A /* Style.swift in Sources */,
 				78C0150C1C7B9165009C382C /* Renderer.m in Sources */,

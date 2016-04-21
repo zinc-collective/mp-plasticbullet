@@ -30,6 +30,8 @@ class LandingViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var libraryProportionalHeight: NSLayoutConstraint!
     @IBOutlet weak var cameraProportionalHeight: NSLayoutConstraint!
     
+    var picker: UIImagePickerController?
+    
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBarHidden = true
     }
@@ -149,36 +151,47 @@ class LandingViewController: UIViewController, UIImagePickerControllerDelegate, 
             picker.delegate = self
             picker.allowsEditing = false
             picker.sourceType = UIImagePickerControllerSourceType.Camera
+            self.picker = picker
             self.presentViewController(picker, animated: true, completion: nil)
         }
     }
     
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        
-        // save the original image
-        if (NSUserDefaults.standardUserDefaults().boolForKey("save_camera_shot") && picker.sourceType == .Camera) {
-            UIImageWriteToSavedPhotosAlbum(chosenImage, nil, nil, nil);
-        }
-        
         picker.dismissViewControllerAnimated(true, completion: nil)
-        self.performSegueWithIdentifier("Filters", sender: chosenImage)
+        self.performSegueWithIdentifier("Filters", sender: PickedImage(mediaInfo: info, sourceType: picker.sourceType))
     }
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
         if (segue.identifier == "Filters") {
-            let image = sender as! UIImage
+            let picked = sender as! PickedImage
             let filters = segue.destinationViewController as! FilterPickerViewController
-            filters.image = image
+            filters.chooseImage(picked.mediaInfo, sourceType: picked.sourceType)
         }
     }
+    
+//    func navigationController(navigationController: UINavigationController, didShowViewController viewController: UIViewController, animated: Bool) {
+//        if let picker = self.picker {
+//            picker.dismissViewControllerAnimated(true, completion: nil)
+//        }
+//    }
     
     
     @IBAction func unwindToLanding(segue:UIStoryboardSegue) {
         
     }
     
+}
+
+class PickedImage : NSObject {
+    let mediaInfo : [String : AnyObject]
+    let sourceType : UIImagePickerControllerSourceType
+    init(mediaInfo: [String : AnyObject], sourceType: UIImagePickerControllerSourceType) {
+        self.mediaInfo = mediaInfo
+        self.sourceType = sourceType
+        super.init()
+    }
 }
 

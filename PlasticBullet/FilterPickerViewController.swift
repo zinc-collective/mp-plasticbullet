@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Photos
 
 class FilterPickerViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MojoDelegate, RenderDelegate {
     
@@ -38,6 +39,7 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
     @IBOutlet weak var progressBar: UIProgressView!
     
     var image:UIImage?
+    var imageMetadata:PhotoMeta?
     
     var mojo:mojoViewController = mojoViewController.init()
     var renderer:Renderer = Renderer.init()
@@ -224,30 +226,50 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
         }
     }
     
-    
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        print("PICKED!")
         
-        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        print(info)
-        print(chosenImage)
-        
-        self.image = chosenImage
-        
-        // save the original image
-        if (NSUserDefaults.standardUserDefaults().boolForKey("save_camera_shot") && picker.sourceType == .Camera) {
-            UIImageWriteToSavedPhotosAlbum(chosenImage, nil, nil, nil);
-        }
+        let img = chooseImage(info, sourceType: picker.sourceType)
         
         // update the view
-        updateImage(chosenImage)
+        updateImage(img)
         
         // ditch the picker
         picker.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    func chooseImage(info: [String : AnyObject], sourceType : UIImagePickerControllerSourceType) -> UIImage {
+        
+        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        print(info)
+        print(chosenImage)
+        
+        // only valid for newly taken photos
+        let meta = info[UIImagePickerControllerMediaMetadata] as? PhotoMeta
+        self.imageMetadata = meta
+        
+        
+        let murl = info[UIImagePickerControllerReferenceURL] as? NSURL
+        print("MURL", murl)
+        if let url = murl {
+            ImageMetadata.fetchMetadataForURL(url) { meta in
+                print("META", meta)
+                self.imageMetadata = meta
+            }
+        }
+        
+        self.image = chosenImage
+        
+        // save the original image
+        // the chosen image doesn't have GPS data yet.
+        if (NSUserDefaults.standardUserDefaults().boolForKey("save_camera_shot") && sourceType == .Camera) {
+            UIImageWriteToSavedPhotosAlbum(chosenImage, nil, nil, nil)
+        }
+        
+        return chosenImage
+    }
     
-    func updateImage(image:UIImage) {
+    
+    private func updateImage(image:UIImage) {
         print("UPDATE IMAGE", image)
         mojo.renderImage(image)
     }
