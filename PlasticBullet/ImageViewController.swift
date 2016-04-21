@@ -54,12 +54,6 @@ class ImageViewController: UIViewController, UIImagePickerControllerDelegate, UI
         }
     }
     
-    var allButtons:[UIButton] {
-        get {
-            return [cameraButton, refreshButton, backButton, shareButton]
-        }
-    }
-    
     required init(coder dec: NSCoder) {
         
         if UI_USER_INTERFACE_IDIOM() == .Pad {
@@ -84,6 +78,11 @@ class ImageViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.spinner.hidden = true
+        self.progressContainer.hidden = true
+        self.backButton.hidden = true
+        self.shareButton.hidden = true
         
         self.imagesView.addSubview(self.topLeftImage)
         self.imagesView.addSubview(self.topRightImage)
@@ -282,8 +281,6 @@ class ImageViewController: UIViewController, UIImagePickerControllerDelegate, UI
     func focusImage(view:FilterView) {
         
         // Update buttons
-        self.cameraButton.hidden = true
-//        self.libraryButton.hidden = true
         self.backButton.hidden = false
         self.shareButton.hidden = false
         
@@ -300,8 +297,6 @@ class ImageViewController: UIViewController, UIImagePickerControllerDelegate, UI
     func unfocusImage() {
         
         // Update buttons
-        self.cameraButton.hidden = false
-//        self.libraryButton.hidden = false
         self.backButton.hidden = true
         self.shareButton.hidden = true
         
@@ -364,14 +359,6 @@ class ImageViewController: UIViewController, UIImagePickerControllerDelegate, UI
             refreshSwipe.direction = .Down
         default:
             return
-        }
-        
-        
-        let m = CGAffineTransformMakeRotation(CGFloat(rotate));
-        UIView.animateWithDuration(0.4) {
-            self.allButtons.forEach { (button) -> () in
-                button.transform = m
-            }
         }
         
         // in the "unnatural" orientation. Always requires scaling!

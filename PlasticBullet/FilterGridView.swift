@@ -14,7 +14,7 @@ class FilterGridView: UIView {
     let grid = GridLayout()
     var rows = 2
     var cols = 2
-    var spacing:CGFloat = 4
+    var spacing:CGFloat = 20
     var animationDuration = 0.25
     
     var focusedView: UIView?
