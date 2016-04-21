@@ -11,7 +11,6 @@
 		782B81DD1CC53C0F005E30BC /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 782B81DC1CC53C0F005E30BC /* ImageIO.framework */; };
 		787396671C84C2BB005F5E4B /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787396661C84C2BB005F5E4B /* GridLayout.swift */; };
 		787396691C84CB73005F5E4B /* FilterGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787396681C84CB72005F5E4B /* FilterGridView.swift */; };
-		7881D58F1C78DAA8000255F9 /* PBCircleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7881D58E1C78DAA8000255F9 /* PBCircleLabel.swift */; };
 		7881D5941C78EDC9000255F9 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7881D5931C78EDC9000255F9 /* InfoViewController.swift */; };
 		7881D5961C78F7C4000255F9 /* FilterPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7881D5951C78F7C4000255F9 /* FilterPickerViewController.swift */; };
 		78982FC81CC92295004B7703 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78982FC71CC92295004B7703 /* Splash.storyboard */; };
@@ -165,7 +164,6 @@
 		782B81DC1CC53C0F005E30BC /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		787396661C84C2BB005F5E4B /* GridLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
 		787396681C84CB72005F5E4B /* FilterGridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterGridView.swift; sourceTree = "<group>"; };
-		7881D58E1C78DAA8000255F9 /* PBCircleLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PBCircleLabel.swift; path = Landing/PBCircleLabel.swift; sourceTree = "<group>"; };
 		7881D5931C78EDC9000255F9 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		7881D5951C78F7C4000255F9 /* FilterPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterPickerViewController.swift; sourceTree = "<group>"; };
 		78982FC71CC92295004B7703 /* Splash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
@@ -356,7 +354,6 @@
 				78982FC71CC92295004B7703 /* Splash.storyboard */,
 				78B6A24F1C76780500AE58F7 /* SplashViewController.swift */,
 				7881D5931C78EDC9000255F9 /* InfoViewController.swift */,
-				7881D58E1C78DAA8000255F9 /* PBCircleLabel.swift */,
 			);
 			name = Splash;
 			sourceTree = "<group>";
@@ -838,7 +835,6 @@
 				78B6A2501C76780500AE58F7 /* SplashViewController.swift in Sources */,
 				78C015141C7BACF2009C382C /* Plugin_Render.mm in Sources */,
 				78C0151F1C7BB739009C382C /* mojoViewController.mm in Sources */,
-				7881D58F1C78DAA8000255F9 /* PBCircleLabel.swift in Sources */,
 				78C015251C7BBB0B009C382C /* mojoAppDelegate.m in Sources */,
 				7881D5941C78EDC9000255F9 /* InfoViewController.swift in Sources */,
 				78B6A24E1C76780500AE58F7 /* AppDelegate.swift in Sources */,
