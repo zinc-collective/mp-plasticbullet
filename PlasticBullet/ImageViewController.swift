@@ -181,12 +181,11 @@ class ImageViewController: UIViewController, UIImagePickerControllerDelegate, UI
                 }
                 
                 let fullImage = self.mojo.fullyRenderedImage(view)
-                print("SHARING IMAGE", fullImage.size)
                 
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.progressContainer.hidden = true
-                }
-                
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.progressContainer.hidden = true
+                    }
+                    
                 return fullImage
             }
         
@@ -200,6 +199,9 @@ class ImageViewController: UIViewController, UIImagePickerControllerDelegate, UI
             share.completionWithItemsHandler = { activityType, completed, returnedItems, error in
                 // this will hide even if cancelled
                 self.progressContainer.hidden = true
+                
+                // always call cancel. It won't matter if it has finished
+                self.mojo.renderer.cancelRender()
             }
             
             self.presentViewController(share, animated: true, completion: nil)

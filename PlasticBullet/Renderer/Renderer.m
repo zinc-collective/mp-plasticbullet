@@ -1212,10 +1212,10 @@ static CGBitmapInfo generic_bitmapInfo;
 	return YES;
 }
 
--(int) progressUpdate:(double)degree
+-(BOOL) progressUpdate:(double)degree
 {
     [self.delegate renderProgress:(float)degree];
-	return 0;
+    return self.isCancelled;
 }
 
 -(void) progressSetResolution:(double)degree
@@ -1232,6 +1232,9 @@ int progressCodeCallback( double completion, void * context )
 	return 0;
 }
 
+-(void)cancelRender {
+    self.isCancelled = true;
+}
 
 #pragma mark 所有计算方法汇总
 -(unsigned char *)tileRender:(NSString *)sourceFile
@@ -1492,6 +1495,7 @@ int progressCodeCallback( double completion, void * context )
 				   isLandscape:(bool)_isLandscape
 {	
 //	_borderType = 3;
+    self.isCancelled = false;
 	
 	if (!_sourceImgPtr)
 		return nil;

@@ -20,6 +20,9 @@
 }
 
 @property (weak, nonatomic) id<RenderDelegate> delegate;
+@property (nonatomic) BOOL isCancelled;
+
+-(void)cancelRender;
 
 //+(UIImage *)borderFlip:(UIImage *)_image  randomX:(double)_x randomY:(double)_y;
 //
@@ -100,7 +103,7 @@
 -(BOOL)slowBlurImg:(UIImage *)_image;
 -(unsigned char *)blurImgFile:(NSString*)filename width:(int)_width height:(int)_height startProgress:(float)_startProgress progressDuration:(float)_progressDuration hiRes:(bool)_hiRes ;
 
--(int) progressUpdate:(double)degree;
+-(BOOL) progressUpdate:(double)degree;
 -(void) progressSetResolution:(double)degree;
 
 -(unsigned char *)tileRender:(NSString *)sourceFile
