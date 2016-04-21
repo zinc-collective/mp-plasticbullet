@@ -151,7 +151,11 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
 
     
     override func prefersStatusBarHidden() -> Bool {
-        return true;
+        return false
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
     }
     
     @IBAction func didTapRefresh(sender: AnyObject) {

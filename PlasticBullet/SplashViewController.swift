@@ -94,19 +94,17 @@ class SplashViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         picker.dismissViewControllerAnimated(true, completion: nil)
-        self.performSegueWithIdentifier("Filters", sender: PickedImage(mediaInfo: info, sourceType: picker.sourceType))
-    }
-    
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let filters = UIStoryboard(name: "Image", bundle: nil).instantiateInitialViewController() as! FilterPickerViewController
+        filters.chooseImage(info, sourceType: picker.sourceType)
+        filters.modalTransitionStyle = .FlipHorizontal
         
-        if (segue.identifier == "Filters") {
-            let picked = sender as! PickedImage
-            let filters = segue.destinationViewController as! FilterPickerViewController
-            filters.chooseImage(picked.mediaInfo, sourceType: picked.sourceType)
-        }
+        self.presentViewController(filters, animated: true, completion: nil)
     }
     
+    
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//    }
+//    
 //    func navigationController(navigationController: UINavigationController, didShowViewController viewController: UIViewController, animated: Bool) {
 //        if let picker = self.picker {
 //            picker.dismissViewControllerAnimated(true, completion: nil)
@@ -118,13 +116,13 @@ class SplashViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
 }
 
-class PickedImage : NSObject {
-    let mediaInfo : [String : AnyObject]
-    let sourceType : UIImagePickerControllerSourceType
-    init(mediaInfo: [String : AnyObject], sourceType: UIImagePickerControllerSourceType) {
-        self.mediaInfo = mediaInfo
-        self.sourceType = sourceType
-        super.init()
-    }
-}
-
+//class PickedImage : NSObject {
+//    let mediaInfo : [String : AnyObject]
+//    let sourceType : UIImagePickerControllerSourceType
+//    init(mediaInfo: [String : AnyObject], sourceType: UIImagePickerControllerSourceType) {
+//        self.mediaInfo = mediaInfo
+//        self.sourceType = sourceType
+//        super.init()
+//    }
+//}
+//
