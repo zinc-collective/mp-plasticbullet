@@ -12,7 +12,7 @@
 		787396671C84C2BB005F5E4B /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787396661C84C2BB005F5E4B /* GridLayout.swift */; };
 		787396691C84CB73005F5E4B /* FilterGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787396681C84CB72005F5E4B /* FilterGridView.swift */; };
 		7881D5941C78EDC9000255F9 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7881D5931C78EDC9000255F9 /* InfoViewController.swift */; };
-		7881D5961C78F7C4000255F9 /* FilterPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7881D5951C78F7C4000255F9 /* FilterPickerViewController.swift */; };
+		7881D5961C78F7C4000255F9 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7881D5951C78F7C4000255F9 /* ImageViewController.swift */; };
 		78982FC81CC92295004B7703 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78982FC71CC92295004B7703 /* Splash.storyboard */; };
 		78982FCA1CC924C2004B7703 /* sample-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 78982FC91CC924C2004B7703 /* sample-bg.png */; };
 		78982FCC1CC9377B004B7703 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78982FCB1CC9377B004B7703 /* Launch.storyboard */; };
@@ -167,7 +167,7 @@
 		787396661C84C2BB005F5E4B /* GridLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
 		787396681C84CB72005F5E4B /* FilterGridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterGridView.swift; sourceTree = "<group>"; };
 		7881D5931C78EDC9000255F9 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
-		7881D5951C78F7C4000255F9 /* FilterPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterPickerViewController.swift; sourceTree = "<group>"; };
+		7881D5951C78F7C4000255F9 /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		78982FC71CC92295004B7703 /* Splash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
 		78982FC91CC924C2004B7703 /* sample-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sample-bg.png"; sourceTree = "<group>"; };
 		78982FCB1CC9377B004B7703 /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
@@ -367,12 +367,12 @@
 			isa = PBXGroup;
 			children = (
 				78982FCD1CC93E6F004B7703 /* Image.storyboard */,
-				787396661C84C2BB005F5E4B /* GridLayout.swift */,
+				7881D5951C78F7C4000255F9 /* ImageViewController.swift */,
 				787396681C84CB72005F5E4B /* FilterGridView.swift */,
-				7881D5951C78F7C4000255F9 /* FilterPickerViewController.swift */,
 				78E2E7A71C7B80D100B5A91A /* FilterView.swift */,
 				78F278641C9713DA00287042 /* ImageActivityItemProvider.swift */,
 				782B81DA1CC537D1005E30BC /* ImageMetadata.swift */,
+				787396661C84C2BB005F5E4B /* GridLayout.swift */,
 			);
 			name = Image;
 			sourceTree = "<group>";
@@ -846,7 +846,7 @@
 				78C015251C7BBB0B009C382C /* mojoAppDelegate.m in Sources */,
 				7881D5941C78EDC9000255F9 /* InfoViewController.swift in Sources */,
 				78B6A24E1C76780500AE58F7 /* AppDelegate.swift in Sources */,
-				7881D5961C78F7C4000255F9 /* FilterPickerViewController.swift in Sources */,
+				7881D5961C78F7C4000255F9 /* ImageViewController.swift in Sources */,
 				78E2E7D91C7B859400B5A91A /* ImageProcess.m in Sources */,
 				782B81DB1CC537D1005E30BC /* ImageMetadata.swift in Sources */,
 				78E2E7D61C7B859400B5A91A /* fastBlur.c in Sources */,

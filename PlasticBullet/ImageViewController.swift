@@ -9,7 +9,7 @@
 import UIKit
 import Photos
 
-class FilterPickerViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MojoDelegate, RenderDelegate {
+class ImageViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MojoDelegate, RenderDelegate {
     
     var topLeftImage: FilterView
     var topRightImage: FilterView
@@ -130,7 +130,7 @@ class FilterPickerViewController: UIViewController, UIImagePickerControllerDeleg
         }
         
         // Orientation changes
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FilterPickerViewController.orientationDidChange), name:UIDeviceOrientationDidChangeNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ImageViewController.orientationDidChange), name:UIDeviceOrientationDidChangeNotification, object: nil)
     }
     
     override func didReceiveMemoryWarning() {

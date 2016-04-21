@@ -6,10 +6,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Filters View Controller-->
+        <!--Image View Controller-->
         <scene sceneID="Uxp-59-lfr">
             <objects>
-                <viewController id="R7J-RV-lw7" userLabel="Filters View Controller" customClass="FilterPickerViewController" customModule="Plastic_Bullet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="R7J-RV-lw7" customClass="ImageViewController" customModule="Plastic_Bullet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="OGw-EF-Mwc"/>
                         <viewControllerLayoutGuide type="bottom" id="woB-Gp-wcB"/>

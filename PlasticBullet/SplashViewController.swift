@@ -94,35 +94,15 @@ class SplashViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         picker.dismissViewControllerAnimated(true, completion: nil)
-        let filters = UIStoryboard(name: "Image", bundle: nil).instantiateInitialViewController() as! FilterPickerViewController
-        filters.chooseImage(info, sourceType: picker.sourceType)
-        filters.modalTransitionStyle = .FlipHorizontal
+        let images = UIStoryboard(name: "Image", bundle: nil).instantiateInitialViewController() as! ImageViewController
+        images.chooseImage(info, sourceType: picker.sourceType)
+        images.modalTransitionStyle = .FlipHorizontal
         
-        self.presentViewController(filters, animated: true, completion: nil)
+        self.presentViewController(images, animated: true, completion: nil)
     }
     
-    
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//    }
-//    
-//    func navigationController(navigationController: UINavigationController, didShowViewController viewController: UIViewController, animated: Bool) {
-//        if let picker = self.picker {
-//            picker.dismissViewControllerAnimated(true, completion: nil)
-//        }
-//    }
     
     @IBAction func unwindToLanding(segue:UIStoryboardSegue) {
         
     }
 }
-
-//class PickedImage : NSObject {
-//    let mediaInfo : [String : AnyObject]
-//    let sourceType : UIImagePickerControllerSourceType
-//    init(mediaInfo: [String : AnyObject], sourceType: UIImagePickerControllerSourceType) {
-//        self.mediaInfo = mediaInfo
-//        self.sourceType = sourceType
-//        super.init()
-//    }
-//}
-//
