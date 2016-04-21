@@ -2295,8 +2295,10 @@ int loadTime = 0;
     int m_quadIndex = renderIndex;
 	
 	UIImage * fullImage = [Utilities imageFromFileCache:ORIGINAL_IMAGE_FILE_NAME];
-	CGFloat fullImageWidth = CGImageGetWidth( fullImage.CGImage );
-	CGFloat fullImageHeight = CGImageGetHeight( fullImage.CGImage );
+    
+    // "Full" means half of the original size
+	CGFloat fullImageWidth = CGImageGetWidth( fullImage.CGImage ) / 2;
+	CGFloat fullImageHeight = CGImageGetHeight( fullImage.CGImage ) / 2;
 	
 	CGFloat width = fullImageWidth;
 	CGFloat height = fullImageHeight;

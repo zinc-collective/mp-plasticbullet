@@ -181,10 +181,11 @@ class ImageViewController: UIViewController, UIImagePickerControllerDelegate, UI
                 }
                 
                 let fullImage = self.mojo.fullyRenderedImage(view)
+                print("FULL IMAGE", fullImage?.size)
                 
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.progressContainer.hidden = true
-                    }
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.progressContainer.hidden = true
+                }
                     
                 return fullImage
             }
