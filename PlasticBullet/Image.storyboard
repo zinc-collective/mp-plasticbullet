@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UYa-bg-4KG" customClass="FilterGridView" customModule="Plastic_Bullet" customModuleProvider="target">
-                                <rect key="frame" x="2" y="80" width="371" height="517"/>
+                                <rect key="frame" x="0.0" y="80" width="375" height="517"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <connections>
@@ -155,10 +155,10 @@
                             <constraint firstAttribute="trailing" secondItem="UYa-bg-4KG" secondAttribute="trailing" id="HDP-6I-eOQ"/>
                             <constraint firstItem="jym-ca-EVZ" firstAttribute="centerY" secondItem="UYa-bg-4KG" secondAttribute="centerY" id="I7H-Lt-kFb"/>
                             <constraint firstAttribute="trailing" secondItem="U1a-16-EEG" secondAttribute="trailing" id="Lab-g9-Kda"/>
-                            <constraint firstItem="UYa-bg-4KG" firstAttribute="leading" secondItem="c3c-1A-CY5" secondAttribute="leading" constant="2" id="LiB-4w-5al"/>
+                            <constraint firstItem="UYa-bg-4KG" firstAttribute="leading" secondItem="c3c-1A-CY5" secondAttribute="leading" id="LiB-4w-5al"/>
                             <constraint firstItem="UYa-bg-4KG" firstAttribute="width" secondItem="c3c-1A-CY5" secondAttribute="width" id="QKD-Ns-uaz"/>
                             <constraint firstAttribute="trailingMargin" secondItem="UYa-bg-4KG" secondAttribute="trailing" constant="-20" id="Reu-0T-0m9"/>
-                            <constraint firstAttribute="trailing" secondItem="UYa-bg-4KG" secondAttribute="trailing" constant="2" id="RrJ-gM-Td5"/>
+                            <constraint firstAttribute="trailing" secondItem="UYa-bg-4KG" secondAttribute="trailing" id="RrJ-gM-Td5"/>
                             <constraint firstItem="2w2-qe-sbm" firstAttribute="centerX" secondItem="c3c-1A-CY5" secondAttribute="centerX" id="UyB-6h-GRj"/>
                             <constraint firstItem="2w2-qe-sbm" firstAttribute="centerY" secondItem="c3c-1A-CY5" secondAttribute="centerY" id="W2O-ni-M9m"/>
                             <constraint firstItem="4ZY-gh-LU2" firstAttribute="top" secondItem="UYa-bg-4KG" secondAttribute="bottom" id="YkZ-kj-73y"/>

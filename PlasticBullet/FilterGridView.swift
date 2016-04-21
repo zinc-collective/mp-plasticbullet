@@ -14,17 +14,24 @@ class FilterGridView: UIView {
     let grid = GridLayout()
     var rows = 2
     var cols = 2
-    var spacing:CGFloat = 20
+    var spacing:CGFloat = 14
     var animationDuration = 0.25
     
     var focusedView: UIView?
     
+    var contentView: UIView
+    
     required init(coder aDecoder: NSCoder) {
+        contentView = UIView(coder: aDecoder)!
         super.init(coder: aDecoder)!
+        addSubview(contentView)
     }
     
     
     override func layoutSubviews() {
+        
+        self.contentView.frame = CGRectInset(self.bounds, spacing/2, spacing/2)
+        
         if let fview = self.focusedView {
             self.layoutFocus(fview)
         }
@@ -49,7 +56,7 @@ class FilterGridView: UIView {
     }
     
     func layoutGridFrames() -> [(CGRect, UIView)] {
-        let framesAndViews = self.grid.layout(self.subviews, parentSize: self.bounds.size, rows: self.rows, cols: self.cols)
+        let framesAndViews = self.grid.layout(self.contentView.subviews, parentSize: self.contentView.bounds.size, rows: self.rows, cols: self.cols)
         return framesAndViews.map { (frame, view) -> (CGRect, UIView) in
             let inset = CGRectInset(frame, self.spacing/2, self.spacing/2)
             return (inset, view)
@@ -57,7 +64,7 @@ class FilterGridView: UIView {
     }
     
     func layoutFocus(view:UIView) {
-        let fullFrame = CGRectInset(self.bounds, self.spacing/2, self.spacing/2)
+        let fullFrame = CGRectInset(self.contentView.bounds, self.spacing/2, self.spacing/2)
         view.frame = fullFrame
     }
     
@@ -120,6 +127,10 @@ class FilterGridView: UIView {
     }
     
     func otherViews(focused:UIView) -> [UIView] {
-        return self.subviews.filter({ v in v != focused })
+        return self.contentView.subviews.filter({ v in v != focused })
+    }
+    
+    func addGridItem(view:UIView) {
+        self.contentView.addSubview(view)
     }
 }

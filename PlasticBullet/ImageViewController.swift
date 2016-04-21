@@ -84,17 +84,17 @@ class ImageViewController: UIViewController, UIImagePickerControllerDelegate, UI
         self.backButton.hidden = true
         self.shareButton.hidden = true
         
-        self.imagesView.addSubview(self.topLeftImage)
-        self.imagesView.addSubview(self.topRightImage)
-        self.imagesView.addSubview(self.bottomLeftImage)
-        self.imagesView.addSubview(self.bottomRightImage)
+        self.imagesView.addGridItem(self.topLeftImage)
+        self.imagesView.addGridItem(self.topRightImage)
+        self.imagesView.addGridItem(self.bottomLeftImage)
+        self.imagesView.addGridItem(self.bottomRightImage)
         
         if gridSize == GRID_9 {
-            self.imagesView.addSubview(self.topMiddleImage)
-            self.imagesView.addSubview(self.middleLeftImage)
-            self.imagesView.addSubview(self.middleMiddleImage)
-            self.imagesView.addSubview(self.middleRightImage)
-            self.imagesView.addSubview(self.bottomMiddleView)
+            self.imagesView.addGridItem(self.topMiddleImage)
+            self.imagesView.addGridItem(self.middleLeftImage)
+            self.imagesView.addGridItem(self.middleMiddleImage)
+            self.imagesView.addGridItem(self.middleRightImage)
+            self.imagesView.addGridItem(self.bottomMiddleView)
             
             self.imagesView.rows = 3
             self.imagesView.cols = 3
