@@ -16,15 +16,32 @@ class SplashViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var libraryButton: UIButton!
     @IBOutlet weak var cameraButton: UIButton!
     @IBOutlet weak var infoButton: UIButton!
+    @IBOutlet weak var bottomBar: UIView!
+    
+    @IBOutlet weak var bottomBarBottom: NSLayoutConstraint!
     
     var picker: UIImagePickerController?
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBarHidden = true
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        libraryButton.alpha = 0
+        cameraButton.alpha = 0
+        bottomBarBottom.constant = -bottomBar.frame.size.height
+        
+        dispatch_async(dispatch_get_main_queue()) {
+            UIView.animateWithDuration(0.500, animations: {
+                self.libraryButton.alpha = 1
+                self.cameraButton.alpha = 1
+                self.bottomBarBottom.constant = 0
+                self.view.layoutIfNeeded()
+            })
+        }
     }
     
     override func prefersStatusBarHidden() -> Bool {

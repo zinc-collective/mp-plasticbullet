@@ -29,10 +29,16 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i72-VL-LuQ">
                                 <rect key="frame" x="66" y="339" width="89" height="111"/>
                                 <state key="normal" image="splash-camera"/>
+                                <connections>
+                                    <action selector="didTapCamera:" destination="eiu-ce-jw1" eventType="touchUpInside" id="Zmn-AY-YBE"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EC7-oB-l7z">
                                 <rect key="frame" x="220" y="339" width="90" height="111"/>
                                 <state key="normal" image="splash-library"/>
+                                <connections>
+                                    <action selector="didTapLibrary:" destination="eiu-ce-jw1" eventType="touchUpInside" id="hwd-rJ-Xe9"/>
+                                </connections>
                             </button>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HoF-nt-fiy">
                                 <rect key="frame" x="0.0" y="339" width="65.5" height="128"/>
@@ -108,6 +114,11 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="background" destination="bDg-DY-m2U" id="sS1-Bv-RL2"/>
+                        <outlet property="bottomBar" destination="Lve-bO-kgK" id="JPq-1x-m26"/>
+                        <outlet property="bottomBarBottom" destination="gkt-X8-vFQ" id="oJJ-lg-KiZ"/>
+                        <outlet property="cameraButton" destination="i72-VL-LuQ" id="HV2-8v-1aQ"/>
+                        <outlet property="infoButton" destination="qFT-lG-DsO" id="X4Y-Pb-hGR"/>
+                        <outlet property="libraryButton" destination="EC7-oB-l7z" id="WeP-Pa-Whn"/>
                         <segue destination="t5d-10-bgu" kind="presentation" identifier="Info" id="cyn-gz-sRt"/>
                     </connections>
                 </viewController>
