@@ -21,13 +21,13 @@
                                 <rect key="frame" x="129.5" y="86" width="116" height="118"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash-logo" translatesAutoresizingMaskIntoConstraints="NO" id="nUa-uZ-9BQ">
-                                <rect key="frame" x="6" y="144" width="362" height="195"/>
+                                <rect key="frame" x="6" y="150" width="362" height="195"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.20392156862745098" green="0.23137254901960785" blue="0.25098039215686274" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="kOl-yH-vwh" firstAttribute="top" secondItem="Ohh-zw-Ek1" secondAttribute="bottom" constant="66" id="T8K-Lq-d2K"/>
-                            <constraint firstItem="nUa-uZ-9BQ" firstAttribute="top" secondItem="kOl-yH-vwh" secondAttribute="bottom" constant="-60" id="VA6-wW-5q0"/>
+                            <constraint firstItem="nUa-uZ-9BQ" firstAttribute="top" secondItem="kOl-yH-vwh" secondAttribute="bottom" constant="-54" id="VA6-wW-5q0"/>
                             <constraint firstItem="nUa-uZ-9BQ" firstAttribute="centerX" secondItem="S8N-ZW-p1W" secondAttribute="centerX" id="cJL-ZD-zj9"/>
                             <constraint firstItem="kOl-yH-vwh" firstAttribute="centerX" secondItem="S8N-ZW-p1W" secondAttribute="centerX" id="rhD-F1-7XN"/>
                         </constraints>

@@ -190,10 +190,12 @@ class ImageViewController: UIViewController, UIImagePickerControllerDelegate, UI
                 return fullImage
             }
         
+            let srcRect = self.shareButton.frame
             let share = UIActivityViewController(activityItems: [activity], applicationActivities: nil)
             share.modalPresentationStyle = .Popover
             share.popoverPresentationController?.sourceView = self.view
-            share.popoverPresentationController?.sourceRect = self.shareButton.frame
+            share.popoverPresentationController?.sourceRect = CGRect(x: srcRect.origin.x, y: srcRect.origin.y + 30, width: srcRect.size.width, height: srcRect.size.height)
+            share.popoverPresentationController?.permittedArrowDirections = .Up
             
             share.completionWithItemsHandler = { activityType, completed, returnedItems, error in
                 // this will hide even if cancelled
