@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="eiu-ce-jw1">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Splash View Controller-->
+        <scene sceneID="lrf-AW-TsA">
+            <objects>
+                <viewController id="eiu-ce-jw1" customClass="SplashViewController" customModule="Plastic_Bullet" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y6d-gb-Bjt"/>
+                        <viewControllerLayoutGuide type="bottom" id="d5W-Sd-QSv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FHp-nz-Ioq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sample-bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="bDg-DY-m2U">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app-icon-round" translatesAutoresizingMaskIntoConstraints="NO" id="AW6-Bc-HQi">
+                                <rect key="frame" x="129" y="86" width="116" height="118"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash-logo" translatesAutoresizingMaskIntoConstraints="NO" id="r6g-AJ-eds">
+                                <rect key="frame" x="7" y="144" width="362" height="195"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i72-VL-LuQ">
+                                <rect key="frame" x="66" y="339" width="89" height="111"/>
+                                <state key="normal" image="splash-camera"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EC7-oB-l7z">
+                                <rect key="frame" x="220" y="339" width="90" height="111"/>
+                                <state key="normal" image="splash-library"/>
+                            </button>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HoF-nt-fiy">
+                                <rect key="frame" x="0.0" y="339" width="65.5" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="LBW-Qz-kGF"/>
+                                </constraints>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AMv-W8-PGv">
+                                <rect key="frame" x="155" y="339" width="65" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="3Z8-8a-vw6"/>
+                                </constraints>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="91b-CZ-73h">
+                                <rect key="frame" x="310" y="339" width="65" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="9We-Rh-oOx"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lve-bO-kgK">
+                                <rect key="frame" x="0.0" y="596" width="375" height="71"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qFT-lG-DsO">
+                                        <rect key="frame" x="155" y="23" width="64" height="25"/>
+                                        <state key="normal" image="splash-info"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="qFT-lG-DsO" firstAttribute="centerY" secondItem="Lve-bO-kgK" secondAttribute="centerY" id="Ojz-dB-Axp"/>
+                                    <constraint firstItem="qFT-lG-DsO" firstAttribute="centerX" secondItem="Lve-bO-kgK" secondAttribute="centerX" id="caC-09-cnn"/>
+                                    <constraint firstAttribute="height" constant="71" id="zhj-jR-dow"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="HoF-nt-fiy" firstAttribute="top" secondItem="r6g-AJ-eds" secondAttribute="bottom" id="0Eh-rO-n28"/>
+                            <constraint firstItem="91b-CZ-73h" firstAttribute="height" secondItem="HoF-nt-fiy" secondAttribute="height" id="0ck-0O-SkV"/>
+                            <constraint firstItem="AMv-W8-PGv" firstAttribute="centerX" secondItem="FHp-nz-Ioq" secondAttribute="centerX" id="2hH-no-KAz"/>
+                            <constraint firstItem="91b-CZ-73h" firstAttribute="leading" secondItem="EC7-oB-l7z" secondAttribute="trailing" id="5kw-4I-89Q"/>
+                            <constraint firstItem="bDg-DY-m2U" firstAttribute="leading" secondItem="FHp-nz-Ioq" secondAttribute="leading" id="Bou-qD-foJ"/>
+                            <constraint firstItem="91b-CZ-73h" firstAttribute="width" secondItem="HoF-nt-fiy" secondAttribute="width" id="EMf-og-Yj9"/>
+                            <constraint firstItem="91b-CZ-73h" firstAttribute="top" secondItem="r6g-AJ-eds" secondAttribute="bottom" id="F6Y-iH-Jcv"/>
+                            <constraint firstItem="i72-VL-LuQ" firstAttribute="leading" secondItem="HoF-nt-fiy" secondAttribute="trailing" id="FD3-D0-mVG"/>
+                            <constraint firstItem="bDg-DY-m2U" firstAttribute="top" secondItem="FHp-nz-Ioq" secondAttribute="top" id="KyC-ZL-rj1"/>
+                            <constraint firstItem="AW6-Bc-HQi" firstAttribute="top" secondItem="y6d-gb-Bjt" secondAttribute="bottom" constant="66" id="Ljf-Kg-Sc5"/>
+                            <constraint firstItem="d5W-Sd-QSv" firstAttribute="top" secondItem="bDg-DY-m2U" secondAttribute="bottom" id="MSc-es-Dsa"/>
+                            <constraint firstAttribute="trailing" secondItem="bDg-DY-m2U" secondAttribute="trailing" id="Nrz-61-YTM"/>
+                            <constraint firstItem="r6g-AJ-eds" firstAttribute="centerX" secondItem="FHp-nz-Ioq" secondAttribute="centerX" id="SJG-aB-Nth"/>
+                            <constraint firstAttribute="trailing" secondItem="91b-CZ-73h" secondAttribute="trailing" id="UGz-wE-zME"/>
+                            <constraint firstItem="AMv-W8-PGv" firstAttribute="top" secondItem="r6g-AJ-eds" secondAttribute="bottom" id="VRg-rw-eIO"/>
+                            <constraint firstItem="i72-VL-LuQ" firstAttribute="top" secondItem="r6g-AJ-eds" secondAttribute="bottom" id="XBX-9c-qK1"/>
+                            <constraint firstItem="EC7-oB-l7z" firstAttribute="leading" secondItem="AMv-W8-PGv" secondAttribute="trailing" id="YBa-wJ-yt3"/>
+                            <constraint firstItem="r6g-AJ-eds" firstAttribute="top" secondItem="AW6-Bc-HQi" secondAttribute="bottom" constant="-60" id="YJQ-al-h68"/>
+                            <constraint firstAttribute="trailing" secondItem="Lve-bO-kgK" secondAttribute="trailing" id="crI-Xi-h61"/>
+                            <constraint firstItem="AW6-Bc-HQi" firstAttribute="centerX" secondItem="FHp-nz-Ioq" secondAttribute="centerX" id="dYG-dT-h0r"/>
+                            <constraint firstItem="AMv-W8-PGv" firstAttribute="leading" secondItem="i72-VL-LuQ" secondAttribute="trailing" id="fAc-Mv-3QG"/>
+                            <constraint firstItem="HoF-nt-fiy" firstAttribute="leading" secondItem="FHp-nz-Ioq" secondAttribute="leading" id="giZ-m0-AzK"/>
+                            <constraint firstItem="d5W-Sd-QSv" firstAttribute="top" secondItem="Lve-bO-kgK" secondAttribute="bottom" id="gkt-X8-vFQ"/>
+                            <constraint firstItem="Lve-bO-kgK" firstAttribute="leading" secondItem="FHp-nz-Ioq" secondAttribute="leading" id="lQh-12-U0x"/>
+                            <constraint firstItem="AMv-W8-PGv" firstAttribute="height" secondItem="HoF-nt-fiy" secondAttribute="height" id="pPR-gs-T9r"/>
+                            <constraint firstItem="EC7-oB-l7z" firstAttribute="top" secondItem="r6g-AJ-eds" secondAttribute="bottom" id="uWO-nI-dwT"/>
+                            <constraint firstItem="AMv-W8-PGv" firstAttribute="width" secondItem="HoF-nt-fiy" secondAttribute="width" id="yBJ-64-hVA"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="background" destination="bDg-DY-m2U" id="sS1-Bv-RL2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qs8-Pz-z95" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="456.5" y="396.5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="app-icon-round" width="116" height="118"/>
+        <image name="sample-bg.png" width="750" height="1334"/>
+        <image name="splash-camera" width="89" height="111"/>
+        <image name="splash-info" width="64" height="25"/>
+        <image name="splash-library" width="89" height="111"/>
+        <image name="splash-logo" width="362" height="195"/>
+    </resources>
+</document>

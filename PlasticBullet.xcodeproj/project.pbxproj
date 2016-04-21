@@ -14,9 +14,11 @@
 		7881D58F1C78DAA8000255F9 /* PBCircleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7881D58E1C78DAA8000255F9 /* PBCircleLabel.swift */; };
 		7881D5941C78EDC9000255F9 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7881D5931C78EDC9000255F9 /* InfoViewController.swift */; };
 		7881D5961C78F7C4000255F9 /* FilterPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7881D5951C78F7C4000255F9 /* FilterPickerViewController.swift */; };
+		78982FC81CC92295004B7703 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78982FC71CC92295004B7703 /* Splash.storyboard */; };
+		78982FCA1CC924C2004B7703 /* sample-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 78982FC91CC924C2004B7703 /* sample-bg.png */; };
 		78A3DF761C7E0CE000C757BD /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 78A3DF751C7E0CE000C757BD /* Settings.bundle */; };
 		78B6A24E1C76780500AE58F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6A24D1C76780500AE58F7 /* AppDelegate.swift */; };
-		78B6A2501C76780500AE58F7 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6A24F1C76780500AE58F7 /* LandingViewController.swift */; };
+		78B6A2501C76780500AE58F7 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6A24F1C76780500AE58F7 /* SplashViewController.swift */; };
 		78B6A2531C76780500AE58F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78B6A2511C76780500AE58F7 /* Main.storyboard */; };
 		78B6A2551C76780500AE58F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78B6A2541C76780500AE58F7 /* Assets.xcassets */; };
 		78C0150C1C7B9165009C382C /* Renderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C0150B1C7B9165009C382C /* Renderer.m */; };
@@ -166,12 +168,14 @@
 		7881D58E1C78DAA8000255F9 /* PBCircleLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PBCircleLabel.swift; path = Landing/PBCircleLabel.swift; sourceTree = "<group>"; };
 		7881D5931C78EDC9000255F9 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		7881D5951C78F7C4000255F9 /* FilterPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterPickerViewController.swift; sourceTree = "<group>"; };
+		78982FC71CC92295004B7703 /* Splash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
+		78982FC91CC924C2004B7703 /* sample-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sample-bg.png"; sourceTree = "<group>"; };
 		78A3DF711C7E0A4800C757BD /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		78A3DF721C7E0A4800C757BD /* todo.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = todo.md; sourceTree = "<group>"; };
 		78A3DF751C7E0CE000C757BD /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		78B6A24A1C76780500AE58F7 /* Plastic Bullet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Plastic Bullet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78B6A24D1C76780500AE58F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		78B6A24F1C76780500AE58F7 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
+		78B6A24F1C76780500AE58F7 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		78B6A2521C76780500AE58F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		78B6A2541C76780500AE58F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		78B6A2591C76780500AE58F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -345,14 +349,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		7881D5901C78DAAE000255F9 /* Landing */ = {
+		7881D5901C78DAAE000255F9 /* Splash */ = {
 			isa = PBXGroup;
 			children = (
-				78B6A24F1C76780500AE58F7 /* LandingViewController.swift */,
+				78982FC91CC924C2004B7703 /* sample-bg.png */,
+				78982FC71CC92295004B7703 /* Splash.storyboard */,
+				78B6A24F1C76780500AE58F7 /* SplashViewController.swift */,
 				7881D5931C78EDC9000255F9 /* InfoViewController.swift */,
 				7881D58E1C78DAA8000255F9 /* PBCircleLabel.swift */,
 			);
-			name = Landing;
+			name = Splash;
 			sourceTree = "<group>";
 		};
 		7881D5971C78F7C8000255F9 /* Filters */ = {
@@ -391,14 +397,14 @@
 		78B6A24C1C76780500AE58F7 /* PlasticBullet */ = {
 			isa = PBXGroup;
 			children = (
+				78B6A2541C76780500AE58F7 /* Assets.xcassets */,
 				78B6A2511C76780500AE58F7 /* Main.storyboard */,
 				78E2E6B41C7B7C1100B5A91A /* Style.swift */,
 				78E2E6B21C7B780300B5A91A /* NavigationController.swift */,
 				78B6A24D1C76780500AE58F7 /* AppDelegate.swift */,
 				78E2E7A91C7B815D00B5A91A /* PlasticBullet-Bridging-Header.h */,
-				7881D5901C78DAAE000255F9 /* Landing */,
+				7881D5901C78DAAE000255F9 /* Splash */,
 				7881D5971C78F7C8000255F9 /* Filters */,
-				78B6A2541C76780500AE58F7 /* Assets.xcassets */,
 				78A3DF751C7E0CE000C757BD /* Settings.bundle */,
 				78B6A2591C76780500AE58F7 /* Info.plist */,
 				78C015191C7BB739009C382C /* Mojo */,
@@ -650,9 +656,11 @@
 				78E2E7651C7B7FA200B5A91A /* flexBorders_01_smooth_edge_00009.png in Resources */,
 				78E2E7391C7B7FA200B5A91A /* flexBorders_00_bp1_edge_00005.png in Resources */,
 				78E2E77D1C7B7FA200B5A91A /* flexBorders_02_smooth_edge_00003.png in Resources */,
+				78982FCA1CC924C2004B7703 /* sample-bg.png in Resources */,
 				78E2E74B1C7B7FA200B5A91A /* flexBorders_00_soft_edge_00003.png in Resources */,
 				78E2E7681C7B7FA200B5A91A /* flexBorders_01_soft_edge_00002.png in Resources */,
 				78E2E7861C7B7FA200B5A91A /* flexBorders_02_soft_edge_00002.png in Resources */,
+				78982FC81CC92295004B7703 /* Splash.storyboard in Resources */,
 				78E2E73E1C7B7FA200B5A91A /* flexBorders_00_smooth_edge_00000.png in Resources */,
 				78E2E78C1C7B7FA200B5A91A /* flexBorders_02_soft_edge_00008.png in Resources */,
 				78E2E7301C7B7FA200B5A91A /* border_1600x1200px.png in Resources */,
@@ -827,7 +835,7 @@
 				787396691C84CB73005F5E4B /* FilterGridView.swift in Sources */,
 				78E2E7D81C7B859400B5A91A /* fileOutput.c in Sources */,
 				78E2E6B31C7B780300B5A91A /* NavigationController.swift in Sources */,
-				78B6A2501C76780500AE58F7 /* LandingViewController.swift in Sources */,
+				78B6A2501C76780500AE58F7 /* SplashViewController.swift in Sources */,
 				78C015141C7BACF2009C382C /* Plugin_Render.mm in Sources */,
 				78C0151F1C7BB739009C382C /* mojoViewController.mm in Sources */,
 				7881D58F1C78DAA8000255F9 /* PBCircleLabel.swift in Sources */,
