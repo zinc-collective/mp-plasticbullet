@@ -155,6 +155,8 @@
 		78E2E7D91C7B859400B5A91A /* ImageProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E2E7D11C7B859400B5A91A /* ImageProcess.m */; };
 		78E2E7DA1C7B859400B5A91A /* pb_render.c in Sources */ = {isa = PBXBuildFile; fileRef = 78E2E7D21C7B859400B5A91A /* pb_render.c */; };
 		78F278651C9713DA00287042 /* ImageActivityItemProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F278641C9713DA00287042 /* ImageActivityItemProvider.swift */; };
+		78F697B21CCA7E9C000EA042 /* splash-images in Resources */ = {isa = PBXBuildFile; fileRef = 78F697B11CCA7E9C000EA042 /* splash-images */; };
+		78F697B41CCA80CD000EA042 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F697B31CCA80CD000EA042 /* AppState.swift */; };
 		7DB9009B93DFA315DE326BB3 /* Pods_PlasticBullet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0893F224447775751EA92B24 /* Pods_PlasticBullet.framework */; };
 /* End PBXBuildFile section */
 
@@ -327,6 +329,8 @@
 		78E2E7D21C7B859400B5A91A /* pb_render.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pb_render.c; sourceTree = "<group>"; };
 		78E2E7D31C7B859400B5A91A /* pb_render.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pb_render.h; sourceTree = "<group>"; };
 		78F278641C9713DA00287042 /* ImageActivityItemProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageActivityItemProvider.swift; sourceTree = "<group>"; };
+		78F697B11CCA7E9C000EA042 /* splash-images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "splash-images"; sourceTree = "<group>"; };
+		78F697B31CCA80CD000EA042 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -354,6 +358,7 @@
 		7881D5901C78DAAE000255F9 /* Splash */ = {
 			isa = PBXGroup;
 			children = (
+				78F697B11CCA7E9C000EA042 /* splash-images */,
 				78982FCB1CC9377B004B7703 /* Launch.storyboard */,
 				78982FC91CC924C2004B7703 /* sample-bg.png */,
 				78982FC71CC92295004B7703 /* Splash.storyboard */,
@@ -406,6 +411,7 @@
 				78E2E6B21C7B780300B5A91A /* NavigationController.swift */,
 				78B6A24D1C76780500AE58F7 /* AppDelegate.swift */,
 				78E2E7A91C7B815D00B5A91A /* PlasticBullet-Bridging-Header.h */,
+				78F697B31CCA80CD000EA042 /* AppState.swift */,
 				7881D5901C78DAAE000255F9 /* Splash */,
 				7881D5971C78F7C8000255F9 /* Image */,
 				78A3DF751C7E0CE000C757BD /* Settings.bundle */,
@@ -699,6 +705,7 @@
 				78E2E75E1C7B7FA200B5A91A /* flexBorders_01_smooth_edge_00002.png in Resources */,
 				78E2E7821C7B7FA200B5A91A /* flexBorders_02_smooth_edge_00008.png in Resources */,
 				78E2E7731C7B7FA200B5A91A /* flexBorders_02_bp1_edge_00003.png in Resources */,
+				78F697B21CCA7E9C000EA042 /* splash-images in Resources */,
 				78E2E78A1C7B7FA200B5A91A /* flexBorders_02_soft_edge_00006.png in Resources */,
 				78A3DF761C7E0CE000C757BD /* Settings.bundle in Resources */,
 				78E2E7371C7B7FA200B5A91A /* flexBorders_00_bp1_edge_00003.png in Resources */,
@@ -852,6 +859,7 @@
 				78E2E7D61C7B859400B5A91A /* fastBlur.c in Sources */,
 				78E2E6B51C7B7C1100B5A91A /* Style.swift in Sources */,
 				78C0150C1C7B9165009C382C /* Renderer.m in Sources */,
+				78F697B41CCA80CD000EA042 /* AppState.swift in Sources */,
 				78F278651C9713DA00287042 /* ImageActivityItemProvider.swift in Sources */,
 				78E2E7A81C7B80D100B5A91A /* FilterView.swift in Sources */,
 				78C0150F1C7B91F4009C382C /* Utilities.m in Sources */,

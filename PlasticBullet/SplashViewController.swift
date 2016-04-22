@@ -42,7 +42,24 @@ class SplashViewController: UIViewController, UIImagePickerControllerDelegate, U
                 self.view.layoutIfNeeded()
             })
         }
+        
+        let images = self.splashImages()
+        
+        let nextIndex = Int(arc4random()) % images.count
+        let nextImage = images[nextIndex]
+        
+        if let data = NSData(contentsOfURL: nextImage) {
+            background.image = UIImage(data: data)
+        }
     }
+    
+    func splashImages() -> [NSURL] {
+        let path = NSBundle.mainBundle().pathForResource("splash-images", ofType: nil)!
+        let baseURL = NSURL(fileURLWithPath: path, isDirectory: true)
+        let contents = try! NSFileManager.defaultManager().contentsOfDirectoryAtPath(path)
+        return contents.map({file in baseURL.URLByAppendingPathComponent(file)})
+    }
+    
     
     override func prefersStatusBarHidden() -> Bool {
         return false
