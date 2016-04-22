@@ -144,7 +144,7 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RWk-Hz-CAs">
-                                        <rect key="frame" x="138" y="0.0" width="100" height="70"/>
+                                        <rect key="frame" x="138" y="-0.5" width="100" height="73"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="A8t-Pv-mz0"/>
                                         </constraints>
@@ -162,7 +162,7 @@
                                     <constraint firstAttribute="height" constant="70" id="GXo-gZ-Xwp"/>
                                     <constraint firstItem="do1-DW-q2c" firstAttribute="width" secondItem="4ZY-gh-LU2" secondAttribute="width" multiplier="0.5" constant="-36" id="Lac-Q5-2mc"/>
                                     <constraint firstItem="RWk-Hz-CAs" firstAttribute="centerX" secondItem="4ZY-gh-LU2" secondAttribute="centerX" id="awT-PW-Z5L"/>
-                                    <constraint firstItem="RWk-Hz-CAs" firstAttribute="centerY" secondItem="4ZY-gh-LU2" secondAttribute="centerY" id="iM6-9a-tIQ"/>
+                                    <constraint firstItem="RWk-Hz-CAs" firstAttribute="centerY" secondItem="4ZY-gh-LU2" secondAttribute="centerY" constant="1" id="iM6-9a-tIQ"/>
                                     <constraint firstItem="do1-DW-q2c" firstAttribute="top" secondItem="4ZY-gh-LU2" secondAttribute="top" id="jSC-Xo-u30"/>
                                     <constraint firstItem="JfK-QE-FPh" firstAttribute="width" secondItem="4ZY-gh-LU2" secondAttribute="width" multiplier="0.5" constant="-37" id="mc1-su-Evg"/>
                                     <constraint firstItem="JfK-QE-FPh" firstAttribute="top" secondItem="4ZY-gh-LU2" secondAttribute="top" id="npA-lK-D3c"/>
@@ -228,7 +228,7 @@
         <image name="camera-icon" width="35" height="27"/>
         <image name="library-icon" width="34" height="28"/>
         <image name="logo" width="158" height="29"/>
-        <image name="refresh-button" width="73" height="70"/>
+        <image name="refresh-button" width="73" height="73"/>
         <image name="share-icon" width="21" height="29"/>
     </resources>
 </document>
