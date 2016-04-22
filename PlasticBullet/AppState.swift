@@ -24,8 +24,7 @@ class AppState: NSObject, NSCoding {
             usedImages = []
         }
 
-        let nextIndex = Int(arc4random()) % unusedImageURLs.count
-        let nextImage = unusedImageURLs[nextIndex]
+        let nextImage = unusedImageURLs[0]
 
         usedImages.append(nextImage.lastPathComponent!)
         saveState()

@@ -22,6 +22,8 @@ class SplashViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     var picker: UIImagePickerController?
     
+    let appState = AppState.loadState()
+    
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBarHidden = true
         
@@ -44,10 +46,7 @@ class SplashViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
         
         let images = self.splashImages()
-        
-        let nextIndex = Int(arc4random()) % images.count
-        let nextImage = images[nextIndex]
-        
+        let nextImage = appState.findNextImage(images)
         if let data = NSData(contentsOfURL: nextImage) {
             background.image = UIImage(data: data)
         }
