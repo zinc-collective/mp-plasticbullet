@@ -239,6 +239,7 @@ class ImageViewController: UIViewController, UIImagePickerControllerDelegate, UI
         let img = chooseImage(info, sourceType: picker.sourceType)
         
         // update the view
+        unfocusImage()
         updateImage(img)
         
         // ditch the picker
