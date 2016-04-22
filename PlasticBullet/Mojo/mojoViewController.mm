@@ -2296,12 +2296,20 @@ int loadTime = 0;
 	
 	UIImage * fullImage = [Utilities imageFromFileCache:ORIGINAL_IMAGE_FILE_NAME];
     
-    // "Full" means half of the original size
-	CGFloat fullImageWidth = CGImageGetWidth( fullImage.CGImage ) / 2;
-	CGFloat fullImageHeight = CGImageGetHeight( fullImage.CGImage ) / 2;
-	
-	CGFloat width = fullImageWidth;
-	CGFloat height = fullImageHeight;
+    // Render the image at a smaller resolution if it's too big
+    CGFloat fullImageWidth = CGImageGetWidth( fullImage.CGImage );
+    CGFloat fullImageHeight = CGImageGetHeight( fullImage.CGImage );
+    
+    CGFloat maxArea =  (4032/2) * (3024/2); // half iphone 6 resolution
+    CGFloat imageArea = fullImageHeight * fullImageWidth;
+    CGFloat scaleFactor = MIN((maxArea / imageArea)*2, 1.0);
+    
+    CGFloat width = fullImageWidth * scaleFactor;
+    CGFloat height = fullImageHeight * scaleFactor;
+//    NSLog(@"RENDER SCALE %f", scaleFactor);
+//    NSLog(@"wh (%f, %f)", width, height);
+//    NSLog(@"full wh (%f, %f)", fullImageWidth, fullImageHeight);
+//    NSLog(@"total area %f", width * height);
     
 	UIImage *renderImage = [self createNewImage:&fullImage imgWidth:width imgHeight:height imgParameter:-1];
 	
