@@ -113,7 +113,7 @@ class SplashViewController: UIViewController, UIImagePickerControllerDelegate, U
         picker.dismissViewControllerAnimated(true, completion: nil)
         let images = UIStoryboard(name: "Image", bundle: nil).instantiateInitialViewController() as! ImageViewController
         images.chooseImage(info, sourceType: picker.sourceType)
-        images.modalTransitionStyle = .FlipHorizontal
+        images.modalTransitionStyle = .CrossDissolve
         
         self.presentViewController(images, animated: true, completion: nil)
     }
