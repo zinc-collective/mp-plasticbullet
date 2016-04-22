@@ -62,21 +62,24 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lve-bO-kgK">
-                                <rect key="frame" x="0.0" y="596" width="375" height="71"/>
+                                <rect key="frame" x="0.0" y="597" width="375" height="70"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qFT-lG-DsO">
-                                        <rect key="frame" x="155" y="23" width="64" height="25"/>
+                                        <rect key="frame" x="138" y="0.0" width="100" height="70"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="Nv6-7Q-vtE"/>
+                                            <constraint firstAttribute="height" constant="70" id="qO3-FI-VhV"/>
+                                        </constraints>
                                         <state key="normal" image="splash-info"/>
                                         <connections>
                                             <action selector="didTapInfo:" destination="eiu-ce-jw1" eventType="touchUpInside" id="OiQ-7R-Btd"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="qFT-lG-DsO" firstAttribute="centerY" secondItem="Lve-bO-kgK" secondAttribute="centerY" id="Ojz-dB-Axp"/>
                                     <constraint firstItem="qFT-lG-DsO" firstAttribute="centerX" secondItem="Lve-bO-kgK" secondAttribute="centerX" id="caC-09-cnn"/>
-                                    <constraint firstAttribute="height" constant="71" id="zhj-jR-dow"/>
+                                    <constraint firstAttribute="height" constant="70" id="zhj-jR-dow"/>
                                 </constraints>
                             </view>
                         </subviews>

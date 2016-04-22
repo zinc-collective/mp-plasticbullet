@@ -157,6 +157,10 @@ class ImageViewController: UIViewController, UIImagePickerControllerDelegate, UI
         return .LightContent
     }
     
+    @IBAction func didTapHome() {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     @IBAction func didTapRefresh(sender: AnyObject) {
         print("REFRESH")
         if let img = image {

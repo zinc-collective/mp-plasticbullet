@@ -56,32 +56,48 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sdr-Gs-lfw">
-                                        <rect key="frame" x="20" y="37" width="25" height="22"/>
+                                        <rect key="frame" x="0.0" y="15" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="3R9-bg-qn6"/>
+                                            <constraint firstAttribute="width" constant="60" id="hRY-wX-c85"/>
+                                        </constraints>
                                         <state key="normal" image="back-arrow"/>
                                         <connections>
                                             <action selector="didTapBack:" destination="R7J-RV-lw7" eventType="touchUpInside" id="t9e-Db-wJr"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q4A-yC-4FO">
-                                        <rect key="frame" x="334" y="33" width="21" height="29"/>
+                                        <rect key="frame" x="315" y="15" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="D9n-cE-1sD"/>
+                                            <constraint firstAttribute="height" constant="60" id="vI1-xd-Y24"/>
+                                        </constraints>
                                         <state key="normal" image="share-icon"/>
                                         <connections>
                                             <action selector="didTapShare:" destination="R7J-RV-lw7" eventType="touchUpInside" id="KMb-ce-C5p"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="sYu-ze-br6">
-                                        <rect key="frame" x="108" y="33" width="158" height="29"/>
-                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vhm-P3-mG5">
+                                        <rect key="frame" x="72" y="15" width="230" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="XlN-rv-RJ2"/>
+                                            <constraint firstAttribute="width" constant="230" id="YbZ-B2-IQa"/>
+                                        </constraints>
+                                        <state key="normal" image="logo"/>
+                                        <connections>
+                                            <action selector="didTapHome" destination="R7J-RV-lw7" eventType="touchUpInside" id="A9E-N1-MK9"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.17254901959999999" green="0.20000000000000001" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.22745098039215686" green="0.2627450980392157" blue="0.28235294117647058" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="Q4A-yC-4FO" secondAttribute="trailing" constant="20" id="Drm-Ug-gMe"/>
-                                    <constraint firstItem="sYu-ze-br6" firstAttribute="centerY" secondItem="U1a-16-EEG" secondAttribute="centerY" constant="8" id="G43-D9-bh0"/>
-                                    <constraint firstItem="Q4A-yC-4FO" firstAttribute="centerY" secondItem="U1a-16-EEG" secondAttribute="centerY" constant="8" id="QLk-Bv-gMa"/>
-                                    <constraint firstItem="sdr-Gs-lfw" firstAttribute="leading" secondItem="U1a-16-EEG" secondAttribute="leading" constant="20" id="U9U-Uu-Dai"/>
-                                    <constraint firstItem="sYu-ze-br6" firstAttribute="centerX" secondItem="U1a-16-EEG" secondAttribute="centerX" id="VMc-3D-LOf"/>
+                                    <constraint firstAttribute="bottom" secondItem="sdr-Gs-lfw" secondAttribute="bottom" constant="5" id="3G0-qL-ikB"/>
+                                    <constraint firstAttribute="trailing" secondItem="Q4A-yC-4FO" secondAttribute="trailing" id="Drm-Ug-gMe"/>
+                                    <constraint firstItem="vhm-P3-mG5" firstAttribute="centerX" secondItem="U1a-16-EEG" secondAttribute="centerX" id="I6d-P1-loU"/>
+                                    <constraint firstItem="sdr-Gs-lfw" firstAttribute="leading" secondItem="U1a-16-EEG" secondAttribute="leading" id="U9U-Uu-Dai"/>
+                                    <constraint firstAttribute="bottom" secondItem="Q4A-yC-4FO" secondAttribute="bottom" constant="5" id="lOp-Jf-5RC"/>
+                                    <constraint firstAttribute="bottom" secondItem="vhm-P3-mG5" secondAttribute="bottom" constant="5" id="oNc-sG-Rjg"/>
                                     <constraint firstAttribute="height" constant="80" id="thR-el-tbS"/>
-                                    <constraint firstItem="sdr-Gs-lfw" firstAttribute="centerY" secondItem="U1a-16-EEG" secondAttribute="centerY" constant="8" id="zb3-SD-JMk"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ZY-gh-LU2" userLabel="Bottom Bar">
@@ -91,7 +107,11 @@
                                         <rect key="frame" x="0.0" y="0.0" width="150.5" height="70"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wvf-Z2-Oob">
-                                                <rect key="frame" x="58" y="21" width="35" height="27"/>
+                                                <rect key="frame" x="25" y="0.0" width="100" height="70"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="70" id="gYM-e4-7Yu"/>
+                                                    <constraint firstAttribute="width" constant="100" id="m3e-IW-RAN"/>
+                                                </constraints>
                                                 <state key="normal" image="camera-icon"/>
                                                 <connections>
                                                     <action selector="didTapCamera:" destination="R7J-RV-lw7" eventType="touchUpInside" id="ksW-Hw-J6d"/>
@@ -107,7 +127,11 @@
                                         <rect key="frame" x="224" y="0.0" width="151.5" height="70"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gSw-uc-FII">
-                                                <rect key="frame" x="59" y="21" width="34" height="28"/>
+                                                <rect key="frame" x="26" y="0.0" width="100" height="70"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="70" id="LPz-qT-WNc"/>
+                                                    <constraint firstAttribute="width" constant="100" id="SiV-Ma-Vic"/>
+                                                </constraints>
                                                 <state key="normal" image="library-icon"/>
                                                 <connections>
                                                     <action selector="didTapLibrary:" destination="R7J-RV-lw7" eventType="touchUpInside" id="BQn-zB-T74"/>
@@ -120,14 +144,17 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RWk-Hz-CAs">
-                                        <rect key="frame" x="151" y="0.0" width="73" height="70"/>
+                                        <rect key="frame" x="138" y="0.0" width="100" height="70"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="A8t-Pv-mz0"/>
+                                        </constraints>
                                         <state key="normal" image="refresh-button"/>
                                         <connections>
                                             <action selector="didTapRefresh:" destination="R7J-RV-lw7" eventType="touchUpInside" id="VEp-BC-S3y"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.17254901960784313" green="0.20000000000000001" blue="0.22352941176470589" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.2274509804" green="0.26274509800000001" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="JfK-QE-FPh" firstAttribute="leading" secondItem="4ZY-gh-LU2" secondAttribute="leading" id="8VV-xs-wO8"/>
                                     <constraint firstItem="do1-DW-q2c" firstAttribute="height" secondItem="4ZY-gh-LU2" secondAttribute="height" id="BSS-2O-CJP"/>
@@ -149,7 +176,7 @@
                                 </variation>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.054901960784313725" green="0.082352941176470587" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.066666666666666666" green="0.10588235294117647" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="woB-Gp-wcB" firstAttribute="top" secondItem="4ZY-gh-LU2" secondAttribute="bottom" id="8Kp-26-iHT"/>
                             <constraint firstItem="4ZY-gh-LU2" firstAttribute="leading" secondItem="c3c-1A-CY5" secondAttribute="leading" id="Fg7-U0-J61"/>
