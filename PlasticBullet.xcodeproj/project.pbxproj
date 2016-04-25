@@ -177,7 +177,7 @@
 		78A3DF711C7E0A4800C757BD /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		78A3DF721C7E0A4800C757BD /* todo.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = todo.md; sourceTree = "<group>"; };
 		78A3DF751C7E0CE000C757BD /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
-		78B6A24A1C76780500AE58F7 /* Plastic Bullet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Plastic Bullet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		78B6A24A1C76780500AE58F7 /* PlasticBullet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlasticBullet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78B6A24D1C76780500AE58F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78B6A24F1C76780500AE58F7 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		78B6A2521C76780500AE58F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -397,7 +397,7 @@
 		78B6A24B1C76780500AE58F7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				78B6A24A1C76780500AE58F7 /* Plastic Bullet.app */,
+				78B6A24A1C76780500AE58F7 /* PlasticBullet.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -598,9 +598,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		78B6A2491C76780500AE58F7 /* Plastic Bullet */ = {
+		78B6A2491C76780500AE58F7 /* PlasticBullet */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 78B6A25C1C76780500AE58F7 /* Build configuration list for PBXNativeTarget "Plastic Bullet" */;
+			buildConfigurationList = 78B6A25C1C76780500AE58F7 /* Build configuration list for PBXNativeTarget "PlasticBullet" */;
 			buildPhases = (
 				176A0F38D2845A6873322EE6 /* Check Pods Manifest.lock */,
 				78B6A2461C76780500AE58F7 /* Sources */,
@@ -608,14 +608,15 @@
 				78B6A2481C76780500AE58F7 /* Resources */,
 				A5AE32186FB3240C63F15030 /* Embed Pods Frameworks */,
 				880C4B3F615DF643A2600EFB /* Copy Pods Resources */,
+				7816DDB01CCEAA4100435D89 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Plastic Bullet";
+			name = PlasticBullet;
 			productName = PlasticBullet;
-			productReference = 78B6A24A1C76780500AE58F7 /* Plastic Bullet.app */;
+			productReference = 78B6A24A1C76780500AE58F7 /* PlasticBullet.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -647,7 +648,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				78B6A2491C76780500AE58F7 /* Plastic Bullet */,
+				78B6A2491C76780500AE58F7 /* PlasticBullet */,
 			);
 		};
 /* End PBXProject section */
@@ -804,6 +805,19 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
+		};
+		7816DDB01CCEAA4100435D89 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 6a09c19815c2f7f42d12f74f97f8f87c0f139e62 d29b37ba3305e7a136158c7684175a69995c401705890454f260b5b758d91816";
 		};
 		880C4B3F615DF643A2600EFB /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -972,6 +986,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = PlasticBullet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.redgiantsoftware.iphone.plasticbullet;
@@ -991,6 +1007,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = PlasticBullet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.redgiantsoftware.iphone.plasticbullet;
@@ -1013,7 +1031,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		78B6A25C1C76780500AE58F7 /* Build configuration list for PBXNativeTarget "Plastic Bullet" */ = {
+		78B6A25C1C76780500AE58F7 /* Build configuration list for PBXNativeTarget "PlasticBullet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				78B6A25D1C76780500AE58F7 /* Debug */,

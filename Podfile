@@ -4,5 +4,6 @@ use_frameworks!
 
 target 'PlasticBullet' do
     pod 'XMCircleType', '1.1.1'
+    pod 'Crashlytics', '~> 3.7.0'
 end
 
