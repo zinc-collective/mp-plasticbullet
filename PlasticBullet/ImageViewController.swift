@@ -375,10 +375,16 @@ class ImageViewController: UIViewController, UIImagePickerControllerDelegate, UI
         var scale : CGFloat = 1.0
         if (orientation == .LandscapeLeft || orientation == .LandscapeRight) {
             if let img = self.image {
-                let widthScale = topLeftImage.bounds.size.width / img.size.width;
-                let heightScale = topLeftImage.bounds.size.height / img.size.height;
-                let imageScale = min(widthScale, heightScale);
-                scale = topLeftImage.bounds.size.width / (imageScale * img.size.height);
+                
+                // convert image units to same scale as container bounds
+                let imageWidthScale = topLeftImage.bounds.size.width / img.size.width
+                let imageHeightScale = topLeftImage.bounds.size.height / img.size.height
+                let imageScale = min(imageWidthScale, imageHeightScale)
+                
+                // pick the scale that will make the new image fit
+                let widthScale = topLeftImage.bounds.size.width / (img.size.height * imageScale)
+                let heightScale = topLeftImage.bounds.size.height / (img.size.width * imageScale)
+                scale = min(widthScale, heightScale)
             }
         }
         
