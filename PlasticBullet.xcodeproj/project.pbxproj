@@ -20,7 +20,6 @@
 		78A3DF761C7E0CE000C757BD /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 78A3DF751C7E0CE000C757BD /* Settings.bundle */; };
 		78B6A24E1C76780500AE58F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6A24D1C76780500AE58F7 /* AppDelegate.swift */; };
 		78B6A2501C76780500AE58F7 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6A24F1C76780500AE58F7 /* SplashViewController.swift */; };
-		78B6A2531C76780500AE58F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78B6A2511C76780500AE58F7 /* Main.storyboard */; };
 		78B6A2551C76780500AE58F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78B6A2541C76780500AE58F7 /* Assets.xcassets */; };
 		78C0150C1C7B9165009C382C /* Renderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C0150B1C7B9165009C382C /* Renderer.m */; };
 		78C0150F1C7B91F4009C382C /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C0150E1C7B91F4009C382C /* Utilities.m */; };
@@ -157,6 +156,8 @@
 		78F278651C9713DA00287042 /* ImageActivityItemProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F278641C9713DA00287042 /* ImageActivityItemProvider.swift */; };
 		78F697B21CCA7E9C000EA042 /* splash-images in Resources */ = {isa = PBXBuildFile; fileRef = 78F697B11CCA7E9C000EA042 /* splash-images */; };
 		78F697B41CCA80CD000EA042 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F697B31CCA80CD000EA042 /* AppState.swift */; };
+		78F9C5501CCFD57300FFF6F4 /* info-text1.md in Resources */ = {isa = PBXBuildFile; fileRef = 78F9C54D1CCFD3AE00FFF6F4 /* info-text1.md */; };
+		78F9C5511CCFD57400FFF6F4 /* info-text2.md in Resources */ = {isa = PBXBuildFile; fileRef = 78F9C54E1CCFD40A00FFF6F4 /* info-text2.md */; };
 		7DB9009B93DFA315DE326BB3 /* Pods_PlasticBullet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0893F224447775751EA92B24 /* Pods_PlasticBullet.framework */; };
 /* End PBXBuildFile section */
 
@@ -180,7 +181,6 @@
 		78B6A24A1C76780500AE58F7 /* PlasticBullet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlasticBullet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78B6A24D1C76780500AE58F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78B6A24F1C76780500AE58F7 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
-		78B6A2521C76780500AE58F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		78B6A2541C76780500AE58F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		78B6A2591C76780500AE58F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78C0150A1C7B9165009C382C /* Renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Renderer.h; sourceTree = "<group>"; };
@@ -331,6 +331,8 @@
 		78F278641C9713DA00287042 /* ImageActivityItemProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageActivityItemProvider.swift; sourceTree = "<group>"; };
 		78F697B11CCA7E9C000EA042 /* splash-images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "splash-images"; sourceTree = "<group>"; };
 		78F697B31CCA80CD000EA042 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		78F9C54D1CCFD3AE00FFF6F4 /* info-text1.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "info-text1.md"; sourceTree = "<group>"; };
+		78F9C54E1CCFD40A00FFF6F4 /* info-text2.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "info-text2.md"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -364,6 +366,8 @@
 				78982FC71CC92295004B7703 /* Splash.storyboard */,
 				78B6A24F1C76780500AE58F7 /* SplashViewController.swift */,
 				7881D5931C78EDC9000255F9 /* InfoViewController.swift */,
+				78F9C54D1CCFD3AE00FFF6F4 /* info-text1.md */,
+				78F9C54E1CCFD40A00FFF6F4 /* info-text2.md */,
 			);
 			name = Splash;
 			sourceTree = "<group>";
@@ -406,7 +410,6 @@
 			isa = PBXGroup;
 			children = (
 				78B6A2541C76780500AE58F7 /* Assets.xcassets */,
-				78B6A2511C76780500AE58F7 /* Main.storyboard */,
 				78E2E6B41C7B7C1100B5A91A /* Style.swift */,
 				78E2E6B21C7B780300B5A91A /* NavigationController.swift */,
 				78B6A24D1C76780500AE58F7 /* AppDelegate.swift */,
@@ -765,7 +768,8 @@
 				78E2E73A1C7B7FA200B5A91A /* flexBorders_00_bp1_edge_00006.png in Resources */,
 				78E2E73B1C7B7FA200B5A91A /* flexBorders_00_bp1_edge_00007.png in Resources */,
 				78B6A2551C76780500AE58F7 /* Assets.xcassets in Resources */,
-				78B6A2531C76780500AE58F7 /* Main.storyboard in Resources */,
+				78F9C5501CCFD57300FFF6F4 /* info-text1.md in Resources */,
+				78F9C5511CCFD57400FFF6F4 /* info-text2.md in Resources */,
 				78E2E7831C7B7FA200B5A91A /* flexBorders_02_smooth_edge_00009.png in Resources */,
 				78E2E76E1C7B7FA200B5A91A /* flexBorders_01_soft_edge_00008.png in Resources */,
 				78E2E75C1C7B7FA200B5A91A /* flexBorders_01_smooth_edge_00000.png in Resources */,
@@ -882,17 +886,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		78B6A2511C76780500AE58F7 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				78B6A2521C76780500AE58F7 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		78B6A25A1C76780500AE58F7 /* Debug */ = {

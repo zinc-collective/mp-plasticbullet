@@ -7,13 +7,39 @@
 //
 
 import UIKit
+import SwiftyMarkdown
 
-class InfoViewController: UIViewController {
+class InfoViewController: UIViewController, UITextViewDelegate {
 
+    @IBOutlet weak var beforeText: UITextView!
+    @IBOutlet weak var afterText: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        beforeText.dataDetectorTypes = .All
+        beforeText.delegate = self
+        afterText.dataDetectorTypes = .All
+        afterText.delegate = self
+        
+        if let before = loadMD("info-text1"), after = loadMD("info-text2") {
+            before.body.color = UIColor.whiteColor()
+            after.body.color = UIColor.whiteColor()
+            
+            beforeText.attributedText = before.attributedString()
+            afterText.attributedText = after.attributedString()
+        }
+    }
+    
+    func loadMD(name:String) -> SwiftyMarkdown? {
+        if let url = NSBundle.mainBundle().URLForResource(name, withExtension: "md") {
+            return SwiftyMarkdown(url: url)
+        }
+        return nil
+    }
+    
+    func textView(textView: UITextView, shouldInteractWithURL URL: NSURL, inRange characterRange: NSRange) -> Bool {
+        return true
     }
 
     override func didReceiveMemoryWarning() {
