@@ -13,6 +13,9 @@ class InfoViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var beforeText: UITextView!
     @IBOutlet weak var afterText: UITextView!
+    @IBOutlet weak var resolutionSwitch: UISwitch!
+    
+    let appState = AppState.loadState()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +24,8 @@ class InfoViewController: UIViewController, UITextViewDelegate {
         beforeText.delegate = self
         afterText.dataDetectorTypes = .All
         afterText.delegate = self
+        
+        resolutionSwitch.on = appState.unlimitedResolution
         
         if let before = loadMD("info-text1"), after = loadMD("info-text2") {
             before.body.color = UIColor.whiteColor()
@@ -70,4 +75,8 @@ class InfoViewController: UIViewController, UITextViewDelegate {
     }
     */
 
+    @IBAction func resolutionSwitchChanged(sender: AnyObject) {
+        print("RESOLUTION SWITCH!", resolutionSwitch.on)
+        appState.unlimitedResolution = resolutionSwitch.on
+    }
 }

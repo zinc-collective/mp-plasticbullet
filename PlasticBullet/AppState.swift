@@ -14,6 +14,18 @@ class AppState: NSObject, NSCoding {
     
     var usedImages:[String]
     
+    private var defaults = NSUserDefaults.standardUserDefaults()
+    
+    var unlimitedResolution : Bool {
+        get {
+            return defaults.boolForKey("unlimitedResolution")
+        }
+        set (val) {
+            defaults.setBool(val, forKey: "unlimitedResolution")
+            defaults.synchronize()
+        }
+    }
+    
     func findNextImage(allImageURLs:[NSURL]) -> NSURL {
         var unusedImageURLs = allImageURLs.filter({imgURL in
             return !usedImages.contains(imgURL.lastPathComponent!)
@@ -67,4 +79,6 @@ class AppState: NSObject, NSCoding {
             print("Could not save: ", AppState.ArchiveURL)
         }
     }
+    
+    
 }
