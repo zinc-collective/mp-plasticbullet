@@ -22,7 +22,7 @@ class SplashViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     var picker: UIImagePickerController?
     
-    let appState = AppState.loadState()
+    let appState = AppState.state()
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBarHidden = true

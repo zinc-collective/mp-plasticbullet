@@ -15,7 +15,7 @@ class InfoViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var afterText: UITextView!
     @IBOutlet weak var resolutionSwitch: UISwitch!
     
-    let appState = AppState.loadState()
+    let appState = AppState.state()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,7 +76,6 @@ class InfoViewController: UIViewController, UITextViewDelegate {
     */
 
     @IBAction func resolutionSwitchChanged(sender: AnyObject) {
-        print("RESOLUTION SWITCH!", resolutionSwitch.on)
         appState.unlimitedResolution = resolutionSwitch.on
     }
 }
