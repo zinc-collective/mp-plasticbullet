@@ -201,7 +201,7 @@
                                                     </label>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vew-Uq-g3J">
                                                         <rect key="frame" x="345" y="13" width="51" height="31"/>
-                                                        <color key="onTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="onTintColor" red="0.83137254900000002" green="0.37647058820000001" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
                                                         <connections>
                                                             <action selector="resolutionSwitchChanged:" destination="t5d-10-bgu" eventType="valueChanged" id="B0d-5o-uip"/>
                                                         </connections>

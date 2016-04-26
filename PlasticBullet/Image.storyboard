@@ -9,7 +9,7 @@
         <!--Image View Controller-->
         <scene sceneID="Uxp-59-lfr">
             <objects>
-                <viewController id="R7J-RV-lw7" customClass="ImageViewController" customModule="Plastic_Bullet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="R7J-RV-lw7" customClass="ImageViewController" customModule="PlasticBullet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="OGw-EF-Mwc"/>
                         <viewControllerLayoutGuide type="bottom" id="woB-Gp-wcB"/>
@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UYa-bg-4KG" customClass="FilterGridView" customModule="Plastic_Bullet" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UYa-bg-4KG" customClass="FilterGridView" customModule="PlasticBullet" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="80" width="375" height="517"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>

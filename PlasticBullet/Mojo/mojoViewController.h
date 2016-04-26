@@ -189,7 +189,7 @@ typedef enum GRID_MODE {
 
 -(void)renderImage:(UIImage*)originalImage;
 
-- (UIImage*)fullyRenderedImage:(UIImageView*)view;
+- (UIImage*)fullyRenderedImage:(UIImageView*)view scaleDown:(BOOL)scaleDown;
 
 - (void)setRotations:(CGFloat)rotate scale:(CGFloat)scale;
 

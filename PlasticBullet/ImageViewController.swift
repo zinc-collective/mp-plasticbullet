@@ -24,6 +24,8 @@ class ImageViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     var gridSize:GRID_MODE
     
+    var appState = AppState.state()
+    
     @IBOutlet weak var imagesView: FilterGridView!
     
     var selectedImage: UIImageView?
@@ -184,7 +186,7 @@ class ImageViewController: UIViewController, UIImagePickerControllerDelegate, UI
                     self.progressContainer.hidden = false
                 }
                 
-                let fullImage = self.mojo.fullyRenderedImage(view)
+                let fullImage = self.mojo.fullyRenderedImage(view, scaleDown: !self.appState.unlimitedResolution)
                 print("FULL IMAGE", fullImage?.size)
                 
                 dispatch_async(dispatch_get_main_queue()) {

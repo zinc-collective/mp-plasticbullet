@@ -2287,7 +2287,7 @@ int loadTime = 0;
     return @[self.topLeftView, self.topRightView, self.bottomLeftView, self.bottomRightView, self.topMiddleView, self.middleLeftView, self.middleMiddleView, self.middleRightView, self.bottomMiddleView];
 }
 
-- (UIImage*)fullyRenderedImage:(UIImageView*)view
+- (UIImage*)fullyRenderedImage:(UIImageView*)view scaleDown:(BOOL)scaleDown
 {
     
     NSArray * imageViewArray = self.allImages;
@@ -2299,17 +2299,25 @@ int loadTime = 0;
     // Render the image at a smaller resolution if it's too big
     CGFloat fullImageWidth = CGImageGetWidth( fullImage.CGImage );
     CGFloat fullImageHeight = CGImageGetHeight( fullImage.CGImage );
+    CGFloat width = fullImageWidth;
+    CGFloat height = fullImageHeight;
     
-    CGFloat maxArea =  (4032/2) * (3024/2); // half iphone 6 resolution
-    CGFloat imageArea = fullImageHeight * fullImageWidth;
-    CGFloat scaleFactor = MIN((maxArea / imageArea)*2, 1.0);
+    if (scaleDown) {
+        CGFloat maxArea =  (4032/2) * (3024/2); // half iphone 6 resolution
+        CGFloat imageArea = fullImageHeight * fullImageWidth;
+        CGFloat scaleFactor = MIN((maxArea / imageArea)*2, 1.0);
     
-    CGFloat width = fullImageWidth * scaleFactor;
-    CGFloat height = fullImageHeight * scaleFactor;
+        width = fullImageWidth * scaleFactor;
+        height = fullImageHeight * scaleFactor;
+        NSLog(@"Scale Down by %f", scaleFactor);
+    }
+    
 //    NSLog(@"RENDER SCALE %f", scaleFactor);
 //    NSLog(@"wh (%f, %f)", width, height);
 //    NSLog(@"full wh (%f, %f)", fullImageWidth, fullImageHeight);
 //    NSLog(@"total area %f", width * height);
+    
+    NSLog(@"Fully Rendered Image %f x %f", width, height);
     
 	UIImage *renderImage = [self createNewImage:&fullImage imgWidth:width imgHeight:height imgParameter:-1];
 	
