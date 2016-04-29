@@ -147,8 +147,12 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="sAI-kU-nXX">
                                         <rect key="frame" x="128" y="33" width="158" height="29"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G8o-Vl-dD6">
-                                        <rect key="frame" x="20" y="37" width="25" height="22"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G8o-Vl-dD6">
+                                        <rect key="frame" x="0.0" y="15" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="6lX-TI-SD6"/>
+                                            <constraint firstAttribute="height" constant="60" id="QHj-vD-58v"/>
+                                        </constraints>
                                         <state key="normal" image="back-arrow"/>
                                         <connections>
                                             <segue destination="bHf-El-cKo" kind="unwind" unwindAction="unwindToLanding:" id="ThF-Hb-J3c"/>
@@ -158,6 +162,8 @@
                                 <color key="backgroundColor" red="0.17254901960784313" green="0.20000000000000001" blue="0.22352941176470589" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="sAI-kU-nXX" firstAttribute="centerY" secondItem="JZm-yp-Y7A" secondAttribute="centerY" constant="8" id="1Gc-Gj-w3H"/>
+                                    <constraint firstItem="G8o-Vl-dD6" firstAttribute="leading" secondItem="JZm-yp-Y7A" secondAttribute="leading" id="XT9-MM-sUI"/>
+                                    <constraint firstAttribute="bottom" secondItem="G8o-Vl-dD6" secondAttribute="bottom" constant="5" id="m0R-dK-VN0"/>
                                     <constraint firstAttribute="height" constant="80" id="rVJ-ds-CT4"/>
                                     <constraint firstItem="sAI-kU-nXX" firstAttribute="centerX" secondItem="JZm-yp-Y7A" secondAttribute="centerX" id="shY-xW-Zb4"/>
                                 </constraints>
