@@ -195,10 +195,9 @@ class ImageViewController: UIViewController, UIImagePickerControllerDelegate, UI
                 
                 if let meta = self.imageMetadata {
                     let mutableMeta = NSMutableDictionary(dictionary: meta)
-                    print("Found metadata")
-                    // fix metadata!
                     
                     // our rendering code takes care of rotating things
+                    // without this it'll be rotated
                     mutableMeta.removeObjectForKey("Orientation")
                     
                     return fullImage.imageWithMetadata(mutableMeta)
