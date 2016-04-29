@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		782B55E41CD3D2B9003C313E /* UIImage+metadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782B55E31CD3D2B9003C313E /* UIImage+metadata.swift */; };
 		782B81DB1CC537D1005E30BC /* ImageMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782B81DA1CC537D1005E30BC /* ImageMetadata.swift */; };
 		782B81DD1CC53C0F005E30BC /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 782B81DC1CC53C0F005E30BC /* ImageIO.framework */; };
 		787396671C84C2BB005F5E4B /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787396661C84C2BB005F5E4B /* GridLayout.swift */; };
@@ -165,6 +166,7 @@
 		0893F224447775751EA92B24 /* Pods_PlasticBullet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlasticBullet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2334246BEB39A7EFB887843E /* Pods-PlasticBullet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlasticBullet.release.xcconfig"; path = "Pods/Target Support Files/Pods-PlasticBullet/Pods-PlasticBullet.release.xcconfig"; sourceTree = "<group>"; };
 		72FDE293A2423CFDAC10758C /* Pods-PlasticBullet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlasticBullet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PlasticBullet/Pods-PlasticBullet.debug.xcconfig"; sourceTree = "<group>"; };
+		782B55E31CD3D2B9003C313E /* UIImage+metadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+metadata.swift"; sourceTree = "<group>"; };
 		782B81DA1CC537D1005E30BC /* ImageMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageMetadata.swift; sourceTree = "<group>"; };
 		782B81DC1CC53C0F005E30BC /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		787396661C84C2BB005F5E4B /* GridLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
@@ -382,6 +384,7 @@
 				78F278641C9713DA00287042 /* ImageActivityItemProvider.swift */,
 				782B81DA1CC537D1005E30BC /* ImageMetadata.swift */,
 				787396661C84C2BB005F5E4B /* GridLayout.swift */,
+				782B55E31CD3D2B9003C313E /* UIImage+metadata.swift */,
 			);
 			name = Image;
 			sourceTree = "<group>";
@@ -880,6 +883,7 @@
 				78F697B41CCA80CD000EA042 /* AppState.swift in Sources */,
 				78F278651C9713DA00287042 /* ImageActivityItemProvider.swift in Sources */,
 				78E2E7A81C7B80D100B5A91A /* FilterView.swift in Sources */,
+				782B55E41CD3D2B9003C313E /* UIImage+metadata.swift in Sources */,
 				78C0150F1C7B91F4009C382C /* Utilities.m in Sources */,
 				78E2E7DA1C7B859400B5A91A /* pb_render.c in Sources */,
 			);

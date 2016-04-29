@@ -192,8 +192,14 @@ class ImageViewController: UIViewController, UIImagePickerControllerDelegate, UI
                 dispatch_async(dispatch_get_main_queue()) {
                     self.progressContainer.hidden = true
                 }
-                    
-                return fullImage
+                
+                if let meta = self.imageMetadata {
+                    print("Found metadata")
+                    return fullImage.imageWithMetadata(meta)
+                }
+                else {
+                    return UIImageJPEGRepresentation(fullImage, 1.0)
+                }
             }
         
             let srcRect = self.shareButton.frame
