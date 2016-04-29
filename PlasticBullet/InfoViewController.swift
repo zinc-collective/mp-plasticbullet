@@ -16,6 +16,7 @@ class InfoViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var resolutionSwitch: UISwitch!
     
     let appState = AppState.state()
+    let redColor = UIColor(red: 0.827, green: 0.392, blue: 0.2235, alpha: 1.0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,12 +25,17 @@ class InfoViewController: UIViewController, UITextViewDelegate {
         beforeText.delegate = self
         afterText.dataDetectorTypes = .All
         afterText.delegate = self
+//          #D36457
+        beforeText.linkTextAttributes = [NSForegroundColorAttributeName: redColor]
+        afterText.linkTextAttributes = [NSForegroundColorAttributeName: redColor]
         
         resolutionSwitch.on = appState.unlimitedResolution
         
         if let before = loadMD("info-text1"), after = loadMD("info-text2") {
             before.body.color = UIColor.whiteColor()
             after.body.color = UIColor.whiteColor()
+            before.link.color = UIColor.greenColor() //
+            after.link.color = UIColor.greenColor()
             
             beforeText.attributedText = before.attributedString()
             afterText.attributedText = after.attributedString()

@@ -169,7 +169,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="WpP-wm-yln">
-                                                <rect key="frame" x="20" y="8" width="374" height="230"/>
+                                                <rect key="frame" x="20" y="8" width="374" height="100"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="230" id="1Ts-fE-DjV"/>
                                                 </constraints>
@@ -179,9 +179,14 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES"/>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="1Ts-fE-DjV"/>
+                                                    </mask>
+                                                </variation>
                                             </textView>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xi9-St-RjV">
-                                                <rect key="frame" x="20" y="312" width="374" height="307"/>
+                                                <rect key="frame" x="20" y="182" width="374" height="307"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="307" id="l0i-gE-APN"/>
                                                 </constraints>
@@ -191,7 +196,7 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EPG-To-uld">
-                                                <rect key="frame" x="0.0" y="246" width="414" height="58"/>
+                                                <rect key="frame" x="0.0" y="116" width="414" height="58"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unlimited Resolution" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SJw-Hn-py7">
                                                         <rect key="frame" x="20" y="18" width="158" height="21"/>
