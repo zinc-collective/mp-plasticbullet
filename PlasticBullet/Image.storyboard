@@ -205,6 +205,7 @@
                         <outlet property="cameraButton" destination="Wvf-Z2-Oob" id="3tp-CK-Afg"/>
                         <outlet property="imagesView" destination="UYa-bg-4KG" id="fS3-7C-zkM"/>
                         <outlet property="libraryButton" destination="gSw-uc-FII" id="b3t-Tr-5fj"/>
+                        <outlet property="libraryButtonContainer" destination="do1-DW-q2c" id="VCr-aF-xqX"/>
                         <outlet property="progressBar" destination="tEk-Ca-Tp7" id="YPM-Uz-PmO"/>
                         <outlet property="progressContainer" destination="jym-ca-EVZ" id="23l-u4-4oJ"/>
                         <outlet property="refreshButton" destination="RWk-Hz-CAs" id="7Kq-6f-FNP"/>

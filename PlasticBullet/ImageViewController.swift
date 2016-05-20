@@ -35,6 +35,7 @@ class ImageViewController: UIViewController, UIImagePickerControllerDelegate, UI
     @IBOutlet weak var refreshButton: UIButton!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
+    @IBOutlet weak var libraryButtonContainer: UIView!
     
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var progressContainer: UIView!
@@ -246,8 +247,9 @@ class ImageViewController: UIViewController, UIImagePickerControllerDelegate, UI
             picker.allowsEditing = false
             picker.sourceType = .PhotoLibrary
             picker.modalPresentationStyle = UIModalPresentationStyle.Popover
-            picker.popoverPresentationController?.sourceView = self.view
+            picker.popoverPresentationController?.sourceView = self.libraryButtonContainer
             picker.popoverPresentationController?.sourceRect = self.libraryButton.frame
+            print("UMM", self.libraryButton.frame)
             self.presentViewController(picker, animated: true, completion: nil)
         }
     }
