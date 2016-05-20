@@ -84,4 +84,8 @@ class InfoViewController: UIViewController, UITextViewDelegate {
     @IBAction func resolutionSwitchChanged(sender: AnyObject) {
         appState.unlimitedResolution = resolutionSwitch.on
     }
+    
+    @IBAction func didTapBack(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
 }

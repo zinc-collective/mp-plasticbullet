@@ -160,7 +160,8 @@ class ImageViewController: UIViewController, UIImagePickerControllerDelegate, UI
     }
     
     @IBAction func didTapHome() {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        let info = UIStoryboard(name: "Splash", bundle: nil).instantiateViewControllerWithIdentifier("InfoViewController")
+        self.presentViewController(info, animated: true, completion: nil)
     }
     
     @IBAction func didTapRefresh(sender: AnyObject) {
