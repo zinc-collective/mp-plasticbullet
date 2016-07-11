@@ -29,11 +29,12 @@ float randomPercent(int min, int max) {
 	//diffusion
     // from 0.1 to 0.801
     renderArg.difOpacity = randomPercent(0, 60); // arc4random_uniform(701) / 1000.0f + 0.1f;
+    
 	//circleVignette
-    renderArg.cvOpacity = randomPercent(30, 100); //    arc4random_uniform(701) / 1000.0f + 0.3f;
+    renderArg.cvOpacity = randomPercent(0, 60); //    arc4random_uniform(701) / 1000.0f + 0.3f;
     
 	//sqrVignette
-    renderArg.SqrOpacity = randomPercent(10, 90); // arc4random_uniform(801) / 1000.0f + 0.1f;
+    renderArg.SqrOpacity = randomPercent(0, 60); // arc4random_uniform(801) / 1000.0f + 0.1f;
     renderArg.sqrScaleX = randomPercent(0, 100); // arc4random_uniform(1001) / 1000.0f;
     renderArg.sqrScaleY = randomPercent(0, 100); // arc4random_uniform(1001) / 1000.0f;
     
