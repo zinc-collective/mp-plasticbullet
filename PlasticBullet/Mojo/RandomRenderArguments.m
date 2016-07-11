@@ -28,7 +28,7 @@ float randomPercent(int min, int max) {
 	
 	//diffusion
     // from 0.1 to 0.801
-    renderArg.difOpacity = randomPercent(10, 80); // arc4random_uniform(701) / 1000.0f + 0.1f;
+    renderArg.difOpacity = randomPercent(0, 60); // arc4random_uniform(701) / 1000.0f + 0.1f;
 	//circleVignette
     renderArg.cvOpacity = randomPercent(30, 100); //    arc4random_uniform(701) / 1000.0f + 0.3f;
     
