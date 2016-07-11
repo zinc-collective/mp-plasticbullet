@@ -215,11 +215,7 @@
 {
 	bool useLowMemMethod = !_sourceImg;
 	
-	
-#if NO_TILE_RENDER_SUPPORT
-#else
 	_softImg = nil;
-#endif
 	
 	unsigned char* softImgBuffer;
 	UIImage* softImg;
@@ -812,17 +808,6 @@ static CGBitmapInfo generic_bitmapInfo;
 	if(!pout)
 		return 0;
 	
-	
-#if NO_TILE_RENDER_SUPPORT
-	CFDataRef sourcedata = CGDataProviderCopyData(CGImageGetDataProvider(_sourceImage.CGImage));
-	int *m_sourcedata = (int *)CFDataGetBytePtr(sourcedata);
-	
-	//CGBitmapInfo bitmapInfo = CGImageGetBitmapInfo(_sourceImage.CGImage);
-	
-	uint8_t *lppb1 = (unsigned char *)&m_sourcedata[leakStartY1 * width];
-	uint8_t *lppb2 = (unsigned char *)&m_sourcedata[leakStartY2 * width];
-	uint8_t *lppb3 = (unsigned char *)&m_sourcedata[leakStartY3 * width];
-#else	
 	NSString *path = [Utilities documentsPath:LEAK_FILE_NAME];
 		
 	// Define tile size
@@ -838,14 +823,11 @@ static CGBitmapInfo generic_bitmapInfo;
 	uint8_t *lppb2p = lppb2;
 	uint8_t *lppb3 =  (unsigned char *)malloc(length);
 	uint8_t *lppb3p = lppb3;
-#endif
 	
 	int x,y;
 	int r,g,b;
 	int h = 0;
 	
-#if NO_TILE_RENDER_SUPPORT
-#else
 	for (h=0; h<height; h+=tile_height)
 	{
 		// read the file - tile by tile
@@ -863,7 +845,6 @@ static CGBitmapInfo generic_bitmapInfo;
 		readFile((unsigned char*) lppb2, [path UTF8String], leakStartY2 * rowbytes + yOffset, length);
 		lppb3 = lppb3p;
 		readFile((unsigned char*) lppb3, [path UTF8String], leakStartY3 * rowbytes + yOffset, length);
-#endif
 		
 		for (y=0; y<tile_height; y++)
 		{
@@ -893,13 +874,10 @@ static CGBitmapInfo generic_bitmapInfo;
 			}
 		}
 		
-#if NO_TILE_RENDER_SUPPORT
-#else
-	}	
+	}
 	free(lppb1p);
 	free(lppb2p);
 	free(lppb3p);
-#endif
 
 	CGColorSpaceRef colorSpace=CGColorSpaceCreateDeviceRGB();
 	CGContextRef context;
@@ -917,10 +895,6 @@ static CGBitmapInfo generic_bitmapInfo;
 	
 	
     free(poutb);
-	
-#if NO_TILE_RENDER_SUPPORT
-	CFRelease(sourcedata);
-#endif
 	
 	CGColorSpaceRelease(colorSpace);
 	CGContextRelease(context);
@@ -1012,17 +986,9 @@ static CGBitmapInfo generic_bitmapInfo;
 	int leakHeight = roundf(CGImageGetHeight(leakArt.CGImage));
 	//generic_bitmapInfo = CGImageGetBitmapInfo(leakArt.CGImage);
 	
-#if NO_TILE_RENDER_SUPPORT
-	UIImage *leakImg = [ImageProcess imageNewWithImage:leakArt scaledToSize:CGSizeMake(leakWidth,leakHeight)];
-	if (!_leakImg)
-	{
-		[leakArt release];
-	}
-#else
 	if (![Utilities cacheToRawDataFromImage:leakArt filename:LEAK_FILE_NAME])
 		return FALSE;
 	UIImage *leakImg = nil;
-#endif
 	
 	float ratio = _isLandscape ? (1.0 * _width / _height) : (1.0 * _height / _width);
 	if (ratio > 5.0) ratio = 5.0;
