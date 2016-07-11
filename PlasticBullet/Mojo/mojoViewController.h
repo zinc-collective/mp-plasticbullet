@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #include <AudioToolbox/AudioToolbox.h>
-#import "DataTypeDef.h"
+#import "RenderArguments.h"
 #import <CoreLocation/CoreLocation.h>
 #import <CoreMotion/CoreMotion.h>
 #import "Renderer.h"
@@ -61,15 +61,12 @@ typedef enum GRID_MODE {
 	bool isInverted;
 	bool m_isImageOnceLoaded;
 	
-#ifdef __MOJO__
-#else //__PlasticBullet__
-	UIImage *cvVigArtImg;	
+	UIImage *cvVigArtImg;
 	UIImage *leakImg;
 	UIImage *VigArtImg;
 	UIImage *borderImg;
 	UIImage *blurImage;
 	int prevWidth;
-#endif
 	
 	UIImage *portraitImage;
 	BOOL isFullImageLandscape;
@@ -132,16 +129,12 @@ typedef enum GRID_MODE {
 //@property (readwrite)	CFURLRef		soundFileURLRef;
 //@property (readonly)	SystemSoundID	soundFileObject;
 
-#ifdef __MOJO__
-#else //__PlasticBullet__
 @property(retain,nonatomic)UIImage *cvVigArtImg;
 
 @property(retain,nonatomic)UIImage *leakImg;
 @property(retain,nonatomic)UIImage *VigArtImg;
 @property(retain,nonatomic)UIImage *borderImg;
 @property(retain,nonatomic)UIImage *blurImage;
-#endif
-
 
 @property (nonatomic, retain) UINavigationController *navigationFlickr;
 @property (nonatomic, retain) UINavigationController *navigationFacebook;
@@ -180,8 +173,6 @@ typedef enum GRID_MODE {
 
 -(UIImage *)createNewImage:(UIImage **)_imagePtr imgWidth:(float)_width imgHeight:(float)_height imgParameter:(int)_index;
 -(void) newRenderArg:(int)_index;
-
--(ffRenderArguments)randomImgParameter;
 
 -(bool) isSaveCameraShot;
 -(NSString *)getDeviceName;

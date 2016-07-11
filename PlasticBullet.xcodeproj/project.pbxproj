@@ -10,6 +10,8 @@
 		782B55E41CD3D2B9003C313E /* UIImage+metadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782B55E31CD3D2B9003C313E /* UIImage+metadata.swift */; };
 		782B81DB1CC537D1005E30BC /* ImageMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782B81DA1CC537D1005E30BC /* ImageMetadata.swift */; };
 		782B81DD1CC53C0F005E30BC /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 782B81DC1CC53C0F005E30BC /* ImageIO.framework */; };
+		7863EFE01D341BFB00F202B7 /* RenderArguments.c in Sources */ = {isa = PBXBuildFile; fileRef = 7863EFDE1D341BFB00F202B7 /* RenderArguments.c */; };
+		7863EFE61D34275B00F202B7 /* RandomRenderArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 7863EFE51D34275B00F202B7 /* RandomRenderArguments.m */; };
 		787396671C84C2BB005F5E4B /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787396661C84C2BB005F5E4B /* GridLayout.swift */; };
 		787396691C84CB73005F5E4B /* FilterGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787396681C84CB72005F5E4B /* FilterGridView.swift */; };
 		7881D5941C78EDC9000255F9 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7881D5931C78EDC9000255F9 /* InfoViewController.swift */; };
@@ -169,6 +171,11 @@
 		782B55E31CD3D2B9003C313E /* UIImage+metadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+metadata.swift"; sourceTree = "<group>"; };
 		782B81DA1CC537D1005E30BC /* ImageMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageMetadata.swift; sourceTree = "<group>"; };
 		782B81DC1CC53C0F005E30BC /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		7863EFDD1D34187A00F202B7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		7863EFDE1D341BFB00F202B7 /* RenderArguments.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = RenderArguments.c; path = ../Renderer/RenderArguments.c; sourceTree = "<group>"; };
+		7863EFDF1D341BFB00F202B7 /* RenderArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RenderArguments.h; path = ../Renderer/RenderArguments.h; sourceTree = "<group>"; };
+		7863EFE41D34275B00F202B7 /* RandomRenderArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RandomRenderArguments.h; sourceTree = "<group>"; };
+		7863EFE51D34275B00F202B7 /* RandomRenderArguments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RandomRenderArguments.m; sourceTree = "<group>"; };
 		787396661C84C2BB005F5E4B /* GridLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
 		787396681C84CB72005F5E4B /* FilterGridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterGridView.swift; sourceTree = "<group>"; };
 		7881D5931C78EDC9000255F9 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
@@ -321,7 +328,6 @@
 		78E2E7A71C7B80D100B5A91A /* FilterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		78E2E7A91C7B815D00B5A91A /* PlasticBullet-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PlasticBullet-Bridging-Header.h"; sourceTree = "<group>"; };
 		78E2E7C81C7B859400B5A91A /* DataFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataFile.h; sourceTree = "<group>"; };
-		78E2E7C91C7B859400B5A91A /* DataTypeDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataTypeDef.h; sourceTree = "<group>"; };
 		78E2E7CA1C7B859400B5A91A /* fastBlur.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fastBlur.c; sourceTree = "<group>"; };
 		78E2E7CB1C7B859400B5A91A /* fastBlur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fastBlur.h; sourceTree = "<group>"; };
 		78E2E7CE1C7B859400B5A91A /* fileOutput.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fileOutput.c; sourceTree = "<group>"; };
@@ -436,6 +442,10 @@
 				78C0151D1C7BB739009C382C /* mojoViewController.mm */,
 				78C015231C7BBB0B009C382C /* mojoAppDelegate.h */,
 				78C015241C7BBB0B009C382C /* mojoAppDelegate.m */,
+				7863EFDE1D341BFB00F202B7 /* RenderArguments.c */,
+				7863EFDF1D341BFB00F202B7 /* RenderArguments.h */,
+				7863EFE41D34275B00F202B7 /* RandomRenderArguments.h */,
+				7863EFE51D34275B00F202B7 /* RandomRenderArguments.m */,
 			);
 			path = Mojo;
 			sourceTree = "<group>";
@@ -570,10 +580,14 @@
 		78E2E7C71C7B859400B5A91A /* Renderer */ = {
 			isa = PBXGroup;
 			children = (
+				7863EFDD1D34187A00F202B7 /* README.md */,
+				78C0150A1C7B9165009C382C /* Renderer.h */,
+				78C0150B1C7B9165009C382C /* Renderer.m */,
+				78E2E7D31C7B859400B5A91A /* pb_render.h */,
+				78E2E7D21C7B859400B5A91A /* pb_render.c */,
 				78C015121C7BACF2009C382C /* Plugin_Render.mm */,
 				78C015131C7BACF2009C382C /* Plugin_Render.h */,
 				78E2E7C81C7B859400B5A91A /* DataFile.h */,
-				78E2E7C91C7B859400B5A91A /* DataTypeDef.h */,
 				78E2E7CA1C7B859400B5A91A /* fastBlur.c */,
 				78E2E7CB1C7B859400B5A91A /* fastBlur.h */,
 				78C015201C7BB7FA009C382C /* FileCache.h */,
@@ -582,10 +596,6 @@
 				78E2E7CF1C7B859400B5A91A /* fileOutput.h */,
 				78E2E7D01C7B859400B5A91A /* ImageProcess.h */,
 				78E2E7D11C7B859400B5A91A /* ImageProcess.m */,
-				78E2E7D21C7B859400B5A91A /* pb_render.c */,
-				78E2E7D31C7B859400B5A91A /* pb_render.h */,
-				78C0150A1C7B9165009C382C /* Renderer.h */,
-				78C0150B1C7B9165009C382C /* Renderer.m */,
 				78C0150D1C7B91F4009C382C /* Utilities.h */,
 				78C0150E1C7B91F4009C382C /* Utilities.m */,
 			);
@@ -875,10 +885,12 @@
 				7881D5941C78EDC9000255F9 /* InfoViewController.swift in Sources */,
 				78B6A24E1C76780500AE58F7 /* AppDelegate.swift in Sources */,
 				7881D5961C78F7C4000255F9 /* ImageViewController.swift in Sources */,
+				7863EFE61D34275B00F202B7 /* RandomRenderArguments.m in Sources */,
 				78E2E7D91C7B859400B5A91A /* ImageProcess.m in Sources */,
 				782B81DB1CC537D1005E30BC /* ImageMetadata.swift in Sources */,
 				78E2E7D61C7B859400B5A91A /* fastBlur.c in Sources */,
 				78E2E6B51C7B7C1100B5A91A /* Style.swift in Sources */,
+				7863EFE01D341BFB00F202B7 /* RenderArguments.c in Sources */,
 				78C0150C1C7B9165009C382C /* Renderer.m in Sources */,
 				78F697B41CCA80CD000EA042 /* AppState.swift in Sources */,
 				78F278651C9713DA00287042 /* ImageActivityItemProvider.swift in Sources */,

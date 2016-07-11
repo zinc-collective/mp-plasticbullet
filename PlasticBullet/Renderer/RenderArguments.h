@@ -1,11 +1,12 @@
 /*
- *  DataTypeDef.h
+ *  renderArguments.h
  *  PlasticBullet
  *
  *  Created by WXP on 10-1-8.
  *  Copyright 2010 RedSafi LLC. All rights reserved.
  *
  */
+
 //rgb in floating point
 typedef struct _ffColor3D
 	{
@@ -75,3 +76,4 @@ typedef struct {
 	int cachedPreviewImage;
 	
 } ffRenderArguments;
+

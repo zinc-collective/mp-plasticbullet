@@ -1,7 +1,7 @@
 #ifndef PBRENDER
 #define PBRENDER
 
-#include "DataTypeDef.h"
+#include "RenderArguments.h"
 
 void pb_Prep_LUT(
 				 ffRGBMaxMin3D _CCrgbMaxMin, ffColor3D _monorgb, ffRGBMaxMin3D _colorFadergbMaxMin, double cornerOpacity, double sCcontrast,

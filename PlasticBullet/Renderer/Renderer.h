@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "DataTypeDef.h"
+#import "RenderArguments.h"
 
 @protocol RenderDelegate
 -(void)renderProgress:(float)progress;

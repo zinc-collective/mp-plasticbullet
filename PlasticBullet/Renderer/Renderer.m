@@ -9,7 +9,7 @@
 //#import "ImageProcessSlow.h"
 #import "Renderer.h"
 #import "ImageProcess.h"
-#import "DataTypeDef.h"
+#import "RenderArguments.h"
 #import "DataFile.h"
 #import "pb_render.h"
 #import "fastBlur.h"

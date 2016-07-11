@@ -37,7 +37,8 @@
 #include <math.h>
 #import "mojoViewController.h"
  #import "mojoAppDelegate.h"
-#import "DataTypeDef.h"
+#import "RenderArguments.h"
+#import "RandomRenderArguments.h"
 // #import "PostToFacebookViewController.h"
 // #import "PostToFlickrViewController.h"
 
@@ -45,9 +46,6 @@
 
 // #import <AssetsLibrary/AssetsLibrary.h>
 
-#ifdef __MOJO__
-//#include "Plugin_Render.h"
-#else //__PlasticBullet__
 #import "ImageProcess.h"
 #import "Renderer.h"
 #import "DataFile.h"
@@ -58,8 +56,6 @@
 //#import "PostToTwitterViewController.h"
 //#import "Setting2ViewController.h"
 //#import "SaveShareViewController2.h"
-
-#endif
 
 #define FORMAT_PREVIEW "cachedPreview_%d"
 #define FORMAT_RENDER "cachedRender_%d"
@@ -93,269 +89,7 @@ static UIImage *s_loadedImage = nil;
 static UIView *s_mySubView = nil;
 #endif
 
-#ifdef __MOJO__
-static void setDefaultRenderArg(RenderArguments &renderArgs)
-{
-	renderArgs.FXid_BlueShadows			= 25.f; 
-	renderArgs.FXid_ShadowTint			= 50.f; 
-	renderArgs.FXid_ShadowPoint			= 75.f;  
-	renderArgs.FXid_WarmCool			= 0.f;  
-	renderArgs.FXid_Contrast			= 25.f;  
-	renderArgs.FXid_Bleach				= 0.f;  
-	renderArgs.FXid_SkinColor			= 0.f;  
-	renderArgs.FXid_SkinSqueeze			= 0.f;  
-	renderArgs.FXid_SkinSolo			= 0.f;   
-	renderArgs.FXid_ShowSkinOverlay		= false;   
-	renderArgs.FXid_SkinCenter			= 6.8f;   
-	renderArgs.FXid_SkinLowHiRadius		= 3.8f;   
-	renderArgs.FXid_SkinColorSqueezeMin	= 35.f;   
-	renderArgs.FXid_SkinColorSqueezeMax	= 65.f;   
-	renderArgs.FXid_SkinSoloMin			= 25.f;   
-	renderArgs.FXid_SkinSoloMax			= 70.f;   
-	renderArgs.FXid_LUTSize				= 5;   
-	renderArgs.FXid_SkinColorSpace		= 1;   
-	renderArgs.FXid_ShowLumaRadius		= 15.f;   
-	renderArgs.FXid_ScopeColor[0]		= 1.f;   
-	renderArgs.FXid_ScopeColor[1]		= 104.f/255.f;   
-	renderArgs.FXid_ScopeColor[2]		= 0.f;   
-	renderArgs.FXid_ShowOpacity			= 50.f;   
-	renderArgs.FXid_GridSize			= 64;   
-	renderArgs.FXid_BorderSize			= 1.f;   
-	renderArgs.FXid_ScopeRadius			= 1.5f;   
-	renderArgs.FXid_SqueezeNormalize	= true;   	
-}
-
-static float getNormalizedRandomNumber(float min, float max)
-{
-	float f = float(rand()&65535)/65535.f;
-	return f*max + (1.f-f)*min;
-}
-
-#define NUM_RANDOM_PROPS 6
-
-static int axisXProperty = -1;
-static int axisYProperty = -1;
-
-
-
-static void randomizeAxis()
-{
-	axisXProperty = rand()%NUM_RANDOM_PROPS;
-	do
-	{
-		axisYProperty = rand()%NUM_RANDOM_PROPS;	
-	}
-	while(axisXProperty==axisYProperty);
-}
-
-static float getAmountRandomNumber(float value, float min, float max, float amount)
-{
-	float f = value;
-	f += (max-min)*amount;
-	if(f<min)
-		f = min;
-	else if(f>max)
-		f = max;
-	return f;
-}
-
-static void randomizeRenderArg(RenderArguments &renderArgs, int index)
-{
-	int i = 0;
-	if(index == i++ || index == -1)
-		renderArgs.FXid_BlueShadows			= getNormalizedRandomNumber(0, 100); 
-	if(index == i++ || index == -1)
-		renderArgs.FXid_ShadowTint			= getNormalizedRandomNumber(0, 100); 
-	if(index == i++ || index == -1)
-		renderArgs.FXid_ShadowPoint			= getNormalizedRandomNumber(30, 80);   
-	if(index == i++ || index == -1)
-		renderArgs.FXid_WarmCool			= getNormalizedRandomNumber(-25, 80);   
-	if(index == i++ || index == -1)
-		renderArgs.FXid_Contrast			= getNormalizedRandomNumber(-25, 100);   
-	if(index == i++ || index == -1)
-		renderArgs.FXid_Bleach				= getNormalizedRandomNumber(-23, 80);   
-#if 0
-	if(index == i++ || index == -1)
-		renderArgs.FXid_SkinColor			= getNormalizedRandomNumber(-100, 100);   
-	if(index == i++ || index == -1)
-		renderArgs.FXid_SkinSqueeze			= getNormalizedRandomNumber(0, 100);  
-	if(index == i++ || index == -1)
-		renderArgs.FXid_SkinSolo			= getNormalizedRandomNumber(0, 100);   
-#endif
-}
-
-
-
-static void setAmountRenderArg(RenderArguments &renderArgs, int index, float amount)
-{
-	int i = 0;
-	if(index == i++ || index == -1)
-		renderArgs.FXid_BlueShadows			= getAmountRandomNumber(renderArgs.FXid_BlueShadows, 0, 200, amount); 
-	if(index == i++ || index == -1)
-		renderArgs.FXid_ShadowTint			= getAmountRandomNumber(renderArgs.FXid_ShadowTint, -100, 300, amount); 
-	if(index == i++ || index == -1)
-		renderArgs.FXid_ShadowPoint			= getAmountRandomNumber(renderArgs.FXid_ShadowPoint, 0, 200, amount);   
-	if(index == i++ || index == -1)
-		renderArgs.FXid_WarmCool			= getAmountRandomNumber(renderArgs.FXid_WarmCool, -200, 200, amount);   
-	if(index == i++ || index == -1)
-		renderArgs.FXid_Contrast			= getAmountRandomNumber(renderArgs.FXid_Contrast, -100, 500, amount);   
-	if(index == i++ || index == -1)
-		renderArgs.FXid_Bleach				= getAmountRandomNumber(renderArgs.FXid_Bleach, -100, 100, amount);   
-	if(index == i++ || index == -1)
-		renderArgs.FXid_SkinColor			= getAmountRandomNumber(renderArgs.FXid_SkinColor, -100, 100, amount);   
-	if(index == i++ || index == -1)
-		renderArgs.FXid_SkinSqueeze			= getAmountRandomNumber(renderArgs.FXid_SkinSqueeze, 0, 100, amount);  
-	if(index == i++ || index == -1)
-		renderArgs.FXid_SkinSolo			= getAmountRandomNumber(renderArgs.FXid_SkinSolo, 0, 100, amount);    
-}
-
-bool checkAbort(int y)
-{
-	const int numLinesCheckAbort = 10;
-	if( y % numLinesCheckAbort == 0 && sWorkerThread)
-	{
-		if([sWorkerThread isCancelled])
-			return true;
-	}
-	
-	return false;
-}
-
-static int doRender(int width, int height, int rowbytes, unsigned char *buffer, const RenderArguments &renderArgs)
-{
-	//sleep(1);//hack
-	return PluginRender(renderArgs, width, height, rowbytes, buffer, 1.f, 1.f, 1.f);
-}
-
-static UIImage* createImage(int width, int height, UIImage *image, RenderArguments *pRenderArgs = NULL, bool histogramEqualization = false)
-{
-	if(!image)
-		return NULL;
-	int rowbytes = width*4;	
-	unsigned char *buffer = (unsigned char*)malloc( height * rowbytes );
-	if(buffer == nil) 
-		return NULL;
-	CGContextRef imageContextRef = CGBitmapContextCreate(buffer, 
-														 width, 
-														 height, 
-														 8, 
-														 rowbytes, 
-														 CGImageGetColorSpace(image.CGImage), 
-														 kCGImageAlphaPremultipliedLast
-														 );
-	CGContextDrawImage(imageContextRef, CGRectMake(0.0, 0.0, (CGFloat)width, (CGFloat)height), image.CGImage);
-	
-	if(pRenderArgs)
-	{
-		if(doRender(width, height, rowbytes, buffer, *pRenderArgs)!=0)
-		{
-			CGContextRelease(imageContextRef);
-			free(buffer);
-			return NULL;
-		}
-	}
-	if(histogramEqualization)
-	{
-		if(PluginRenderHistogramEqualization(width, height, rowbytes, buffer)!=0)
-		{
-			CGContextRelease(imageContextRef);
-			free(buffer);
-			return NULL;
-		}
-	}
-	
-	UIImageOrientation o = image.imageOrientation;
-	if(o ==  UIImageOrientationLeft ||  o ==  UIImageOrientationRight || o == UIImageOrientationRightMirrored || o == UIImageOrientationLeftMirrored )
-	{
-		int t = width;
-		width = height;
-		height = t;
-		int rowbytes2 = width*4;	
-		unsigned char *buffer2 = (unsigned char*)malloc( height * rowbytes2 );
-		if(buffer2 == nil) 
-			return NULL;
-		
-		// Transposition
-		for(int y=0; y<height; ++y)
-		{
-			unsigned char *oT = &buffer2[y*rowbytes2];
-			unsigned char *iT = &buffer[y*4];
-			for(int x=0; x<width; ++x)
-			{
-				memcpy(oT, iT, 4);
-				oT+=4;
-				iT+=rowbytes;
-			}
-		}
-		
-		CGContextRelease(imageContextRef);
-		free(buffer);
-		buffer = buffer2;
-		rowbytes = rowbytes2;
-		imageContextRef = CGBitmapContextCreate(buffer, 
-												width, 
-												height, 
-												8, 
-												rowbytes, 
-												CGImageGetColorSpace(image.CGImage), 
-												kCGImageAlphaPremultipliedLast
-												);
-		
-	}
-	
-	if(o ==  UIImageOrientationDown || o ==  UIImageOrientationRight || o == UIImageOrientationRightMirrored || o == UIImageOrientationUpMirrored )
-	{
-		// Flip x-axis
-		//
-		int width2 = width/2;
-		for(int y=0; y<height; ++y)
-		{
-			unsigned char *oT = &buffer[y*rowbytes];
-			unsigned char *oT2 = oT + (width-1)*4;
-			for(int x=0; x<width2; ++x)
-			{
-				unsigned char pixel[4];
-				memcpy(pixel, oT, 4);					
-				memcpy(oT, oT2, 4);
-				memcpy(oT2, pixel, 4);					
-				oT+=4;
-				oT2-=4;
-			}
-		}
-	}
-	if(o ==  UIImageOrientationLeft || o ==  UIImageOrientationDown || o == UIImageOrientationRightMirrored || o == UIImageOrientationDownMirrored)
-	{
-		// Flip y-axis
-		//
-		int height2 = height/2;
-		unsigned char *lineBuffer = (unsigned char *)malloc(rowbytes);
-		for(int y=0; y<height2; ++y)
-		{
-			unsigned char *oT = &buffer[y*rowbytes];
-			unsigned char *oT2 = &buffer[(height-1-y)*rowbytes];
-			memcpy(lineBuffer, oT, rowbytes);
-			memcpy(oT, oT2, rowbytes);
-			memcpy(oT2, lineBuffer, rowbytes);			
-		}
-		free(lineBuffer);
-	}	
-	
-	
-	// get the new CGImage
-	CGImageRef newImageRef = CGBitmapContextCreateImage(imageContextRef);
-	// get the UIImage back	
-	UIImage* newImage = [[UIImage alloc] initWithCGImage:newImageRef];
-	CGImageRelease(newImageRef);	
-	CGContextRelease(imageContextRef);
-	free(buffer);
-	
-	return newImage;
-}
-
-static RenderArguments renderArgsArray[4];
-#else //__PlasticBullet__
 static ffRenderArguments ffRenderArgsArray[9];
-#endif
 
 @implementation mojoViewController
 @synthesize delegate;
@@ -381,14 +115,11 @@ static ffRenderArguments ffRenderArgsArray[9];
 @synthesize topbarView;
 
 
-#ifdef __MOJO__
-#else //__PlasticBullet__
 @synthesize cvVigArtImg;
 @synthesize leakImg;
 @synthesize VigArtImg;
 @synthesize borderImg;
 @synthesize blurImage;
-#endif
 
 
 //@synthesize pView;
@@ -1376,9 +1107,6 @@ int loadTime = 0;
 #pragma mark Load Resource Images
 -(void)prepTmpImg:(UIImage *)_image
 {
-#ifdef __MOJO__
-#else //__PlasticBullet__
-	
 	int width = roundf(CGImageGetWidth(_image.CGImage));
 	int height = roundf(CGImageGetHeight(_image.CGImage));
 	
@@ -1417,8 +1145,6 @@ int loadTime = 0;
 			}
 		}
 	}
-	
-#endif
 }
 
 
@@ -2017,16 +1743,6 @@ int loadTime = 0;
 	if(!_image)
 		return nil;
 	
-#ifdef __MOJO__
-	if (_index == -1)
-	{
-		return createImage(_width, _height, _image);
-	}
-	else 
-	{
-		return createImage(_width, _height, _image, &renderArgsArray[_index]);
-	}
-#else //__PlasticBullet__
 	if (_index == -1)
 	{
 		return [ImageProcess imageNewWithImage:_image scaledToSize:CGSizeMake(_width, _height)];
@@ -2118,108 +1834,14 @@ int loadTime = 0;
 		}		
 		return resultImg;
 	}
-#endif
 }
 
 - (void) newRenderArg:(int)_index
 {
-#ifdef __MOJO__
-	randomizeRenderArg(renderArgsArray[_index],-1);
-#else //__PlasticBullet__
-	ffRenderArgsArray[_index] = [self randomImgParameter];
+    ffRenderArgsArray[_index] = [RandomRenderArguments generate];
 	ffRenderArgsArray[_index].cachedRenderImage = false;
 	ffRenderArgsArray[_index].cachedPreviewImage = false;
-#endif
 }
-
-#ifdef __MOJO__
-#else //__PlasticBullet__
-#pragma mark Build Random Parameters
--(ffRenderArguments)randomImgParameter//:(ffRenderArguments &)renderArg
-{
-	ffRenderArguments renderArg;
-	//cornerSoft
-	renderArg.cornerOpacity =  (arc4random() % 901) / 1000.0f + 0.1f;
-	
-	//diffusion
-	renderArg.difOpacity = (arc4random() % 701) / 1000.0f + 0.1f;
-	//circleVignette
-	renderArg.cvOpacity = (arc4random() % 701) / 1000.0f + 0.3f;
-	//sqrVignette
-	renderArg.SqrOpacity = (arc4random() % 801) / 1000.0f + 0.1f;
-	renderArg.sqrScaleX = (arc4random() % 1001) / 1000.0f;
-	renderArg.sqrScaleY = (arc4random() % 1001) / 1000.0f;
-	//leakTint
-	renderArg.leakTintRGB.r = (arc4random() % 201)/1000.0f+0.8f;
-	renderArg.leakTintRGB.g = (arc4random() % 301)/1000.0f+0.3f;
-	renderArg.leakTintRGB.b = (arc4random() % 301)/1000.0f;
-	//leak offset
-	renderArg.opacity3D.opacity1 = (arc4random() % 1001)/1000.0f;
-	renderArg.opacity3D.opacity2 = (arc4random() % 801)/1000.0f;
-	renderArg.opacity3D.opacity3 = (arc4random() % 501)/1000.0f;
-	
-	renderArg.startY1 = (arc4random() % 1001)/1000.0f;
-	renderArg.startY2 = (arc4random() % 1001)/1000.0f;
-	renderArg.startY3 = (arc4random() % 1001)/1000.0f;
-	//colorClip
-	renderArg.CCExpose = ((arc4random() % 601)/1000.0f) - 0.25f;
-	//r
-	renderArg.CCRGBMaxMin.rMin = ((arc4random() % 1001)/1000.0f) * 0.3f;
-	renderArg.CCRGBMaxMin.rMax = ((arc4random() % 1001)/1000.0f) * 0.25f + 0.75f - renderArg.CCExpose;
-	//g
-	renderArg.CCRGBMaxMin.gMin = ((arc4random() % 1001)/1000.0f) * 0.1f;
-	renderArg.CCRGBMaxMin.gMax = ((arc4random() % 1001)/1000.0f) * 0.2f + 0.8f - renderArg.CCExpose;
-	//b
-	renderArg.CCRGBMaxMin.bMin = 0.0f;
-	renderArg.CCRGBMaxMin.bMax = 1.0f - renderArg.CCExpose;
-	
-	//monoChrome
-	renderArg.rgbValue.r = ((arc4random() % 1001)/1000.0f) * 0.5f + 0.5f;
-	renderArg.rgbValue.g = ((arc4random() % 1001)/1000.0f) * 0.5f + 0.5f;
-	renderArg.rgbValue.b = ((arc4random() % 1001)/1000.0f) * 0.45f + 0.05f;
-	//desat
-	renderArg.blendrand = ((arc4random() % 1001)/1000.0f) * 0.65f + 0.05f;
-	renderArg.randNum = arc4random() % 100;
-	//border
-	renderArg.randX = (arc4random() % 2) * 1.0f;
-	renderArg.randY = (arc4random() % 2) * 1.0f;
-	renderArg.randBorderScale = (arc4random() % 301) / 1000.0f + 1.0f;
-	renderArg.randBorderDoScale = (arc4random() % 2) * 1.0f;
-	
-	// new boder random numbers
-	renderArg.borderType = (arc4random() % 4);
-	renderArg.borderLeft = (arc4random() % 10);
-	renderArg.borderTop = (arc4random() % 10);
-	renderArg.borderRight = (arc4random() % 10);
-	renderArg.borderBottom = (arc4random() % 10);
-	
-	//sCurve
-	renderArg.contrast = ((arc4random() % 1501)/1000.0f) + 1.1f;
-	//colorFade
-	//r
-	renderArg.colorFadeRGB.rMin = ((arc4random() % 1001)/1000.0f) * 0.1f;
-	renderArg.colorFadeRGB.rMax = ((arc4random() % 1001)/1000.0f) * 0.3f + 0.7f;
-	//g
-	renderArg.colorFadeRGB.gMin = ((arc4random() % 1001)/1000.0f) * 0.1f;
-	renderArg.colorFadeRGB.gMax = ((arc4random() % 1001)/1000.0f) * 0.3f + 0.7f;
-	//b
-	renderArg.colorFadeRGB.bMin = ((arc4random() % 1001)/1000.0f) * 0.1f;
-	renderArg.colorFadeRGB.bMax = ((arc4random() % 1001)/1000.0f) * 0.3f + 0.7f;
-	
-	double dinge = renderArg.colorFadeRGB.rMax;
-	if (dinge < renderArg.colorFadeRGB.gMax)
-		dinge = renderArg.colorFadeRGB.gMax;
-	if (dinge < renderArg.colorFadeRGB.bMax)
-		dinge = renderArg.colorFadeRGB.bMax;
-	dinge = 1.0f - dinge;
-	renderArg.colorFadeRGB.rMax += dinge;
-	renderArg.colorFadeRGB.gMax += dinge;
-	renderArg.colorFadeRGB.bMax += dinge;
-	
-	return renderArg;
-}
-#endif
-
 
 
 // Get default save camera original setting

@@ -184,6 +184,7 @@ unsigned char calculateCircleVignetteValue( int _width, int _height, int x, int 
 	return (unsigned char) floor(value*255);
 }
 
+// This prepares look up tables for the effects below, so you can just plug them in.
 void pb_Prep_LUT( ffRGBMaxMin3D _CCrgbMaxMin, ffColor3D _monorgb, ffRGBMaxMin3D _colorFadergbMaxMin, double cornerOpacity, double sCcontrast, double cvOpacity, double SqrOpacity, double diffOpacity )
 {
 	//colorClip - paramters

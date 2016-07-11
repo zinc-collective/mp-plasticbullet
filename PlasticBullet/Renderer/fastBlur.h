@@ -2,7 +2,7 @@
 #ifndef FASTBLUR
 #define FASTBLUR
 
-#include "DataTypeDef.h"
+#include "RenderArguments.h"
 
 unsigned char* fast_blur(unsigned char* _srcImg, int s_radius, int width, int height);
 
