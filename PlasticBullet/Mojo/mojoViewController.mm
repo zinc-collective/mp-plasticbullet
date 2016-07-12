@@ -36,7 +36,6 @@
 
 #include <math.h>
 #import "mojoViewController.h"
- #import "mojoAppDelegate.h"
 #import "RenderArguments.h"
 #import "RandomRenderArguments.h"
 // #import "PostToFacebookViewController.h"
@@ -165,48 +164,6 @@ int loadTime = 0;
 	} else {
 		numberMode = 4;
 	}
-	
-	
-	
-	
-//	[self setWidgetGeometry];
-//	[self setViewState];
-	
-	
-	
-	//theLock = [[NSRecursiveLock alloc] init];
-	//baiwei add for ipad rotate
-	//[self willAnimateRotationToInterfaceOrientation:initInterfaceOrientation duration:1];
-	
-	/*
-	 // Get the main bundle for the app
-	 CFBundleRef mainBundle;
-	 mainBundle = CFBundleGetMainBundle ();
-	 
-	 // Get the URL to the sound file to play
-	 soundFileURLRef  =	CFBundleCopyResourceURL (
-	 mainBundle,
-	 CFSTR ("tap"),
-	 CFSTR ("aif"),
-	 NULL
-	 );
-	 
-	 // Create a system sound object representing the sound file
-	 AudioServicesCreateSystemSoundID (
-	 soundFileURLRef,
-	 &soundFileObject
-	 );
-	 
-	 */
-	
-	//[self getDeviceName];
-	
-	
-	
-	locationManager = [[CLLocationManager alloc] init];
-	locationManager.delegate = self;
-	locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
-	
 }
 
 - (void)focusImage:(UIImageView *)view {
@@ -228,17 +185,6 @@ int loadTime = 0;
     numberMode = (int)mode;
 }
 
-- (void)checkTimeOut:(id)sender
-{
-	[locationManager stopUpdatingLocation];
-	locationManager.delegate = nil;
-	
-	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-	[prefs removeObjectForKey:@"latitude"];
-	[prefs removeObjectForKey:@"longitude"];
-}
-
-
 - (void)setRotations:(CGFloat)rotate scale:(CGFloat)scale
 {
 	CGAffineTransform m = CGAffineTransformMakeRotation(rotate);
@@ -259,74 +205,9 @@ int loadTime = 0;
 }
 
 
-- (BOOL)isOriginalImagePortrait {
-    return self.originalImage.size.width < self.originalImage.size.height;
-}
-
-
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-	if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-		//baiwei add for ipad rotate
-		//[self willAnimateRotationToInterfaceOrientation:interfaceOrientation duration:0];
-		
-		if (interfaceOrientation == UIInterfaceOrientationPortrait)
-		{
-			isPortrait = true;
-			isInverted = false;			
-		} else if (interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
-			isPortrait = true;
-			isInverted = true;
-		} else if (interfaceOrientation == UIInterfaceOrientationLandscapeRight) {
-			isPortrait = false;
-			isInverted = true;
-		} else {
-			isPortrait = false;
-			isInverted = false;
-		}
-		
-		//if(imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera) {
-		//			return NO;
-		//		} else {
-		//			return NO;
-		//		}
-		
-		//if (s_isCameraPick == true) {
-		//			//s_isCameraPick = false;
-		//			return NO;
-		//		} else {
-		//			
-		//			return YES;
-		//		}
-		
-		return YES;
-		
-		
-		
-	} else {
-		return NO;
-	}
-	
-}
-
-
 - (void)didReceiveMemoryWarning 
 {
-	[super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
-	// Release anything that's not essential, such as cached data
-	
-#if 0
-	for (int i=0; i<4; i++)
-	{
-		if (viewImageArray[i])
-		{
-			[viewImageArray[i] release];
-			viewImageArray[i] = nil;
-			isRefresh[i] = YES;
-		}
-	}
-#endif
+	[super didReceiveMemoryWarning];
 }
 
 
@@ -337,17 +218,6 @@ int loadTime = 0;
 	UIImage *image = s_loadedImage;
 	CGFloat inputWidth = CGImageGetWidth( image.CGImage );
 	CGFloat inputHeight = CGImageGetHeight( image.CGImage );
-	
-	//int retainCount1 = [fullImage retainCount];
-	//	
-	//	// FullSize
-	//	if (fullImage!=nil)
-	//	{
-	//		[fullImage release];
-	//		fullImage = nil;
-	//	}
-	
-//	[Utilities printAvailMemory];
 	
     UIImage * newFullImage = [self createNewImage:&image imgWidth:inputWidth imgHeight:inputHeight imgParameter:-1];
 	
@@ -486,77 +356,6 @@ int loadTime = 0;
 }
 
 
-- (double) getLimitResolution
-{
-	
-	NSString* machine = [self getDeviceName];
-	if ( [machine hasPrefix:@"iPhone1,"] || [machine hasPrefix:@"iPod1,"] || [machine hasPrefix:@"iPod2,"])
-	{
-		return 5100000;
-	}
-	else if ( [machine hasPrefix:@"iPhone2,"] || [machine hasPrefix:@"iPod3,"] || [machine hasPrefix:@"iPad1,"] || [machine hasPrefix:@"iPod4,"] )
-	{
-		return 12100000;		
-	}
-	else if ( [machine hasPrefix:@"iPhone3,"] || [machine hasPrefix:@"iPad2,"])
-	{
-		return 30100000;		
-	}
-	else
-	{
-		//High than iPhone4, or High than iPad2
-		return 30100000;	
-		
-	}
-	
-}
-
-
-
-#pragma mark -
-#pragma mark CLLocationManagerDelegate
-
-- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
-{
-	if (newLocation.horizontalAccuracy < 0) return;
-    
-	if (newLocation.horizontalAccuracy <= manager.desiredAccuracy)
-	{
-		NSLog(@"Location Found.");
-		[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(checkTimeOut:) object:nil];
-		
-		[manager stopUpdatingLocation];
-		manager.delegate = nil;
-		
-		
-		double latitude = newLocation.coordinate.latitude;
-		double longitude = newLocation.coordinate.longitude;
-		
-		NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-		
-		[prefs setObject:[NSNumber numberWithDouble:latitude] forKey:@"latitude"];
-		[prefs setObject:[NSNumber numberWithDouble:longitude] forKey:@"longitude"];
-		[prefs synchronize];
-		
-	}
-}
-
-- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
-{
-	NSLog(@"Location Failed.");
-	
-	if ([error code] != kCLErrorLocationUnknown)
-	{
-		[manager stopUpdatingLocation];
-		manager.delegate = nil;
-		
-		[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(checkTimeOut:) object:nil];
-	}
-	
-	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-	[prefs removeObjectForKey:@"latitude"];
-	[prefs removeObjectForKey:@"longitude"];
-}
 
 - (UIImage*) uncontrastiPhone4Image:(UIImage*)sourceImage{
 	
@@ -656,99 +455,6 @@ int loadTime = 0;
 	
 }
 
-//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
-//
-// REFACTOR image metadata
-//	UIInterfaceOrientation toInterfaceOrientation = self.interfaceOrientation;
-//
-//	baiwei add for imageMetadata
-//	UIImage *originalImage = [info objectForKey:UIImagePickerControllerOriginalImage];
-//    mojoAppDelegate *appDelegate = (mojoAppDelegate*)[mojoAppDelegate fakeAppDelegate];
-//
-//	if ( picker.sourceType == UIImagePickerControllerSourceTypeCamera ) //from camera
-//	{
-//		float version = [[[UIDevice currentDevice] systemVersion] floatValue];
-//		if (version > 4.1) {
-//			appDelegate.imageMetadata = [info objectForKey:@"UIImagePickerControllerMediaMetadata"];
-//			
-//			NSMutableDictionary *GPS = [[NSMutableDictionary alloc]init];
-//			NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-//			double latitude = [prefs doubleForKey: @"latitude"];
-//			double longitude = [prefs doubleForKey: @"longitude"];
-//			
-//			//[GPS setObject:@"126.603" forKey:@"ImgDirection"];
-//			//				[GPS setObject:@"T" forKey:@"ImgDirectionRef"];
-//			
-//			[GPS setObject:[NSNumber numberWithDouble:latitude] forKey:@"Latitude"];
-//			if (latitude > 0) {
-//				[GPS setObject:@"N" forKey:@"LatitudeRef"];
-//			} else {
-//				[GPS setObject:@"S" forKey:@"LatitudeRef"];
-//			}
-//			
-//			[GPS setObject:[NSNumber numberWithDouble:longitude] forKey:@"Longitude"];
-//			if (latitude > 0) {
-//				[GPS setObject:@"E" forKey:@"LongitudeRef"];
-//			} else {
-//				[GPS setObject:@"W" forKey:@"LongitudeRef"];
-//			}
-//			
-//			NSDate *date = [NSDate date];
-//			NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//			[formatter setDateFormat:@"HH:mm:ss"];
-//			NSString *dateString = [formatter stringFromDate:date];
-//			[GPS setObject:dateString forKey:@"TimeStamp"];
-//			
-//			[appDelegate.imageMetadata setObject:GPS forKey:@"{GPS}"];
-//			
-//			NSLog(@"imageMetadata2=%@", appDelegate.imageMetadata);
-//			
-//		} else {
-//			appDelegate.imageMetadata = nil;
-//		}
-//		
-//		
-//		if ([self isSaveCameraShot])
-//		{
-//			if (appDelegate.imageMetadata == nil) {
-//				UIImageWriteToSavedPhotosAlbum(originalImage, self, nil, nil); 
-//			} else {
-////                ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-////				CGImageRef imageMetadataRef=originalImage.CGImage;
-////				[library writeImageToSavedPhotosAlbum:imageMetadataRef metadata:appDelegate.imageMetadata completionBlock:^(NSURL *newURL, NSError *error) {
-////					if (error) {
-////					} else {
-////					}
-////				}];
-//			}
-//		}
-//	} else { //from Lib
-//		float version = [[[UIDevice currentDevice] systemVersion] floatValue];
-//		if (version > 4.1) {
-//			NSURL *assetURL = [info objectForKey:UIImagePickerControllerReferenceURL];
-//			
-//			ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-//			[library assetForURL:assetURL
-//					 resultBlock:^(ALAsset *asset)  {
-//						 NSDictionary *metadata = asset.defaultRepresentation.metadata;
-//						 
-//						 appDelegate.imageMetadata = [[NSMutableDictionary alloc] initWithDictionary:metadata];
-//						 
-//					 }
-//					failureBlock:^(NSError *error) {
-//					}];
-//		} else {
-//			appDelegate.imageMetadata = nil;	
-//		}
-//	}
-//	//end add
-//	
-//
-//	//s_isCameraPick = true;
-//	
-//	//baiwei add for dismisspopover
-//}
-
 -(void)renderImage:(UIImage *)image {
 	
     self.originalImage = nil;
@@ -770,24 +476,7 @@ int loadTime = 0;
 	CGSize size = image.size;
 	NSLog(@"load image size: %f : %f", size.width,size.height);
 	
-	//baiwei add for memery resolution
-	
-// REFACTOR: warnings for min / max size images. worth it?
-	
-	//Added by jack
-	//Cache the raw data of image
-	//[Utilities cacheToRawDataFromImage:image filename:ORIGINAL_IMAGE_FILE_NAME];
-	//[Utilities cacheToRawDataFromImage:image filename:RENDER_SOURCE_FILE_NAME];
-	
 	if(image == nil)return;
-	
-	
-	//add by jack 0525
-    mojoAppDelegate *app = (mojoAppDelegate*)[mojoAppDelegate fakeAppDelegate];
-	[app showInitialiationView];
-	[app hiddenProgressViewBar];
-	//end add
-	
 	
 	//add by jack 2011-07-18
 	//iPhone 4 reverse contrast curve definition
@@ -799,13 +488,6 @@ int loadTime = 0;
 		image = [self uncontrastiPhone4Image:image];
 	}
 	//end add
-	
-//	if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-//	{
-//		numberMode = 9;
-//	} else {
-//		numberMode = 4;
-//	}
 	
 	[Utilities printAvailMemory];
 #ifdef CROP_RATIO_4_3
@@ -827,47 +509,6 @@ int loadTime = 0;
 	[Utilities printAvailMemory];
 	
 }
-
-/*
- - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)originalImage editingInfo:(NSDictionary *)editingInfo 
- {
- [picker dismissModalViewControllerAnimated:YES];
- 
- m_viewState = 1;
- m_isImageOnceLoaded = true;	
- 
- // Randomize and clear cache
- for(int i=0;i<4;i++)
- {
- [self newRenderArg:i];
- isRefresh[i] = NO;
- if(viewImageArray[i])
- {
- [viewImageArray[i] release];
- viewImageArray[i] = nil;
- }
- }
- 
- if ( picker.sourceType == UIImagePickerControllerSourceTypeCamera )
- {
- // Saved captured camera photo
- //
- //		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
- //		if ([defaults boolForKey:@"save_camera_shot"])
- if ([self isSaveCameraShot])
- {
- UIImageWriteToSavedPhotosAlbum(originalImage, self, nil, nil);
- }
- }
- 
- UIImage *tmpImage = [self prepSourceImg:originalImage];
- [self prepTmpImg:tmpImage];
- 
- [self startRenderBackground:true image:tmpImage clearAlpha:true];
- [tmpImage release];
- }
- */
-
 
 // Deal with original image by cropping and scaling
 //
@@ -1388,24 +1029,6 @@ int loadTime = 0;
 	
 	return 0;
 }
-/*
- -(void) renderRedraw
- {
- mojoView *pView = (mojoView *)self.view;
- [pView setNeedsDisplay];
- }
- 
- */
-/*
- - (void)renderAmount:(float)xAmount yArgAmount:(float)yAmount
- {
- int renderIndex = 0;
- 
- setAmountRenderArg(renderArgsArray[renderIndex], axisXProperty, xAmount);
- setAmountRenderArg(renderArgsArray[renderIndex], axisYProperty, yAmount);
- [self startRenderBackground:false image:nil clearAlpha:true];
- }
- */
 
 - (void)randomizeQuad:(int)_index
 {
@@ -1432,43 +1055,10 @@ int loadTime = 0;
 	
 }
 
-/*
- // Respond to a tap on the System Sound button
- - (void)playSystemSound
- {
- // Disabled
- //	AudioServicesPlaySystemSound (self.soundFileObject);
- }
- 
- // Respond to a tap on the Alert Sound button
- - (void)playAlertSound 
- {	
- // Disabled
- //	AudioServicesPlayAlertSound (self.soundFileObject);
- }
- */
-
 
 - (void) refreshRendering{
 	[self startRenderBackground:true image:nil clearAlpha:false];
 }
-/*
- -(bool)cancelSave
- {
- //	if(!isSaving)
- //		return false;
- //	isSaving = false;
- //	[workerThread cancel];
- //	[spinner stopAnimating];
- //#if 1
- //	[self startRenderBackground:true image:nil];
- //#else
- //	[self generateInputImages];
- //	[self renderImages];	
- //#endif
- return true;
- }
- */
 
 
 - (void)startRenderBackground:(bool)renderInputs image:(UIImage *)image clearAlpha:(bool)clearAlpha
@@ -1482,11 +1072,6 @@ int loadTime = 0;
 		y = (1024-TOOLBAR_OFFSET_HEIGHT)/2.0;
 	}
 	
-//	float width = spinner.frame.size.width;
-//	float height = spinner.frame.size.height;
-//	spinner.frame = CGRectMake(x-width/2.0, TOOLBAR_OFFSET_HEIGHT + y-height/2.0, width, height);
-//	[[spinner superview] bringSubviewToFront:spinner];
-	//	[spinner startAnimating];
 	if(workerThread != nil)
 	{
 		[workerThread cancel];
@@ -1499,16 +1084,6 @@ int loadTime = 0;
 	
 	if(clearAlpha)
 	{
-//		[topLeftView setImage:nil];
-//		[topMiddleView setImage:nil];
-//		[topRightView setImage:nil];
-//		[middleLeftView setImage:nil];
-//		[middleMiddleView setImage:nil];
-//		[middleRightView setImage:nil];
-//		[bottomLeftView setImage:nil];
-//		[bottomMiddleView setImage:nil];
-//		[bottomRightView setImage:nil];
-		
 		[topLeftView setAlpha:0.f];
 		[topMiddleView setAlpha:0.f];
 		[topRightView setAlpha:0.f];
@@ -1549,19 +1124,9 @@ int loadTime = 0;
 	
 	sWorkerThread = workerThread;
 	
-	//	NSLog(@"start");
-	//mojoView *pView = (mojoView *)self.view;	
-	//	NSLog(@"pView fullImage");
-	//[pView setFullImage:fullImage];
-	
 	if(![workerThread isCancelled])
 	{
 		[self generateInputImages];
-		
-		//add by jack 0525
-		mojoAppDelegate *app = (mojoAppDelegate*)[mojoAppDelegate fakeAppDelegate];
-		[app showProcessProgress:NO];
-		//end add
 		
 		if(![workerThread isCancelled])
 		{
@@ -1579,13 +1144,6 @@ int loadTime = 0;
 		}
 		s_loadedImage = nil;
 	}
-	else {
-		//add by jack 0525
-        mojoAppDelegate *app = (mojoAppDelegate*)[mojoAppDelegate fakeAppDelegate];
-		[app showProcessProgress:NO];
-		//end add
-	}
-	
 	
 	[self performSelectorOnMainThread:@selector(renderTerminated:) withObject:@"Finish" waitUntilDone:NO];
 	sWorkerThread = nil;
@@ -1593,8 +1151,6 @@ int loadTime = 0;
 	
 	
 	[self performSelectorOnMainThread:@selector(stopAnimating:) withObject:@"stopAnimating" waitUntilDone:NO];
-	
-	//[Utilities printAvailMemory];
 }
 
 // Render mid size
@@ -1649,13 +1205,12 @@ int loadTime = 0;
 
 - (void)renderTerminated:(NSString *)answer
 {
-	//[self playSystemSound];
-	//	[self cancelRender];
+	// [self playSystemSound];
+	// [self cancelRender];
 }
 
 -(void)startAnimating:(NSString *)answer
 {
-//	[spinner startAnimating];
     [self.delegate mojoIsWorking:YES];
 }
 
@@ -1664,72 +1219,6 @@ int loadTime = 0;
 //	[spinner stopAnimating];
     [self.delegate mojoIsWorking:NO];
 }
-/*
- -(bool)cancelRender
- {
- //	if(!isRendering)
- //		return false;
- //	isRendering = false;
- //	[workerThread cancel];
- //	[spinner stopAnimating];
- return true;
- }
- */
-
-/*
- - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation 
- {
- return interfaceOrientation == UIInterfaceOrientationPortrait;
- }
- */
-
-//- (IBAction)selectImageView:(id)sender
-//{
-//	if(!m_isImageOnceLoaded)
-//		return;
-//	int index;
-//	if(sender == button_topLeftView )
-//	{
-//		index = 0;
-//	}
-//	else if(sender == button_topRightView )
-//	{
-//		index = 1;
-//	}
-//	else if(sender == button_bottomLeftView )
-//	{
-//		index = 2;
-//	}
-//	else  if(sender == button_bottomRightView )
-//	{
-//		index = 3;
-//	}
-//	else  if(sender == button_topMiddleView )
-//	{
-//		index = 4;
-//	}
-//	else  if(sender == button_middleLeftView )
-//	{
-//		index = 5;
-//	}
-//	else  if(sender == button_middleMiddleView )
-//	{
-//		index = 6;
-//	}
-//	else  if(sender == button_middleRightView )
-//	{
-//		index = 7;
-//	}
-//	else  if(sender == button_bottomMiddleView )
-//	{
-//		index = 8;
-//	}
-//	else
-//		return;
-//	
-//	[self selectQuad:index];
-//	
-//}
 
 - (UIImage*) createNewImage:(UIImage **)_imagePtr
 				   imgWidth:(float)_width
@@ -1973,7 +1462,6 @@ int loadTime = 0;
 		
 	}
 	
-//	mojoAppDelegate *app = (mojoAppDelegate*)[[UIApplication sharedApplication] delegate];
 	if ( !saveImage )
 	{
 		saveImage = [self createNewImage:&renderImage imgWidth:tempWidth imgHeight:tempHeight imgParameter:m_quadIndex];

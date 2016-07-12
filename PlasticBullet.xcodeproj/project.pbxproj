@@ -29,7 +29,6 @@
 		78C015141C7BACF2009C382C /* Plugin_Render.mm in Sources */ = {isa = PBXBuildFile; fileRef = 78C015121C7BACF2009C382C /* Plugin_Render.mm */; };
 		78C0151F1C7BB739009C382C /* mojoViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 78C0151D1C7BB739009C382C /* mojoViewController.mm */; };
 		78C015221C7BB7FA009C382C /* FileCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C015211C7BB7FA009C382C /* FileCache.m */; };
-		78C015251C7BBB0B009C382C /* mojoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C015241C7BBB0B009C382C /* mojoAppDelegate.m */; };
 		78E2E6B31C7B780300B5A91A /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E2E6B21C7B780300B5A91A /* NavigationController.swift */; };
 		78E2E6B51C7B7C1100B5A91A /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E2E6B41C7B7C1100B5A91A /* Style.swift */; };
 		78E2E72E1C7B7FA200B5A91A /* border_1200x1600px.png in Resources */ = {isa = PBXBuildFile; fileRef = 78E2E6B71C7B7FA200B5A91A /* border_1200x1600px.png */; };
@@ -202,8 +201,6 @@
 		78C0151D1C7BB739009C382C /* mojoViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = mojoViewController.mm; sourceTree = "<group>"; };
 		78C015201C7BB7FA009C382C /* FileCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileCache.h; sourceTree = "<group>"; };
 		78C015211C7BB7FA009C382C /* FileCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileCache.m; sourceTree = "<group>"; };
-		78C015231C7BBB0B009C382C /* mojoAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mojoAppDelegate.h; sourceTree = "<group>"; };
-		78C015241C7BBB0B009C382C /* mojoAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mojoAppDelegate.m; sourceTree = "<group>"; };
 		78E2E6B21C7B780300B5A91A /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		78E2E6B41C7B7C1100B5A91A /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		78E2E6B71C7B7FA200B5A91A /* border_1200x1600px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = border_1200x1600px.png; sourceTree = "<group>"; };
@@ -440,8 +437,6 @@
 			children = (
 				78C0151C1C7BB739009C382C /* mojoViewController.h */,
 				78C0151D1C7BB739009C382C /* mojoViewController.mm */,
-				78C015231C7BBB0B009C382C /* mojoAppDelegate.h */,
-				78C015241C7BBB0B009C382C /* mojoAppDelegate.m */,
 				7863EFDE1D341BFB00F202B7 /* RenderArguments.c */,
 				7863EFDF1D341BFB00F202B7 /* RenderArguments.h */,
 				7863EFE41D34275B00F202B7 /* RandomRenderArguments.h */,
@@ -881,7 +876,6 @@
 				78B6A2501C76780500AE58F7 /* SplashViewController.swift in Sources */,
 				78C015141C7BACF2009C382C /* Plugin_Render.mm in Sources */,
 				78C0151F1C7BB739009C382C /* mojoViewController.mm in Sources */,
-				78C015251C7BBB0B009C382C /* mojoAppDelegate.m in Sources */,
 				7881D5941C78EDC9000255F9 /* InfoViewController.swift in Sources */,
 				78B6A24E1C76780500AE58F7 /* AppDelegate.swift in Sources */,
 				7881D5961C78F7C4000255F9 /* ImageViewController.swift in Sources */,
