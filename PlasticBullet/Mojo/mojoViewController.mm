@@ -355,106 +355,6 @@ int loadTime = 0;
 	//#endif
 }
 
-
-
-- (UIImage*) uncontrastiPhone4Image:(UIImage*)sourceImage{
-	
-	//LUT
-	//iPhone4uncontrastLUT.png
-	
-	UIImage* lutImage = [UIImage imageNamed:@"iPhone4uncontrastLUT.png"];
-	
-	int theWidth = roundf(CGImageGetWidth(lutImage.CGImage));
-	int theHeight = roundf(CGImageGetHeight(lutImage.CGImage));
-	CFDataRef theData = CGDataProviderCopyData(CGImageGetDataProvider(lutImage.CGImage));
-	int *m_data = (int *)CFDataGetBytePtr(theData);
-	
-	uint8_t *sourcR = (unsigned char *)&m_data[0];
-	uint8_t *sourcG = sourcR+theWidth*4;
-	uint8_t *sourcB = sourcG+theWidth*4;
-	uint8_t *sourcA = sourcB+theWidth*4;
-	
-	int iPhone4LUT[256][4];
-	
-	if(theHeight != 4)return sourceImage;
-	
-	for(int i = 0; i < theWidth; i++){
-	
-		iPhone4LUT[i][0] = *sourcR;
-		iPhone4LUT[i][1] = *sourcG;
-		iPhone4LUT[i][2] = *sourcB;
-		iPhone4LUT[i][3] = *sourcA;
-
-		
-	//	NSLog(@"R=%d, G=%d, B=%d, A=%d",*sourcR,*(sourcR+1),*(sourcB+2),*(sourcA+3));
-//		NSLog(@"R=%d, G=%d, B=%d, A=%d",*sourcR,*sourcG,*sourcB,*sourcA);
-//		
-		sourcR+=4;
-		sourcG+=4;
-		sourcB+=4;
-		sourcA+=4;
-	}
-	
-	CFRelease(theData);
-	
-	
-	int _width = roundf(CGImageGetWidth(sourceImage.CGImage));
-	int _height = roundf(CGImageGetHeight(sourceImage.CGImage));
-	CFDataRef sourceData = CGDataProviderCopyData(CGImageGetDataProvider(sourceImage.CGImage));
-	int *m_sourcedata = (int *)CFDataGetBytePtr(sourceData);
-	uint8_t *sourceb = (unsigned char *)&m_sourcedata[0];
-	
-
-	uint8_t *poutb;
-	uint8_t* pout;
-	pout = poutb = (uint8_t *)malloc(_width * _height * 4);
-    if (!poutb)
-	{
-		CFRelease(sourceData);
-		return nil;
-	}
-	
-	
-	
-	for(int i = 0; i < _height; i++){
-		for(int i = 0; i < _width; i++){
-			
-			int pR = *sourceb++;
-			int pG = *sourceb++;
-			int pB = *sourceb++;
-			int pA = *sourceb++;
-			
-			//NSLog(@"R=%d,G=%d,B=%d,A=%d",pR,pG,pB,pA);
-			
-			*poutb++ = iPhone4LUT[pR][0];
-			*poutb++ = iPhone4LUT[pG][1];
-			*poutb++ = iPhone4LUT[pB][2];
-			*poutb++ = iPhone4LUT[pA][3];
-		}
-	}
-	
-	CFRelease(sourceData);
-	
-	CGColorSpaceRef colorSpace=CGColorSpaceCreateDeviceRGB();
-	CGBitmapInfo bitmapInfo = CGImageGetBitmapInfo(sourceImage.CGImage);
-	
-	CGContextRef context = CGBitmapContextCreate(pout, _width, _height, 8, _width*4, colorSpace, bitmapInfo);
-	CGImageRef imageRef = CGBitmapContextCreateImage(context);
-	CGContextRelease(context);
-	CGColorSpaceRelease(colorSpace);
-	free(pout); 
-
-	
-	UIImage* newImage = [[UIImage alloc] initWithCGImage:imageRef];
-	CGImageRelease(imageRef);
-	
-	
-	//UIImageWriteToSavedPhotosAlbum(newImage, self, nil, nil);
-	
-    return newImage;
-	
-}
-
 -(void)renderImage:(UIImage *)image {
 	
     self.originalImage = nil;
@@ -478,16 +378,6 @@ int loadTime = 0;
 	
 	if(image == nil)return;
 	
-	//add by jack 2011-07-18
-	//iPhone 4 reverse contrast curve definition
-	NSString* machine = [self getDeviceName];
-	if ( [machine hasPrefix:@"iPhone3,"] && isImageFromCamera){
-		int inputWidth = roundf(CGImageGetWidth( image.CGImage ));
-		int inputHeight = roundf(CGImageGetHeight( image.CGImage ));
-		image = [ImageProcess imageNewWithImage:image scaledToSize:CGSizeMake(inputWidth, inputHeight)];
-		image = [self uncontrastiPhone4Image:image];
-	}
-	//end add
 	
 	[Utilities printAvailMemory];
 #ifdef CROP_RATIO_4_3
