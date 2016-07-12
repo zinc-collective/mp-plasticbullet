@@ -152,7 +152,6 @@ typedef enum GRID_MODE {
 - (void)initGrid:(GRID_MODE)gridMode;
 
 - (int)renderImages;
-- (void)randomizeQuad:(int)_index;
 - (void) generateInputImages;
 
 

@@ -920,36 +920,6 @@ int loadTime = 0;
 	return 0;
 }
 
-- (void)randomizeQuad:(int)_index
-{
-	if (_index == -1 || _index == -2)
-	{
-		for(int k=0;k<9;k++)
-		{
-			[self newRenderArg:k];
-			isRefresh[k] = YES;
-		}
-	}
-	else if ( _index<9 )
-	{
-    [self newRenderArg:_index];
-		isRefresh[_index] = YES;		
-	}
-	
-	if(_index == -2){
-		[self startRenderBackground:true image:nil clearAlpha:true];
-	}
-	else {
-		[self startRenderBackground:false image:nil clearAlpha:true];
-	}
-	
-}
-
-
-- (void) refreshRendering{
-	[self startRenderBackground:true image:nil clearAlpha:false];
-}
-
 
 - (void)startRenderBackground:(bool)renderInputs image:(UIImage *)image clearAlpha:(bool)clearAlpha
 {
