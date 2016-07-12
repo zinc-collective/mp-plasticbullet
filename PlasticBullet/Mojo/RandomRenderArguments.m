@@ -9,61 +9,60 @@
 #import "RandomRenderArguments.h"
 #import "RenderArguments.h"
 
-// this is only 2-digit precision, but that's enough. that's 100 values per axis.
-float randomPercent(int min, int max) {
-    u_int32_t upper_random = (max - min) + 1;
-    float random_value = arc4random_uniform(upper_random);
-    float value = ((float)(min + random_value) / 100.f);
+// this works with negative numbers so long as the RANGE is positive
+int randomBetween(int min, int max) {
+    return min + arc4random_uniform(max - min + 1);
+}
+
+float randomPercent(float min, float max) {
+    int minThousands = round(min * 1000.0);
+    int maxThousands = round(max * 1000.0);
+    int randValue = randomBetween(minThousands, maxThousands);
+    float value = (float)randValue / 1000.0;
+//    NSLog(@"randomPercent min=%i max=%i rand=%i value=%f", minThousands, maxThousands, randValue, value);
     return value;
 }
 
 @implementation RandomRenderArguments
 
 
+
 +(ffRenderArguments)generate
 {
 	ffRenderArguments renderArg;
+    
 	//cornerSoft
-    renderArg.cornerOpacity = randomPercent(10, 100); // arc4random_uniform(901) / 1000.0f + 0.1f;
+    renderArg.cornerOpacity = randomPercent(0.1, 1.0); // arc4random_uniform(901) / 1000.0f + 0.1f;
 	
 	//diffusion
     // from 0.1 to 0.801
-    renderArg.difOpacity = randomPercent(0, 60); // arc4random_uniform(701) / 1000.0f + 0.1f;
+    renderArg.difOpacity = randomPercent(0, 0.6); // arc4random_uniform(701) / 1000.0f + 0.1f;
     
 	//circleVignette
-    renderArg.cvOpacity = randomPercent(0, 60); //    arc4random_uniform(701) / 1000.0f + 0.3f;
+    renderArg.cvOpacity = randomPercent(0, 0.6); //    arc4random_uniform(701) / 1000.0f + 0.3f;
     
 	//sqrVignette
-    renderArg.SqrOpacity = randomPercent(0, 60); // arc4random_uniform(801) / 1000.0f + 0.1f;
-    renderArg.sqrScaleX = randomPercent(0, 100); // arc4random_uniform(1001) / 1000.0f;
-    renderArg.sqrScaleY = randomPercent(0, 100); // arc4random_uniform(1001) / 1000.0f;
+    renderArg.SqrOpacity = randomPercent(0, 0.6); // arc4random_uniform(801) / 1000.0f + 0.1f;
+    renderArg.sqrScaleX = randomPercent(0, 1.0); // arc4random_uniform(1001) / 1000.0f;
+    renderArg.sqrScaleY = randomPercent(0, 1.0); // arc4random_uniform(1001) / 1000.0f;
     
 	//leakTint
-    renderArg.leakTintRGB.r = randomPercent(80, 100); // arc4random_uniform(201)/1000.0f+0.8f;
-    renderArg.leakTintRGB.g = randomPercent(30, 60); // arc4random_uniform(301)/1000.0f+0.3f;
-    renderArg.leakTintRGB.b = randomPercent(0, 30); // arc4random_uniform(301)/1000.0f;
+    renderArg.leakTintRGB.r = randomPercent(0.8, 1.0); // arc4random_uniform(201)/1000.0f+0.8f;
+    renderArg.leakTintRGB.g = randomPercent(0.3, 0.6); // arc4random_uniform(301)/1000.0f+0.3f;
+    renderArg.leakTintRGB.b = randomPercent(0, 0.3); // arc4random_uniform(301)/1000.0f;
     
 	//leak offset
-    renderArg.opacity3D.opacity1 = randomPercent(0, 100); // arc4random_uniform(1001)/1000.0f;
-    renderArg.opacity3D.opacity2 = randomPercent(0, 80); // arc4random_uniform(801)/1000.0f;
-    renderArg.opacity3D.opacity3 = randomPercent(0, 50); // arc4random_uniform(501)/1000.0f;
+    renderArg.opacity3D.opacity1 = randomPercent(0, 1.0); // arc4random_uniform(1001)/1000.0f;
+    renderArg.opacity3D.opacity2 = randomPercent(0, 0.8); // arc4random_uniform(801)/1000.0f;
+    renderArg.opacity3D.opacity3 = randomPercent(0, 0.5); // arc4random_uniform(501)/1000.0f;
 	
-    renderArg.startY1 = randomPercent(0, 100); // arc4random_uniform(1001)/1000.0f;
-    renderArg.startY2 = randomPercent(0, 100); // arc4random_uniform(1001)/1000.0f;
-    renderArg.startY3 = randomPercent(0, 100); // arc4random_uniform(1001)/1000.0f;
+    renderArg.startY1 = randomPercent(0, 1.0); // arc4random_uniform(1001)/1000.0f;
+    renderArg.startY2 = randomPercent(0, 1.0); // arc4random_uniform(1001)/1000.0f;
+    renderArg.startY3 = randomPercent(0, 1.0); // arc4random_uniform(1001)/1000.0f;
     
-	//colorClip
-	renderArg.CCExpose = (arc4random_uniform(601)/1000.0f) - 0.25f;
-	//r
-	renderArg.CCRGBMaxMin.rMin = (arc4random_uniform(1001)/1000.0f) * 0.3f;
-	renderArg.CCRGBMaxMin.rMax = (arc4random_uniform(1001)/1000.0f) * 0.25f + 0.75f - renderArg.CCExpose;
-	//g
-	renderArg.CCRGBMaxMin.gMin = (arc4random_uniform(1001)/1000.0f) * 0.1f;
-	renderArg.CCRGBMaxMin.gMax = (arc4random_uniform(1001)/1000.0f) * 0.2f + 0.8f - renderArg.CCExpose;
-	//b
-	renderArg.CCRGBMaxMin.bMin = 0.0f;
-	renderArg.CCRGBMaxMin.bMax = 1.0f - renderArg.CCExpose;
-	
+    // colorClip
+    renderArg.CCRGBMaxMin = [self colorClip];
+    
 	//monoChrome
 	renderArg.rgbValue.r = (arc4random_uniform(1001)/1000.0f) * 0.5f + 0.5f;
 	renderArg.rgbValue.g = (arc4random_uniform(1001)/1000.0f) * 0.5f + 0.5f;
@@ -108,6 +107,27 @@ float randomPercent(int min, int max) {
 	renderArg.colorFadeRGB.bMax += dinge;
 	
 	return renderArg;
+}
+
++(ffRGBMaxMin3D)colorClip {
+    
+	//colorClip:
+    ffRGBMaxMin3D rgbMaxMin;
+    rgbMaxMin.expose = randomPercent(-0.25, 0.35);
+    
+	//r
+    rgbMaxMin.rMin = randomPercent(0.0, 0.3);
+    rgbMaxMin.rMax = randomPercent(0.75, 1.0) - rgbMaxMin.expose;
+    
+	//g
+    rgbMaxMin.gMin = randomPercent(0.0, 0.1);
+    rgbMaxMin.gMax = randomPercent(0.8, 1.0) - rgbMaxMin.expose;
+    
+	//b
+	rgbMaxMin.bMin = 0.0f;
+	rgbMaxMin.bMax = 1.0f - rgbMaxMin.expose;
+    
+    return rgbMaxMin;
 }
 
 @end

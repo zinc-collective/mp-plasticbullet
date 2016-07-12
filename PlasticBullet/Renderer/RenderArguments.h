@@ -32,6 +32,7 @@ typedef struct _ffRGBMaxMin3D
 		double gMin;
 		double bMax;
 		double bMin;
+        float expose;
 	} ffRGBMaxMin3D;
 
 //rendering parameters
@@ -55,9 +56,10 @@ typedef struct {
 	float startY1,startY2,startY3;
 	//leak
 	ffOpacity3D opacity3D;
+    
 	//colorClip
-	float CCExpose;
 	ffRGBMaxMin3D CCRGBMaxMin;
+    
 	//monoChrome
 	ffColor3D rgbValue;
 	//desat

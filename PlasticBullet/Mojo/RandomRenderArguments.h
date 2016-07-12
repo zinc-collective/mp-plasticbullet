@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "RenderArguments.h"
 
-float randomPercent(int min, int max);
+float randomPercent(float min, float max);
+int randomBetween(int min, int max);
 
 @interface RandomRenderArguments : NSObject
 +(ffRenderArguments) generate;
