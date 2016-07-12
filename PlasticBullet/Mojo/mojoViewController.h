@@ -74,30 +74,8 @@ typedef enum GRID_MODE {
 	
 	BOOL isRefresh[9];
 	
-	//PostToFacebookViewController *facebookSession;
-	PostToFlickrViewController *flickrSession;
-	UINavigationController *navigationFlickr;
-	UINavigationController *navigationFacebook;
-	
-	
-	UIImage * saveImage2;
-	
 	NSMutableDictionary *imageMetadata;
 	
-	CLLocation *myLocation;
-	CLLocationManager *locationManager;
-	
-	SAVE_TO saveToState;
-	
-	PostToAllViewController *postToAllViewController;
-	
-	
-	BOOL   isImageFromCamera;
-    
-    UIInterfaceOrientation nowInterfaceOrientation;
-    
-    ProgressView *shareProgressView;
-    
     int numberMode;
     GRID_MODE gridMode;
 }
@@ -106,9 +84,6 @@ typedef enum GRID_MODE {
 @property (weak, nonatomic) id<MojoDelegate> delegate;
 @property (weak, nonatomic) Renderer * renderer;
 
-@property (nonatomic, assign) UIInterfaceOrientation nowInterfaceOrientation;
-
-@property (retain, nonatomic)PostToAllViewController *postToAllViewController;
 @property (retain, nonatomic) UIImage *originalImage;
 @property(retain,nonatomic)UIImage *portraitImage;
 
@@ -136,23 +111,14 @@ typedef enum GRID_MODE {
 @property(retain,nonatomic)UIImage *borderImg;
 @property(retain,nonatomic)UIImage *blurImage;
 
-@property (nonatomic, retain) UINavigationController *navigationFlickr;
-@property (nonatomic, retain) UINavigationController *navigationFacebook;
-@property (nonatomic, retain) PostToFlickrViewController *flickrSession;
-
-
 @property (nonatomic, retain) UIImagePickerController *imagePicker;
-
-@property (nonatomic) SAVE_TO saveToState;
-
-@property (nonatomic, retain) ProgressView *shareProgressView;
 
 - (void)focusImage:(UIImageView *)focusedView;
 - (void)defocusImage;
 - (void)initGrid:(GRID_MODE)gridMode;
 
 - (int)renderImages;
-- (void) generateInputImages;
+- (void)generateInputImages;
 
 
 - (void)startRenderBackground:(bool)renderInputs image:(UIImage *)image  clearAlpha:(bool)clearAlpha;
@@ -173,7 +139,6 @@ typedef enum GRID_MODE {
 -(UIImage *)createNewImage:(UIImage **)_imagePtr imgWidth:(float)_width imgHeight:(float)_height imgParameter:(int)_index;
 -(void) newRenderArg:(int)_index;
 
--(bool) isSaveCameraShot;
 -(NSString *)getDeviceName;
 -(void) printAvailMem;
 

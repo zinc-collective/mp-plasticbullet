@@ -9,31 +9,6 @@
 #define DOT_SIZE 80
 #define BORDER_SIZE 5
 
-/*
- TODO
- * Name change to Mojo (capital)
- * Remove sound
- * Saved image doesn't have the same look as chosen image
- * Bug Full Screen -> Save -> Load -> Stays in Full screen
- * Buttons wrong after you Save image
- * When there is no image we should not allow Full view to be selected (stay in quad mode always)
- * When clicking a button and releasing outside it was still triggering the event
- * After Save, Click Cancel, does not render and update
- * One large, 3 small after transition from Full to Quad (with rotate in middle)
- * One small, 3 large after transition from Full to Quad (with rotate in middle)
- 
- 
- * Glow ball PNG is drawn under, not over button PNGs (maybe revert to system icons)
- (INVESTIGATED - Alpha in png seems weird for Camera and Library - eg bring them up in the Apple "Preview" application and zoom up - seem like problem areas are black pixels with full white alpha)
- 
- 
- 
- 
- 
- 
- * Loading spinny animation sometimes appears in upper rt. of screen instead of center, then hangs app (after camera)
- */
-
 #include <math.h>
 #import "mojoViewController.h"
 #import "RenderArguments.h"
@@ -63,30 +38,10 @@
 
 NSThread *sWorkerThread = nil;
 
-//static RenderArguments renderArgsArray[4];
-//static bool quadMode = true;
-//static bool nineMode = false;
-
-//static int TOOLBAR_OFFSET_HEIGHT = 44;
-
-//static bool isNineMode = false;
-
-//static UIActionSheet *actionSheet = nil;
-
-//add by Guno
 static UIImage *portraitImage1 = nil;
 static UIImage *portraitImage4 = nil;
 static UIImage *portraitImage9 = nil;
 static UIImage *s_loadedImage = nil;
-
-//end Guno
-
-
-
-
-#ifdef SUBVIEW
-static UIView *s_mySubView = nil;
-#endif
 
 static ffRenderArguments ffRenderArgsArray[9];
 
@@ -94,10 +49,6 @@ static ffRenderArguments ffRenderArgsArray[9];
 @synthesize delegate;
 @synthesize renderer;
 @synthesize originalImage;
-//@synthesize button1;
-//@synthesize spinner;
-//@synthesize soundFileURLRef;
-//@synthesize soundFileObject;
 @synthesize focusedView;
 @synthesize topLeftView;
 @synthesize topRightView;
@@ -121,23 +72,10 @@ static ffRenderArguments ffRenderArgsArray[9];
 @synthesize blurImage;
 
 
-//@synthesize pView;
 @synthesize portraitImage;
+
 //save small pictures array
 static UIImage *viewImageArray[9] = {nil};
-
-@synthesize navigationFlickr;
-@synthesize navigationFacebook;
-@synthesize flickrSession;
-
-@synthesize saveToState;
-
-@synthesize postToAllViewController;
-
-@synthesize shareProgressView;
-
-@synthesize nowInterfaceOrientation;
-
 
 
 int loadTime = 0;
@@ -1192,14 +1130,6 @@ int loadTime = 0;
 	ffRenderArgsArray[_index].cachedPreviewImage = false;
 }
 
-
-// Get default save camera original setting
-//
-- (bool) isSaveCameraShot
-{
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	return [defaults boolForKey:@"save_camera_shot"];
-}
 
 
 #include <sys/types.h>
