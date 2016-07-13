@@ -103,10 +103,10 @@ float randomPercent(float min, float max) {
 
 +(BorderArguments)border {
     BorderArguments border;
-	border.x = (arc4random_uniform(2)) * 1.0f;
-	border.y = (arc4random_uniform(2)) * 1.0f;
-	border.scale = (arc4random_uniform(301)) / 1000.0f + 1.0f;
-	border.doScale = (arc4random_uniform(2)) * 1.0f;
+	border.x = (arc4random_uniform(2)) * 1.0f; // 0.00 or 1.00
+	border.y = (arc4random_uniform(2)) * 1.0f; // 0.00 or 1.00
+    border.scale = randomPercent(1.2, 1.4); // (arc4random_uniform(301)) / 1000.0f + 1.0f;
+	border.doScale = (arc4random_uniform(2)) * 1.0f; // 0.00 or 1.00
 	
     int numBorderTypes = 3;
     int noBorderWeight = 2;
