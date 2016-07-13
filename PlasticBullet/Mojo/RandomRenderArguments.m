@@ -95,6 +95,7 @@ float randomPercent(float min, float max) {
 	//b
 	renderArg.colorFadeRGB.bMin = ((arc4random() % 1001)/1000.0f) * 0.1f;
 	renderArg.colorFadeRGB.bMax = ((arc4random() % 1001)/1000.0f) * 0.3f + 0.7f;
+    
 	
 	double dinge = renderArg.colorFadeRGB.rMax;
 	if (dinge < renderArg.colorFadeRGB.gMax)
@@ -113,7 +114,8 @@ float randomPercent(float min, float max) {
     
 	//colorClip:
     ffRGBMaxMin3D rgbMaxMin;
-    rgbMaxMin.expose = randomPercent(-0.25, 0.35);
+    // was -0.25 to 0.35
+    rgbMaxMin.expose = randomPercent(-0.25, 0.0);
     
 	//r
     rgbMaxMin.rMin = randomPercent(0.0, 0.3);
@@ -126,6 +128,7 @@ float randomPercent(float min, float max) {
 	//b
 	rgbMaxMin.bMin = 0.0f;
 	rgbMaxMin.bMax = 1.0f - rgbMaxMin.expose;
+//    NSLog(@"RGBMax expose=%f r=%f g=%f b=%f", rgbMaxMin.expose, rgbMaxMin.rMax, rgbMaxMin.gMax, rgbMaxMin.bMax);
     
     return rgbMaxMin;
 }
