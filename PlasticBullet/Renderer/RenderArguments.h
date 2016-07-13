@@ -35,6 +35,19 @@ typedef struct _ffRGBMaxMin3D
         float expose;
 	} ffRGBMaxMin3D;
 
+typedef enum {
+    bp1 = 0,
+    smooth = 1,
+    soft = 2,
+    none
+} BorderType;
+
+typedef struct {
+    BorderType type;
+    int left, right, top, bottom;
+	double x, y, scale, doScale;
+} BorderArguments;
+
 //rendering parameters
 typedef struct {
 	//cornerSoft
@@ -65,9 +78,9 @@ typedef struct {
 	//desat
 	double blendrand;
 	int randNum;
+    
 	//border
-	double randX,randY,randBorderScale,randBorderDoScale;
-	int borderType, borderLeft, borderTop, borderRight, borderBottom;
+    BorderArguments border;
 	
 	//sCurve
 	double contrast;

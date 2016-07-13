@@ -70,18 +70,9 @@ float randomPercent(float min, float max) {
 	//desat
 	renderArg.blendrand = (arc4random_uniform(1001)/1000.0f) * 0.65f + 0.05f;
 	renderArg.randNum = arc4random_uniform(100);
+    
 	//border
-	renderArg.randX = (arc4random_uniform(2)) * 1.0f;
-	renderArg.randY = (arc4random_uniform(2)) * 1.0f;
-	renderArg.randBorderScale = (arc4random_uniform(301)) / 1000.0f + 1.0f;
-	renderArg.randBorderDoScale = (arc4random_uniform(2)) * 1.0f;
-	
-	// new boder random numbers
-	renderArg.borderType = (arc4random_uniform(4));
-	renderArg.borderLeft = (arc4random_uniform(10));
-	renderArg.borderTop = (arc4random_uniform(10));
-	renderArg.borderRight = (arc4random_uniform(10));
-	renderArg.borderBottom = (arc4random_uniform(10));
+    renderArg.border = [self border];
 	
 	//sCurve
 	renderArg.contrast = ((arc4random() % 1501)/1000.0f) + 1.1f;
@@ -109,6 +100,34 @@ float randomPercent(float min, float max) {
 	
 	return renderArg;
 }
+
++(BorderArguments)border {
+    BorderArguments border;
+	border.x = (arc4random_uniform(2)) * 1.0f;
+	border.y = (arc4random_uniform(2)) * 1.0f;
+	border.scale = (arc4random_uniform(301)) / 1000.0f + 1.0f;
+	border.doScale = (arc4random_uniform(2)) * 1.0f;
+	
+    int numBorderTypes = 3;
+    int noBorderWeight = 2;
+    
+    int borderTypeValue = arc4random_uniform(numBorderTypes + noBorderWeight);
+    
+    if (borderTypeValue < numBorderTypes) {
+        border.type = borderTypeValue;
+    }
+    else {
+        border.type = none;
+    }
+    
+	border.left = arc4random_uniform(10);
+	border.top = arc4random_uniform(10);
+	border.right = arc4random_uniform(10);
+	border.bottom = arc4random_uniform(10);
+    
+    return border;
+}
+
 
 +(ffRGBMaxMin3D)colorClip {
     

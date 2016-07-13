@@ -49,7 +49,7 @@
 		 buffer_height:(int)_height
 	 randomBorderScale:(double)randBorderScale;
 
--(BOOL) prepareBorderType:(int)_borderType
+-(BOOL) prepareBorderType:(BorderType)_borderType
 					width:(int)_width
 				   height:(int)_height
 			   borderLeft:(int)_borderLeft
@@ -150,7 +150,7 @@
 	borderRandY:(double)randY 
 	borderRandS:(double)randBorderScale 
 	borderRandDoScale:(double)randBorderDoScale
-	borderType:(int)_borderType
+	borderType:(BorderType)_borderType
 	borderLeft:(int)_borderLeft
 	borderTop:(int)_borderTop
 	borderRight:(int)_borderRight

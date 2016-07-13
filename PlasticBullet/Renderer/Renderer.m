@@ -403,7 +403,7 @@
 	return TRUE;
 }
 
--(BOOL) prepareBorderType:(int)_borderType
+-(BOOL) prepareBorderType:(BorderType)_borderType
 					width:(int)_width
 				   height:(int)_height
 			   borderLeft:(int)_borderLeft
@@ -437,17 +437,18 @@
 	BOOL hasBorder = TRUE;
 	BOOL useSmallBorder = _isLandscape ? _width<=480 : _height<=480;		
 	BOOL useMidSizeBorder = _isLandscape ? _width<=960 : _height<=960;		
-	NSString *filename;	
+	NSString *filename;
+    NSLog(@"BORDER TYPE %i", _borderType);
 	switch (_borderType) {
-		case 0:
+		case bp1:
 			filename = _hiRes? FLEXBORDER_TYPE_BP1_NAME_2K :
 						(useSmallBorder? FLEXBORDER_TYPE_BP1_NAME_SMALL : (useMidSizeBorder ? FLEXBORDER_TYPE_BP1_NAME_MID : FLEXBORDER_TYPE_BP1_NAME_2K));
 			break;
-		case 1:
+		case smooth:
 			filename = _hiRes? FLEXBORDER_TYPE_SMOOTH_NAME_2K :
 						(useSmallBorder? FLEXBORDER_TYPE_SMOOTH_NAME_SMALL : (useMidSizeBorder ? FLEXBORDER_TYPE_SMOOTH_NAME_MID : FLEXBORDER_TYPE_SMOOTH_NAME_2K));
 			break;
-		case 2:
+		case soft:
 			filename = _hiRes? FLEXBORDER_TYPE_SOFT_NAME_2K :
 						(useSmallBorder? FLEXBORDER_TYPE_SOFT_NAME_SMALL : (useMidSizeBorder ? FLEXBORDER_TYPE_SOFT_NAME_MID : FLEXBORDER_TYPE_SOFT_NAME_2K));
 			break;
@@ -1448,7 +1449,7 @@ int progressCodeCallback( double completion, void * context )
 				   borderRandY:(double)randY 
 				   borderRandS:(double)randBorderScale 
 			 borderRandDoScale:(double)randBorderDoScale
-					borderType:(int)_borderType
+					borderType:(BorderType)_borderType
 					borderLeft:(int)_borderLeft
 					 borderTop:(int)_borderTop
 				   borderRight:(int)_borderRight

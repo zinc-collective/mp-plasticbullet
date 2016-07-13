@@ -1095,17 +1095,19 @@ int loadTime = 0;
 				doConserveMem = false;
 			}
 		}
+        
+        BorderArguments border = pRenderArgs.border;
 		
 		UIImage *resultImg = [self.renderer imageWithSourceImg:_imagePtr  softImage:blurImage cvVigArtImage:cvVigArtImg cvOpacity:pRenderArgs.cvOpacity SqrVigArtImage:VigArtImg sqrScaleX:pRenderArgs.sqrScaleX sqrScaleY:pRenderArgs.sqrScaleY leakImage:leakImg leakRGB:pRenderArgs.leakTintRGB randStartYIndex1:pRenderArgs.startY1 randStartYIndex2:pRenderArgs.startY2 randStartYIndex3:pRenderArgs.startY3
 												imageSize:_size  diffusionOpacity:pRenderArgs.difOpacity SqrVignette:pRenderArgs.SqrOpacity Leakopacity:pRenderArgs.opacity3D CCRGBMaxMinValue:pRenderArgs.CCRGBMaxMin
 												  monoRGB:pRenderArgs.rgbValue desatBlendrand:pRenderArgs.blendrand desatRandNum:pRenderArgs.randNum 
 											  borderImage: borderImg 
-											  borderRandX:pRenderArgs.randX borderRandY:pRenderArgs.randY borderRandS:pRenderArgs.randBorderScale borderRandDoScale:pRenderArgs.randBorderDoScale
-											   borderType:pRenderArgs.borderType
-											   borderLeft:pRenderArgs.borderLeft
-												borderTop:pRenderArgs.borderTop
-											  borderRight:pRenderArgs.borderRight
-											 borderBottom:pRenderArgs.borderBottom
+											  borderRandX:border.x borderRandY:border.y borderRandS:border.scale borderRandDoScale:border.doScale
+											   borderType:border.type
+											   borderLeft:border.left
+												borderTop:border.top
+											  borderRight:border.right
+											 borderBottom:border.bottom
 										   sCurveContrast:pRenderArgs.contrast colorFadeRGBMaxMin:pRenderArgs.colorFadeRGB cornerSoftOpacity:pRenderArgs.cornerOpacity hiRes:doHiRes convserveMemory:doConserveMem
 											  isLandscape:isFullImageLandscape];
 		if (doHiRes)
