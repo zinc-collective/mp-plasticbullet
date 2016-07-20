@@ -62,6 +62,8 @@ typedef struct {
 	
 	double sqrScaleX;
 	double sqrScaleY;
+    
+    double gamma;
 	
 	//leakTint
 	ffColor3D leakTintRGB;
