@@ -1,12 +1,14 @@
 #include <stdlib.h>
 #include <math.h>
 #include "pb_render.h"
+#include <stdio.h>
 
 static int vigRampSet = 0;
 static unsigned char vigRamp[65536];
 static double cvRgb[256];
 static double sqrRgb[256];	
-static unsigned char scurveRBG[256];
+static unsigned char scurveRGB[256];
+static unsigned char gammaRGB[256];
 static unsigned char  colorFadeB[256];
 static unsigned char  colorFadeG[256];
 static unsigned char  colorFadeR[256];
@@ -185,7 +187,7 @@ unsigned char calculateCircleVignetteValue( int _width, int _height, int x, int 
 }
 
 // This prepares look up tables for the effects below, so you can just plug them in.
-void pb_Prep_LUT( ffRGBMaxMin3D _CCrgbMaxMin, ffColor3D _monorgb, ffRGBMaxMin3D _colorFadergbMaxMin, double cornerOpacity, double sCcontrast, double cvOpacity, double SqrOpacity, double diffOpacity )
+void pb_Prep_LUT( ffRGBMaxMin3D _CCrgbMaxMin, ffColor3D _monorgb, ffRGBMaxMin3D _colorFadergbMaxMin, double cornerOpacity, double sCcontrast, double cvOpacity, double SqrOpacity, double diffOpacity, double gammaCorrection )
 {
 	//colorClip - paramters
 	//  f(x)=kx+b
@@ -245,9 +247,9 @@ void pb_Prep_LUT( ffRGBMaxMin3D _CCrgbMaxMin, ffColor3D _monorgb, ffRGBMaxMin3D 
 		{
 			tempInt = 255 *pow(i/(pivot*255),sCcontrast) * pivot;
 		}
-		if (tempInt<0) scurveRBG[i]=0;
-		else if (tempInt>255) scurveRBG[i] = 255;
-		else scurveRBG[i] = tempInt;
+		if (tempInt<0) scurveRGB[i]=0;
+		else if (tempInt>255) scurveRGB[i] = 255;
+		else scurveRGB[i] = tempInt;
 		
 		//colorFade
 		tempInt = i * bopk + bopb*255;
@@ -286,6 +288,9 @@ void pb_Prep_LUT( ffRGBMaxMin3D _CCrgbMaxMin, ffColor3D _monorgb, ffRGBMaxMin3D 
 		
 		//sqrVignette
 		sqrRgb[i] = (1.0f - SqrOpacity * (255 - i)/255.0f );
+        
+        // gamma : http://www.dfstudios.co.uk/articles/programming/image-programming-algorithms/image-processing-algorithms-part-6-gamma-correction/
+        gammaRGB[i] = (int) round(255.0 * pow((double)i / 255.0, gammaCorrection));
 		
 		for (int j=0; j<256; j++)
 		{
@@ -507,15 +512,18 @@ unsigned char *pb_tile_render(
 				g = mult[g][borderb[1]];
 				b = mult[b][borderb[2]];
 			}
+            
+            // gamma process
+            r = gammaRGB[r];
+            g = gammaRGB[g];
+            b = gammaRGB[b];
 
 			//scurve process
-			//
-			r = scurveRBG[r];
-			g = scurveRBG[g];
-			b = scurveRBG[b];
+			r = scurveRGB[r];
+			g = scurveRGB[g];
+			b = scurveRGB[b];
 			
 			//colorFade process
-			//
 			r = colorFadeR[r];
 			g = colorFadeG[g];
 			b = colorFadeB[b];
@@ -544,11 +552,11 @@ unsigned char *pb_render(
 					int _width, int _height, int randNum,
 					unsigned char *m_cvdata, unsigned char *m_vigdata, unsigned char *m_softdata, unsigned char *m_sourcedata, unsigned char *m_leakdata, unsigned char *m_borderdata,
 					ffRGBMaxMin3D _CCrgbMaxMin, ffColor3D _monorgb, ffRGBMaxMin3D _colorFadergbMaxMin, double cornerOpacity, double sCcontrast,
-					double cvOpacity, double SqrOpacity, double diffOpacity, double blendrand, double _sqrX, double _sqrY, void*context, int(*progressCallback)(double completion, void* context)
+					double cvOpacity, double SqrOpacity, double diffOpacity, double blendrand, double _sqrX, double _sqrY, double gammaCorrection, void*context, int(*progressCallback)(double completion, void* context)
 					)
 {
 	// Full render - no tiling
-	pb_Prep_LUT(_CCrgbMaxMin, _monorgb, _colorFadergbMaxMin, cornerOpacity, sCcontrast, cvOpacity, SqrOpacity, diffOpacity);
+	pb_Prep_LUT(_CCrgbMaxMin, _monorgb, _colorFadergbMaxMin, cornerOpacity, sCcontrast, cvOpacity, SqrOpacity, diffOpacity, gammaCorrection);
 	return pb_tile_render(
 				   _width, _height, 0, _height, randNum,
 				   m_cvdata, m_vigdata, m_softdata, m_sourcedata, m_leakdata, m_borderdata,

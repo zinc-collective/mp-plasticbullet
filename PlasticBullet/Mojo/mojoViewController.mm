@@ -1109,7 +1109,9 @@ int loadTime = 0;
 											  borderRight:border.right
 											 borderBottom:border.bottom
 										   sCurveContrast:pRenderArgs.contrast colorFadeRGBMaxMin:pRenderArgs.colorFadeRGB cornerSoftOpacity:pRenderArgs.cornerOpacity hiRes:doHiRes convserveMemory:doConserveMem
-											  isLandscape:isFullImageLandscape];
+											  isLandscape:isFullImageLandscape
+                                        gammaCorrection:pRenderArgs.gammaCorrection
+                              ];
 		if (doHiRes)
 		{
 			// Release all big assets and revert to small assets

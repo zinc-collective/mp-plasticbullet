@@ -48,7 +48,7 @@ float randomPercent(float min, float max) {
     
     //gamma
     // http://www.dfstudios.co.uk/articles/programming/image-programming-algorithms/image-processing-algorithms-part-6-gamma-correction/
-    renderArg.gamma = randomPercent(0.85, 1.0);
+    renderArg.gammaCorrection = randomPercent(0.85, 1.0);
     
 	//leakTint
     renderArg.leakTintRGB.r = randomPercent(0.8, 1.0); // arc4random_uniform(201)/1000.0f+0.8f;

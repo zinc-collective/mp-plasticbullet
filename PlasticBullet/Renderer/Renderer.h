@@ -124,7 +124,8 @@
 		   cornerSoftOpacity:(double)cornerOpacity
 					   width:(int)_width
 					  height:(int)_height
-					   hiRes:(bool)_hiRes ;
+					   hiRes:(bool)_hiRes
+             gammaCorrection:(double)gammaCorrection;
 
 -(UIImage*)imageWithSourceImg:(UIImage **)_sourceImgPtr softImage:(UIImage *)_softImg 
 	cvVigArtImage:(UIImage *)_cvVigArt 
@@ -160,7 +161,9 @@
 	cornerSoftOpacity:(double)cornerOpacity
 	hiRes:(bool)_hiRes
 	convserveMemory:(bool)_conserveMem
-	isLandscape:(bool)_isLandscape;
+	isLandscape:(bool)_isLandscape
+    gammaCorrection:(double)gammaCorrection
+;
 
 
 @end

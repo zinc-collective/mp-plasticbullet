@@ -1222,7 +1222,9 @@ int progressCodeCallback( double completion, void * context )
 			 cornerSoftOpacity:(double)cornerOpacity
 					   width:(int)_width
 					  height:(int)_height
-					   hiRes:(bool)_hiRes 
+					   hiRes:(bool)_hiRes
+             gammaCorrection:(double)gammaCorrection
+
 {	
 	int rowbytes = _width * 4;
 	
@@ -1289,7 +1291,7 @@ int progressCodeCallback( double completion, void * context )
 	// tile rendering requiring the LUT to be prepared before tile rendering
 	// Without doing this, the tile_rendering will be garbage
 	//	
-	pb_Prep_LUT(_CCrgbMaxMin, _monorgb, _colorFadergbMaxMin, cornerOpacity, sCcontrast, cvOpacity, SqrOpacity, diffOpacity);
+	pb_Prep_LUT(_CCrgbMaxMin, _monorgb, _colorFadergbMaxMin, cornerOpacity, sCcontrast, cvOpacity, SqrOpacity, diffOpacity, gammaCorrection);
 	unsigned char *tile_poutb = nil;
 	FILE *fp = nil;
 	for (int h=0; h<_height; h+=tile_height)
@@ -1460,6 +1462,7 @@ int progressCodeCallback( double completion, void * context )
 						 hiRes:(bool)_hiRes 
 			   convserveMemory:(bool)_conserveMem
 				   isLandscape:(bool)_isLandscape
+               gammaCorrection:(double)gammaCorrection
 {	
 //	_borderType = 3;
     self.isCancelled = false;
@@ -1602,7 +1605,8 @@ int progressCodeCallback( double completion, void * context )
 									cornerSoftOpacity:cornerOpacity
 									width:_width
 									height:_height
-									hiRes:_hiRes 
+									hiRes:_hiRes
+                                    gammaCorrection:gammaCorrection
 									];
 	
 	[Utilities printDateTime];
