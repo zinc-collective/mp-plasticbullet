@@ -210,7 +210,9 @@ class ImageViewController: UIViewController, UIImagePickerControllerDelegate, UI
             }
         
             let srcRect = self.shareButton.frame
-            let share = UIActivityViewController(activityItems: [activity], applicationActivities: nil)
+            let shareText = "Made with #PlasticBullet"
+            let shareURL = NSURL(string: "https://itunes.apple.com/us/app/plastic-bullet/id372405516?mt=8")!
+            let share = UIActivityViewController(activityItems: [activity, shareText, shareURL], applicationActivities: nil)
             share.modalPresentationStyle = .Popover
             share.popoverPresentationController?.sourceView = self.view
             share.popoverPresentationController?.sourceRect = CGRect(x: srcRect.origin.x, y: srcRect.origin.y + 30, width: srcRect.size.width, height: srcRect.size.height)
