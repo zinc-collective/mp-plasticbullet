@@ -3,7 +3,7 @@
 //  PlasticBullet
 //
 //  Created by Sean Hess on 2/22/16.
-//  Copyright © 2016 JustStartGo. All rights reserved.
+//  Copyright © 2019 Zinc Collective LLC. All rights reserved.
 //
 
 import UIKit
@@ -20,10 +20,10 @@ class NavigationController: UINavigationController, UINavigationControllerDelega
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
-    
-    
+
+
+
+
     /*
     // MARK: - Navigation
 

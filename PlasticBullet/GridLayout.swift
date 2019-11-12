@@ -3,17 +3,17 @@
 //  PlasticBullet
 //
 //  Created by Sean Hess on 2/29/16.
-//  Copyright © 2016 JustStartGo. All rights reserved.
+//  Copyright © 2019 Zinc Collective LLC. All rights reserved.
 //
 
 import UIKit
 
 class GridLayout {
-    
+
     // what if I have too many?
     func layout(views:[UIView], parentSize: CGSize, rows: Int, cols:Int) -> [(CGRect, UIView)] {
         let size = cellSize(parentSize, rows: rows, cols: cols)
-        
+
         return views.enumerate().map { (index, view) -> (CGRect, UIView) in
             let row = index / cols
             let col = index % cols
@@ -23,7 +23,7 @@ class GridLayout {
             return (frm, view)
         }
     }
-    
+
     func gridPosition(cellSize:CGSize, row:Int, col:Int) -> CGPoint {
         return CGPointMake(cellSize.width * CGFloat(col), cellSize.height * CGFloat(row))
     }

@@ -3,7 +3,7 @@
 //  PlasticBullet
 //
 //  Created by Sean Hess on 2/18/16.
-//  Copyright © 2016 JustStartGo. All rights reserved.
+//  Copyright © 2019 Zinc Collective LLC. All rights reserved.
 //
 
 import UIKit
@@ -14,7 +14,7 @@ import Crashlytics
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    
+
     // one shared motion manager for the whole application
 //    var motion = CMMotionManager()
 

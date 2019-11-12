@@ -3,7 +3,7 @@
 //  PlasticBullet
 //
 //  Created by Sean Hess on 2/18/16.
-//  Copyright © 2016 JustStartGo. All rights reserved.
+//  Copyright © 2019 Zinc Collective LLC. All rights reserved.
 //
 
 import UIKit
@@ -11,31 +11,31 @@ import AVFoundation
 import XMCircleType
 
 class SplashViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
-    
+
     @IBOutlet weak var background: UIImageView!
     @IBOutlet weak var libraryButton: UIButton!
     @IBOutlet weak var cameraButton: UIButton!
     @IBOutlet weak var infoButton: UIButton!
     @IBOutlet weak var bottomBar: UIView!
-    
+
     @IBOutlet weak var bottomBarBottom: NSLayoutConstraint!
-    
+
     var picker: UIImagePickerController?
-    
+
     let appState = AppState.state()
-    
+
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBarHidden = true
-        
+
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         libraryButton.alpha = 0
         cameraButton.alpha = 0
         bottomBarBottom.constant = -bottomBar.frame.size.height
-        
+
         dispatch_async(dispatch_get_main_queue()) {
             UIView.animateWithDuration(0.500, animations: {
                 self.libraryButton.alpha = 1
@@ -44,45 +44,45 @@ class SplashViewController: UIViewController, UIImagePickerControllerDelegate, U
                 self.view.layoutIfNeeded()
             })
         }
-        
+
         let images = self.splashImages()
         let nextImage = appState.findNextImage(images)
         if let data = NSData(contentsOfURL: nextImage) {
             background.image = UIImage(data: data)
         }
     }
-    
+
     func splashImages() -> [NSURL] {
         let path = NSBundle.mainBundle().pathForResource("splash-images", ofType: nil)!
         let baseURL = NSURL(fileURLWithPath: path, isDirectory: true)
         let contents = try! NSFileManager.defaultManager().contentsOfDirectoryAtPath(path)
         return contents.map({file in baseURL.URLByAppendingPathComponent(file)})
     }
-    
-    
+
+
     override func prefersStatusBarHidden() -> Bool {
         return false
     }
-    
+
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
     }
-    
+
     @IBAction func didTapLibrary(sender: AnyObject) {
         print("LIBRARY")
         openLibrary()
     }
-    
+
     @IBAction func didTapCamera(sender: AnyObject) {
         print("CAMERA")
         openCamera()
     }
-    
+
     @IBAction func didTapInfo(sender: AnyObject) {
         print("INFO")
         self.performSegueWithIdentifier("Info", sender: self)
     }
-    
+
     func openLibrary() {
         if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary)) {
             let picker = UIImagePickerController.init()
@@ -95,7 +95,7 @@ class SplashViewController: UIViewController, UIImagePickerControllerDelegate, U
             self.presentViewController(picker, animated: true, completion: nil)
         }
     }
-    
+
     func openCamera() {
         if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)) {
             let picker = UIImagePickerController.init()
@@ -106,19 +106,19 @@ class SplashViewController: UIViewController, UIImagePickerControllerDelegate, U
             self.presentViewController(picker, animated: true, completion: nil)
         }
     }
-    
-    
+
+
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         picker.dismissViewControllerAnimated(true, completion: nil)
         let images = UIStoryboard(name: "Image", bundle: nil).instantiateInitialViewController() as! ImageViewController
         images.chooseImage(info, sourceType: picker.sourceType)
         images.modalTransitionStyle = .CrossDissolve
-        
+
         self.presentViewController(images, animated: true, completion: nil)
     }
-    
-    
+
+
     @IBAction func unwindToLanding(segue:UIStoryboardSegue) {
-        
+
     }
 }

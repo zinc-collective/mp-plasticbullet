@@ -3,7 +3,7 @@
 //  PlasticBullet
 //
 //  Created by Sean Hess on 7/11/16.
-//  Copyright © 2016 JustStartGo. All rights reserved.
+//  Copyright © 2019 Zinc Collective LLC. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
