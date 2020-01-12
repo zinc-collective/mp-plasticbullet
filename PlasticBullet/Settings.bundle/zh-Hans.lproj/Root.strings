@@ -1,4 +1,0 @@
-/* A single strings file, whose title is specified in your preferences schema. The strings files provide the localized content to display to the user for each of your preferences. */
-
-"Camera"	= "相机";
-"Save Original" = "保存原始图片";

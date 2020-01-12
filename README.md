@@ -1,11 +1,6 @@
-GETTING STARTED
+DEV ENV Notes
 
-Install CocoaPods
-
-    gem install cocoapods
-
-Initialize Project
-
-    pod install
-
-Work from PlasticBullet.xcworkspace
+- Swift 5.x
+- Swift UI
+- iPhone XR
+- iOS 13.2
