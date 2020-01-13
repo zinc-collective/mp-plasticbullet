@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D00463923CC6A1200401B4D /* MainLogoIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D00463823CC6A1200401B4D /* MainLogoIcon.swift */; };
+		6D00463B23CC6A3D00401B4D /* BTN_Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D00463A23CC6A3D00401B4D /* BTN_Info.swift */; };
+		6D00463D23CC6A4C00401B4D /* BTN_Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D00463C23CC6A4C00401B4D /* BTN_Camera.swift */; };
+		6D00463F23CC6A5B00401B4D /* BTN_Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D00463E23CC6A5B00401B4D /* BTN_Library.swift */; };
+		6D00464123CC6A7800401B4D /* Image_Backsplash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D00464023CC6A7800401B4D /* Image_Backsplash.swift */; };
+		6D00464323CC711500401B4D /* Panel_Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D00464223CC711500401B4D /* Panel_Info.swift */; };
 		6DA3373D23CAF5350082B22C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA3373C23CAF5350082B22C /* AppDelegate.swift */; };
 		6DA3373F23CAF5350082B22C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA3373E23CAF5350082B22C /* SceneDelegate.swift */; };
 		6DA3374123CAF5350082B22C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA3374023CAF5350082B22C /* ContentView.swift */; };
@@ -35,6 +41,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6D00463823CC6A1200401B4D /* MainLogoIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLogoIcon.swift; sourceTree = "<group>"; };
+		6D00463A23CC6A3D00401B4D /* BTN_Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTN_Info.swift; sourceTree = "<group>"; };
+		6D00463C23CC6A4C00401B4D /* BTN_Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTN_Camera.swift; sourceTree = "<group>"; };
+		6D00463E23CC6A5B00401B4D /* BTN_Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTN_Library.swift; sourceTree = "<group>"; };
+		6D00464023CC6A7800401B4D /* Image_Backsplash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image_Backsplash.swift; sourceTree = "<group>"; };
+		6D00464223CC711500401B4D /* Panel_Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panel_Info.swift; sourceTree = "<group>"; };
 		6DA3373923CAF5350082B22C /* PlasticBullet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlasticBullet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DA3373C23CAF5350082B22C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6DA3373E23CAF5350082B22C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -102,9 +114,15 @@
 				6DA3373C23CAF5350082B22C /* AppDelegate.swift */,
 				6DA3373E23CAF5350082B22C /* SceneDelegate.swift */,
 				6DA3374023CAF5350082B22C /* ContentView.swift */,
+				6D00463823CC6A1200401B4D /* MainLogoIcon.swift */,
 				6DA3374223CAF5360082B22C /* Assets.xcassets */,
 				6DA3374723CAF5360082B22C /* LaunchScreen.storyboard */,
 				6DA3374A23CAF5360082B22C /* Info.plist */,
+				6D00463A23CC6A3D00401B4D /* BTN_Info.swift */,
+				6D00463C23CC6A4C00401B4D /* BTN_Camera.swift */,
+				6D00463E23CC6A5B00401B4D /* BTN_Library.swift */,
+				6D00464023CC6A7800401B4D /* Image_Backsplash.swift */,
+				6D00464223CC711500401B4D /* Panel_Info.swift */,
 				6DA3374423CAF5360082B22C /* Preview Content */,
 			);
 			path = PlasticBullet;
@@ -267,9 +285,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D00463923CC6A1200401B4D /* MainLogoIcon.swift in Sources */,
 				6DA3373D23CAF5350082B22C /* AppDelegate.swift in Sources */,
+				6D00463B23CC6A3D00401B4D /* BTN_Info.swift in Sources */,
+				6D00463F23CC6A5B00401B4D /* BTN_Library.swift in Sources */,
+				6D00463D23CC6A4C00401B4D /* BTN_Camera.swift in Sources */,
 				6DA3373F23CAF5350082B22C /* SceneDelegate.swift in Sources */,
+				6D00464323CC711500401B4D /* Panel_Info.swift in Sources */,
 				6DA3374123CAF5350082B22C /* ContentView.swift in Sources */,
+				6D00464123CC6A7800401B4D /* Image_Backsplash.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
