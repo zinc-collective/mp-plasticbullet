@@ -12,30 +12,35 @@ import SwiftUI
 
 struct ContentView: View {
    var body: some View {
-        VStack {
-            Spacer()
-//            Image(uiImage: UIImage(contentsOfFile: "splash-images/160421-IMG_5876-"))
-            Image("logo-round")
-            Image("splash-logo")
-                .offset(y: -45)
-            Spacer()
-            HStack {
+        NavigationView {
+            VStack {
                 Spacer()
-                BTN_Camera()
+                Image("logo-round")
+                Image("splash-logo")
+                    .offset(y: -45)
                 Spacer()
-                BTN_Library()
+                HStack {
+                    Spacer()
+                    NavigationLink(destination: Text("CameraControls")) {
+                        BTN_Camera()
+                    }
+                    Spacer()
+                    NavigationLink(destination: Text("LibraryControls")) {
+                        BTN_Library()
+                    }
+                    Spacer()
+                }
                 Spacer()
+                BTN_Info()
+                    .offset(y: -20)
             }
-            Spacer()
-            BTN_Info()
-                .offset(y: -20)
+            .padding()
+            .background(Image("160421-IMG_5876-")
+                .resizable()
+                .scaledToFill()
+                .clipped())
+            .edgesIgnoringSafeArea([.top, .bottom])
         }
-        .padding()
-        .background(Image("160421-IMG_5876-")
-            .resizable()
-            .scaledToFill()
-            .clipped())
-        .edgesIgnoringSafeArea([.top, .bottom])
     }
 }
 
