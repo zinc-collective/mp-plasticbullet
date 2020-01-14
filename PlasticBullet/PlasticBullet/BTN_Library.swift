@@ -11,6 +11,7 @@ import SwiftUI
 struct BTN_Library: View {
     var body: some View {
         Image("splash-library")
+            .renderingMode(.original)
     }
 }
 

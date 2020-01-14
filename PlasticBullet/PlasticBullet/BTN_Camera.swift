@@ -11,6 +11,7 @@ import SwiftUI
 struct BTN_Camera: View {
     var body: some View {
         Image("splash-camera")
+            .renderingMode(.original)
     }
 }
 
