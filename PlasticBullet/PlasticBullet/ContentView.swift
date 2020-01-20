@@ -11,7 +11,9 @@ import SwiftUI
 
 
 struct ContentView: View {
-   var body: some View {
+    @State var isShowingLibraryControls:Bool = false
+    
+    var body: some View {
         NavigationView {
             VStack {
                 Spacer()
@@ -25,9 +27,7 @@ struct ContentView: View {
                         BTN_Camera()
                     }
                     Spacer()
-                    NavigationLink(destination: Text("LibraryControls")) {
-                        BTN_Library()
-                    }
+                    BTN_Library(isShowingLibraryControls: $isShowingLibraryControls)
                     Spacer()
                 }
                 Spacer()
@@ -41,6 +41,11 @@ struct ContentView: View {
                 .clipped())
             .edgesIgnoringSafeArea([.top, .bottom])
         }
+        
+        .sheet(isPresented: $isShowingLibraryControls, content: {
+            LibraryControls(isShowingLibraryControls: self.$isShowingLibraryControls)
+        })
+        
     }
 }
 
