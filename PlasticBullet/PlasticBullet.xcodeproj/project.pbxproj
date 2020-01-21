@@ -14,6 +14,9 @@
 		6D00464123CC6A7800401B4D /* Image_Backsplash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D00464023CC6A7800401B4D /* Image_Backsplash.swift */; };
 		6D00464323CC711500401B4D /* Panel_Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D00464223CC711500401B4D /* Panel_Info.swift */; };
 		6D26208E23D5F5750039251A /* info-text2.md in Resources */ = {isa = PBXBuildFile; fileRef = 6D26208D23D5F5750039251A /* info-text2.md */; };
+		6D63018623D6C88A005DA6FF /* todo.md in Resources */ = {isa = PBXBuildFile; fileRef = 6D63018323D6C88A005DA6FF /* todo.md */; };
+		6D63018723D6C88A005DA6FF /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 6D63018423D6C88A005DA6FF /* README.md */; };
+		6D63018823D6C88A005DA6FF /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 6D63018523D6C88A005DA6FF /* LICENSE */; };
 		6DA3373D23CAF5350082B22C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA3373C23CAF5350082B22C /* AppDelegate.swift */; };
 		6DA3373F23CAF5350082B22C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA3373E23CAF5350082B22C /* SceneDelegate.swift */; };
 		6DA3374123CAF5350082B22C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA3374023CAF5350082B22C /* ContentView.swift */; };
@@ -55,6 +58,9 @@
 		6D00464223CC711500401B4D /* Panel_Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panel_Info.swift; sourceTree = "<group>"; };
 		6D26208C23D5F5640039251A /* info-text1.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "info-text1.md"; sourceTree = "<group>"; };
 		6D26208D23D5F5750039251A /* info-text2.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "info-text2.md"; sourceTree = "<group>"; };
+		6D63018323D6C88A005DA6FF /* todo.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = todo.md; path = ../todo.md; sourceTree = "<group>"; };
+		6D63018423D6C88A005DA6FF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		6D63018523D6C88A005DA6FF /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		6DA3373923CAF5350082B22C /* PlasticBullet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlasticBullet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DA3373C23CAF5350082B22C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6DA3373E23CAF5350082B22C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -121,6 +127,9 @@
 		6DA3373023CAF5350082B22C = {
 			isa = PBXGroup;
 			children = (
+				6D63018523D6C88A005DA6FF /* LICENSE */,
+				6D63018423D6C88A005DA6FF /* README.md */,
+				6D63018323D6C88A005DA6FF /* todo.md */,
 				6DA3373B23CAF5350082B22C /* PlasticBullet */,
 				6DA3375223CAF5370082B22C /* PlasticBulletTests */,
 				6DA3375D23CAF5370082B22C /* PlasticBulletUITests */,
@@ -303,10 +312,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D63018723D6C88A005DA6FF /* README.md in Resources */,
 				6DA3374923CAF5360082B22C /* LaunchScreen.storyboard in Resources */,
 				6DA3374623CAF5360082B22C /* Preview Assets.xcassets in Resources */,
+				6D63018823D6C88A005DA6FF /* LICENSE in Resources */,
 				6DA3374323CAF5360082B22C /* Assets.xcassets in Resources */,
 				6D26208E23D5F5750039251A /* info-text2.md in Resources */,
+				6D63018623D6C88A005DA6FF /* todo.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
