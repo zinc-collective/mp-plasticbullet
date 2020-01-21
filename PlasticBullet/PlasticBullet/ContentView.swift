@@ -8,10 +8,10 @@
 
 import SwiftUI
 
-
-
 struct ContentView: View {
     @State var isShowingLibraryControls:Bool = false
+    @State var isShowingInfoView:Bool = false
+    @State var useFullResolution:Bool = false
     
     var body: some View {
         NavigationView {
@@ -31,7 +31,7 @@ struct ContentView: View {
                     Spacer()
                 }
                 Spacer()
-                BTN_Info()
+                BTN_Info(isShowingInfoView: $isShowingInfoView)
                     .offset(y: -20)
             }
             .padding()
@@ -45,6 +45,10 @@ struct ContentView: View {
         .sheet(isPresented: $isShowingLibraryControls, content: {
             LibraryControls(isShowingLibraryControls: self.$isShowingLibraryControls)
         })
+        .sheet(isPresented: $isShowingInfoView, content: {
+            Panel_Info(useFullResolution: self.$useFullResolution)
+        })
+        
         
     }
 }
