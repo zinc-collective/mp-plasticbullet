@@ -46,7 +46,7 @@ struct ContentView: View {
             LibraryControls(isShowingLibraryControls: self.$isShowingLibraryControls)
         })
         .sheet(isPresented: $isShowingInfoView, content: {
-            Panel_Info(useFullResolution: self.$useFullResolution)
+            Panel_Info(useFullResolution: self.$useFullResolution, isShowingInfoView: self.$isShowingInfoView )
         })
         
         
