@@ -12,6 +12,7 @@ import SwiftyMarkdown
 struct Panel_Info: View {
     @Binding var useFullResolution:Bool
     @Binding var isShowingInfoView:Bool
+    @Binding var isPresented:Bool
     
     @State private var first: SwiftyMarkdown?
     @State private var second: SwiftyMarkdown?
@@ -23,6 +24,7 @@ struct Panel_Info: View {
         VStack {
             HStack {
                 Button(action: {
+                    self.isPresented.toggle()
                     self.isShowingInfoView.toggle()
                 }) {
                     Image(systemName: "arrow.left")
@@ -90,6 +92,6 @@ struct Panel_Info: View {
 
 struct Panel_Info_Previews: PreviewProvider {
     static var previews: some View {
-        Panel_Info(useFullResolution: .constant(true), isShowingInfoView: .constant(true))
+        Panel_Info(useFullResolution: .constant(true), isShowingInfoView: .constant(true), isPresented: .constant(true))
     }
 }

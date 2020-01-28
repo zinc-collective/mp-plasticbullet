@@ -10,10 +10,12 @@ import SwiftUI
 
 struct BTN_Library: View {
     @Binding var isShowingLibraryControls:Bool
+    @Binding var isPresented:Bool
     
     var body: some View {
         Button(action: {
             self.isShowingLibraryControls.toggle()
+            self.isPresented.toggle()
         }) {
             Image("splash-library")
                 .renderingMode(.original)
@@ -24,6 +26,6 @@ struct BTN_Library: View {
 
 struct BTN_Library_Previews: PreviewProvider {
     static var previews: some View {
-        BTN_Library(isShowingLibraryControls: .constant(false))
+        BTN_Library(isShowingLibraryControls: .constant(false), isPresented: .constant(false))
     }
 }

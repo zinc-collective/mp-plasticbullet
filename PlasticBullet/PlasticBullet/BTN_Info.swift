@@ -10,10 +10,12 @@ import SwiftUI
 
 struct BTN_Info: View {
     @Binding var isShowingInfoView:Bool
+    @Binding var isPresented:Bool
     
     var body: some View {
         Button(action: {
             self.isShowingInfoView.toggle()
+            self.isPresented.toggle()
         }) {
             Image("info")
                 .accessibility(hint: Text("Info"))
@@ -25,6 +27,6 @@ struct BTN_Info: View {
 
 struct BTN_Info_Previews: PreviewProvider {
     static var previews: some View {
-        BTN_Info(isShowingInfoView: .constant(false))
+        BTN_Info(isShowingInfoView: .constant(false), isPresented: .constant(false))
     }
 }
