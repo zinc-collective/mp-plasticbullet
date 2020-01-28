@@ -10,6 +10,7 @@ import SwiftUI
 
 struct LibraryControls: UIViewControllerRepresentable {
     @Binding var isShowingLibraryControls:Bool
+    @Binding var isPresented:Bool
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<LibraryControls>) -> UIViewController {
         let controller = UIImagePickerController()
@@ -29,7 +30,9 @@ struct LibraryControls: UIViewControllerRepresentable {
             if let selectedImage = info[.originalImage] as? UIImage {
                 print([selectedImage])
             }
-            self.parent.isShowingLibraryControls = false
+            self.parent.isShowingLibraryControls.toggle()
+            self.parent.isPresented.toggle()
+//            I NEED TO TOOGLE THESE TWO VALUES FROM THE CANCEL BUTTON, AS WELL!!!!!!!!!
         }
     }
     
@@ -40,6 +43,6 @@ struct LibraryControls: UIViewControllerRepresentable {
 
 struct LibraryControls_Previews: PreviewProvider {
     static var previews: some View {
-        LibraryControls(isShowingLibraryControls: .constant(false))
+        LibraryControls(isShowingLibraryControls: .constant(true), isPresented: .constant(true))
     }
 }
