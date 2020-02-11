@@ -273,7 +273,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1120;
 				LastUpgradeCheck = 1120;
-				ORGANIZATIONNAME = "Zinc Technology Inc";
+				ORGANIZATIONNAME = "Zinc Collective, LLC";
 				TargetAttributes = {
 					6DA3373823CAF5350082B22C = {
 						CreatedOnToolsVersion = 11.2.1;
