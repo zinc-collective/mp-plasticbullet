@@ -3,7 +3,7 @@
 //  PlasticBullet
 //
 //  Created by Christopher Wallace on 1/12/20.
-//  Copyright © 2020 Zinc Technology Inc. All rights reserved.
+//  Copyright © 2020 Zinc Collective, LLC. All rights reserved.
 //
 
 import SwiftUI
@@ -18,33 +18,38 @@ struct ContentView: View {
     @State private var bgImage: Image = Image("160421-IMG_5876-")
     
     var body: some View {
-        
-        VStack {
-            Spacer()
-            Image("logo-round")
-            Image("splash-logo")
-                .offset(y: -45)
-            Spacer()
-            HStack {
+        NavigationView {
+            VStack {
                 Spacer()
-//                BROKEN
-                NavigationLink(destination: Text("CameraControls")) {
-                    BTN_Camera()
+                Image("logo-round")
+                Image("splash-logo")
+                    .offset(y: -45)
+                Spacer()
+                HStack {
+                    Spacer()
+    //                BROKEN
+                    NavigationLink(destination: Text("CameraControls")) {
+                        BTN_Camera()
+                    }
+                    Spacer()
+                    NavigationLink(destination: Text("LibraryControls")) {
+                        Image("splash-library")
+                            .renderingMode(.original)
+    //                    BTN_Library(isShowingLibraryControls: $isShowingLibraryControls, isPresented: $isPresented)
+                    }
+                    Spacer()
                 }
                 Spacer()
-                BTN_Library(isShowingLibraryControls: $isShowingLibraryControls, isPresented: $isPresented)
-                Spacer()
+                BTN_Info(isShowingInfoView: $isShowingInfoView, isPresented: $isPresented)
+                    .offset(y: -20)
             }
-            Spacer()
-            BTN_Info(isShowingInfoView: $isShowingInfoView, isPresented: $isPresented)
-                .offset(y: -20)
+            .padding()
+            .background(bgImage
+                .resizable()
+                .scaledToFill()
+                .clipped())
+            .edgesIgnoringSafeArea([.top, .bottom])
         }
-        .padding()
-        .background(bgImage
-            .resizable()
-            .scaledToFill()
-            .clipped())
-        .edgesIgnoringSafeArea([.top, .bottom])
         
         
         .sheet(isPresented: $isPresented, content: {

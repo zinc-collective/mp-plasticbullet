@@ -3,7 +3,7 @@
 //  PlasticBulletUITests
 //
 //  Created by Christopher Wallace on 1/12/20.
-//  Copyright © 2020 Zinc Technology Inc. All rights reserved.
+//  Copyright © 2020 Zinc Collective, LLC. All rights reserved.
 //
 
 import XCTest
