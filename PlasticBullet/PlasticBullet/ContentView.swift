@@ -14,6 +14,9 @@ struct ContentView: View {
     @State var isPresented:Bool = false
     @State var useFullResolution:Bool = false
     
+    @State private var galleryImage: UIImage?
+    @State private var bgImage: Image = Image("160421-IMG_5876-")
+    
     var body: some View {
         
         VStack {
@@ -37,7 +40,7 @@ struct ContentView: View {
                 .offset(y: -20)
         }
         .padding()
-        .background(Image("160421-IMG_5876-")
+        .background(bgImage
             .resizable()
             .scaledToFill()
             .clipped())
@@ -46,11 +49,19 @@ struct ContentView: View {
         
         .sheet(isPresented: $isPresented, content: {
             if self.$isShowingLibraryControls.wrappedValue {
-                LibraryControls(isShowingLibraryControls: self.$isShowingLibraryControls, isPresented: self.$isPresented)
+                LibraryControls(isShowingLibraryControls: self.$isShowingLibraryControls, isPresented: self.$isPresented, selectedImage: self.$galleryImage)
             } else if self.$isShowingInfoView.wrappedValue {
                 Panel_Info(useFullResolution: self.$useFullResolution, isShowingInfoView: self.$isShowingInfoView, isPresented: self.$isPresented)
             }
-        })        
+        }).onAppear(perform: {
+            self.loadImage()
+        })
+    }
+    
+    func loadImage() {
+        guard let galleryImage = galleryImage else { return }
+        self.bgImage = Image(uiImage: galleryImage)
+//        .background(UIImage(contentsOfFile: "160421-IMG_5876-"))
     }
 }
 
