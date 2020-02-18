@@ -27,7 +27,6 @@
 		6DA3375423CAF5370082B22C /* PlasticBulletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA3375323CAF5370082B22C /* PlasticBulletTests.swift */; };
 		6DA3375F23CAF5370082B22C /* PlasticBulletUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA3375E23CAF5370082B22C /* PlasticBulletUITests.swift */; };
 		6DDD106523CDBB7D004C0492 /* CameraControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DDD106423CDBB7D004C0492 /* CameraControls.swift */; };
-		6DDD106723CDBBA3004C0492 /* LibraryControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DDD106623CDBBA3004C0492 /* LibraryControls.swift */; };
 		6DDF152423E06AE800C711D3 /* info-text1.md in Resources */ = {isa = PBXBuildFile; fileRef = 6DDF152223E06AE800C711D3 /* info-text1.md */; };
 		6DDF152523E06AE800C711D3 /* info-text2.md in Resources */ = {isa = PBXBuildFile; fileRef = 6DDF152323E06AE800C711D3 /* info-text2.md */; };
 		E7FE0A8882B35122815262A7 /* Pods_PlasticBullet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B60106FE405CB61C169818F /* Pods_PlasticBullet.framework */; };
@@ -79,7 +78,6 @@
 		6DA3375E23CAF5370082B22C /* PlasticBulletUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlasticBulletUITests.swift; sourceTree = "<group>"; };
 		6DA3376023CAF5370082B22C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6DDD106423CDBB7D004C0492 /* CameraControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraControls.swift; sourceTree = "<group>"; };
-		6DDD106623CDBBA3004C0492 /* LibraryControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryControls.swift; sourceTree = "<group>"; };
 		6DDF152223E06AE800C711D3 /* info-text1.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "info-text1.md"; sourceTree = "<group>"; };
 		6DDF152323E06AE800C711D3 /* info-text2.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "info-text2.md"; sourceTree = "<group>"; };
 		E70D544BA218E3745A81B039 /* Pods-PlasticBullet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlasticBullet.release.xcconfig"; path = "Target Support Files/Pods-PlasticBullet/Pods-PlasticBullet.release.xcconfig"; sourceTree = "<group>"; };
@@ -163,7 +161,6 @@
 				6D00464023CC6A7800401B4D /* Image_Backsplash.swift */,
 				6DDD106423CDBB7D004C0492 /* CameraControls.swift */,
 				6D3F3C8523FC22EA000980FF /* FilterView.swift */,
-				6DDD106623CDBBA3004C0492 /* LibraryControls.swift */,
 				6D00464223CC711500401B4D /* Panel_Info.swift */,
 				6DA3374423CAF5360082B22C /* Preview Content */,
 			);
@@ -394,7 +391,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D3F3C8623FC22EA000980FF /* FilterView.swift in Sources */,
-				6DDD106723CDBBA3004C0492 /* LibraryControls.swift in Sources */,
 				6D00463923CC6A1200401B4D /* MainLogoIcon.swift in Sources */,
 				6DA3373D23CAF5350082B22C /* AppDelegate.swift in Sources */,
 				6D00463B23CC6A3D00401B4D /* BTN_Info.swift in Sources */,
