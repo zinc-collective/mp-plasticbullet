@@ -9,8 +9,7 @@
 import SwiftUI
 
 struct LibraryControls: UIViewControllerRepresentable {
-    @Binding var isShowingLibraryControls:Bool
-    @Binding var isPresented:Bool
+    @Binding var isShowingSheet:Bool
     @Binding var selectedImage: UIImage?
     @Environment(\.presentationMode) var presentationMode
     
@@ -35,9 +34,8 @@ struct LibraryControls: UIViewControllerRepresentable {
                 self.parent.selectedImage = tempImage
                 print([tempImage])
             }
-//            self.parent.presentationMode.wrappedValue.dismiss()
-            self.parent.isShowingLibraryControls.toggle()
-            self.parent.isPresented.toggle()
+            self.parent.presentationMode.wrappedValue.dismiss()
+//            self.parent.isShowingSheet.toggle()
 //            I NEED TO TOOGLE THESE TWO VALUES FROM THE CANCEL BUTTON, AS WELL!!!!!!!!!
         }
         
@@ -55,6 +53,6 @@ struct LibraryControls: UIViewControllerRepresentable {
 struct LibraryControls_Previews: PreviewProvider {
     static var previews: some View {
         
-        LibraryControls(isShowingLibraryControls: .constant(true), isPresented: .constant(true), selectedImage: .constant(UIImage(contentsOfFile: "160421-IMG_5876-")))
+        LibraryControls(isShowingSheet: .constant(true), selectedImage: .constant(UIImage(contentsOfFile: "160421-IMG_5876-")))
     }
 }

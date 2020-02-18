@@ -9,9 +9,8 @@
 import SwiftUI
 
 struct CameraControls: View {
-    @binding
     var body: some View {
-        Text("Camera")
+        Text("Camera lkjhfjhgckjhvlv")
     }
 }
 
