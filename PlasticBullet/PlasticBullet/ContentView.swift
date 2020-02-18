@@ -9,16 +9,13 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var isShowingLibraryControls:Bool = false
-    @State var isShowingInfoView:Bool = false
-    @State var isPresented:Bool = false
+    @State var isShowingSheet:Bool = false
     @State var useFullResolution:Bool = false
-    
-    @State private var galleryImage: UIImage?
     @State private var bgImage: Image = Image("160421-IMG_5876-")
     
     var body: some View {
-        NavigationView {
+
+        return NavigationView {
             VStack {
                 Spacer()
                 Image("logo-round")
@@ -27,21 +24,19 @@ struct ContentView: View {
                 Spacer()
                 HStack {
                     Spacer()
-    //                BROKEN
-                    NavigationLink(destination: Text("CameraControls")) {
+                    NavigationLink(destination: CameraControls()) {
                         BTN_Camera()
                     }
                     Spacer()
-                    NavigationLink(destination: Text("LibraryControls")) {
-                        Image("splash-library")
-                            .renderingMode(.original)
-    //                    BTN_Library(isShowingLibraryControls: $isShowingLibraryControls, isPresented: $isPresented)
+                    NavigationLink(destination: FilterView(isShowingImagePicker: true)) {
+                        BTN_Library()
                     }
                     Spacer()
                 }
                 Spacer()
-                BTN_Info(isShowingInfoView: $isShowingInfoView, isPresented: $isPresented)
+                BTN_Info(isShowingSheet: $isShowingSheet)
                     .offset(y: -20)
+                
             }
             .padding()
             .background(bgImage
@@ -50,22 +45,16 @@ struct ContentView: View {
                 .clipped())
             .edgesIgnoringSafeArea([.top, .bottom])
         }
-        
-        
-        .sheet(isPresented: $isPresented, content: {
-            if self.$isShowingLibraryControls.wrappedValue {
-                LibraryControls(isShowingLibraryControls: self.$isShowingLibraryControls, isPresented: self.$isPresented, selectedImage: self.$galleryImage)
-            } else if self.$isShowingInfoView.wrappedValue {
-                Panel_Info(useFullResolution: self.$useFullResolution, isShowingInfoView: self.$isShowingInfoView, isPresented: self.$isPresented)
-            }
-        }).onAppear(perform: {
-            self.loadImage()
+
+        .sheet(isPresented: $isShowingSheet){
+            Panel_Info(useFullResolution: self.$useFullResolution, isShowingSheet: self.$isShowingSheet)
+        }
+        .onAppear(perform: {
+            self.loadRandomImage()
         })
     }
     
-    func loadImage() {
-        guard let galleryImage = galleryImage else { return }
-        self.bgImage = Image(uiImage: galleryImage)
+    func loadRandomImage() {
 //        .background(UIImage(contentsOfFile: "160421-IMG_5876-"))
     }
 }
