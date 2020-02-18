@@ -12,32 +12,24 @@ struct FilterView: View {
     @State var isShowingImagePicker: Bool = false
     @State private var selectedImage: UIImage?
     @State private var baseImage: Image = Image("160421-IMG_5876-")
+    var dupleImage: some View {
+        HStack {
+            Spacer()
+            baseImage
+                .resizable()
+                .scaledToFit()
+            Spacer()
+            baseImage
+                .resizable()
+                .scaledToFit()
+            Spacer()
+        }
+    }
     
     var body: some View {
         VStack {
-            HStack {
-                Spacer()
-                baseImage
-                    .resizable()
-                    .scaledToFit()
-                Spacer()
-                baseImage
-                    .resizable()
-                    .scaledToFit()
-                Spacer()
-            }
-            HStack {
-                Spacer()
-                baseImage
-                    .resizable()
-                    .scaledToFit()
-                Spacer()
-                baseImage
-                    .resizable()
-                    .scaledToFit()
-                Spacer()
-            }
-            
+            dupleImage
+            dupleImage            
             Spacer()
             Button(action: {
                 self.isShowingImagePicker.toggle()
