@@ -11,6 +11,7 @@ import SwiftUI
 struct ContentView: View {
     @State var isShowingSheet:Bool = false
     @State var useFullResolution:Bool = false
+    @State var isShowingImagePicker:Bool = true
     @State private var bgImage: Image = Image("160421-IMG_5876-")
   
     // I would prefer this to be dynamically created from all files in the folder at runtime
@@ -54,7 +55,7 @@ struct ContentView: View {
                         BTN_Camera()
                     }
                     Spacer()
-                    NavigationLink(destination: FilterView(isShowingImagePicker: true)) {
+                    NavigationLink(destination: FilterView(isShowingImagePicker: $isShowingImagePicker)) {
                         BTN_Library()
                     }
                     Spacer()
