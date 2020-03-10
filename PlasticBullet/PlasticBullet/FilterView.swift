@@ -7,9 +7,12 @@
 //
 
 import SwiftUI
+import CoreImage
+import CoreImage.CIFilterBuiltins
 
 struct FilterView: View {
-    @State var isShowingImagePicker: Bool = false
+    @Binding var isShowingImagePicker: Bool
+    
     @State private var selectedImage: UIImage?
     @State private var baseImage: Image = Image("160421-IMG_5876-")
     var dupleImage: some View {
@@ -48,14 +51,32 @@ struct FilterView: View {
     
     func loadImage() {
         guard let selectedImage = selectedImage else { return }
-        baseImage = Image(uiImage: selectedImage)
+//        baseImage = Image(uiImage: selectedImage)
+        baseImage = Image(uiImage: processImage(image: selectedImage))
+    }
+    
+    func processImage(image: UIImage) -> UIImage {
+        let context = CIContext(options: nil)
+        let blur = CIFilter.gaussianBlur()
+        blur.inputImage = CIImage(image: image)
+        blur.radius = 30
+        var res = image
+
+        if let output = blur.outputImage {
+            if let cgimg = context.createCGImage(output, from: output.extent) {
+                let processedImage = UIImage(cgImage: cgimg)
+                res = processedImage
+                // use your blurred image here
+            }
+        }
+        return res
     }
 }
 
 struct FilterView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            FilterView(isShowingImagePicker: true)
+            FilterView(isShowingImagePicker: .constant(true))
         }
     }
 }
