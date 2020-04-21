@@ -83,7 +83,7 @@ struct ContentView: View {
     
     func loadRandomImage() {
 //        .background(UIImage(contentsOfFile: "160421-IMG_5876-"))
-        let selectedBgImageIndex = getRandomIndex(max: backgroundImageFilenames.endIndex)
+        let selectedBgImageIndex = getRandomIndex(max: (backgroundImageFilenames.endIndex-1))
         bgImage = Image(backgroundImageFilenames[selectedBgImageIndex])
     }
     

@@ -14,66 +14,99 @@ struct FilterView: View {
     @Binding var isShowingImagePicker: Bool
     
     @State private var selectedImage: UIImage?
-    @State private var baseImage: Image = Image("160421-IMG_5876-")
+    @State private var baseImages: [UIImage] = [UIImage(imageLiteralResourceName: "160421-IMG_5876-"),UIImage(imageLiteralResourceName: "160421-IMG_5876-"),UIImage(imageLiteralResourceName: "160421-IMG_5876-"),UIImage(imageLiteralResourceName: "160421-IMG_5876-")]
+    
     var dupleImage: some View {
-        HStack {
+       return HStack {
             Spacer()
-            baseImage
+            Image(uiImage: baseImages[0])
                 .resizable()
                 .scaledToFit()
             Spacer()
-            baseImage
+            Image(uiImage: baseImages[1])
                 .resizable()
                 .scaledToFit()
             Spacer()
         }
+//        .onAppear(perform: preloadImages)
     }
     
     var body: some View {
         VStack {
             dupleImage
-            dupleImage            
+            dupleImage
             Spacer()
             Button(action: {
                 self.isShowingImagePicker.toggle()
             }) {
                 Image("splash-library")
-                    .renderingMode(.original)
             }
             Spacer()
         }
-        .navigationBarTitle(Text("Filters will be applied here"), displayMode: .inline)
+        .navigationBarTitle(Text("Filters will be applied here"))
         
         .sheet(isPresented: $isShowingImagePicker, onDismiss: loadImage){
              ImagePicker(image: self.$selectedImage)
-        }
+        }.navigationBarTitle(Text("Filters will be applied here"))
+    }
+    
+    mutating func preloadImages(){
+        
+        //        baseImages = Image(uiImage: selectedImage)
+        baseImages[0]  = UIImage(imageLiteralResourceName: "160421-IMG_5876-")
+        baseImages[1]  = UIImage(imageLiteralResourceName: "160421-IMG_5876-")
+        baseImages[2]  = UIImage(imageLiteralResourceName: "160421-IMG_5876-")
+        baseImages[3]  = UIImage(imageLiteralResourceName: "160421-IMG_5876-")
+    }
+    
+    func swapImags(newImages: [UIImage]){
+        self.baseImages = newImages
     }
     
     func loadImage() {
+        print("1- sel - image:", selectedImage! )
         guard let selectedImage = selectedImage else { return }
-//        baseImage = Image(uiImage: selectedImage)
-        baseImage = Image(uiImage: processImage(image: selectedImage))
+        print("2- sel - image:", selectedImage )
+        var newImages:[UIImage] = []
+        for _ in baseImages.indices {
+            let tempImg = processImage(image: selectedImage)
+            print("3- sel: ", tempImg)
+//            newImages.append(Image(uiImage: tempImg))
+            newImages.append(tempImg)
+            
+        }
+//        self.baseImages = newImages
+        self.swapImags(newImages: newImages)
+        
+    }
+    
+    func applyBlur(image: CIImage) -> CIImage {
+        let blur = CIFilter.gaussianBlur()
+        blur.inputImage = image
+        blur.radius = 30
+        
+        guard let output = blur.outputImage else {
+            return image
+        }
+        return output
     }
     
     func processImage(image: UIImage) -> UIImage {
-        let context = CIContext(options: nil)
-        let blur = CIFilter.gaussianBlur()
-        blur.inputImage = CIImage(image: image)
-        blur.radius = 30
-        var res = image
-
-        if let output = blur.outputImage {
-            if let cgimg = context.createCGImage(output, from: output.extent) {
-                let processedImage = UIImage(cgImage: cgimg)
-                res = processedImage
-                // use your blurred image here
-            }
-        }
-        return res
+        print("starting proc image")
+        guard let coreImage = CIImage(image: image) else { return image }
+        let output = applyBlur(image: coreImage)
+        print("returning proc image")
+        return UIImage(ciImage: output)
     }
 }
 
 struct FilterView_Previews: PreviewProvider {
+    private var baseImages: [UIImage] = [
+        UIImage(imageLiteralResourceName: "160421-IMG_5876-"),
+        UIImage(imageLiteralResourceName: "160421-IMG_5876-"),
+        UIImage(imageLiteralResourceName: "160421-IMG_5876-"),
+        UIImage(imageLiteralResourceName: "160421-IMG_5876-")
+    ]
     static var previews: some View {
         NavigationView {
             FilterView(isShowingImagePicker: .constant(true))
