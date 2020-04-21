@@ -12,7 +12,7 @@ import CoreImage.CIFilterBuiltins
 
 struct FilterView: View {
     @Binding var isShowingImagePicker: Bool
-    
+    var source: UIImagePickerController.SourceType = .photoLibrary
     @State private var selectedImage: UIImage?
     @State private var baseImages: [UIImage] = [UIImage(imageLiteralResourceName: "160421-IMG_5876-"),UIImage(imageLiteralResourceName: "160421-IMG_5876-"),UIImage(imageLiteralResourceName: "160421-IMG_5876-"),UIImage(imageLiteralResourceName: "160421-IMG_5876-")]
     
@@ -46,7 +46,7 @@ struct FilterView: View {
         .navigationBarTitle(Text("Filters will be applied here"))
         
         .sheet(isPresented: $isShowingImagePicker, onDismiss: loadImage){
-             ImagePicker(image: self.$selectedImage)
+            ImagePicker(image: self.$selectedImage, source: self.source)
         }.navigationBarTitle(Text("Filters will be applied here"))
     }
     

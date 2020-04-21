@@ -13,6 +13,8 @@ struct ContentView: View {
     @State var useFullResolution:Bool = false
     @State var isShowingImagePicker:Bool = true
     @State private var bgImage: Image = Image("160421-IMG_5876-")
+    
+    @State var source: UIImagePickerController.SourceType = .photoLibrary
   
     // I would prefer this to be dynamically created from all files in the folder at runtime
     let backgroundImageFilenames = [
@@ -51,9 +53,14 @@ struct ContentView: View {
                 Spacer()
                 HStack {
                     Spacer()
-                    NavigationLink(destination: CameraControls()) {
+                    Button(action: {
+                        ImagePicker(source: .camera)
+                    }){
                         BTN_Camera()
                     }
+//                    NavigationLink(destination: CameraControls(isShowingImagePicker: $isShowingImagePicker)) {
+//                        BTN_Camera()
+//                    }
                     Spacer()
                     NavigationLink(destination: FilterView(isShowingImagePicker: $isShowingImagePicker)) {
                         BTN_Library()
