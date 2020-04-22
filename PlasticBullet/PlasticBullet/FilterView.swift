@@ -13,7 +13,7 @@ import CoreImage.CIFilterBuiltins
 struct FilterView: View {
     @Binding var isShowingImagePicker: Bool
     var source: UIImagePickerController.SourceType = .photoLibrary
-    @State private var selectedImage: UIImage?
+    @Binding var selectedImage: UIImage?
     @State private var baseImages: [UIImage] = [UIImage(imageLiteralResourceName: "160421-IMG_5876-"),UIImage(imageLiteralResourceName: "160421-IMG_5876-"),UIImage(imageLiteralResourceName: "160421-IMG_5876-"),UIImage(imageLiteralResourceName: "160421-IMG_5876-")]
     
     var dupleImage: some View {
@@ -109,7 +109,7 @@ struct FilterView_Previews: PreviewProvider {
     ]
     static var previews: some View {
         NavigationView {
-            FilterView(isShowingImagePicker: .constant(true))
+            FilterView(isShowingImagePicker: .constant(true), selectedImage: .constant(UIImage(contentsOfFile: "160421-IMG_5876-")))
         }
     }
 }

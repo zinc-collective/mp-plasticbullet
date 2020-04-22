@@ -9,12 +9,21 @@
 import SwiftUI
 
 struct ContentView: View {
+    enum ActiveSheet {
+       case camera, photoLibrary, info
+    }
+    
     @State var isShowingSheet:Bool = false
+    @State var sheetType: ActiveSheet?
+//    @State var isShowingCameraSheet:Bool = false
+    
     @State var useFullResolution:Bool = false
     @State var isShowingImagePicker:Bool = true
     @State private var bgImage: Image = Image("160421-IMG_5876-")
     
     @State var source: UIImagePickerController.SourceType = .photoLibrary
+    @State private var selectedImage: UIImage?
+    
   
     // I would prefer this to be dynamically created from all files in the folder at runtime
     let backgroundImageFilenames = [
@@ -52,17 +61,42 @@ struct ContentView: View {
                     .offset(y: -45)
                 Spacer()
                 HStack {
-                    Spacer()
                     Button(action: {
-                        ImagePicker(source: .camera)
-                    }){
-                        BTN_Camera()
+                        self.isShowingSheet.toggle()
+                        self.source = .camera
+                        self.sheetType = .camera
+                    }) {
+                        Text("Camera")
                     }
-//                    NavigationLink(destination: CameraControls(isShowingImagePicker: $isShowingImagePicker)) {
+                    Button(action: {
+                        self.isShowingSheet.toggle()
+                        self.source = .photoLibrary
+                        self.sheetType = .photoLibrary
+                    }) {
+                        Text("Two lib")
+                    }
+                    Button(action: {
+                        self.isShowingSheet.toggle()
+                        self.sheetType = .info
+                    }) {
+                        Text("Info")
+                    }
+                }
+                Spacer()
+                HStack {
+                    Spacer()
+//                    Button(action: {
+//                        self.isShowingSheet.toggle()
+//                        self.source = .camera
+//                        self.sheetType = .camera
+//                    }){
 //                        BTN_Camera()
 //                    }
+                    NavigationLink(destination: CameraControls(isShowingSheet: self.$isShowingSheet, selectedImage: self.$selectedImage, source: self.source)) {
+                        BTN_Camera()
+                    }
                     Spacer()
-                    NavigationLink(destination: FilterView(isShowingImagePicker: $isShowingImagePicker)) {
+                    NavigationLink(destination: FilterView(isShowingImagePicker: self.$isShowingImagePicker, selectedImage: self.$selectedImage)) {
                         BTN_Library()
                     }
                     Spacer()
@@ -79,9 +113,14 @@ struct ContentView: View {
                 .clipped())
             .edgesIgnoringSafeArea([.top, .bottom])
         }
-
-        .sheet(isPresented: $isShowingSheet){
-            Panel_Info(useFullResolution: self.$useFullResolution, isShowingSheet: self.$isShowingSheet)
+        .sheet(isPresented: self.$isShowingSheet){
+            if(self.sheetType == .camera){
+                ImagePicker(image: self.$selectedImage, source: self.source)
+            } else if(self.sheetType == .photoLibrary){
+                ImagePicker(image: self.$selectedImage, source: self.source)
+            } else {
+                Panel_Info(useFullResolution: self.$useFullResolution, isShowingSheet: self.$isShowingSheet)
+            }
         }
         .onAppear(perform: {
             self.loadRandomImage()

@@ -10,62 +10,28 @@ import SwiftUI
 
 
 struct CameraControls: View {
-    @Binding var isShowingImagePicker: Bool
+    @Binding var isShowingSheet: Bool
+    @Binding var selectedImage: UIImage?
     var source: UIImagePickerController.SourceType = .camera
-    @State private var selectedImage: UIImage?
+    @State var isShowingCameraSheet: Bool = true
     
     var body: some View {
         VStack {
             Spacer()
-            Text("NADA")
-            Spacer()
-            Button(action: {
-                self.isShowingImagePicker.toggle()
-            }) {
-                Image("splash-library")
-            }
+            Text("should be on the filter sceen instead")
             Spacer()
         }
-        .navigationBarTitle(Text("Will I see a camera soon?"))
-        
-        .sheet(isPresented: $isShowingImagePicker){
-            ImagePicker(image: self.$selectedImage, source: self.source)
-        }.navigationBarTitle(Text("Das Camera"))
+        .onAppear(perform: {
+            self.isShowingCameraSheet = !self.isShowingSheet
+        })
+        .sheet(isPresented: self.$isShowingCameraSheet){
+            ImagePicker(image: self.$selectedImage, source: .camera)
+        }
     }
 }
-//
-//struct CameraControls: View {
-//    @Binding var selectedImage: UIImage?
-////    @State private var selectedImage: UIImage?
-//    @Binding var source: UIImagePickerController.SourceType = .camera
-//    @State var show: Bool = true
-//
-//    var body: some View {
-//        NavigationView {
-//            NavigationLink(destination: ImagePicker(image: self.$selectedImage, source: .camera), isActive: $show){
-//                Text("")
-//            }
-//            VStack {
-//                Spacer()
-//                Image("logo-round")
-//                Text("Camera zxcvbnm")
-//            }
-//        }
-//        .actionSheet(isPresented: $show){
-//            ActionSheet(title: Text("buttons and stuff"), message: Text(""), buttons:
-//                [
-//                    .default(Text("Photo Library"), action: {
-//                        self.source = .photoLibrary
-//                    }), .default(Text("Camera"), action: {
-//                        self.source = .camera
-//                    })
-//            ])
-//        }
-//    }
-//}
-//
-//struct CameraControls_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CameraControls(selectedImage: .constant(UIImage(contentsOfFile: "160421-IMG_5876-")), show: true)
-//    }
-//}
+
+struct CameraControls_Previews: PreviewProvider {
+    static var previews: some View {
+        CameraControls(isShowingSheet: .constant(true), selectedImage: .constant(UIImage(contentsOfFile: "160421-IMG_5876-")))
+    }
+}
