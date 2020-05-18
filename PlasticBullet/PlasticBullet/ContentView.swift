@@ -14,8 +14,7 @@ struct ContentView: View {
     }
     
     @State var isShowingSheet:Bool = false
-    @State var sheetType: ActiveSheet?
-//    @State var isShowingCameraSheet:Bool = false
+    @State var sheetType:ActiveSheet?
     
     @State var useFullResolution:Bool = false
     @State var isShowingImagePicker:Bool = true
@@ -53,66 +52,31 @@ struct ContentView: View {
     
     var body: some View {
 
-        return NavigationView {
-            VStack {
+        return VStack {
+        
+            Spacer()
+            Image("logo-round")
+            Image("splash-logo")
+                .offset(y: -45)
+            Spacer()
+            HStack {
                 Spacer()
-                Image("logo-round")
-                Image("splash-logo")
-                    .offset(y: -45)
+                BTN_Camera(isShowingSheet: $isShowingSheet, sheetType: $sheetType, source: $source)
                 Spacer()
-                HStack {
-                    Button(action: {
-                        self.isShowingSheet.toggle()
-                        self.source = .camera
-                        self.sheetType = .camera
-                    }) {
-                        Text("Camera")
-                    }
-                    Button(action: {
-                        self.isShowingSheet.toggle()
-                        self.source = .photoLibrary
-                        self.sheetType = .photoLibrary
-                    }) {
-                        Text("Two lib")
-                    }
-                    Button(action: {
-                        self.isShowingSheet.toggle()
-                        self.sheetType = .info
-                    }) {
-                        Text("Info")
-                    }
-                }
+                BTN_Library(isShowingSheet: $isShowingSheet, sheetType: $sheetType, source: $source)
                 Spacer()
-                HStack {
-                    Spacer()
-//                    Button(action: {
-//                        self.isShowingSheet.toggle()
-//                        self.source = .camera
-//                        self.sheetType = .camera
-//                    }){
-//                        BTN_Camera()
-//                    }
-                    NavigationLink(destination: CameraControls(isShowingSheet: self.$isShowingSheet, selectedImage: self.$selectedImage, source: self.source)) {
-                        BTN_Camera()
-                    }
-                    Spacer()
-                    NavigationLink(destination: FilterView(isShowingImagePicker: self.$isShowingImagePicker, selectedImage: self.$selectedImage)) {
-                        BTN_Library()
-                    }
-                    Spacer()
-                }
-                Spacer()
-                BTN_Info(isShowingSheet: $isShowingSheet)
-                    .offset(y: -20)
-                
             }
-            .padding()
-            .background(bgImage
-                .resizable()
-                .scaledToFill()
-                .clipped())
-            .edgesIgnoringSafeArea([.top, .bottom])
+            Spacer()
+            BTN_Info(isShowingSheet: $isShowingSheet, sheetType: $sheetType)
+                .offset(y: -20)
+            
         }
+        .padding()
+        .background(bgImage
+            .resizable()
+            .scaledToFill()
+            .clipped())
+        .edgesIgnoringSafeArea([.top, .bottom])
         .sheet(isPresented: self.$isShowingSheet){
             if(self.sheetType == .camera){
                 ImagePicker(image: self.$selectedImage, source: self.source)
