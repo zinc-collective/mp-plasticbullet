@@ -9,14 +9,24 @@
 import SwiftUI
 
 struct BTN_Library: View {
+    @Binding var isShowingSheet: Bool
+    @Binding var sheetType: ContentView.ActiveSheet?
+    @Binding var source: UIImagePickerController.SourceType
+    
     var body: some View {
-        Image("splash-library")
-            .renderingMode(.original)
+        Button(action: {
+            self.isShowingSheet.toggle()
+            self.source = .photoLibrary
+            self.sheetType = .photoLibrary
+        }) {
+            Image("splash-library")
+                .renderingMode(.original)
+        }
     }
 }
 
 struct BTN_Library_Previews: PreviewProvider {
     static var previews: some View {
-        BTN_Library()
+        BTN_Library(isShowingSheet: .constant(true), sheetType: .constant(.photoLibrary), source: .constant(.photoLibrary))
     }
 }
