@@ -52,31 +52,37 @@ struct ContentView: View {
     
     var body: some View {
 
-        return VStack {
-        
-            Spacer()
-            Image("logo-round")
-            Image("splash-logo")
-                .offset(y: -45)
-            Spacer()
-            HStack {
+        return NavigationView {
+            VStack {
                 Spacer()
-                BTN_Camera(isShowingSheet: $isShowingSheet, sheetType: $sheetType, source: $source)
+                Image("logo-round")
+                Image("splash-logo")
+                    .offset(y: -45)
                 Spacer()
-                BTN_Library(isShowingSheet: $isShowingSheet, sheetType: $sheetType, source: $source)
+                HStack{
+                    NavigationLink(destination: FilterView(isShowingImagePicker: self.$isShowingImagePicker, selectedImage: self.$selectedImage)) {
+                      Text("4 up view")
+                    }
+                }
                 Spacer()
+                HStack {
+                    Spacer()
+                    BTN_Camera(isShowingSheet: $isShowingSheet, sheetType: $sheetType, source: $source)
+                    Spacer()
+                    BTN_Library(isShowingSheet: $isShowingSheet, sheetType: $sheetType, source: $source)
+                    Spacer()
+                }
+                Spacer()
+                BTN_Info(isShowingSheet: $isShowingSheet, sheetType: $sheetType)
+                    .offset(y: -20)
             }
-            Spacer()
-            BTN_Info(isShowingSheet: $isShowingSheet, sheetType: $sheetType)
-                .offset(y: -20)
-            
+            .padding()
+            .background(bgImage
+                .resizable()
+                .scaledToFill()
+                .clipped())
+            .edgesIgnoringSafeArea([.top, .bottom])
         }
-        .padding()
-        .background(bgImage
-            .resizable()
-            .scaledToFill()
-            .clipped())
-        .edgesIgnoringSafeArea([.top, .bottom])
         .sheet(isPresented: self.$isShowingSheet){
             if(self.sheetType == .camera){
                 ImagePicker(image: self.$selectedImage, source: self.source)
