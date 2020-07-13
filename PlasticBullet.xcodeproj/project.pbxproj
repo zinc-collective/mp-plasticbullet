@@ -610,13 +610,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 78B6A25C1C76780500AE58F7 /* Build configuration list for PBXNativeTarget "PlasticBullet" */;
 			buildPhases = (
+				F6426E66F0878848E00CD243 /* [CP] Check Pods Manifest.lock */,
 				27520760D386E65A4F6FB455 /* 📦 Check Pods Manifest.lock */,
 				78B6A2461C76780500AE58F7 /* Sources */,
 				78B6A2471C76780500AE58F7 /* Frameworks */,
 				78B6A2481C76780500AE58F7 /* Resources */,
 				7816DDB01CCEAA4100435D89 /* ShellScript */,
 				BEA34415835101E30535D467 /* 📦 Embed Pods Frameworks */,
-				D373EA68B9CE357C54DE12D4 /* 📦 Copy Pods Resources */,
+				D452886AB9F316F67BB83466 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -843,19 +844,46 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PlasticBullet/Pods-PlasticBullet-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D373EA68B9CE357C54DE12D4 /* 📦 Copy Pods Resources */ = {
+		D452886AB9F316F67BB83466 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PlasticBullet/Pods-PlasticBullet-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SwiftyMarkdown/SwiftyMarkdown.framework",
+				"${BUILT_PRODUCTS_DIR}/XMCircleType/XMCircleType.framework",
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyMarkdown.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XMCircleType.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PlasticBullet/Pods-PlasticBullet-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PlasticBullet/Pods-PlasticBullet-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F6426E66F0878848E00CD243 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PlasticBullet-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

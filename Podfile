@@ -2,6 +2,8 @@
 platform :ios, '9.0'
 use_frameworks!
 
+project 'PlasticBullet.xcodeproj'
+
 target 'PlasticBullet' do
     pod 'XMCircleType', '1.1.1'
     pod 'Crashlytics', '~> 3.7.0'

@@ -6,3 +6,5 @@ Pods/
 Podfile.lock
 *.ipa
 img
+._Podfile
+._PlasticBullet.xcodeproj
