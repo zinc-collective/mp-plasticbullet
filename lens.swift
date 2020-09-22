@@ -47,6 +47,18 @@ func download(urlString: String, callback: @escaping (Data) -> ()) {
 }
 
 
+func saveCIImage(data:CIImage, path:String) {
+  print("PATH - saveCIImage: \(path)")
+  guard let url = URL(string: path) else {
+    print("Bad URL - saveCIImage")
+    return
+  }
+  let rep = NSBitmapImageRep(ciImage: data)
+  let PNGData = rep.representation(using: NSBitmapImageRep.FileType.png, properties:[:])
+  print("Writing - saveCIImage \(url)")
+  try! PNGData!.write(to: url);
+  print("Wrote - saveCIImage \(url)")
+}
 
 
 
@@ -115,6 +127,6 @@ download(urlString: aang) { (data) -> () in
   // print(webImage!.properties)
   let newImage = lens.apply(image: image)
   print(newImage)
-  save(data: newImage, path: savePath)
+  saveCIImage(data: newImage, path: savePath)
 }
 
