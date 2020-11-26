@@ -15,8 +15,7 @@ struct ContentView: View {
     
     @State var isShowingSheet:Bool = false
     @State var sheetType:ActiveSheet?
-    
-    @State var useFullResolution:Bool = false
+        
     @State var isShowingImagePicker:Bool = true
     @State private var bgImage: Image = Image("160421-IMG_5876-")
     

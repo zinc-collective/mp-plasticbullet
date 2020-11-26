@@ -28,6 +28,7 @@
 		6DA3375423CAF5370082B22C /* PlasticBulletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA3375323CAF5370082B22C /* PlasticBulletTests.swift */; };
 		6DA3375F23CAF5370082B22C /* PlasticBulletUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA3375E23CAF5370082B22C /* PlasticBulletUITests.swift */; };
 		6DC6B89425703B4200A1ACB4 /* ObservableUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC6B89325703B4200A1ACB4 /* ObservableUIImage.swift */; };
+		6DC6B89C2570494000A1ACB4 /* FilterViewDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC6B89B2570494000A1ACB4 /* FilterViewDetail.swift */; };
 		6DDF152423E06AE800C711D3 /* info-text1.md in Resources */ = {isa = PBXBuildFile; fileRef = 6DDF152223E06AE800C711D3 /* info-text1.md */; };
 		6DDF152523E06AE800C711D3 /* info-text2.md in Resources */ = {isa = PBXBuildFile; fileRef = 6DDF152323E06AE800C711D3 /* info-text2.md */; };
 		E7FE0A8882B35122815262A7 /* Pods_PlasticBullet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B60106FE405CB61C169818F /* Pods_PlasticBullet.framework */; };
@@ -80,6 +81,7 @@
 		6DA3375E23CAF5370082B22C /* PlasticBulletUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlasticBulletUITests.swift; sourceTree = "<group>"; };
 		6DA3376023CAF5370082B22C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6DC6B89325703B4200A1ACB4 /* ObservableUIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableUIImage.swift; sourceTree = "<group>"; };
+		6DC6B89B2570494000A1ACB4 /* FilterViewDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewDetail.swift; sourceTree = "<group>"; };
 		6DDF152223E06AE800C711D3 /* info-text1.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "info-text1.md"; sourceTree = "<group>"; };
 		6DDF152323E06AE800C711D3 /* info-text2.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "info-text2.md"; sourceTree = "<group>"; };
 		E70D544BA218E3745A81B039 /* Pods-PlasticBullet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlasticBullet.release.xcconfig"; path = "Target Support Files/Pods-PlasticBullet/Pods-PlasticBullet.release.xcconfig"; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 			children = (
 				6DDF152123E06AE800C711D3 /* text-content */,
 				6DA3373C23CAF5350082B22C /* AppDelegate.swift */,
+				6DC6B89B2570494000A1ACB4 /* FilterViewDetail.swift */,
 				6DA3373E23CAF5350082B22C /* SceneDelegate.swift */,
 				6DA3374023CAF5350082B22C /* ContentView.swift */,
 				6D56F5E8256B8668002FC1A6 /* ObservableBooleanFlag.swift */,
@@ -398,6 +401,7 @@
 				6DA3373D23CAF5350082B22C /* AppDelegate.swift in Sources */,
 				6D00463B23CC6A3D00401B4D /* BTN_Info.swift in Sources */,
 				6D00463F23CC6A5B00401B4D /* BTN_Library.swift in Sources */,
+				6DC6B89C2570494000A1ACB4 /* FilterViewDetail.swift in Sources */,
 				6D00463D23CC6A4C00401B4D /* BTN_Camera.swift in Sources */,
 				6D79DCF42472DE9200337D65 /* FilterableImage.swift in Sources */,
 				6DC6B89425703B4200A1ACB4 /* ObservableUIImage.swift in Sources */,

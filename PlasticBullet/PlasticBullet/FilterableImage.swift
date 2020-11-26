@@ -30,7 +30,7 @@ struct FilterableImage: View {
     @State var gaussianBlur: Filter = Filter(filterName: "CIGaussianBlur", filterEffectValue: 20, filterEffectValueName: kCIInputRadiusKey)
     
     var body: some View {
-        Image(uiImage: self.selectedImage.image)
+        Image(uiImage: self.processedImage!)
             .resizable()
             .scaledToFit()
             .border(Color.red, width: 4)

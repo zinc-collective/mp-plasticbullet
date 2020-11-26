@@ -13,18 +13,34 @@ import CoreImage.CIFilterBuiltins
 struct FilterView: View {
     @Binding var isShowingImagePicker: Bool
     var source: UIImagePickerController.SourceType = .photoLibrary
-//    @Binding var selectedImage: UIImage?
+    
     @EnvironmentObject var selectedImage: ObservableUIImage
 
     var body: some View {
         VStack {
             HStack {
-                FilterableImage()
-                FilterableImage()
+                NavigationLink(destination: FilterViewDetail()) {
+                    Image(uiImage: selectedImage.image)
+                        .resizable()
+                        .scaledToFit()
+                }
+                NavigationLink(destination: FilterViewDetail()) {
+                    Image(uiImage: selectedImage.image)
+                        .resizable()
+                        .scaledToFit()
+                }
             }
             HStack {
-                FilterableImage()
-                FilterableImage()
+                NavigationLink(destination: FilterViewDetail()) {
+                    Image(uiImage: selectedImage.image)
+                        .resizable()
+                        .scaledToFit()
+                }
+                NavigationLink(destination: FilterViewDetail()) {
+                    Image(uiImage: selectedImage.image)
+                        .resizable()
+                        .scaledToFit()
+                }
             }
             Spacer()
             Button(action: {
@@ -37,7 +53,6 @@ struct FilterView: View {
         .sheet(isPresented: $isShowingImagePicker) {
             ImagePicker(source: self.source)
         }
-        .navigationBarTitle(Text("Other filters will be applied here"))
     }
 }
 //
