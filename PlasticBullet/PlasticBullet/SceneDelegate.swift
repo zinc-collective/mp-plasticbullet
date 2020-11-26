@@ -20,12 +20,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // Create the SwiftUI view that provides the window contents.
         let fullResolutionFlag = ObservableBooleanFlag(true)
-        let testVar = ObservableUIimage(UIImage(imageLiteralResourceName: "160421-IMG_5876-"))
-        let testVar2 = ObservableUIimage(UIImage(imageLiteralResourceName: "101123-Steve_Dodds-"))
+        let selectedImage = ObservableUIImage(UIImage(imageLiteralResourceName: "101123-Steve_Dodds-"))
         let contentView = ContentView()
             .environmentObject(fullResolutionFlag)
-            .environmentObject(testVar2)
-            .environmentObject(testVar)
+            .environmentObject(selectedImage)
             
         
 

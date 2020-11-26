@@ -1,5 +1,5 @@
 //
-//  ObservableUIimage.swift
+//  ObservableUIImage.swift
 //  PlasticBullet
 //
 //  Created by Christopher Wallace on 11/27/20.
@@ -9,10 +9,11 @@
 import Combine
 import SwiftUI
 
-class ObservableUIimage: ObservableObject {
+class ObservableUIImage: ObservableObject {
     @Published var image: UIImage
     
     init(_ image: UIImage) {
         self.image = image
     }
 }
+
