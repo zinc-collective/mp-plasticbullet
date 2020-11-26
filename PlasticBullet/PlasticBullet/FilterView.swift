@@ -16,7 +16,7 @@ struct FilterView: View {
     
     @EnvironmentObject var selectedImage: ObservableUIImage
 
-    var body: some View {
+    var body: some View {        
         VStack {
             HStack {
                 NavigationLink(destination: FilterViewDetail()) {
