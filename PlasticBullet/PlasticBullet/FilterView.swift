@@ -13,13 +13,18 @@ import CoreImage.CIFilterBuiltins
 struct FilterView: View {
     @Binding var isShowingImagePicker: Bool
     var source: UIImagePickerController.SourceType = .photoLibrary
-    @Binding var selectedImage: UIImage?
+//    @Binding var selectedImage: UIImage?
+    @EnvironmentObject var selectedImage: ObservableUIImage
 
     var body: some View {
         VStack {
-            List {
-                FilterableImage(selectedImage: $selectedImage, processedImage: selectedImage)
-                FilterableImage(selectedImage: $selectedImage, processedImage: selectedImage)
+            HStack {
+                FilterableImage()
+                FilterableImage()
+            }
+            HStack {
+                FilterableImage()
+                FilterableImage()
             }
             Spacer()
             Button(action: {
@@ -30,22 +35,22 @@ struct FilterView: View {
             Spacer()
         }
         .sheet(isPresented: $isShowingImagePicker) {
-            ImagePicker(image: self.$selectedImage, source: self.source)
+            ImagePicker(source: self.source)
         }
         .navigationBarTitle(Text("Other filters will be applied here"))
     }
 }
-
-struct FilterView_Previews: PreviewProvider {
-    private var baseImages: [UIImage] = [
-        UIImage(imageLiteralResourceName: "160421-IMG_5876-"),
-        UIImage(imageLiteralResourceName: "160421-IMG_5876-"),
-        UIImage(imageLiteralResourceName: "160421-IMG_5876-"),
-        UIImage(imageLiteralResourceName: "160421-IMG_5876-")
-    ]
-    static var previews: some View {
-        NavigationView {
-            FilterView(isShowingImagePicker: .constant(true), selectedImage: .constant(UIImage(contentsOfFile: "160421-IMG_5876-")))
-        }
-    }
-}
+//
+//struct FilterView_Previews: PreviewProvider {
+//    private var baseImages: [UIImage] = [
+//        UIImage(imageLiteralResourceName: "160421-IMG_5876-"),
+//        UIImage(imageLiteralResourceName: "160421-IMG_5876-"),
+//        UIImage(imageLiteralResourceName: "160421-IMG_5876-"),
+//        UIImage(imageLiteralResourceName: "160421-IMG_5876-")
+//    ]
+//    static var previews: some View {
+//        NavigationView {
+//            FilterView(isShowingImagePicker: .constant(true), selectedImage: .constant(UIImage(contentsOfFile: "160421-IMG_5876-")))
+//        }
+//    }
+//}

@@ -21,9 +21,9 @@ struct ContentView: View {
     @State private var bgImage: Image = Image("160421-IMG_5876-")
     
     @State var source: UIImagePickerController.SourceType = .photoLibrary
-    @State private var selectedImage: UIImage?
     
     @EnvironmentObject var fullResolutionFlag: ObservableBooleanFlag
+    @EnvironmentObject var selectedImage: ObservableUIImage
     
   
     // I would prefer this to be dynamically created from all files in the folder at runtime
@@ -62,7 +62,7 @@ struct ContentView: View {
                     .offset(y: -45)
                 Spacer()
                 HStack{
-                    NavigationLink(destination: FilterView(isShowingImagePicker: self.$isShowingImagePicker, selectedImage: self.$selectedImage)) {
+                    NavigationLink(destination: FilterView(isShowingImagePicker: self.$isShowingImagePicker)) {
                       Text("4 up view")
                     }
                 }
@@ -87,9 +87,9 @@ struct ContentView: View {
         }
         .sheet(isPresented: self.$isShowingSheet){
             if(self.sheetType == .camera){
-                ImagePicker(image: self.$selectedImage, source: self.source)
+                ImagePicker(source: self.source)
             } else if(self.sheetType == .photoLibrary){
-                ImagePicker(image: self.$selectedImage, source: self.source)
+                ImagePicker(source: self.source)
             } else {
                 Panel_Info(isShowingSheet: self.$isShowingSheet)
             }

@@ -21,15 +21,16 @@ struct Filter {
 }
 
 struct FilterableImage: View {
-    @Binding var selectedImage: UIImage?
+//    @Binding var selectedImage: UIImage?
     @State var processedImage: UIImage?
+    @EnvironmentObject var selectedImage: ObservableUIImage
 
     //  CORE IMAGE FILTERS REFERENCE: "https://developer.apple.com/library/archive/documentation/GraphicsImaging/Reference/CoreImageFilterReference/index.html#//apple_ref/doc/uid/TP40004346-Reference"
     @State var sepia: Filter = Filter(filterName: "CISepiaTone", filterEffectValue: 0.95, filterEffectValueName: kCIInputIntensityKey)
     @State var gaussianBlur: Filter = Filter(filterName: "CIGaussianBlur", filterEffectValue: 20, filterEffectValueName: kCIInputRadiusKey)
     
     var body: some View {
-        Image(uiImage: self.processedImage!)
+        Image(uiImage: self.selectedImage.image)
             .resizable()
             .scaledToFit()
             .border(Color.red, width: 4)
@@ -45,7 +46,7 @@ struct FilterableImage: View {
     
     func setStartImageState() -> Void {
         print("setStartImageState()")
-        self.processedImage = self.processImage(image: self.selectedImage!, filterEffect: self.gaussianBlur)
+        self.processedImage = self.processImage(image: selectedImage.image, filterEffect: self.gaussianBlur)
     }
         
     func processImage(image: UIImage, filterEffect: Filter) -> UIImage {
