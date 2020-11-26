@@ -1,0 +1,28 @@
+PODS:
+  - Crashlytics (3.7.3):
+    - Fabric (~> 1.6.3)
+  - Fabric (1.6.13)
+  - SwiftyMarkdown (0.6.2)
+  - XMCircleType (1.1.1)
+
+DEPENDENCIES:
+  - Crashlytics (~> 3.7.0)
+  - SwiftyMarkdown (~> 0.2)
+  - XMCircleType (= 1.1.1)
+
+SPEC REPOS:
+  trunk:
+    - Crashlytics
+    - Fabric
+    - SwiftyMarkdown
+    - XMCircleType
+
+SPEC CHECKSUMS:
+  Crashlytics: 76f6beaff70acf226139582c09c78461597c2b98
+  Fabric: 2fb5676bc811af011a04513451f463dac6803206
+  SwiftyMarkdown: 483eeba7f992035910fbb2e40cf1fc8c8249c6ac
+  XMCircleType: 5400d1ac7ac308853d240644d538d4fcfd06c808
+
+PODFILE CHECKSUM: 50502186a27d736b1c391d8bf37b997e39333edc
+
+COCOAPODS: 1.8.4

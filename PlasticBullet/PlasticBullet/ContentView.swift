@@ -23,6 +23,8 @@ struct ContentView: View {
     @State var source: UIImagePickerController.SourceType = .photoLibrary
     @State private var selectedImage: UIImage?
     
+    @EnvironmentObject var fullResolutionFlag: ObservableBooleanFlag
+    
   
     // I would prefer this to be dynamically created from all files in the folder at runtime
     let backgroundImageFilenames = [
@@ -51,7 +53,7 @@ struct ContentView: View {
     ]
     
     var body: some View {
-
+        
         return NavigationView {
             VStack {
                 Spacer()
@@ -89,12 +91,13 @@ struct ContentView: View {
             } else if(self.sheetType == .photoLibrary){
                 ImagePicker(image: self.$selectedImage, source: self.source)
             } else {
-                Panel_Info(useFullResolution: self.$useFullResolution, isShowingSheet: self.$isShowingSheet)
+                Panel_Info(isShowingSheet: self.$isShowingSheet)
             }
         }
         .onAppear(perform: {
             self.loadRandomImage()
         })
+        
     }
     
     func loadRandomImage() {
