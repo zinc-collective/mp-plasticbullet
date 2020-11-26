@@ -10,12 +10,9 @@ import SwiftUI
 import SwiftyMarkdown
 
 struct Panel_Info: View {
-//    @Binding var useFullResolution:Bool
     @Binding var isShowingSheet:Bool
     
     @EnvironmentObject var fullResolutionFlag: ObservableBooleanFlag
-    @EnvironmentObject var testVar: ObservableUIimage
-    @EnvironmentObject var testVar2: ObservableUIimage
     
     @State private var first: SwiftyMarkdown?
     @State private var second: SwiftyMarkdown?
@@ -38,13 +35,7 @@ struct Panel_Info: View {
                 .padding()
                 .foregroundColor(Color.white)
                 .background(Color.gray)
-            HStack {
-                Image(uiImage: testVar.image)
-                    .scaledToFit()
-                    
-                Image(uiImage: testVar2.image)
-                    .scaledToFit()
-            }
+            
             Text(p1)
                 .padding()
             
@@ -97,9 +88,10 @@ struct Panel_Info: View {
         }
     }
 }
-//
-//struct Panel_Info_Previews: PreviewProvider {
-//    static var previews: some View {
-//        Panel_Info(useFullResolution: .constant(true), isShowingSheet: .constant(true))
-//    }
-//}
+
+struct Panel_Info_Previews: PreviewProvider {
+    static var previews: some View {
+        Panel_Info(isShowingSheet: .constant(true))
+            .environmentObject(ObservableBooleanFlag(true))
+    }
+}
