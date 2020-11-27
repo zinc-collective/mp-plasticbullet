@@ -9,13 +9,14 @@
 import SwiftUI
 
 struct BTN_Camera: View {
-    @Binding var isShowingSheet: Bool
+    @ObservedObject var isShowingSheet:ObservableSheetFlag
+    
     @Binding var sheetType: ContentView.ActiveSheet?
     @Binding var source: UIImagePickerController.SourceType
     
     var body: some View {
         Button(action: {
-            self.isShowingSheet.toggle()
+            self.isShowingSheet.status.toggle()
             self.source = .camera
             self.sheetType = .camera
         }) {
@@ -27,6 +28,7 @@ struct BTN_Camera: View {
 
 struct BTN_Camera_Previews: PreviewProvider {
     static var previews: some View {
-        BTN_Camera(isShowingSheet: .constant(true), sheetType: .constant(.camera), source: .constant(.camera))
+        var isShowingSheet = ObservableSheetFlag(true)
+        BTN_Camera(isShowingSheet: isShowingSheet, sheetType: .constant(.camera), source: .constant(.camera))
     }
 }

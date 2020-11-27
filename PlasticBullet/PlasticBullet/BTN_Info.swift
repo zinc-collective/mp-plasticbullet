@@ -9,13 +9,12 @@
 import SwiftUI
 
 struct BTN_Info: View {
-    
-    @Binding var isShowingSheet: Bool
+    @ObservedObject var isShowingSheet:ObservableSheetFlag
     @Binding var sheetType: ContentView.ActiveSheet?
     
     var body: some View {
         Button(action: {
-            self.isShowingSheet.toggle()
+            self.isShowingSheet.status.toggle()
             self.sheetType = .info
         }) {
             Image("info")
@@ -28,6 +27,7 @@ struct BTN_Info: View {
 
 struct BTN_Info_Previews: PreviewProvider {
     static var previews: some View {
-        BTN_Info(isShowingSheet: .constant(true), sheetType: .constant(.info))
+        var isShowingSheet = ObservableSheetFlag(true)
+        BTN_Info(isShowingSheet: isShowingSheet, sheetType: .constant(.info))
     }
 }

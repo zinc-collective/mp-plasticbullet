@@ -12,6 +12,8 @@ import CoreImage.CIFilterBuiltins
 
 struct FilterView: View {
     @Binding var isShowingImagePicker: Bool
+    @ObservedObject var isShowingSheet:ObservableSheetFlag
+    
     var source: UIImagePickerController.SourceType = .photoLibrary
     
     @EnvironmentObject var selectedImage: ObservableUIImage
@@ -44,13 +46,14 @@ struct FilterView: View {
             }
             Spacer()
             Button(action: {
-                self.isShowingImagePicker.toggle()
+                self.isShowingSheet.status.toggle()
+//                self.isShowingImagePicker.toggle()
             }) {
                 Image("splash-library")
             }
             Spacer()
         }
-        .sheet(isPresented: $isShowingImagePicker) {
+        .sheet(isPresented: $isShowingSheet.status) {
             ImagePicker(source: self.source)
         }
     }
