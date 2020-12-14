@@ -14,12 +14,9 @@ struct FilterView: View {
     @EnvironmentObject var selectedImage: ObservableUIImage
     @Binding var isShowingImagePicker: Bool
     @ObservedObject var isShowingSheet: ObservableSheetFlag
-
     
-        
-    
-    
-    var source: UIImagePickerController.SourceType = .photoLibrary
+    @Binding var sheetType:ContentView.ActiveSheet?
+    @Binding var source: UIImagePickerController.SourceType
 
     var body: some View {
 //        var imageList: [Binding<ObservableUIImage>] = [self.selectedImage, self.selectedImage, self.selectedImage, self.selectedImage]
@@ -41,16 +38,8 @@ struct FilterView: View {
                 FilteredImagePreviewView()
             }
             Spacer()
-            Button(action: {
-                self.isShowingSheet.status.toggle()
-//                self.isShowingImagePicker.toggle()
-            }) {
-                Image("splash-library")
-            }
+            BTN_Library(isShowingSheet: isShowingSheet, sheetType: $sheetType, source: $source)
             Spacer()
-        }
-        .sheet(isPresented: $isShowingSheet.status) {
-            ImagePicker(source: self.source)
         }
     }
 }

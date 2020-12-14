@@ -61,7 +61,7 @@ struct ContentView: View {
                     .offset(y: -45)
                 Spacer()
                 HStack{
-                    NavigationLink(destination: FilterView(isShowingImagePicker: self.$isShowingImagePicker, isShowingSheet: isShowingSheet)) {
+                    NavigationLink(destination: FilterView(isShowingImagePicker: $isShowingImagePicker, isShowingSheet: isShowingSheet, sheetType: $sheetType, source: $source)) {
                       Text("4 up view")
                     }
                 }
