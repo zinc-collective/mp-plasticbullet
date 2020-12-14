@@ -1,30 +1,19 @@
 //
-//  FilterableImage.swift
+//  FilteredImageView.swift
 //  PlasticBullet
 //
-//  Created by Christopher Wallace on 5/19/20.
+//  Created by Christopher Wallace on 12/15/20.
 //  Copyright © 2020 Zinc Collective, LLC. All rights reserved.
 //
 
 import SwiftUI
 
-struct Filter {
-    let filterName: String
-    var filterEffectValue: Any?
-    var filterEffectValueName: String?
+struct FilteredImageView: View {
+    @EnvironmentObject var selectedImage: ObservableUIImage
     
-    init(filterName: String, filterEffectValue: Any?, filterEffectValueName: String?) {
-        self.filterName = filterName
-        self.filterEffectValue = filterEffectValue
-        self.filterEffectValueName = filterEffectValueName
-    }
-}
-
-struct FilterableImage: View {
 //    @Binding var selectedImage: UIImage?
     @State var processedImage: UIImage?
-    @EnvironmentObject var selectedImage: ObservableUIImage
-
+    @State var imageLens:ModuleLens
     //  CORE IMAGE FILTERS REFERENCE: "https://developer.apple.com/library/archive/documentation/GraphicsImaging/Reference/CoreImageFilterReference/index.html#//apple_ref/doc/uid/TP40004346-Reference"
     @State var sepia: Filter = Filter(filterName: "CISepiaTone", filterEffectValue: 0.95, filterEffectValueName: kCIInputIntensityKey)
     @State var gaussianBlur: Filter = Filter(filterName: "CIGaussianBlur", filterEffectValue: 20, filterEffectValueName: kCIInputRadiusKey)
@@ -34,8 +23,6 @@ struct FilterableImage: View {
             .resizable()
             .scaledToFit()
             .border(Color.red, width: 4)
-            .onTapGesture(perform: {self.updateFliterableImageView()})
-            .onAppear(perform: setStartImageState)
     }
     
     func updateFliterableImageView() -> Void {
@@ -65,9 +52,10 @@ struct FilterableImage: View {
         return UIImage(cgImage: context.createCGImage(output, from: output.extent) ?? image as! CGImage)
     }
 }
-//
-//struct FilterableImage_Previews: PreviewProvider {
+
+
+//struct FilteredImageView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        FilterableImage(selectedImage: .constant(UIImage(imageLiteralResourceName: "160421-IMG_5876-")))
+//        FilteredImageView()
 //    }
 //}

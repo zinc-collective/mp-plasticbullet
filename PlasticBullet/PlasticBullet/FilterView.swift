@@ -11,38 +11,34 @@ import CoreImage
 import CoreImage.CIFilterBuiltins
 
 struct FilterView: View {
+    @EnvironmentObject var selectedImage: ObservableUIImage
     @Binding var isShowingImagePicker: Bool
-    @ObservedObject var isShowingSheet:ObservableSheetFlag
+    @ObservedObject var isShowingSheet: ObservableSheetFlag
+
+    
+        
+    
     
     var source: UIImagePickerController.SourceType = .photoLibrary
-    
-    @EnvironmentObject var selectedImage: ObservableUIImage
 
-    var body: some View {        
+    var body: some View {
+//        var imageList: [Binding<ObservableUIImage>] = [self.selectedImage, self.selectedImage, self.selectedImage, self.selectedImage]
         VStack {
+//            List (imageList, id: \.id) { item in
+//                NavigationLink(destination: FilterViewDetail(imageLens: ModuleLens(), processedImage: item)) {
+//                    Image(uiImage: item.image)
+//                        .resizable()
+//                        .scaledToFit()
+//                            .onAppear(perform: setStartImageState)
+//                }
+//            }
             HStack {
-                NavigationLink(destination: FilterViewDetail()) {
-                    Image(uiImage: selectedImage.image)
-                        .resizable()
-                        .scaledToFit()
-                }
-                NavigationLink(destination: FilterViewDetail()) {
-                    Image(uiImage: selectedImage.image)
-                        .resizable()
-                        .scaledToFit()
-                }
+                FilteredImagePreviewView()
+                FilteredImagePreviewView()
             }
             HStack {
-                NavigationLink(destination: FilterViewDetail()) {
-                    Image(uiImage: selectedImage.image)
-                        .resizable()
-                        .scaledToFit()
-                }
-                NavigationLink(destination: FilterViewDetail()) {
-                    Image(uiImage: selectedImage.image)
-                        .resizable()
-                        .scaledToFit()
-                }
+                FilteredImagePreviewView()
+                FilteredImagePreviewView()
             }
             Spacer()
             Button(action: {
