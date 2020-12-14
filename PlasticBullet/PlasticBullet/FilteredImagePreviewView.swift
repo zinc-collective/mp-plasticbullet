@@ -10,15 +10,16 @@ import SwiftUI
 
 struct FilteredImagePreviewView: View {
     @EnvironmentObject var selectedImage: ObservableUIImage
-    var imageLens: ModuleLens = ModuleLens()
+    @State var imageLens: ModuleLens = ModuleLens()
     @State var processedImage: UIImage?
     
     var body: some View {
-        NavigationLink(destination: FilteredImageView(processedImage: self.processedImage ?? self.selectedImage.image, imageLens: imageLens)) {
+        NavigationLink(destination: FilteredImageView(processedImage: self.$processedImage, imageLens: self.$imageLens)) {
             Image(uiImage: self.processedImage ?? self.selectedImage.image)
                 .resizable()
                 .scaledToFit()
-        }.onAppear {
+        }
+        .onAppear {
             self.processedImage = imageLens.processFilters(source: self.selectedImage.image)
             print("4-up")
         }

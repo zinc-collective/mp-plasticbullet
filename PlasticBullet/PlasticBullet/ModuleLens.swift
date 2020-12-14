@@ -30,11 +30,11 @@ class ModuleLens: ObservableObject {
         
     }
     
-//    func updateFliterableImageView() -> Void {
-//        print("tapped on a FliterableImageView")
-//        self.gaussianBlur.filterEffectValue = 50
-//        self.processedImage = self.processImage(image: self.processedImage!, filterEffect: self.gaussianBlur)
-//    }
+    func updateFliterableImageView(source: UIImage) -> UIImage {
+        print("tapped on a FliterableImageView")
+        self.gaussianBlur.filterEffectValue = 50
+        return self.processImage(image: source, filterEffect: self.gaussianBlur)
+    }
     
     public func setStartImageState(source: UIImage, destination: inout Binding<UIImage?>) {
         print("setStartImageState()")
