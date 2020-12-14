@@ -15,12 +15,12 @@ struct FilteredImageView: View {
     @Binding var imageLens:ModuleLens
     
     var body: some View {
-        Image(uiImage: self.processedImage!)
+        Image(uiImage: self.$processedImage.wrappedValue!)
             .resizable()
             .scaledToFit()
             .border(Color.red, width: 4)
             .onTapGesture {
-                self.processedImage = self.imageLens.updateFliterableImageView(source: self.processedImage!)
+                self.$processedImage.wrappedValue = self.imageLens.updateFliterableImageView(source: self.processedImage!)
             }
     }
 }
