@@ -28,7 +28,7 @@ struct BTN_Library: View {
 
 struct BTN_Library_Previews: PreviewProvider {
     static var previews: some View {
-        var isShowingSheet = ObservableSheetFlag(true)
+        let isShowingSheet = ObservableSheetFlag(true)
         BTN_Library(isShowingSheet: isShowingSheet, sheetType: .constant(.photoLibrary), source: .constant(.photoLibrary))
     }
 }

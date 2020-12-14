@@ -28,7 +28,7 @@ struct BTN_Camera: View {
 
 struct BTN_Camera_Previews: PreviewProvider {
     static var previews: some View {
-        var isShowingSheet = ObservableSheetFlag(true)
+        let isShowingSheet = ObservableSheetFlag(true)
         BTN_Camera(isShowingSheet: isShowingSheet, sheetType: .constant(.camera), source: .constant(.camera))
     }
 }

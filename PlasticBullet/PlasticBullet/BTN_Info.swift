@@ -27,7 +27,7 @@ struct BTN_Info: View {
 
 struct BTN_Info_Previews: PreviewProvider {
     static var previews: some View {
-        var isShowingSheet = ObservableSheetFlag(true)
+        let isShowingSheet = ObservableSheetFlag(true)
         BTN_Info(isShowingSheet: isShowingSheet, sheetType: .constant(.info))
     }
 }

@@ -94,8 +94,8 @@ struct Panel_Info: View {
 
 struct Panel_Info_Previews: PreviewProvider {
     static var previews: some View {
-        var isShowingSheet = ObservableSheetFlag(true)
-        var useFullResolution = ObservableResolutionFlag(true)
+        let isShowingSheet = ObservableSheetFlag(true)
+        let useFullResolution = ObservableResolutionFlag(true)
         Panel_Info(isShowingSheet: isShowingSheet, useFullResolution: useFullResolution)
             .environmentObject(ObservableBooleanFlag(true))
     }
