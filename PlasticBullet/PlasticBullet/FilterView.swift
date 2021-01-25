@@ -11,41 +11,49 @@ import CoreImage
 import CoreImage.CIFilterBuiltins
 
 struct FilterView: View {
+    @EnvironmentObject var selectedImage: ObservableUIImage
     @Binding var isShowingImagePicker: Bool
-    var source: UIImagePickerController.SourceType = .photoLibrary
-    @Binding var selectedImage: UIImage?
+    @ObservedObject var isShowingSheet: ObservableSheetFlag
+    
+    @Binding var sheetType:ContentView.ActiveSheet?
+    @Binding var source: UIImagePickerController.SourceType
 
     var body: some View {
+//        var imageList: [Binding<ObservableUIImage>] = [self.selectedImage, self.selectedImage, self.selectedImage, self.selectedImage]
         VStack {
-            List {
-                FilterableImage(selectedImage: $selectedImage, processedImage: selectedImage)
-                FilterableImage(selectedImage: $selectedImage, processedImage: selectedImage)
+//            List (imageList, id: \.id) { item in
+//                NavigationLink(destination: FilterViewDetail(imageLens: ModuleLens(), processedImage: item)) {
+//                    Image(uiImage: item.image)
+//                        .resizable()
+//                        .scaledToFit()
+//                            .onAppear(perform: setStartImageState)
+//                }
+//            }
+            HStack {
+                FilteredImagePreviewView()
+                FilteredImagePreviewView()
+            }
+            HStack {
+                FilteredImagePreviewView()
+                FilteredImagePreviewView()
             }
             Spacer()
-            Button(action: {
-                self.isShowingImagePicker.toggle()
-            }) {
-                Image("splash-library")
-            }
+            BTN_Library(isShowingSheet: isShowingSheet, sheetType: $sheetType, source: $source)
             Spacer()
-        }
-        .sheet(isPresented: $isShowingImagePicker) {
-            ImagePicker(image: self.$selectedImage, source: self.source)
-        }
-        .navigationBarTitle(Text("Other filters will be applied here"))
-    }
-}
-
-struct FilterView_Previews: PreviewProvider {
-    private var baseImages: [UIImage] = [
-        UIImage(imageLiteralResourceName: "160421-IMG_5876-"),
-        UIImage(imageLiteralResourceName: "160421-IMG_5876-"),
-        UIImage(imageLiteralResourceName: "160421-IMG_5876-"),
-        UIImage(imageLiteralResourceName: "160421-IMG_5876-")
-    ]
-    static var previews: some View {
-        NavigationView {
-            FilterView(isShowingImagePicker: .constant(true), selectedImage: .constant(UIImage(contentsOfFile: "160421-IMG_5876-")))
         }
     }
 }
+//
+//struct FilterView_Previews: PreviewProvider {
+//    private var baseImages: [UIImage] = [
+//        UIImage(imageLiteralResourceName: "160421-IMG_5876-"),
+//        UIImage(imageLiteralResourceName: "160421-IMG_5876-"),
+//        UIImage(imageLiteralResourceName: "160421-IMG_5876-"),
+//        UIImage(imageLiteralResourceName: "160421-IMG_5876-")
+//    ]
+//    static var previews: some View {
+//        NavigationView {
+//            FilterView(isShowingImagePicker: .constant(true), selectedImage: .constant(UIImage(contentsOfFile: "160421-IMG_5876-")))
+//        }
+//    }
+//}

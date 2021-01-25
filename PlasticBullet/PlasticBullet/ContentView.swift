@@ -12,17 +12,18 @@ struct ContentView: View {
     enum ActiveSheet {
        case camera, photoLibrary, info
     }
+
+    @EnvironmentObject var selectedImage: ObservableUIImage
     
-    @State var isShowingSheet:Bool = false
+    @ObservedObject var isShowingSheet:ObservableSheetFlag = ObservableSheetFlag(false)
+    @ObservedObject var useFullResolution:ObservableResolutionFlag = ObservableResolutionFlag(true)
+    
     @State var sheetType:ActiveSheet?
-    
-    @State var useFullResolution:Bool = false
-    @State var isShowingImagePicker:Bool = true
+    @State var isShowingImagePicker:Bool = false
     @State private var bgImage: Image = Image("160421-IMG_5876-")
-    
     @State var source: UIImagePickerController.SourceType = .photoLibrary
-    @State private var selectedImage: UIImage?
     
+
   
     // I would prefer this to be dynamically created from all files in the folder at runtime
     let backgroundImageFilenames = [
@@ -51,7 +52,7 @@ struct ContentView: View {
     ]
     
     var body: some View {
-
+        
         return NavigationView {
             VStack {
                 Spacer()
@@ -59,21 +60,21 @@ struct ContentView: View {
                 Image("splash-logo")
                     .offset(y: -45)
                 Spacer()
-                HStack{
-                    NavigationLink(destination: FilterView(isShowingImagePicker: self.$isShowingImagePicker, selectedImage: self.$selectedImage)) {
+                HStack {
+                    NavigationLink(destination: FilterView(isShowingImagePicker: $isShowingImagePicker, isShowingSheet: isShowingSheet, sheetType: $sheetType, source: $source)) {
                       Text("4 up view")
                     }
                 }
                 Spacer()
                 HStack {
                     Spacer()
-                    BTN_Camera(isShowingSheet: $isShowingSheet, sheetType: $sheetType, source: $source)
+                    BTN_Camera(isShowingSheet: isShowingSheet, sheetType: $sheetType, source: $source)
                     Spacer()
-                    BTN_Library(isShowingSheet: $isShowingSheet, sheetType: $sheetType, source: $source)
+                    BTN_Library(isShowingSheet: isShowingSheet, sheetType: $sheetType, source: $source)
                     Spacer()
                 }
                 Spacer()
-                BTN_Info(isShowingSheet: $isShowingSheet, sheetType: $sheetType)
+                BTN_Info(isShowingSheet: isShowingSheet, sheetType: $sheetType)
                     .offset(y: -20)
             }
             .padding()
@@ -83,18 +84,19 @@ struct ContentView: View {
                 .clipped())
             .edgesIgnoringSafeArea([.top, .bottom])
         }
-        .sheet(isPresented: self.$isShowingSheet){
+        .sheet(isPresented: $isShowingSheet.status){
             if(self.sheetType == .camera){
-                ImagePicker(image: self.$selectedImage, source: self.source)
+                ImagePicker(source: self.source)
             } else if(self.sheetType == .photoLibrary){
-                ImagePicker(image: self.$selectedImage, source: self.source)
+                ImagePicker(source: self.source)
             } else {
-                Panel_Info(useFullResolution: self.$useFullResolution, isShowingSheet: self.$isShowingSheet)
+                Panel_Info(isShowingSheet: isShowingSheet, useFullResolution: useFullResolution)
             }
         }
         .onAppear(perform: {
             self.loadRandomImage()
         })
+        
     }
     
     func loadRandomImage() {

@@ -10,7 +10,8 @@ import SwiftUI
 
 struct ImagePicker: UIViewControllerRepresentable {
     @Environment(\.presentationMode) var presentationMode
-    @Binding var image: UIImage?
+//    @Binding var image: UIImage?
+    @EnvironmentObject var selectedImage: ObservableUIImage
     var source: UIImagePickerController.SourceType = .photoLibrary
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
@@ -32,8 +33,8 @@ struct ImagePicker: UIViewControllerRepresentable {
         
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
             if let uiImage = info[.originalImage] as? UIImage {
-                parent.image = uiImage
-                print("picked: ", parent.image as Any)
+                parent.selectedImage.image = uiImage
+                print("picked: ", parent.selectedImage.image as Any)
             }
 
             parent.presentationMode.wrappedValue.dismiss()
@@ -46,7 +47,9 @@ struct ImagePicker: UIViewControllerRepresentable {
 }
 
 struct ImagePicker_Previews: PreviewProvider {
+    
     static var previews: some View {
-        ImagePicker(image: .constant(UIImage(contentsOfFile: "160421-IMG_5876-")))
+        ImagePicker(source: .photoLibrary)
+            .environmentObject(ObservableUIImage(UIImage(contentsOfFile: "160421-IMG_5876-")!))
     }
 }

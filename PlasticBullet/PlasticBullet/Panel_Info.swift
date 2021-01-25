@@ -6,12 +6,16 @@
 //  Copyright © 2020 Zinc Collective, LLC. All rights reserved.
 //
 
+import Combine
 import SwiftUI
 import SwiftyMarkdown
 
 struct Panel_Info: View {
-    @Binding var useFullResolution:Bool
-    @Binding var isShowingSheet:Bool
+    @ObservedObject var isShowingSheet:ObservableSheetFlag
+    @ObservedObject var useFullResolution:ObservableResolutionFlag
+    
+//    @EnvironmentObject var fullResolutionFlag: ObservableBooleanFlag
+//    @State var fullResolutionFlag:Bool
     
     @State private var first: SwiftyMarkdown?
     @State private var second: SwiftyMarkdown?
@@ -23,7 +27,7 @@ struct Panel_Info: View {
         VStack {
             HStack {
                 Button(action: {
-                    self.isShowingSheet = false
+                    self.isShowingSheet.status = false
                 }) {
                     Image(systemName: "arrow.left")
                 }
@@ -39,7 +43,7 @@ struct Panel_Info: View {
                 .padding()
             
             HStack {
-                Toggle(isOn: $useFullResolution) {
+                Toggle(isOn: $useFullResolution.status) {
                     Text("Unlimited Resolution")
                 }
             }
@@ -90,6 +94,9 @@ struct Panel_Info: View {
 
 struct Panel_Info_Previews: PreviewProvider {
     static var previews: some View {
-        Panel_Info(useFullResolution: .constant(true), isShowingSheet: .constant(true))
+        let isShowingSheet = ObservableSheetFlag(true)
+        let useFullResolution = ObservableResolutionFlag(true)
+        Panel_Info(isShowingSheet: isShowingSheet, useFullResolution: useFullResolution)
+            .environmentObject(ObservableBooleanFlag(true))
     }
 }

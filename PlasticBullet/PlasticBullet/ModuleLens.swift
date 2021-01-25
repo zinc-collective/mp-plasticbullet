@@ -1,12 +1,13 @@
 //
-//  FilterableImage.swift
+//  ModuleLens.swift
 //  PlasticBullet
 //
-//  Created by Christopher Wallace on 5/19/20.
+//  Created by Christopher Wallace on 11/28/20.
 //  Copyright © 2020 Zinc Collective, LLC. All rights reserved.
 //
 
 import SwiftUI
+import Combine
 
 struct Filter {
     let filterName: String
@@ -20,32 +21,25 @@ struct Filter {
     }
 }
 
-struct FilterableImage: View {
-    @Binding var selectedImage: UIImage?
-    @State var processedImage: UIImage?
-
+class ModuleLens: ObservableObject {
     //  CORE IMAGE FILTERS REFERENCE: "https://developer.apple.com/library/archive/documentation/GraphicsImaging/Reference/CoreImageFilterReference/index.html#//apple_ref/doc/uid/TP40004346-Reference"
-    @State var sepia: Filter = Filter(filterName: "CISepiaTone", filterEffectValue: 0.95, filterEffectValueName: kCIInputIntensityKey)
-    @State var gaussianBlur: Filter = Filter(filterName: "CIGaussianBlur", filterEffectValue: 20, filterEffectValueName: kCIInputRadiusKey)
-    
-    var body: some View {
-        Image(uiImage: self.processedImage!)
-            .resizable()
-            .scaledToFit()
-            .border(Color.red, width: 4)
-            .onTapGesture(perform: {self.updateFliterableImageView()})
-            .onAppear(perform: setStartImageState)
+    var sepia: Filter = Filter(filterName: "CISepiaTone", filterEffectValue: 0.95, filterEffectValueName: kCIInputIntensityKey)
+    var gaussianBlur: Filter = Filter(filterName: "CIGaussianBlur", filterEffectValue: 20, filterEffectValueName: kCIInputRadiusKey)
+        
+    init(){
+        
     }
     
-    func updateFliterableImageView() -> Void {
+    func updateFliterableImageView(source: UIImage) -> UIImage {
         print("tapped on a FliterableImageView")
         self.gaussianBlur.filterEffectValue = 50
-        self.processedImage = self.processImage(image: self.processedImage!, filterEffect: self.gaussianBlur)
+        return self.processImage(image: source, filterEffect: self.gaussianBlur)
     }
     
-    func setStartImageState() -> Void {
+    public func setStartImageState(source: UIImage, destination: inout Binding<UIImage?>) {
         print("setStartImageState()")
-        self.processedImage = self.processImage(image: self.selectedImage!, filterEffect: self.gaussianBlur)
+        destination.wrappedValue = self.processImage(image: source, filterEffect: self.gaussianBlur)
+//        self.processedImage = self.processImage(image: selectedImage.image, filterEffect: self.gaussianBlur)
     }
         
     func processImage(image: UIImage, filterEffect: Filter) -> UIImage {
@@ -63,10 +57,12 @@ struct FilterableImage: View {
         }
         return UIImage(cgImage: context.createCGImage(output, from: output.extent) ?? image as! CGImage)
     }
+    
+    func processFilters(source: UIImage, completion: (UIImage) -> Void ) {
+        completion(self.processImage(image: source, filterEffect: self.gaussianBlur))
+    }
+    
+    func processFilters(source: UIImage) -> UIImage {
+        return self.processImage(image: source, filterEffect: self.gaussianBlur)
+    }
 }
-//
-//struct FilterableImage_Previews: PreviewProvider {
-//    static var previews: some View {
-//        FilterableImage(selectedImage: .constant(UIImage(imageLiteralResourceName: "160421-IMG_5876-")))
-//    }
-//}
