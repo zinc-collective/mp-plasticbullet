@@ -60,7 +60,7 @@ struct ContentView: View {
                 Image("splash-logo")
                     .offset(y: -45)
                 Spacer()
-                HStack{
+                HStack {
                     NavigationLink(destination: FilterView(isShowingImagePicker: $isShowingImagePicker, isShowingSheet: isShowingSheet, sheetType: $sheetType, source: $source)) {
                       Text("4 up view")
                     }

@@ -20,7 +20,7 @@ struct FilteredImagePreviewView: View {
                 .scaledToFit()
         }
         .onAppear {
-            self.$processedImage.wrappedValue = imageLens.processFilters(source: self.selectedImage.image)
+            self.$processedImage.wrappedValue = imageLens.processFilters(source: (self.$processedImage.wrappedValue ?? self.selectedImage.image))
             print("4-up")
         }
     }
