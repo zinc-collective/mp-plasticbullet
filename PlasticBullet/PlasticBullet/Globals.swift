@@ -8,14 +8,15 @@
 
 import SwiftUI
 
-struct Globals: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
+var testImages: [UIImage?] = [
+    UIImage(named: "160426-IMG_6169-"),
+    UIImage(named: "101118-daveweekes68-"),
+    UIImage(named: "101122-dhaager-"),
+    UIImage(named: "101123-Steve_Dodds-"),
+    UIImage(named: "120528-IMG_5126-")
+]
 
-struct Globals_Previews: PreviewProvider {
-    static var previews: some View {
-        Globals()
-    }
+func getBundleURL(fileName: String, type: String = "jpg") -> URL {
+    let bundle = Bundle.main.path(forResource: fileName, ofType: type)
+    return URL(fileURLWithPath: bundle!)
 }

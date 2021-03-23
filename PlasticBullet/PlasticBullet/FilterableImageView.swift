@@ -9,13 +9,24 @@
 import SwiftUI
 
 struct FilterableImageView: View {
+    var model: FilterableImageViewModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Image(uiImage: self.model.image.rawImage)
+            .resizable()
+            .scaledToFit()            
+//            .onTapGesture {
+//                self.model.showFullscreen.toggle()
+//                print("FilterableImageView -> Fullscreen?: \(self.model.showFullscreen)")
+////                self.$processedImage.wrappedValue = self.imageLens.updateFliterableImageView(source: self.processedImage!)
+//            }
     }
 }
 
 struct FilterableImageView_Previews: PreviewProvider {
+    static var model: FilterableImageViewModel = FilterableImageViewModel(image: FilterableImage(rawImage: UIImage(named: "160426-IMG_6169-")!))
+    
     static var previews: some View {
-        FilterableImageView()
+        FilterableImageView(model: model)
     }
 }

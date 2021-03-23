@@ -14,15 +14,13 @@ struct FilteredImagePreviewView: View {
     @State var processedImage: UIImage?
     
     var body: some View {
-        NavigationLink(destination: FilteredImageView(processedImage: self.$processedImage, imageLens: self.$imageLens)) {
-            Image(uiImage: self.$processedImage.wrappedValue ?? self.selectedImage.image)
-                .resizable()
-                .scaledToFit()
-        }
-        .onAppear {
-            self.$processedImage.wrappedValue = imageLens.processFilters(source: (self.$processedImage.wrappedValue ?? self.selectedImage.image))
-            print("4-up")
-        }
+        Image(uiImage: self.$processedImage.wrappedValue ?? self.selectedImage.image)
+            .resizable()
+            .scaledToFit()
+            .onAppear {
+                self.$processedImage.wrappedValue = imageLens.processFilters(source: (self.$processedImage.wrappedValue ?? self.selectedImage.image))
+                print("4-up")
+            }
     }
 }
 
