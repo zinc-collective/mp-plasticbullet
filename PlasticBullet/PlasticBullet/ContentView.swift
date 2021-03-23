@@ -100,7 +100,6 @@ struct ContentView: View {
     }
     
     func loadRandomImage() {
-//        .background(UIImage(contentsOfFile: "160421-IMG_5876-"))
         let selectedBgImageIndex = getRandomIndex(max: (backgroundImageFilenames.count-1))
         bgImage = Image(backgroundImageFilenames[selectedBgImageIndex])
     }
@@ -111,16 +110,6 @@ struct ContentView: View {
 }
 
 struct ContentView_Previews: PreviewProvider {
-//    @EnvironmentObject var selectedImage: ObservableUIImage
-    
-//    @ObservedObject var isShowingSheet:ObservableSheetFlag = ObservableSheetFlag(false)
-//    @ObservedObject var useFullResolution:ObservableResolutionFlag = ObservableResolutionFlag(true)
-    
-//    @State var sheetType:ActiveSheet?
-//    @State var isShowingImagePicker:Bool = false
-//    @State private var bgImage: Image = Image("160421-IMG_5876-")
-//    @State var source: UIImagePickerController.SourceType = .photoLibrary
-    
     static var selectedImage: ObservableUIImage = ObservableUIImage(UIImage(named: "160426-IMG_6169-")!)
     static var isShowingImagePicker: Bool = false
     static var useFullResolution: ObservableResolutionFlag = ObservableResolutionFlag(true)
