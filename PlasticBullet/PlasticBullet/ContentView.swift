@@ -61,9 +61,9 @@ struct ContentView: View {
                     .offset(y: -45)
                 Spacer()
                 HStack {
-//                    NavigationLink(destination: AnimatedFilterView(isShowingImagePicker: $isShowingImagePicker, isShowingSheet: isShowingSheet, sheetType: $sheetType, source: $source)) {
-//                      Text("4 up view")
-//                    }
+                    NavigationLink(destination: AnimatedFilterView(isShowingImagePicker: $isShowingImagePicker, isShowingSheet: isShowingSheet, sheetType: sheetType, source: source)){
+                        Text("4 up view")
+                    }
                 }
                 Spacer()
                 HStack {
@@ -96,7 +96,6 @@ struct ContentView: View {
         .onAppear(perform: {
             self.loadRandomImage()
         })
-        
     }
     
     func loadRandomImage() {
