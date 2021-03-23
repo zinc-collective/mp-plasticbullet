@@ -15,11 +15,11 @@ struct ContentView: View {
 
     @EnvironmentObject var selectedImage: ObservableUIImage
     
-    @ObservedObject var isShowingSheet:ObservableSheetFlag = ObservableSheetFlag(false)
-    @ObservedObject var useFullResolution:ObservableResolutionFlag = ObservableResolutionFlag(true)
+    @ObservedObject var isShowingSheet: ObservableSheetFlag = ObservableSheetFlag(false)
+    @ObservedObject var useFullResolution: ObservableResolutionFlag = ObservableResolutionFlag(true)
     
-    @State var sheetType:ActiveSheet?
-    @State var isShowingImagePicker:Bool = false
+    @State var sheetType: ActiveSheet?
+    @State var isShowingImagePicker: Bool = false
     @State private var bgImage: Image = Image("160421-IMG_5876-")
     @State var source: UIImagePickerController.SourceType = .photoLibrary
     
@@ -111,7 +111,29 @@ struct ContentView: View {
 }
 
 struct ContentView_Previews: PreviewProvider {
+//    @EnvironmentObject var selectedImage: ObservableUIImage
+    
+//    @ObservedObject var isShowingSheet:ObservableSheetFlag = ObservableSheetFlag(false)
+//    @ObservedObject var useFullResolution:ObservableResolutionFlag = ObservableResolutionFlag(true)
+    
+//    @State var sheetType:ActiveSheet?
+//    @State var isShowingImagePicker:Bool = false
+//    @State private var bgImage: Image = Image("160421-IMG_5876-")
+//    @State var source: UIImagePickerController.SourceType = .photoLibrary
+    
+    static var selectedImage: ObservableUIImage = ObservableUIImage(UIImage(named: "160426-IMG_6169-")!)
+    static var isShowingImagePicker: Bool = false
+    static var useFullResolution: ObservableResolutionFlag = ObservableResolutionFlag(true)
+    static var isShowingSheet: ObservableSheetFlag = ObservableSheetFlag(false)
+    static var sheetType: ContentView.ActiveSheet? = .photoLibrary
+    static var source: UIImagePickerController.SourceType = .photoLibrary
+    
+
+    @Namespace static var animation
+    static var chosenTileModel: FilterableImageViewModel = FilterableImageViewModel(image: FilterableImage(rawImage: UIImage(named: "160426-IMG_6169-")!))
+    
     static var previews: some View {
-        ContentView()
+        ContentView(isShowingSheet: isShowingSheet, useFullResolution: useFullResolution, sheetType: sheetType, isShowingImagePicker: isShowingImagePicker, source: source)
+            .environmentObject(selectedImage)
     }
 }
