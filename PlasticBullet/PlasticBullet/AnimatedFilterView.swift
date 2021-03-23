@@ -14,10 +14,10 @@ struct AnimatedFilterView: View {
     @EnvironmentObject var selectedImage: ObservableUIImage
     @Binding var isShowingImagePicker: Bool
     @ObservedObject var isShowingSheet: ObservableSheetFlag
-    
-    @Binding var sheetType:ContentView.ActiveSheet?
-    @Binding var source: UIImagePickerController.SourceType
-    
+
+    @State var sheetType: ContentView.ActiveSheet?
+    @State var source: UIImagePickerController.SourceType
+
     @Namespace var animation
     @StateObject var chosenTileModel: FilterableImageViewModel = FilterableImageViewModel(image: FilterableImage(rawImage: testImages[0]!))
     
@@ -48,11 +48,9 @@ struct AnimatedFilterView: View {
                             }
                             else {
                                 FilterableImageView(model: FilterableImageViewModel(image: model))
-                                    .border(Color.red, width: 4)
                                     .matchedGeometryEffect(id: model.id, in: animation)
                                     .onTapGesture {
                                         withAnimation {
-                                            
                                             chosenTileModel.showFullscreen = false
                                             chosenTileModel.image = model
                                             chosenTileModel.showFullscreen = true
@@ -63,8 +61,6 @@ struct AnimatedFilterView: View {
                             }
                         }
                         .scaleEffect(chosenTileModel.showFullscreen && chosenTileModel.image.id == model.id ? chosenTileModel.scale : 1)
-                        // Horizontal Spacing And Spacing Between Items...
-                        //                        .frame(width: (UIScreen.main.bounds.width - 45) / 2, height: 280)
                         .zIndex(0)
                     }
                 })
@@ -79,16 +75,20 @@ struct AnimatedFilterView: View {
         
     } // body    
 }
-//
-//struct AnimatedFilterView_Previews: PreviewProvider {
-//    @Namespace static var animation
-//    private var baseImages: [UIImage] = [
-//        UIImage(imageLiteralResourceName: "160421-IMG_5876-"),
-//        UIImage(imageLiteralResourceName: "160421-IMG_5876-"),
-//        UIImage(imageLiteralResourceName: "160421-IMG_5876-"),
-//        UIImage(imageLiteralResourceName: "160421-IMG_5876-")
-//    ]
-//    static var previews: some View {
-//        AnimatedFilterView(isShowingImagePicker: .constant(true), selectedImage: .constant(UIImage(contentsOfFile: "160421-IMG_5876-")))
-//    }
-//}
+
+struct AnimatedFilterView_Previews: PreviewProvider {
+    static var selectedImage: ObservableUIImage = ObservableUIImage(UIImage(named: "160426-IMG_6169-")!)
+    static var isShowingImagePicker: Bool = false
+    
+    static var isShowingSheet: ObservableSheetFlag = ObservableSheetFlag(false)
+    static var sheetType: ContentView.ActiveSheet? = .photoLibrary
+    static var source: UIImagePickerController.SourceType = .photoLibrary
+
+    @Namespace static var animation
+    static var chosenTileModel: FilterableImageViewModel = FilterableImageViewModel(image: FilterableImage(rawImage: UIImage(named: "160426-IMG_6169-")!))
+    
+    static var previews: some View {
+        AnimatedFilterView(isShowingImagePicker: .constant(false), isShowingSheet: isShowingSheet, sheetType: sheetType, source: source)
+            .environmentObject(selectedImage)
+    }
+}

@@ -14,12 +14,7 @@ struct FilterableImageView: View {
     var body: some View {
         Image(uiImage: self.model.image.rawImage)
             .resizable()
-            .scaledToFit()            
-//            .onTapGesture {
-//                self.model.showFullscreen.toggle()
-//                print("FilterableImageView -> Fullscreen?: \(self.model.showFullscreen)")
-////                self.$processedImage.wrappedValue = self.imageLens.updateFliterableImageView(source: self.processedImage!)
-//            }
+            .scaledToFit()
     }
 }
 

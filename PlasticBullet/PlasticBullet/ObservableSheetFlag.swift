@@ -13,7 +13,7 @@ class ObservableSheetFlag: ObservableObject {
 //    var didChange = PassthroughSubject<Void, Never>()
     @Published var status: Bool
     
-    init(_ status :Bool = false){
+    init(_ status: Bool = false){
         self.status = status
     }
 }

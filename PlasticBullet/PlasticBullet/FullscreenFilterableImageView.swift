@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct FullscreenFilterableImageView: View {
-    @StateObject var chosenTileModel: FilterableImageViewModel
+    @ObservedObject var chosenTileModel: FilterableImageViewModel
     var animation: Namespace.ID
     
     var body: some View {
@@ -21,29 +21,29 @@ struct FullscreenFilterableImageView: View {
                 .offset(chosenTileModel.offset)
                 .gesture(DragGesture().onChanged(onChanged(value:)).onEnded(onEnd(value:)))
                 .onTapGesture {
-                    withAnimation {
-                        print("tapped fullscreen view")
-                        chosenTileModel.showFullscreen = false
-                        print("Fullscreen closing? -> Fullscreen?: \(chosenTileModel.showFullscreen) - \(chosenTileModel.id)")
-                    }
+                    close()
                 }
-                .ignoresSafeArea(.all, edges: .all)
+                
                 .zIndex(10)
-            Button(action: {
-                withAnimation {
-                    chosenTileModel.showFullscreen = false
-                    print("pressed button -> Fullscreen?: \(chosenTileModel.showFullscreen) - \(chosenTileModel.id)")
-                    chosenTileModel.showFullscreen = false
-                }
-            }, label: {
-                Text("Close")
+            Spacer()
+            Button(action: {}, label: {
+                Image("share")
                     .padding()
-                    .background(Color.white)
             })
             Spacer()
         }
-        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         .background(Color.black)
+        .ignoresSafeArea(.all, edges: .all)
+//        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        
+        
+    }
+    
+    func close(){
+        withAnimation {
+            chosenTileModel.showFullscreen = false
+            print("tapped fullscreen view: \(chosenTileModel.showFullscreen) - \(chosenTileModel.id)")
+        }
     }
     
     func onChanged(value: DragGesture.Value){
@@ -71,10 +71,12 @@ struct FullscreenFilterableImageView: View {
         }
     }
 }
-//
-//struct FullscreenFilterableImageView_Previews: PreviewProvider {
-//    @Namespace static var animation
-//    static var previews: some View {
-//        FullscreenFilterableImageView(chosenTileModel: , animation: animation)
-//    }
-//}
+
+struct FullscreenFilterableImageView_Previews: PreviewProvider {
+    @Namespace static var animation
+    static var chosenTileModel: FilterableImageViewModel = FilterableImageViewModel(image: FilterableImage(rawImage: UIImage(named: "160426-IMG_6169-")!))
+    
+    static var previews: some View {
+        FullscreenFilterableImageView(chosenTileModel: chosenTileModel, animation: animation)
+    }
+}
