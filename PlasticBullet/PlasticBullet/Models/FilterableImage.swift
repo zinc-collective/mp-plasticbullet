@@ -6,4 +6,9 @@
 //  Copyright © 2021 Zinc Collective, LLC. All rights reserved.
 //
 
-import Foundation
+import SwiftUI
+
+struct FilterableImage: Identifiable {
+    var id: String = UUID().uuidString
+    var rawImage: UIImage
+}

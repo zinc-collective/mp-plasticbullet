@@ -6,4 +6,23 @@
 //  Copyright © 2021 Zinc Collective, LLC. All rights reserved.
 //
 
-import Foundation
+import SwiftUI
+
+class FilterableImageViewModel: ObservableObject, Identifiable {
+    var id: String = UUID().uuidString
+    
+    @Published var showFullscreen = false
+    @Published var image: FilterableImage
+    @Published var offset: CGSize = .zero
+    @Published var scale: CGFloat = 1
+    
+    init(image:FilterableImage) {
+        self.image = image
+    }
+    
+    public func reset() -> Void {
+        self.offset = .zero
+        self.scale = 1
+    }
+}
+
