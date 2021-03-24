@@ -15,14 +15,13 @@ struct ContentView: View {
 
     @EnvironmentObject var selectedImage: ObservableUIImage
     
-    @ObservedObject var isShowingSheet: ObservableSheetFlag = ObservableSheetFlag(false)
-    @ObservedObject var useFullResolution: ObservableResolutionFlag = ObservableResolutionFlag(true)
+    @StateObject var isShowingSheet: ObservableSheetFlag = ObservableSheetFlag(false)
+    @StateObject var useFullResolution: ObservableResolutionFlag = ObservableResolutionFlag(true)
     
     @State var sheetType: ActiveSheet?
     @State var isShowingImagePicker: Bool = false
     @State private var bgImage: Image = Image("160421-IMG_5876-")
     @State var source: UIImagePickerController.SourceType = .photoLibrary
-    
 
   
     // I would prefer this to be dynamically created from all files in the folder at runtime
@@ -123,5 +122,11 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView(isShowingSheet: isShowingSheet, useFullResolution: useFullResolution, sheetType: sheetType, isShowingImagePicker: isShowingImagePicker, source: source)
             .environmentObject(selectedImage)
+    }
+}
+
+struct Test: View {
+    var body: some View {
+        Text("HERE")
     }
 }

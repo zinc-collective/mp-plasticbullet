@@ -72,6 +72,8 @@ struct AnimatedFilterView: View {
                 FullscreenFilterableImageView(chosenTileModel: chosenTileModel, animation: animation)
             }
         } // ZStack
+        .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
         
     } // body    
 }
