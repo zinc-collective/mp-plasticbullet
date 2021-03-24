@@ -124,9 +124,3 @@ struct ContentView_Previews: PreviewProvider {
             .environmentObject(selectedImage)
     }
 }
-
-struct Test: View {
-    var body: some View {
-        Text("HERE")
-    }
-}
