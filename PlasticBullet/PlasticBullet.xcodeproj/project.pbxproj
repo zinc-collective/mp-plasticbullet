@@ -174,22 +174,13 @@
 				6DCA30B32609F064005AAB2F /* Globals.swift */,
 				6DA3373C23CAF5350082B22C /* AppDelegate.swift */,
 				6DA3373E23CAF5350082B22C /* SceneDelegate.swift */,
-				6DA3374023CAF5350082B22C /* ContentView.swift */,
-				6D3F3C8323F30EC8000980FF /* ImagePicker.swift */,
 				6D9853892571812100FB9E88 /* ModuleLens.swift */,
 				6D00463823CC6A1200401B4D /* MainLogoIcon.swift */,
 				6DA3374223CAF5360082B22C /* Assets.xcassets */,
 				6DA3374723CAF5360082B22C /* LaunchScreen.storyboard */,
 				6DA3374A23CAF5360082B22C /* Info.plist */,
-				6D00463A23CC6A3D00401B4D /* BTN_Info.swift */,
-				6D00463C23CC6A4C00401B4D /* BTN_Camera.swift */,
-				6D00463E23CC6A5B00401B4D /* BTN_Library.swift */,
-				6DBDF7C82608DB9C0080059B /* AnimatedFilterView.swift */,
-				6D7361C3260A34D20071ACA7 /* FullscreenFilterableImageView.swift */,
 				6DFDB1562587D6D400453D00 /* FilteredImagePreviewView.swift */,
 				6DFDB14E2587D5C400453D00 /* FilteredImageView.swift */,
-				6DCA30AE2609E7C6005AAB2F /* FilterableImageView.swift */,
-				6D00464223CC711500401B4D /* Panel_Info.swift */,
 				6DA3374423CAF5360082B22C /* Preview Content */,
 			);
 			path = PlasticBullet;
@@ -238,6 +229,15 @@
 		6DB11FA6260B72E20018AAB6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				6DA3374023CAF5350082B22C /* ContentView.swift */,
+				6DBDF7C82608DB9C0080059B /* AnimatedFilterView.swift */,
+				6D7361C3260A34D20071ACA7 /* FullscreenFilterableImageView.swift */,
+				6DCA30AE2609E7C6005AAB2F /* FilterableImageView.swift */,
+				6D3F3C8323F30EC8000980FF /* ImagePicker.swift */,
+				6D00464223CC711500401B4D /* Panel_Info.swift */,
+				6D00463A23CC6A3D00401B4D /* BTN_Info.swift */,
+				6D00463C23CC6A4C00401B4D /* BTN_Camera.swift */,
+				6D00463E23CC6A5B00401B4D /* BTN_Library.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
