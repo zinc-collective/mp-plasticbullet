@@ -20,8 +20,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // Create the SwiftUI view that provides the window contents.
         let selectedImage = ObservableUIImage(FilterableImage(rawImage: UIImage(imageLiteralResourceName: "101123-Steve_Dodds-")))
+        let miscViewFlags = ObservableMiscViewFlags()
         let contentView = ContentView()
             .environmentObject(selectedImage)
+            .environmentObject(miscViewFlags)
             
         
 

@@ -9,16 +9,13 @@
 import SwiftUI
 
 struct BTN_Camera: View {
-    @ObservedObject var isShowingSheet:ObservableSheetFlag
-    
-    @Binding var sheetType: ContentView.ActiveSheet?
-    @Binding var source: UIImagePickerController.SourceType
+    @EnvironmentObject var miscViewFlags: ObservableMiscViewFlags
     
     var body: some View {
         Button(action: {
-            self.isShowingSheet.status.toggle()
-            self.source = .camera
-            self.sheetType = .camera
+            self.miscViewFlags.isShowingSheet.toggle()
+            self.miscViewFlags.source = .camera
+            self.miscViewFlags.sheetType = .camera
         }) {
             Image("splash-camera")
                 .renderingMode(.original)
@@ -27,8 +24,10 @@ struct BTN_Camera: View {
 }
 
 struct BTN_Camera_Previews: PreviewProvider {
+    static var miscViewFlags: ObservableMiscViewFlags = ObservableMiscViewFlags(true, useFullResolution: true, isShowingImagePicker: false, source: .camera, sheetType: .camera)
+    
     static var previews: some View {
-        let isShowingSheet = ObservableSheetFlag(true)
-        BTN_Camera(isShowingSheet: isShowingSheet, sheetType: .constant(.camera), source: .constant(.camera))
+        BTN_Camera()
+            .environmentObject(miscViewFlags)
     }
 }

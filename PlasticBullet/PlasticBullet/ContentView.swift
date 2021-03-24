@@ -14,15 +14,9 @@ struct ContentView: View {
     }
 
     @EnvironmentObject var selectedImage: ObservableUIImage
+    @EnvironmentObject var miscViewFlags: ObservableMiscViewFlags
     
-    @StateObject var isShowingSheet: ObservableSheetFlag = ObservableSheetFlag(false)
-    @StateObject var useFullResolution: ObservableResolutionFlag = ObservableResolutionFlag(true)
-    
-    @State var sheetType: ActiveSheet?
-    @State var isShowingImagePicker: Bool = false
     @State private var bgImage: Image = Image("160421-IMG_5876-")
-    @State var source: UIImagePickerController.SourceType = .photoLibrary
-
   
     // I would prefer this to be dynamically created from all files in the folder at runtime
     let backgroundImageFilenames = [
@@ -60,20 +54,20 @@ struct ContentView: View {
                     .offset(y: -45)
                 Spacer()
                 HStack {
-                    NavigationLink(destination: AnimatedFilterView(isShowingImagePicker: $isShowingImagePicker, isShowingSheet: isShowingSheet, sheetType: sheetType, source: source)){
+                    NavigationLink(destination: AnimatedFilterView()){
                         Text("4 up view")
                     }
                 }
                 Spacer()
                 HStack {
                     Spacer()
-                    BTN_Camera(isShowingSheet: isShowingSheet, sheetType: $sheetType, source: $source)
+                    BTN_Camera()
                     Spacer()
-                    BTN_Library(isShowingSheet: isShowingSheet, sheetType: $sheetType, source: $source)
+                    BTN_Library()
                     Spacer()
                 }
                 Spacer()
-                BTN_Info(isShowingSheet: isShowingSheet, sheetType: $sheetType)
+                BTN_Info()
                     .offset(y: -20)
             }
             .padding()
@@ -83,13 +77,13 @@ struct ContentView: View {
                 .clipped())
             .edgesIgnoringSafeArea([.top, .bottom])
         }
-        .sheet(isPresented: $isShowingSheet.status){
-            if(self.sheetType == .camera){
-                ImagePicker(source: self.source)
-            } else if(self.sheetType == .photoLibrary){
-                ImagePicker(source: self.source)
+        .sheet(isPresented: $miscViewFlags.isShowingSheet){
+            if(miscViewFlags.sheetType == .camera){
+                ImagePicker(source: miscViewFlags.source)
+            } else if(miscViewFlags.sheetType == .photoLibrary){
+                ImagePicker(source: miscViewFlags.source)
             } else {
-                Panel_Info(isShowingSheet: isShowingSheet, useFullResolution: useFullResolution)
+                Panel_Info(miscViewFlags: miscViewFlags)
             }
         }
         .onAppear(perform: {
@@ -111,14 +105,11 @@ struct ContentView_Previews: PreviewProvider {
     @Namespace static var animation
     
     static var selectedImage: ObservableUIImage = ObservableUIImage(FilterableImage(rawImage: UIImage(named: "160426-IMG_6169-")!))
-    static var isShowingImagePicker: Bool = false
-    static var useFullResolution: ObservableResolutionFlag = ObservableResolutionFlag(true)
-    static var isShowingSheet: ObservableSheetFlag = ObservableSheetFlag(false)
-    static var sheetType: ContentView.ActiveSheet? = .photoLibrary
-    static var source: UIImagePickerController.SourceType = .photoLibrary
+    static var miscViewFlags: ObservableMiscViewFlags = ObservableMiscViewFlags()
 
     static var previews: some View {
-        ContentView(isShowingSheet: isShowingSheet, useFullResolution: useFullResolution, sheetType: sheetType, isShowingImagePicker: isShowingImagePicker, source: source)
+        ContentView()
             .environmentObject(selectedImage)
+            .environmentObject(miscViewFlags)
     }
 }

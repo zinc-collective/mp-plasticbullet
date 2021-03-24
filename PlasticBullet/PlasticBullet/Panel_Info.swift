@@ -11,8 +11,9 @@ import SwiftUI
 import SwiftyMarkdown
 
 struct Panel_Info: View {
-    @ObservedObject var isShowingSheet:ObservableSheetFlag
-    @ObservedObject var useFullResolution:ObservableResolutionFlag
+    @ObservedObject var miscViewFlags: ObservableMiscViewFlags
+//    @ObservedObject var isShowingSheet:ObservableSheetFlag
+//    @ObservedObject var useFullResolution:ObservableResolutionFlag
     
 //    @EnvironmentObject var fullResolutionFlag: ObservableBooleanFlag
 //    @State var fullResolutionFlag:Bool
@@ -27,7 +28,7 @@ struct Panel_Info: View {
         VStack {
             HStack {
                 Button(action: {
-                    self.isShowingSheet.status = false
+                    self.miscViewFlags.isShowingSheet.toggle()
                 }) {
                     Image(systemName: "arrow.left")
                 }
@@ -43,7 +44,7 @@ struct Panel_Info: View {
                 .padding()
             
             HStack {
-                Toggle(isOn: $useFullResolution.status) {
+                Toggle(isOn: $miscViewFlags.useFullResolution) {
                     Text("Unlimited Resolution")
                 }
             }
@@ -91,12 +92,12 @@ struct Panel_Info: View {
         }
     }
 }
-
-struct Panel_Info_Previews: PreviewProvider {
-    static var previews: some View {
-        let isShowingSheet = ObservableSheetFlag(true)
-        let useFullResolution = ObservableResolutionFlag(true)
-        Panel_Info(isShowingSheet: isShowingSheet, useFullResolution: useFullResolution)
-            .environmentObject(ObservableBooleanFlag(true))
-    }
-}
+//
+//struct Panel_Info_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let isShowingSheet = ObservableSheetFlag(true)
+//        let useFullResolution = ObservableResolutionFlag(true)
+//        Panel_Info(isShowingSheet: isShowingSheet, useFullResolution: useFullResolution)
+//            .environmentObject(ObservableBooleanFlag(true))
+//    }
+//}

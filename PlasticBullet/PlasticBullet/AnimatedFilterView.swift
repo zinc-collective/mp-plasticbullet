@@ -11,26 +11,16 @@ import CoreImage
 import CoreImage.CIFilterBuiltins
 
 struct AnimatedFilterView: View {
-    @EnvironmentObject var selectedImage: ObservableUIImage
-    @Binding var isShowingImagePicker: Bool
-    @ObservedObject var isShowingSheet: ObservableSheetFlag
-    @State private var tileCount: Int = 4
-
-    @State var sheetType: ContentView.ActiveSheet?
-    @State var source: UIImagePickerController.SourceType
-
     @Namespace var animation
+    
+    @EnvironmentObject var selectedImage: ObservableUIImage
+    @EnvironmentObject var miscViewFlags: ObservableMiscViewFlags
+    
     @StateObject var chosenTileModel: FilterableImageViewModel = FilterableImageViewModel(image: FilterableImage(rawImage: testImages[0]!))
+    @State private var tileCount: Int = 4
+    @State private var models: [FilterableImage] = []
     
     let colums = Array(repeating: GridItem(.flexible(), spacing: 8), count: 2)
-//    var models: [FilterableImageViewModel] = [
-//        FilterableImageViewModel(image: FilterableImage(rawImage: testImages[1]!)),
-//        FilterableImageViewModel(image: FilterableImage(rawImage: testImages[2]!)),
-//        FilterableImageViewModel(image: FilterableImage(rawImage: testImages[3]!)),
-//        FilterableImageViewModel(image: FilterableImage(rawImage: testImages[4]!))
-//    ]
-    
-    @State private var models: [FilterableImage] = []
     
     var body: some View {
         ZStack {
@@ -61,7 +51,13 @@ struct AnimatedFilterView: View {
                     }
                 })
                 Spacer()
-                BTN_Library(isShowingSheet: isShowingSheet, sheetType: $sheetType, source: $source)
+                HStack{
+                    Spacer()
+                    BTN_Camera()
+                    Spacer()
+                    BTN_Library()
+                    Spacer()
+                }
                 Spacer()
             } // VStack
             if chosenTileModel.showFullscreen {
@@ -91,18 +87,15 @@ struct AnimatedFilterView: View {
 }
 
 struct AnimatedFilterView_Previews: PreviewProvider {
-    static var selectedImage: ObservableUIImage = ObservableUIImage(FilterableImage(rawImage: UIImage(named: "160426-IMG_6169-")!))
-    static var isShowingImagePicker: Bool = false
-    
-    static var isShowingSheet: ObservableSheetFlag = ObservableSheetFlag(false)
-    static var sheetType: ContentView.ActiveSheet? = .photoLibrary
-    static var source: UIImagePickerController.SourceType = .photoLibrary
-
     @Namespace static var animation
+    
+    static var selectedImage: ObservableUIImage = ObservableUIImage(FilterableImage(rawImage: UIImage(named: "160426-IMG_6169-")!))
+    static var miscViewFlags: ObservableMiscViewFlags = ObservableMiscViewFlags()
     static var chosenTileModel: FilterableImageViewModel = FilterableImageViewModel(image: FilterableImage(rawImage: UIImage(named: "160426-IMG_6169-")!))
     
     static var previews: some View {
-        AnimatedFilterView(isShowingImagePicker: .constant(false), isShowingSheet: isShowingSheet, sheetType: sheetType, source: source)
+        AnimatedFilterView()
             .environmentObject(selectedImage)
+            .environmentObject(miscViewFlags)
     }
 }

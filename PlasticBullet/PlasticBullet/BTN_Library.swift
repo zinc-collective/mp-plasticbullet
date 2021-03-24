@@ -9,16 +9,13 @@
 import SwiftUI
 
 struct BTN_Library: View {
-    @ObservedObject var isShowingSheet:ObservableSheetFlag
-    
-    @Binding var sheetType: ContentView.ActiveSheet?
-    @Binding var source: UIImagePickerController.SourceType
+    @EnvironmentObject var miscViewFlags: ObservableMiscViewFlags
     
     var body: some View {
         Button(action: {
-            self.isShowingSheet.status.toggle()
-            self.source = .photoLibrary
-            self.sheetType = .photoLibrary
+            self.miscViewFlags.isShowingSheet.toggle()
+            self.miscViewFlags.source = .photoLibrary
+            self.miscViewFlags.sheetType = .photoLibrary
         }) {
             Image("splash-library")
                 .renderingMode(.original)
@@ -27,8 +24,10 @@ struct BTN_Library: View {
 }
 
 struct BTN_Library_Previews: PreviewProvider {
+    static var miscViewFlags: ObservableMiscViewFlags = ObservableMiscViewFlags(true, useFullResolution: true, isShowingImagePicker: false, source: .photoLibrary, sheetType: .photoLibrary)
+    
     static var previews: some View {
-        let isShowingSheet = ObservableSheetFlag(true)
-        BTN_Library(isShowingSheet: isShowingSheet, sheetType: .constant(.photoLibrary), source: .constant(.photoLibrary))
+        BTN_Library()
+            .environmentObject(miscViewFlags)
     }
 }

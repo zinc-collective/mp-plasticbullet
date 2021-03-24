@@ -9,13 +9,12 @@
 import SwiftUI
 
 struct BTN_Info: View {
-    @ObservedObject var isShowingSheet:ObservableSheetFlag
-    @Binding var sheetType: ContentView.ActiveSheet?
+    @EnvironmentObject var miscViewFlags: ObservableMiscViewFlags
     
     var body: some View {
         Button(action: {
-            self.isShowingSheet.status.toggle()
-            self.sheetType = .info
+            self.miscViewFlags.isShowingSheet.toggle()
+            self.miscViewFlags.sheetType = .info
         }) {
             Image("info")
                 .accessibility(hint: Text("Info"))
@@ -26,8 +25,11 @@ struct BTN_Info: View {
 }
 
 struct BTN_Info_Previews: PreviewProvider {
+    static var miscViewFlags: ObservableMiscViewFlags = ObservableMiscViewFlags(true, useFullResolution: true, isShowingImagePicker: false, source: .photoLibrary, sheetType: .info)
+    
     static var previews: some View {
-        let isShowingSheet = ObservableSheetFlag(true)
-        BTN_Info(isShowingSheet: isShowingSheet, sheetType: .constant(.info))
+        BTN_Info()
+            .environmentObject(miscViewFlags)
+            .background(Color.blue)
     }
 }
