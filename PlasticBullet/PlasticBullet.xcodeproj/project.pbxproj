@@ -94,8 +94,8 @@
 		6DA3376023CAF5370082B22C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6DBDF7C82608DB9C0080059B /* AnimatedFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedFilterView.swift; sourceTree = "<group>"; };
 		6DC6B89325703B4200A1ACB4 /* ObservableUIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableUIImage.swift; sourceTree = "<group>"; };
-		6DCA309C2609E4C2005AAB2F /* FilterableImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FilterableImage.swift; path = Models/FilterableImage.swift; sourceTree = "<group>"; };
-		6DCA30A62609E73C005AAB2F /* FilterableImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FilterableImageViewModel.swift; path = Models/FilterableImageViewModel.swift; sourceTree = "<group>"; };
+		6DCA309C2609E4C2005AAB2F /* FilterableImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterableImage.swift; sourceTree = "<group>"; };
+		6DCA30A62609E73C005AAB2F /* FilterableImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterableImageViewModel.swift; sourceTree = "<group>"; };
 		6DCA30AE2609E7C6005AAB2F /* FilterableImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterableImageView.swift; sourceTree = "<group>"; };
 		6DCA30B32609F064005AAB2F /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		6DDF152223E06AE800C711D3 /* info-text1.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "info-text1.md"; sourceTree = "<group>"; };
@@ -168,15 +168,13 @@
 		6DA3373B23CAF5350082B22C /* PlasticBullet */ = {
 			isa = PBXGroup;
 			children = (
+				6DB11FA6260B72E20018AAB6 /* Views */,
+				6DB11FA2260B72180018AAB6 /* Models */,
 				6DDF152123E06AE800C711D3 /* text-content */,
 				6DCA30B32609F064005AAB2F /* Globals.swift */,
 				6DA3373C23CAF5350082B22C /* AppDelegate.swift */,
-				6D98538125717D3200FB9E88 /* ObservableResolutionFlag.swift */,
 				6DA3373E23CAF5350082B22C /* SceneDelegate.swift */,
 				6DA3374023CAF5350082B22C /* ContentView.swift */,
-				6D98537C25715DCD00FB9E88 /* ObservableSheetFlag.swift */,
-				6D56F5E8256B8668002FC1A6 /* ObservableBooleanFlag.swift */,
-				6DC6B89325703B4200A1ACB4 /* ObservableUIImage.swift */,
 				6D3F3C8323F30EC8000980FF /* ImagePicker.swift */,
 				6D9853892571812100FB9E88 /* ModuleLens.swift */,
 				6D00463823CC6A1200401B4D /* MainLogoIcon.swift */,
@@ -192,8 +190,6 @@
 				6DFDB1562587D6D400453D00 /* FilteredImagePreviewView.swift */,
 				6DFDB14E2587D5C400453D00 /* FilteredImageView.swift */,
 				6DCA30AE2609E7C6005AAB2F /* FilterableImageView.swift */,
-				6DCA30A62609E73C005AAB2F /* FilterableImageViewModel.swift */,
-				6DCA309C2609E4C2005AAB2F /* FilterableImage.swift */,
 				6D00464223CC711500401B4D /* Panel_Info.swift */,
 				6DA3374423CAF5360082B22C /* Preview Content */,
 			);
@@ -224,6 +220,26 @@
 				6DA3376023CAF5370082B22C /* Info.plist */,
 			);
 			path = PlasticBulletUITests;
+			sourceTree = "<group>";
+		};
+		6DB11FA2260B72180018AAB6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				6D98538125717D3200FB9E88 /* ObservableResolutionFlag.swift */,
+				6DCA30A62609E73C005AAB2F /* FilterableImageViewModel.swift */,
+				6DCA309C2609E4C2005AAB2F /* FilterableImage.swift */,
+				6D98537C25715DCD00FB9E88 /* ObservableSheetFlag.swift */,
+				6D56F5E8256B8668002FC1A6 /* ObservableBooleanFlag.swift */,
+				6DC6B89325703B4200A1ACB4 /* ObservableUIImage.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		6DB11FA6260B72E20018AAB6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		6DDF152123E06AE800C711D3 /* text-content */ = {

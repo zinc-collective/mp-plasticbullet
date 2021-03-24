@@ -47,9 +47,11 @@ struct ImagePicker: UIViewControllerRepresentable {
 }
 
 struct ImagePicker_Previews: PreviewProvider {
+    static var source: UIImagePickerController.SourceType = .photoLibrary
+    static var selectedImage: ObservableUIImage = ObservableUIImage(UIImage(named: "160426-IMG_6169-")!)
     
     static var previews: some View {
-        ImagePicker(source: .photoLibrary)
-            .environmentObject(ObservableUIImage(UIImage(contentsOfFile: "160421-IMG_5876-")!))
+        ImagePicker(source: source)
+            .environmentObject(selectedImage)
     }
 }
