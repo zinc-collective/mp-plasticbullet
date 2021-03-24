@@ -22,7 +22,7 @@ struct ImagePicker: UIViewControllerRepresentable {
     }
 
     func updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<ImagePicker>) {
-
+        print("updateUIViewController -> uiViewController: \(uiViewController) ---- context: \(context)")
     }
     
     class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -33,7 +33,7 @@ struct ImagePicker: UIViewControllerRepresentable {
         
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
             if let uiImage = info[.originalImage] as? UIImage {
-                parent.selectedImage.image = uiImage
+                parent.selectedImage.image = FilterableImage(rawImage: uiImage)
                 print("picked: ", parent.selectedImage.image as Any)
             }
 
@@ -48,7 +48,7 @@ struct ImagePicker: UIViewControllerRepresentable {
 
 struct ImagePicker_Previews: PreviewProvider {
     static var source: UIImagePickerController.SourceType = .photoLibrary
-    static var selectedImage: ObservableUIImage = ObservableUIImage(UIImage(named: "160426-IMG_6169-")!)
+    static var selectedImage: ObservableUIImage = ObservableUIImage(FilterableImage(rawImage: UIImage(named: "160426-IMG_6169-")!))
     
     static var previews: some View {
         ImagePicker(source: source)

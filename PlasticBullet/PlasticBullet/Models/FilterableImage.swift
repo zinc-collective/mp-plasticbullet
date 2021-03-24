@@ -8,7 +8,15 @@
 
 import SwiftUI
 
-struct FilterableImage: Identifiable {
+struct FilterableImage: Identifiable, Equatable {
     var id: String = UUID().uuidString
     var rawImage: UIImage
+    
+    static func == (lhs: FilterableImage, rhs: FilterableImage) -> Bool {
+        return (lhs.rawImage == rhs.rawImage)
+    }
+    
+    static func != (lhs: FilterableImage, rhs: FilterableImage) -> Bool {
+        return !(lhs.rawImage == rhs.rawImage)
+    }
 }

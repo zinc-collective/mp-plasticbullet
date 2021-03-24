@@ -19,7 +19,6 @@ struct FilterView: View {
     @Binding var source: UIImagePickerController.SourceType
 
     var body: some View {
-//        var imageList: [Binding<ObservableUIImage>] = [self.selectedImage, self.selectedImage, self.selectedImage, self.selectedImage]
         VStack {
 //            List (imageList, id: \.id) { item in
 //                NavigationLink(destination: FilterViewDetail(imageLens: ModuleLens(), processedImage: item)) {

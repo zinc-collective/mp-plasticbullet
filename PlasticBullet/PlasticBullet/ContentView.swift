@@ -108,17 +108,15 @@ struct ContentView: View {
 }
 
 struct ContentView_Previews: PreviewProvider {
-    static var selectedImage: ObservableUIImage = ObservableUIImage(UIImage(named: "160426-IMG_6169-")!)
+    @Namespace static var animation
+    
+    static var selectedImage: ObservableUIImage = ObservableUIImage(FilterableImage(rawImage: UIImage(named: "160426-IMG_6169-")!))
     static var isShowingImagePicker: Bool = false
     static var useFullResolution: ObservableResolutionFlag = ObservableResolutionFlag(true)
     static var isShowingSheet: ObservableSheetFlag = ObservableSheetFlag(false)
     static var sheetType: ContentView.ActiveSheet? = .photoLibrary
     static var source: UIImagePickerController.SourceType = .photoLibrary
-    
 
-    @Namespace static var animation
-    static var chosenTileModel: FilterableImageViewModel = FilterableImageViewModel(image: FilterableImage(rawImage: UIImage(named: "160426-IMG_6169-")!))
-    
     static var previews: some View {
         ContentView(isShowingSheet: isShowingSheet, useFullResolution: useFullResolution, sheetType: sheetType, isShowingImagePicker: isShowingImagePicker, source: source)
             .environmentObject(selectedImage)

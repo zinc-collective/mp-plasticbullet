@@ -14,11 +14,11 @@ struct FilteredImagePreviewView: View {
     @State var processedImage: UIImage?
     
     var body: some View {
-        Image(uiImage: self.$processedImage.wrappedValue ?? self.selectedImage.image)
+        Image(uiImage: self.$processedImage.wrappedValue ?? self.selectedImage.image.rawImage)
             .resizable()
             .scaledToFit()
             .onAppear {
-                self.$processedImage.wrappedValue = imageLens.processFilters(source: (self.$processedImage.wrappedValue ?? self.selectedImage.image))
+                self.$processedImage.wrappedValue = imageLens.processFilters(source: (self.$processedImage.wrappedValue ?? self.selectedImage.image.rawImage))
                 print("4-up")
             }
     }

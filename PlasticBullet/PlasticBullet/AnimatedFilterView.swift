@@ -14,6 +14,7 @@ struct AnimatedFilterView: View {
     @EnvironmentObject var selectedImage: ObservableUIImage
     @Binding var isShowingImagePicker: Bool
     @ObservedObject var isShowingSheet: ObservableSheetFlag
+    @State private var tileCount: Int = 4
 
     @State var sheetType: ContentView.ActiveSheet?
     @State var source: UIImagePickerController.SourceType
@@ -29,12 +30,7 @@ struct AnimatedFilterView: View {
 //        FilterableImageViewModel(image: FilterableImage(rawImage: testImages[4]!))
 //    ]
     
-    var models: [FilterableImage] = [
-        FilterableImage(rawImage: testImages[1]!),
-        FilterableImage(rawImage: testImages[2]!),
-        FilterableImage(rawImage: testImages[3]!),
-        FilterableImage(rawImage: testImages[4]!)
-    ]
+    @State private var models: [FilterableImage] = []
     
     var body: some View {
         ZStack {
@@ -74,12 +70,28 @@ struct AnimatedFilterView: View {
         } // ZStack
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
-        
-    } // body    
+        .onAppear(perform: {
+            print("appearing")
+            buildList()
+            chosenTileModel.image = selectedImage.image
+        })
+        .onChange(of: selectedImage.image, perform: { value in
+            print("changing")
+            buildList()
+            chosenTileModel.image = value
+        })
+    } // body
+    
+    func buildList() -> Void {
+        models.removeAll()
+        for _ in 1...tileCount {
+            models.append(FilterableImage(rawImage: selectedImage.image.rawImage))
+        }
+    }
 }
 
 struct AnimatedFilterView_Previews: PreviewProvider {
-    static var selectedImage: ObservableUIImage = ObservableUIImage(UIImage(named: "160426-IMG_6169-")!)
+    static var selectedImage: ObservableUIImage = ObservableUIImage(FilterableImage(rawImage: UIImage(named: "160426-IMG_6169-")!))
     static var isShowingImagePicker: Bool = false
     
     static var isShowingSheet: ObservableSheetFlag = ObservableSheetFlag(false)
