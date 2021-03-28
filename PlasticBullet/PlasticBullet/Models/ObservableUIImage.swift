@@ -10,7 +10,6 @@ import SwiftUI
 
 class ObservableUIImage: ObservableObject {
     @Published var image: FilterableImage
-    @Published var showFullscreen = false
     
     init(_ image: FilterableImage) {
         self.image = image

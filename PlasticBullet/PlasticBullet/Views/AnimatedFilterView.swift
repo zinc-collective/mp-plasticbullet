@@ -73,7 +73,8 @@ struct AnimatedFilterView: View {
         })
         .onChange(of: selectedImage.image, perform: { value in
             print("changing")
-            buildList()
+            refresh()
+//            buildList()
             chosenTileModel.image = value
         })
     } // body
@@ -82,6 +83,14 @@ struct AnimatedFilterView: View {
         models.removeAll()
         for _ in 1...tileCount {
             models.append(FilterableImage(rawImage: selectedImage.image.rawImage))
+        }
+    }
+    
+    func refresh() -> Void {
+        print("animView: refresh")
+        models.removeAll()
+        for _ in 1...tileCount {
+            models.append(FilterableImage(rawImage: selectedImage.image.processedImage ?? selectedImage.image.rawImage))
         }
     }
 }

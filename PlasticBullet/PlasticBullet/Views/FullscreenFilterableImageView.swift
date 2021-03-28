@@ -21,7 +21,7 @@ struct FullscreenFilterableImageView: View {
                 .offset(chosenTileModel.offset)
                 .gesture(DragGesture().onChanged(onChanged(value:)).onEnded(onEnd(value:)))
                 .onTapGesture {
-                    close()
+//                    close()
                 }
                 
                 .zIndex(10)
@@ -35,6 +35,7 @@ struct FullscreenFilterableImageView: View {
         .background(Color.black)
         .ignoresSafeArea(.all, edges: .all)
 //        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+                
         
         
     }
