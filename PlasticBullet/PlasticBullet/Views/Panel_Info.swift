@@ -6,17 +6,11 @@
 //  Copyright © 2020 Zinc Collective, LLC. All rights reserved.
 //
 
-import Combine
 import SwiftUI
 import SwiftyMarkdown
 
 struct Panel_Info: View {
     @ObservedObject var miscViewFlags: ObservableMiscViewFlags
-//    @ObservedObject var isShowingSheet:ObservableSheetFlag
-//    @ObservedObject var useFullResolution:ObservableResolutionFlag
-    
-//    @EnvironmentObject var fullResolutionFlag: ObservableBooleanFlag
-//    @State var fullResolutionFlag:Bool
     
     @State private var first: SwiftyMarkdown?
     @State private var second: SwiftyMarkdown?
@@ -92,12 +86,11 @@ struct Panel_Info: View {
         }
     }
 }
-//
-//struct Panel_Info_Previews: PreviewProvider {
-//    static var previews: some View {
-//        let isShowingSheet = ObservableSheetFlag(true)
-//        let useFullResolution = ObservableResolutionFlag(true)
-//        Panel_Info(isShowingSheet: isShowingSheet, useFullResolution: useFullResolution)
-//            .environmentObject(ObservableBooleanFlag(true))
-//    }
-//}
+
+struct Panel_Info_Previews: PreviewProvider {
+    static var miscViewFlags: ObservableMiscViewFlags = ObservableMiscViewFlags()
+    
+    static var previews: some View {
+        Panel_Info(miscViewFlags: miscViewFlags)
+    }
+}
