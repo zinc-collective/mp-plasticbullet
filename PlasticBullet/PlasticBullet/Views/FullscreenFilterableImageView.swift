@@ -43,7 +43,6 @@ struct FullscreenFilterableImageView: View {
     func close(){
         withAnimation {
             chosenTileModel.showFullscreen = false
-            print("tapped fullscreen view: \(chosenTileModel.showFullscreen) - \(chosenTileModel.id)")
         }
     }
     
@@ -75,7 +74,7 @@ struct FullscreenFilterableImageView: View {
 
 struct FullscreenFilterableImageView_Previews: PreviewProvider {
     @Namespace static var animation
-    static var chosenTileModel: FilterableImageViewModel = FilterableImageViewModel(image: FilterableImage(rawImage: UIImage(named: "160426-IMG_6169-")!))
+    static var chosenTileModel: FilterableImageViewModel = FilterableImageViewModel(image: FilterableImage(rawImage: testImages[2]!))
     
     static var previews: some View {
         FullscreenFilterableImageView(chosenTileModel: chosenTileModel, animation: animation)

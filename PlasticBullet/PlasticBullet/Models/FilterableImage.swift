@@ -9,12 +9,17 @@
 import SwiftUI
 
 struct FilterableImage: Identifiable, Equatable {
-    var processedImage: UIImage? = UIImage(named: "160426-IMG_6169-")
+    var processedImage: UIImage = testImages[4]!
 //    @State var processedImage: UIImage?
     var imageLens: ModuleLens = ModuleLens()
     var id: String = UUID().uuidString
 //    @State var rawImage: UIImage
     var rawImage: UIImage
+    
+    init(rawImage: UIImage) {
+        self.rawImage = rawImage
+        self.processImage()
+    }
     
     static func == (lhs: FilterableImage, rhs: FilterableImage) -> Bool {
         return (lhs.rawImage == rhs.rawImage)

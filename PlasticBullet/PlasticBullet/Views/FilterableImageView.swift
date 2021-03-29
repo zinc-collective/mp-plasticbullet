@@ -9,27 +9,17 @@
 import SwiftUI
 
 struct FilterableImageView: View {
-    @State var processedImage: UIImage?
-    var model: FilterableImageViewModel
+    @State var model: FilterableImageViewModel
     
     var body: some View {
-        Image(uiImage: self.processedImage ?? self.model.image.processedImage ?? self.model.image.rawImage)
+        Image(uiImage: self.model.image.processedImage)
             .resizable()
             .scaledToFit()
-            .onAppear {
-                self.model.image.processImage()
-                self.refresh()
-            }
-    }
-    
-    public func refresh() -> Void {
-        self.processedImage = self.model.image.processedImage ?? self.model.image.rawImage
-        print("refreshing")
     }
 }
 
 struct FilterableImageView_Previews: PreviewProvider {
-    static var model: FilterableImageViewModel = FilterableImageViewModel(image: FilterableImage(rawImage: UIImage(named: "160426-IMG_6169-")!))
+    static var model: FilterableImageViewModel = FilterableImageViewModel(image: FilterableImage(rawImage: testImages[0]!))
     
     static var previews: some View {
         FilterableImageView(model: model)

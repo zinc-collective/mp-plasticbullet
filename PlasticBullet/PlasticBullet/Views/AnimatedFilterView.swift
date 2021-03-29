@@ -16,7 +16,7 @@ struct AnimatedFilterView: View {
     @EnvironmentObject var selectedImage: ObservableUIImage
     @EnvironmentObject var miscViewFlags: ObservableMiscViewFlags
     
-    @StateObject var chosenTileModel: FilterableImageViewModel = FilterableImageViewModel(image: FilterableImage(rawImage: testImages[0]!))
+    @StateObject var chosenTileModel: FilterableImageViewModel = FilterableImageViewModel(image: FilterableImage(rawImage: testImages[1]!))
     @State private var tileCount: Int = 4
     @State private var models: [FilterableImage] = []
     
@@ -69,13 +69,10 @@ struct AnimatedFilterView: View {
         .onAppear(perform: {
             print("appearing")
             buildList()
-            chosenTileModel.image = selectedImage.image
         })
         .onChange(of: selectedImage.image, perform: { value in
             print("changing")
-            refresh()
-//            buildList()
-            chosenTileModel.image = value
+            buildList()
         })
     } // body
     
@@ -84,23 +81,16 @@ struct AnimatedFilterView: View {
         for _ in 1...tileCount {
             models.append(FilterableImage(rawImage: selectedImage.image.rawImage))
         }
-    }
-    
-    func refresh() -> Void {
-        print("animView: refresh")
-        models.removeAll()
-        for _ in 1...tileCount {
-            models.append(FilterableImage(rawImage: selectedImage.image.processedImage ?? selectedImage.image.rawImage))
-        }
+        chosenTileModel.image = models[0]
     }
 }
 
 struct AnimatedFilterView_Previews: PreviewProvider {
     @Namespace static var animation
     
-    static var selectedImage: ObservableUIImage = ObservableUIImage(FilterableImage(rawImage: UIImage(named: "160426-IMG_6169-")!))
+    static var selectedImage: ObservableUIImage = ObservableUIImage(FilterableImage(rawImage: testImages[3]!))
     static var miscViewFlags: ObservableMiscViewFlags = ObservableMiscViewFlags()
-    static var chosenTileModel: FilterableImageViewModel = FilterableImageViewModel(image: FilterableImage(rawImage: UIImage(named: "160426-IMG_6169-")!))
+    static var chosenTileModel: FilterableImageViewModel = FilterableImageViewModel(image: FilterableImage(rawImage: testImages[0]!))
     
     static var previews: some View {
         AnimatedFilterView()
