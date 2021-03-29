@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct FilterableImageView: View {
-    @State var model: FilterableImageViewModel
+    @ObservedObject var model: FilterableImageViewModel
     
     var body: some View {
         Image(uiImage: self.model.image.processedImage)

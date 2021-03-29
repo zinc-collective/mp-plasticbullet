@@ -23,21 +23,24 @@ struct FullscreenFilterableImageView: View {
                 .onTapGesture {
 //                    close()
                 }
-                
-                .zIndex(10)
             Spacer()
-            Button(action: {}, label: {
-                Image("share")
-                    .padding()
-            })
+            HStack(spacing: 20) {
+                BTN_Refresh(model: chosenTileModel)
+            }
             Spacer()
         }
         .background(Color.black)
         .ignoresSafeArea(.all, edges: .all)
-//        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-                
-        
-        
+        .zIndex(10)
+        .navigationBarHidden(false)
+        .toolbar(content: {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(action: {}, label: {
+                    Image("share")
+                        .padding()
+                })
+            }
+        })
     }
     
     func close(){

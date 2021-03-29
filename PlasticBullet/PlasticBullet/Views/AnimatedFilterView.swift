@@ -52,11 +52,16 @@ struct AnimatedFilterView: View {
                 })
                 Spacer()
                 HStack{
-                    Spacer()
                     BTN_Camera()
+                        .padding([.leading])
+                    Spacer()
+                    Button(action: reloadAllFilters){
+                        Image("refresh-button")
+                            .renderingMode(.original)
+                    }
                     Spacer()
                     BTN_Library()
-                    Spacer()
+                        .padding([.trailing])
                 }
                 Spacer()
             } // VStack
@@ -64,8 +69,19 @@ struct AnimatedFilterView: View {
                 FullscreenFilterableImageView(chosenTileModel: chosenTileModel, animation: animation)
             }
         } // ZStack
-        .navigationBarHidden(true)
+        .navigationBarHidden(false)
         .navigationBarBackButtonHidden(true)
+        .toolbar(content: {
+            ToolbarItem(placement: .principal) {
+                Button(action: {
+                    self.miscViewFlags.isShowingSheet.toggle()
+                    self.miscViewFlags.sheetType = .info
+                }, label: {
+                    Image("logo")
+                        .padding()
+                })
+            }
+        })
         .onAppear(perform: {
             print("appearing")
             buildList()
@@ -78,10 +94,16 @@ struct AnimatedFilterView: View {
     
     func buildList() -> Void {
         models.removeAll()
-        for _ in 1...tileCount {
+        for _ in 0..<tileCount {
             models.append(FilterableImage(rawImage: selectedImage.image.rawImage))
         }
         chosenTileModel.image = models[0]
+    }
+    
+    func reloadAllFilters() {
+        for index in 0..<models.count {
+            models[index].processImage()
+        }
     }
 }
 
