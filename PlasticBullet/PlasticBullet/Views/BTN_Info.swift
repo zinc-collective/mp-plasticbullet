@@ -25,7 +25,7 @@ struct BTN_Info: View {
 }
 
 struct BTN_Info_Previews: PreviewProvider {
-    static var miscViewFlags: ObservableMiscViewFlags = ObservableMiscViewFlags(true, useFullResolution: true, isShowingImagePicker: false, source: .photoLibrary, sheetType: .info)
+    static var miscViewFlags: ObservableMiscViewFlags = ObservableMiscViewFlags(true, useFullResolution: true, isShowingImagePicker: false, source: .photoLibrary, sheetType: .info, navLinkIsActive: false)
     
     static var previews: some View {
         BTN_Info()

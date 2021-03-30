@@ -24,7 +24,7 @@ struct BTN_Camera: View {
 }
 
 struct BTN_Camera_Previews: PreviewProvider {
-    static var miscViewFlags: ObservableMiscViewFlags = ObservableMiscViewFlags(true, useFullResolution: true, isShowingImagePicker: false, source: .camera, sheetType: .camera)
+    static var miscViewFlags: ObservableMiscViewFlags = ObservableMiscViewFlags(true, useFullResolution: true, isShowingImagePicker: false, source: .camera, sheetType: .camera, navLinkIsActive: false)
     
     static var previews: some View {
         BTN_Camera()

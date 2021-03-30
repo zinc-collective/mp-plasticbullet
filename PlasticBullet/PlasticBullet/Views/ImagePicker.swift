@@ -10,8 +10,9 @@ import SwiftUI
 
 struct ImagePicker: UIViewControllerRepresentable {
     @Environment(\.presentationMode) var presentationMode
-//    @Binding var image: UIImage?
     @EnvironmentObject var selectedImage: ObservableUIImage
+    @EnvironmentObject var miscViewFlags: ObservableMiscViewFlags
+    
     var source: UIImagePickerController.SourceType = .photoLibrary
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
@@ -36,8 +37,9 @@ struct ImagePicker: UIViewControllerRepresentable {
                 parent.selectedImage.image = FilterableImage(rawImage: uiImage)
                 print("picked: ", parent.selectedImage.image as Any)
             }
-
+            parent.miscViewFlags.navLinkIsActive = true
             parent.presentationMode.wrappedValue.dismiss()
+            
         }
     }
     

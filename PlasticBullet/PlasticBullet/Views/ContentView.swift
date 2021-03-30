@@ -14,24 +14,25 @@ struct ContentView: View {
     }
 
     @EnvironmentObject var selectedImage: ObservableUIImage
-    @EnvironmentObject var miscViewFlags: ObservableMiscViewFlags
+    @EnvironmentObject var miscViewFlags: ObservableMiscViewFlags    
     
     @State private var bgImage: Image = Image("160421-IMG_5876-")
-  
+    
     var body: some View {
+        let navLink = NavigationLink(
+            destination: AnimatedFilterView(),
+            isActive: $miscViewFlags.navLinkIsActive,
+            label: { EmptyView() })
         
         return NavigationView {
             VStack {
+                navLink
+//                    .frame(width:0, height:0)
                 Spacer()
                 Image("logo-round")
                 Image("splash-logo")
                     .offset(y: -45)
                 Spacer()
-                HStack {
-                    NavigationLink(destination: AnimatedFilterView()){
-                        Text("4 up view")
-                    }
-                }
                 Spacer()
                 HStack {
                     Spacer()
