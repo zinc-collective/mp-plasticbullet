@@ -10,8 +10,11 @@ import SwiftUI
 
 struct FullscreenFilterableImageView: View {
     @ObservedObject var chosenTileModel: FilterableImageViewModel
-    var animation: Namespace.ID
+    @EnvironmentObject var miscViewFlags: ObservableMiscViewFlags
     
+//    @State private var isSharePresented: Bool = false
+    
+    var animation: Namespace.ID
     var body: some View {
         VStack {
             Spacer()
@@ -35,7 +38,10 @@ struct FullscreenFilterableImageView: View {
         .navigationBarHidden(false)
         .toolbar(content: {
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button(action: {}, label: {
+                Button(action: {
+                    self.miscViewFlags.isShowingSheet = true
+                    self.miscViewFlags.isSharePresented = true
+                }, label: {
                     Image("share")
                         .padding()
                 })
@@ -80,6 +86,8 @@ struct FullscreenFilterableImageView_Previews: PreviewProvider {
     static var chosenTileModel: FilterableImageViewModel = FilterableImageViewModel(image: FilterableImage(rawImage: testImages[2]!))
     
     static var previews: some View {
-        FullscreenFilterableImageView(chosenTileModel: chosenTileModel, animation: animation)
+        NavigationView {
+            FullscreenFilterableImageView(chosenTileModel: chosenTileModel, animation: animation)
+        }
     }
 }

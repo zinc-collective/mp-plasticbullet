@@ -22,6 +22,8 @@ struct FilterableImageView_Previews: PreviewProvider {
     static var model: FilterableImageViewModel = FilterableImageViewModel(image: FilterableImage(rawImage: testImages[0]!))
     
     static var previews: some View {
-        FilterableImageView(model: model)
+        NavigationView {
+            FilterableImageView(model: model)
+        }
     }
 }

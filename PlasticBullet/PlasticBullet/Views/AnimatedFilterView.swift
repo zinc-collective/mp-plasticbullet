@@ -115,8 +115,10 @@ struct AnimatedFilterView_Previews: PreviewProvider {
     static var chosenTileModel: FilterableImageViewModel = FilterableImageViewModel(image: FilterableImage(rawImage: testImages[0]!))
     
     static var previews: some View {
-        AnimatedFilterView()
-            .environmentObject(selectedImage)
-            .environmentObject(miscViewFlags)
+        NavigationView {
+            AnimatedFilterView()
+                .environmentObject(selectedImage)
+                .environmentObject(miscViewFlags)
+        }
     }
 }

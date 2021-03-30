@@ -27,7 +27,7 @@ struct ContentView: View {
         return NavigationView {
             VStack {
                 navLink
-//                    .frame(width:0, height:0)
+                    .frame(width:0, height:0)
                 Spacer()
                 Image("logo-round")
                 Image("splash-logo")
@@ -53,7 +53,9 @@ struct ContentView: View {
             .edgesIgnoringSafeArea([.top, .bottom])
         }
         .sheet(isPresented: $miscViewFlags.isShowingSheet){
-            if(miscViewFlags.sheetType == .camera){
+            if($miscViewFlags.isSharePresented.wrappedValue){
+                ActivityView(activityItems: [selectedImage.image.processedImage])
+            } else if(miscViewFlags.sheetType == .camera){
                 ImagePicker(source: miscViewFlags.source)
             } else if(miscViewFlags.sheetType == .photoLibrary){
                 ImagePicker(source: miscViewFlags.source)
