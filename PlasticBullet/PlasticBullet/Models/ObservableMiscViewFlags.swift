@@ -15,15 +15,13 @@ class ObservableMiscViewFlags: ObservableObject {
     @Published var source: UIImagePickerController.SourceType
     @Published var sheetType: ContentView.ActiveSheet?
     @Published var navLinkIsActive: Bool
-    @Published var isSharePresented: Bool
     
     init(_ isShowingSheet: Bool = false,
          useFullResolution: Bool = true,
          isShowingImagePicker: Bool = false,
          source: UIImagePickerController.SourceType = .photoLibrary,
          sheetType: ContentView.ActiveSheet? = .photoLibrary,
-         navLinkIsActive: Bool = false,
-         isSharePresented: Bool = false
+         navLinkIsActive: Bool = false
     ) {
         self.isShowingSheet = isShowingSheet
         self.useFullResolution = useFullResolution
@@ -31,6 +29,5 @@ class ObservableMiscViewFlags: ObservableObject {
         self.source = source
         self.sheetType = sheetType
         self.navLinkIsActive = navLinkIsActive
-        self.isSharePresented = isSharePresented
     }
 }

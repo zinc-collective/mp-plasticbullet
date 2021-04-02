@@ -10,12 +10,13 @@ import SwiftUI
 
 struct BTN_Refresh: View {
     @ObservedObject var model: FilterableImageViewModel
+    @State var useAlternateIcon: Bool = false
     
     var body: some View {
         Button(action: {
             self.model.image.processImage()
         }) {
-            Image("refresh-button")
+            Image(useAlternateIcon ? "refresh" : "refresh-button")
                 .renderingMode(.original)
         }
     }

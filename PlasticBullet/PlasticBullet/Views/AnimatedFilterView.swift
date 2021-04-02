@@ -51,17 +51,19 @@ struct AnimatedFilterView: View {
                     }
                 })
                 Spacer()
-                HStack{
-                    BTN_Camera()
-                        .padding([.leading])
+                HStack(spacing: 15){
+                    Spacer()
+                    BTN_Camera(useAlternateIcon: true)
+                        .padding([.leading, .trailing])
                     Spacer()
                     Button(action: reloadAllFilters){
                         Image("refresh-button")
                             .renderingMode(.original)
                     }
                     Spacer()
-                    BTN_Library()
-                        .padding([.trailing])
+                    BTN_Library(useAlternateIcon: true)
+                        .padding([.leading, .trailing])
+                    Spacer()
                 }
                 Spacer()
             } // VStack
@@ -77,7 +79,7 @@ struct AnimatedFilterView: View {
                     self.miscViewFlags.isShowingSheet.toggle()
                     self.miscViewFlags.sheetType = .info
                 }, label: {
-                    Image("logo")
+                    Image("splash-logo")
                         .padding()
                 })
             }
@@ -117,6 +119,7 @@ struct AnimatedFilterView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             AnimatedFilterView()
+                .background(Color.black)
                 .environmentObject(selectedImage)
                 .environmentObject(miscViewFlags)
         }

@@ -12,8 +12,6 @@ struct FullscreenFilterableImageView: View {
     @ObservedObject var chosenTileModel: FilterableImageViewModel
     @EnvironmentObject var miscViewFlags: ObservableMiscViewFlags
     
-//    @State private var isSharePresented: Bool = false
-    
     var animation: Namespace.ID
     var body: some View {
         VStack {
@@ -27,8 +25,16 @@ struct FullscreenFilterableImageView: View {
 //                    close()
                 }
             Spacer()
-            HStack(spacing: 20) {
+            HStack(spacing: 15){
+                Spacer()
+                BTN_Camera(useAlternateIcon: true)
+                    .padding([.leading, .trailing])
+                Spacer()
                 BTN_Refresh(model: chosenTileModel)
+                Spacer()
+                BTN_Library(useAlternateIcon: true)
+                    .padding([.leading, .trailing])
+                Spacer()
             }
             Spacer()
         }
@@ -40,7 +46,8 @@ struct FullscreenFilterableImageView: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: {
                     self.miscViewFlags.isShowingSheet = true
-                    self.miscViewFlags.isSharePresented = true
+                    self.miscViewFlags.sheetType = .activity
+                    print("FullscreenView: \(self.miscViewFlags)")
                 }, label: {
                     Image("share")
                         .padding()

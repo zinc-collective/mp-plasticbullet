@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ContentView: View {
     enum ActiveSheet {
-       case camera, photoLibrary, info
+        case camera, photoLibrary, info, activity
     }
 
     @EnvironmentObject var selectedImage: ObservableUIImage
@@ -53,8 +53,8 @@ struct ContentView: View {
             .edgesIgnoringSafeArea([.top, .bottom])
         }
         .sheet(isPresented: $miscViewFlags.isShowingSheet){
-            if($miscViewFlags.isSharePresented.wrappedValue){
-                ActivityView(activityItems: [selectedImage.image.processedImage])
+            if(miscViewFlags.sheetType == .activity){
+                ActivityView(activityItems: [selectedImage.image.processedImage])                
             } else if(miscViewFlags.sheetType == .camera){
                 ImagePicker(source: miscViewFlags.source)
             } else if(miscViewFlags.sheetType == .photoLibrary){

@@ -10,6 +10,7 @@ import SwiftUI
 
 struct BTN_Library: View {
     @EnvironmentObject var miscViewFlags: ObservableMiscViewFlags
+    @State var useAlternateIcon: Bool = false
     
     var body: some View {
         Button(action: {
@@ -17,7 +18,7 @@ struct BTN_Library: View {
             self.miscViewFlags.source = .photoLibrary
             self.miscViewFlags.sheetType = .photoLibrary
         }) {
-            Image("splash-library")
+            Image(useAlternateIcon ? "library" : "splash-library")
                 .renderingMode(.original)
         }
     }

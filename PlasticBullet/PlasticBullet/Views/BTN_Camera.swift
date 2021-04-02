@@ -10,6 +10,7 @@ import SwiftUI
 
 struct BTN_Camera: View {
     @EnvironmentObject var miscViewFlags: ObservableMiscViewFlags
+    @State var useAlternateIcon: Bool = false
     
     var body: some View {
         Button(action: {
@@ -17,7 +18,7 @@ struct BTN_Camera: View {
             self.miscViewFlags.source = .camera
             self.miscViewFlags.sheetType = .camera
         }) {
-            Image("splash-camera")
+            Image(useAlternateIcon ? "camera" : "splash-camera")
                 .renderingMode(.original)
         }
     }
