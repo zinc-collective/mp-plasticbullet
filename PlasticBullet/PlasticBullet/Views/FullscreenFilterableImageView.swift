@@ -17,13 +17,12 @@ struct FullscreenFilterableImageView: View {
         VStack {
             Spacer()
             FilterableImageView(model: chosenTileModel)
+                .padding(.top, 50)
+                .frame(maxHeight: 570)
                 .scaleEffect(chosenTileModel.scale)
                 .matchedGeometryEffect(id: chosenTileModel.id, in: animation)
                 .offset(chosenTileModel.offset)
                 .gesture(DragGesture().onChanged(onChanged(value:)).onEnded(onEnd(value:)))
-                .onTapGesture {
-//                    close()
-                }
             Spacer()
             HStack(spacing: 15){
                 Spacer()
@@ -43,6 +42,23 @@ struct FullscreenFilterableImageView: View {
         .zIndex(10)
         .navigationBarHidden(false)
         .toolbar(content: {
+            ToolbarItem(placement: .principal) {
+                Button(action: {
+
+                }, label: {
+                    Image("splash-logo")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(height: 150)
+                        .padding(.top, 30)
+                })
+            }
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(action:{}, label:{
+                    EmptyView()
+                })
+                .frame(width:33,height:0)
+            }
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: {
                     self.miscViewFlags.isShowingSheet = true
@@ -96,5 +112,31 @@ struct FullscreenFilterableImageView_Previews: PreviewProvider {
         NavigationView {
             FullscreenFilterableImageView(chosenTileModel: chosenTileModel, animation: animation)
         }
+    }
+}
+
+struct NavLogo: View {
+
+    var body: some View {
+            VStack {
+                Image("splash-logo")
+                    .resizable()
+                    .aspectRatio(2, contentMode: .fit)
+                    .imageScale(.large)
+            }
+            .frame(width: 200)
+            .background(Color.clear)
+    }
+}
+struct TestBtn: View {
+    var body: some View {
+        Button(action: {
+//            self.miscViewFlags.isShowingSheet = true
+//            self.miscViewFlags.sheetType = .activity
+//            print("FullscreenView: \(self.miscViewFlags)")
+        }, label: {
+            Image("share")
+                .padding()
+        })
     }
 }

@@ -34,6 +34,7 @@ struct AnimatedFilterView: View {
                             }
                             else {
                                 FilterableImageView(model: FilterableImageViewModel(image: model))
+                                    .frame(maxHeight: 225)
                                     .matchedGeometryEffect(id: model.id, in: animation)
                                     .onTapGesture {
                                         withAnimation {
@@ -80,7 +81,10 @@ struct AnimatedFilterView: View {
                     self.miscViewFlags.sheetType = .info
                 }, label: {
                     Image("splash-logo")
-                        .padding()
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(height: 150)
+                        .padding(.top, 30)
                 })
             }
         })
