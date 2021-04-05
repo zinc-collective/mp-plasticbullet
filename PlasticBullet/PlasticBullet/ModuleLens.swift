@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import Combine
 
 struct Filter {
     let filterName: String

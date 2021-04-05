@@ -6,13 +6,12 @@
 //  Copyright © 2020 Zinc Collective, LLC. All rights reserved.
 //
 
-import Combine
 import SwiftUI
 
 class ObservableUIImage: ObservableObject {
-    @Published var image: UIImage
+    @Published var image: FilterableImage
     
-    init(_ image: UIImage) {
+    init(_ image: FilterableImage) {
         self.image = image
     }
 }

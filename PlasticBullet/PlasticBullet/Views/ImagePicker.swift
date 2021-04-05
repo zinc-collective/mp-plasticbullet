@@ -10,8 +10,9 @@ import SwiftUI
 
 struct ImagePicker: UIViewControllerRepresentable {
     @Environment(\.presentationMode) var presentationMode
-//    @Binding var image: UIImage?
     @EnvironmentObject var selectedImage: ObservableUIImage
+    @EnvironmentObject var miscViewFlags: ObservableMiscViewFlags
+    
     var source: UIImagePickerController.SourceType = .photoLibrary
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
@@ -22,7 +23,7 @@ struct ImagePicker: UIViewControllerRepresentable {
     }
 
     func updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<ImagePicker>) {
-
+        print("updateUIViewController -> uiViewController: \(uiViewController) ---- context: \(context)")
     }
     
     class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -32,12 +33,16 @@ struct ImagePicker: UIViewControllerRepresentable {
         }
         
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-            if let uiImage = info[.originalImage] as? UIImage {
-                parent.selectedImage.image = uiImage
+            if var uiImage = info[.originalImage] as? UIImage {
+                if let uiImageOriented = UIImage.fixedOrientation(for: uiImage) {
+                    uiImage = uiImageOriented
+                }
+                parent.selectedImage.image = FilterableImage(rawImage: uiImage)
                 print("picked: ", parent.selectedImage.image as Any)
             }
-
+            parent.miscViewFlags.navLinkIsActive = true
             parent.presentationMode.wrappedValue.dismiss()
+            
         }
     }
     
@@ -47,9 +52,11 @@ struct ImagePicker: UIViewControllerRepresentable {
 }
 
 struct ImagePicker_Previews: PreviewProvider {
+    static var source: UIImagePickerController.SourceType = .photoLibrary
+    static var selectedImage: ObservableUIImage = ObservableUIImage(FilterableImage(rawImage: testImages[0]!))
     
     static var previews: some View {
-        ImagePicker(source: .photoLibrary)
-            .environmentObject(ObservableUIImage(UIImage(contentsOfFile: "160421-IMG_5876-")!))
+        ImagePicker(source: source)
+            .environmentObject(selectedImage)
     }
 }
