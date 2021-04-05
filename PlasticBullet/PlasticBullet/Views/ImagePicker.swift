@@ -33,7 +33,10 @@ struct ImagePicker: UIViewControllerRepresentable {
         }
         
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-            if let uiImage = info[.originalImage] as? UIImage {
+            if var uiImage = info[.originalImage] as? UIImage {
+                if let uiImageOriented = UIImage.fixedOrientation(for: uiImage) {
+                    uiImage = uiImageOriented
+                }
                 parent.selectedImage.image = FilterableImage(rawImage: uiImage)
                 print("picked: ", parent.selectedImage.image as Any)
             }
