@@ -28,11 +28,6 @@ struct ActivityView: UIViewControllerRepresentable {
     }
 
     func updateUIViewController(_ uiViewController: UIActivityViewController, context: UIViewControllerRepresentableContext<ActivityView>) {}
-    
-    func testCallback(_ activityType: UIActivity.ActivityType?, _ completed: Bool, _ returnedItems: [Any]?, _ error: Error?){
-        print("test callback")
-    }
-
 }
 
 struct ActivityView_Previews: PreviewProvider {
