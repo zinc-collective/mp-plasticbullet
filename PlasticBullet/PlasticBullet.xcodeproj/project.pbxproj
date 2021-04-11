@@ -12,6 +12,7 @@
 		6D00463D23CC6A4C00401B4D /* BTN_Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D00463C23CC6A4C00401B4D /* BTN_Camera.swift */; };
 		6D00463F23CC6A5B00401B4D /* BTN_Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D00463E23CC6A5B00401B4D /* BTN_Library.swift */; };
 		6D00464323CC711500401B4D /* Panel_Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D00464223CC711500401B4D /* Panel_Info.swift */; };
+		6D22F9B62622481500C4D506 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D22F9B52622481500C4D506 /* PopupView.swift */; };
 		6D3085B3260B8CC900DEC92B /* ObservableMiscViewFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3085B2260B8CC900DEC92B /* ObservableMiscViewFlags.swift */; };
 		6D3F3C8423F30EC8000980FF /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3F3C8323F30EC8000980FF /* ImagePicker.swift */; };
 		6D4C07D2261B720F00564DE0 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4C07D1261B720F00564DE0 /* Extensions.swift */; };
@@ -66,6 +67,7 @@
 		6D00463C23CC6A4C00401B4D /* BTN_Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTN_Camera.swift; sourceTree = "<group>"; };
 		6D00463E23CC6A5B00401B4D /* BTN_Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTN_Library.swift; sourceTree = "<group>"; };
 		6D00464223CC711500401B4D /* Panel_Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panel_Info.swift; sourceTree = "<group>"; };
+		6D22F9B52622481500C4D506 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 		6D3085B2260B8CC900DEC92B /* ObservableMiscViewFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableMiscViewFlags.swift; sourceTree = "<group>"; };
 		6D3F3C8323F30EC8000980FF /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		6D4C07D1261B720F00564DE0 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				6DB11FA2260B72180018AAB6 /* Models */,
 				6DDF152123E06AE800C711D3 /* text-content */,
 				6DCA30B32609F064005AAB2F /* Globals.swift */,
+				6D22F9B52622481500C4D506 /* PopupView.swift */,
 				6D4C07D1261B720F00564DE0 /* Extensions.swift */,
 				6DA3373C23CAF5350082B22C /* AppDelegate.swift */,
 				6DA3373E23CAF5350082B22C /* SceneDelegate.swift */,
@@ -444,6 +447,7 @@
 				6DC6B89425703B4200A1ACB4 /* ObservableUIImage.swift in Sources */,
 				6DA3373F23CAF5350082B22C /* SceneDelegate.swift in Sources */,
 				6D00464323CC711500401B4D /* Panel_Info.swift in Sources */,
+				6D22F9B62622481500C4D506 /* PopupView.swift in Sources */,
 				6DBDF7C92608DB9C0080059B /* AnimatedFilterView.swift in Sources */,
 				6DCA30B42609F064005AAB2F /* Globals.swift in Sources */,
 				6D4C07D2261B720F00564DE0 /* Extensions.swift in Sources */,
