@@ -1,3 +1,4 @@
+._*
 .DS_Store
 *.xcworkspace
 xcuserdata
@@ -6,4 +7,7 @@ Pods/
 Podfile.lock
 *.ipa
 img
-Marketing
+Marketing/
+todo.md
+GoogleService-Info.plist
+Config.plist
