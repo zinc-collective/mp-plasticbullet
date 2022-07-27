@@ -17,9 +17,6 @@
 		6D3F3C8423F30EC8000980FF /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3F3C8323F30EC8000980FF /* ImagePicker.swift */; };
 		6D4C07D2261B720F00564DE0 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4C07D1261B720F00564DE0 /* Extensions.swift */; };
 		6D5F6C0A26124F070001D9DD /* BTN_Refresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5F6C0926124F060001D9DD /* BTN_Refresh.swift */; };
-		6D63018623D6C88A005DA6FF /* todo.md in Resources */ = {isa = PBXBuildFile; fileRef = 6D63018323D6C88A005DA6FF /* todo.md */; };
-		6D63018723D6C88A005DA6FF /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 6D63018423D6C88A005DA6FF /* README.md */; };
-		6D63018823D6C88A005DA6FF /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 6D63018523D6C88A005DA6FF /* LICENSE */; };
 		6D70474426135C0C009BFF51 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D70474326135C0C009BFF51 /* ActivityView.swift */; };
 		6D7361C4260A34D20071ACA7 /* FullscreenFilterableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7361C3260A34D20071ACA7 /* FullscreenFilterableImageView.swift */; };
 		6D98538A2571812100FB9E88 /* ModuleLens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9853892571812100FB9E88 /* ModuleLens.swift */; };
@@ -72,9 +69,6 @@
 		6D3F3C8323F30EC8000980FF /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		6D4C07D1261B720F00564DE0 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		6D5F6C0926124F060001D9DD /* BTN_Refresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTN_Refresh.swift; sourceTree = "<group>"; };
-		6D63018323D6C88A005DA6FF /* todo.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = todo.md; path = ../todo.md; sourceTree = "<group>"; };
-		6D63018423D6C88A005DA6FF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		6D63018523D6C88A005DA6FF /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		6D70474326135C0C009BFF51 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		6D7361C3260A34D20071ACA7 /* FullscreenFilterableImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullscreenFilterableImageView.swift; sourceTree = "<group>"; };
 		6D9853892571812100FB9E88 /* ModuleLens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleLens.swift; sourceTree = "<group>"; };
@@ -141,9 +135,6 @@
 		6DA3373023CAF5350082B22C = {
 			isa = PBXGroup;
 			children = (
-				6D63018523D6C88A005DA6FF /* LICENSE */,
-				6D63018423D6C88A005DA6FF /* README.md */,
-				6D63018323D6C88A005DA6FF /* todo.md */,
 				6DA3373B23CAF5350082B22C /* PlasticBullet */,
 				6DA3375223CAF5370082B22C /* PlasticBulletTests */,
 				6DA3375D23CAF5370082B22C /* PlasticBulletUITests */,
@@ -362,14 +353,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D63018723D6C88A005DA6FF /* README.md in Resources */,
 				6DA3374923CAF5360082B22C /* LaunchScreen.storyboard in Resources */,
 				6DA3374623CAF5360082B22C /* Preview Assets.xcassets in Resources */,
-				6D63018823D6C88A005DA6FF /* LICENSE in Resources */,
 				6DDF152523E06AE800C711D3 /* info-text2.md in Resources */,
 				6DDF152423E06AE800C711D3 /* info-text1.md in Resources */,
 				6DA3374323CAF5360082B22C /* Assets.xcassets in Resources */,
-				6D63018623D6C88A005DA6FF /* todo.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

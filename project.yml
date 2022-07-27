@@ -1,0 +1,28 @@
+name: PlasticBullet
+options:
+  bundleIdPrefix: com.zincTechnologyInc.PlasticBullet
+targets:
+  PlasticBullet:
+    type: application
+    platform: iOS
+    deploymentTarget: "14.3"
+    sources: [PlasticBullet]
+    settings:
+      base:
+        CODE_SIGN_STYLE: Manual
+        DEVELOPMENT_TEAM: 5GGD34ZNFU
+        ENABLE_BITCODE: 'YES'
+        PRODUCT_BUNDLE_IDENTIFIER: com.zincTechnologyInc.PlasticBullet
+        SWIFT_VERSION: 5.0
+        TARGETED_DEVICE_FAMILY: 1,2
+      configs:
+        Debug:
+          DEBUG_MODE: YES
+        Release:
+          DEBUG_MODE: NO
+    dependencies:
+      - package: SwiftyMarkdown
+  SwiftyMarkdown:
+    type: framework
+    platform: iOS
+    sources: [SwiftyMarkdown]

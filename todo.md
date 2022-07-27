@@ -1,6 +1,8 @@
 
 TODO
 
+- [x] setup for rbenv (ruby 2.7.6)
+- [ ] setup for xcoegen
 - [ ] filter view UI
 - [ ] filter view: add little pictures
 - [ ] test on device! See if it changes orientation already
