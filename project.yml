@@ -1,20 +1,41 @@
 name: PlasticBullet
 options:
   bundleIdPrefix: com.zincTechnologyInc.PlasticBullet
+  defaultConfig: Debug
+  deploymentTarget:
+    iOS: "14.3"
+  postGenCommand: echo "DOING IT - postGenCommand"; pod install
+packages:
+  SwiftyMarkdown:
+    url: https://github.com/SimonFairbairn/SwiftyMarkdown
+    majorVersion: 1.2.4
 targets:
   PlasticBullet:
+    CFBundleDisplayName: "PlasticBullet"
+    CFBundleIconName: Media.xcassets/AppIcon.appiconset
+    CFBundleName: PlasticBullet
     type: application
     platform: iOS
-    deploymentTarget: "14.3"
-    sources: [PlasticBullet]
+    sources:
+      - PlasticBullet
+    scheme:
+      testTargets:
+      - name: PlasticBulletTests
+        randomExecutionOrder: true
+      gatherCoverageData: true
+      coverageTargets:
+        - PlasticBullet
     settings:
       base:
-        CODE_SIGN_STYLE: Manual
+        INFOPLIST_FILE: PlasticBullet/Info.plist
+        CODE_SIGN_STYLE: Automatic
         DEVELOPMENT_TEAM: 5GGD34ZNFU
-        ENABLE_BITCODE: 'YES'
+        ENABLE_BITCODE: NO
         PRODUCT_BUNDLE_IDENTIFIER: com.zincTechnologyInc.PlasticBullet
-        SWIFT_VERSION: 5.0
+        SWIFT_VERSION: 5.3
         TARGETED_DEVICE_FAMILY: 1,2
+        MARKETING_VERSION: 5.0.0
+        CURRENT_PROJECT_VERSION: 0
       configs:
         Debug:
           DEBUG_MODE: YES
@@ -22,7 +43,17 @@ targets:
           DEBUG_MODE: NO
     dependencies:
       - package: SwiftyMarkdown
-  SwiftyMarkdown:
-    type: framework
+  PlasticBulletTests:
+    type: bundle.unit-test
     platform: iOS
-    sources: [SwiftyMarkdown]
+    dependencies:
+      - target: PlasticBullet
+    sources:
+      - path: PlasticBulletTests
+  PlasticBulletUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    dependencies:
+      - target: PlasticBullet
+    sources:
+      - path: PlasticBulletUITests
