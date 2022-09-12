@@ -17,4 +17,4 @@ Work from `PlasticBullet.xcworkspace` _**NOT**_ `PlasticBullet.xcodeproj`
 - Swift 5.x
 - Swift UI
 - iPhone XR
-- iOS 13.2
+- iOS 13.25
