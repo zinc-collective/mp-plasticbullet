@@ -331,11 +331,20 @@ int loadTime = 0;
 	//	NSLog(@"load image size: %f : %f", size2.width,size2.height);
 	
     self.originalImage = image;
+//    [self setRogueFocusAndTopLeftViewWith:tmpImage];
     
 	[self startRenderBackground:true image:tmpImage clearAlpha:true];
 #endif
 	[Utilities printAvailMemory];
 	
+}
+
+-(void)setRogueFocusAndTopLeftViewWith:(UIImage *)image
+{
+    
+    self.topLeftView = [[UIImageView alloc] initWithImage:image];
+    self.focusedView = self.topLeftView;
+    NSLog(@"setRogueFocusAndTopLeftViewWith");
 }
 
 // Deal with original image by cropping and scaling
@@ -625,16 +634,19 @@ int loadTime = 0;
     CGFloat height = 0;
 	int numRenderIndexs = 1;
 	int renderIndex = 0;
-    NSArray * imageViewArray = @[self.topLeftView, self.topRightView, self.bottomLeftView, self.bottomRightView, self.topMiddleView, self.middleLeftView, self.middleMiddleView, self.middleRightView, self.bottomMiddleView];
-	
-	if (numberMode == GRID_4) {
+//    NSArray * imageViewArray = @[self.topLeftView, self.topRightView, self.bottomLeftView, self.bottomRightView, self.topMiddleView, self.middleLeftView, self.middleMiddleView, self.middleRightView, self.bottomMiddleView];
+    NSArray * imageViewArray = @[self.topLeftView];
+    
+    if (numberMode == GRID_4) {
 		numRenderIndexs = 4;
 	} else if (numberMode == GRID_9) {
 		numRenderIndexs = 9;
 	} else {
         renderIndex = (int)[imageViewArray indexOfObject:self.focusedView];
         isRefresh[renderIndex] = YES;
-		numRenderIndexs = renderIndex+1;
+        // this next line waas added as a hack to get a (hopefully) better number of iterations in a render loop later on
+        numRenderIndexs = (int)imageViewArray.count;
+//		numRenderIndexs = renderIndex+1;
 	}
 	
 	int err = 0;
@@ -680,7 +692,7 @@ int loadTime = 0;
 		height = CGImageGetHeight( portraitImage.CGImage );
 		
 		
-		for(; renderIndex<numRenderIndexs; ++renderIndex)
+        for(; renderIndex<numRenderIndexs; ++renderIndex)
 		{
             int index = renderIndex;
 			if(numberMode == 4 || numberMode == 9) {
@@ -787,6 +799,8 @@ int loadTime = 0;
 		UIImage *landscapeImage = portraitImage;
 		width = CGImageGetWidth( landscapeImage.CGImage );
 		height = CGImageGetHeight( landscapeImage.CGImage );
+        // this next line was added as a hack to prevent renderIndex from being negative when the loop starts
+        renderIndex = renderIndex + 1;
 		for(; renderIndex<numRenderIndexs; ++renderIndex)
 		{
 			int index = renderIndex;

@@ -26,6 +26,17 @@
 		613BD5478FD259C6F434704F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F0524E0DFCD6C0409F95FA /* SceneDelegate.swift */; };
 		6483D89A07A4A96A408CB50B /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04143F1AD58511DFB154211B /* PopupView.swift */; };
 		675528F3054A38C6DF49A6E5 /* Panel_Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66027E3A92565E84111134FB /* Panel_Info.swift */; };
+		6DF42FAC28A2A3FD00BA462C /* mojoViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6DF42F9528A2A3FC00BA462C /* mojoViewController.mm */; };
+		6DF42FAD28A2A3FD00BA462C /* RandomRenderArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF42F9628A2A3FC00BA462C /* RandomRenderArguments.m */; };
+		6DF42FAE28A2A3FD00BA462C /* fileOutput.c in Sources */ = {isa = PBXBuildFile; fileRef = 6DF42F9B28A2A3FC00BA462C /* fileOutput.c */; };
+		6DF42FAF28A2A3FD00BA462C /* Plugin_Render.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6DF42F9C28A2A3FC00BA462C /* Plugin_Render.mm */; };
+		6DF42FB028A2A3FD00BA462C /* fastBlur.c in Sources */ = {isa = PBXBuildFile; fileRef = 6DF42FA028A2A3FC00BA462C /* fastBlur.c */; };
+		6DF42FB128A2A3FD00BA462C /* pb_render.c in Sources */ = {isa = PBXBuildFile; fileRef = 6DF42FA128A2A3FC00BA462C /* pb_render.c */; };
+		6DF42FB228A2A3FD00BA462C /* README_1.md in Resources */ = {isa = PBXBuildFile; fileRef = 6DF42FA428A2A3FC00BA462C /* README_1.md */; };
+		6DF42FB328A2A3FD00BA462C /* Renderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF42FA628A2A3FC00BA462C /* Renderer.m */; };
+		6DF42FB428A2A3FD00BA462C /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF42FA728A2A3FC00BA462C /* Utilities.m */; };
+		6DF42FB528A2A3FD00BA462C /* ImageProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF42FA828A2A3FC00BA462C /* ImageProcess.m */; };
+		6DF42FB628A2A3FD00BA462C /* FileCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF42FA928A2A3FC00BA462C /* FileCache.m */; };
 		715775876957B07C55D9A491 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2A77A49B14B3FC51603388 /* Token.swift */; };
 		71C4B3CA83ED01E31BA2C0D1 /* FilterableImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D671F7D55A1BD35D62E396 /* FilterableImage.swift */; };
 		84B256F1E6B9FD75A7C24CE7 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756010AF02AFE80C59279AD3 /* ImagePicker.swift */; };
@@ -123,6 +134,30 @@
 		61A5D4AFE344E5673A866F26 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		66027E3A92565E84111134FB /* Panel_Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panel_Info.swift; sourceTree = "<group>"; };
 		6C8C1B2E0FD0500F9D0A05DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		6DF42F9428A2A3FC00BA462C /* RandomRenderArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RandomRenderArguments.h; sourceTree = "<group>"; };
+		6DF42F9528A2A3FC00BA462C /* mojoViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = mojoViewController.mm; sourceTree = "<group>"; };
+		6DF42F9628A2A3FC00BA462C /* RandomRenderArguments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RandomRenderArguments.m; sourceTree = "<group>"; };
+		6DF42F9728A2A3FC00BA462C /* mojoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mojoViewController.h; sourceTree = "<group>"; };
+		6DF42F9928A2A3FC00BA462C /* Plugin_Render.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plugin_Render.h; sourceTree = "<group>"; };
+		6DF42F9A28A2A3FC00BA462C /* DataFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataFile.h; sourceTree = "<group>"; };
+		6DF42F9B28A2A3FC00BA462C /* fileOutput.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fileOutput.c; sourceTree = "<group>"; };
+		6DF42F9C28A2A3FC00BA462C /* Plugin_Render.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Plugin_Render.mm; sourceTree = "<group>"; };
+		6DF42F9D28A2A3FC00BA462C /* ImageProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageProcess.h; sourceTree = "<group>"; };
+		6DF42F9E28A2A3FC00BA462C /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
+		6DF42F9F28A2A3FC00BA462C /* Renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Renderer.h; sourceTree = "<group>"; };
+		6DF42FA028A2A3FC00BA462C /* fastBlur.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fastBlur.c; sourceTree = "<group>"; };
+		6DF42FA128A2A3FC00BA462C /* pb_render.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pb_render.c; sourceTree = "<group>"; };
+		6DF42FA228A2A3FC00BA462C /* RenderArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderArguments.h; sourceTree = "<group>"; };
+		6DF42FA328A2A3FC00BA462C /* FileCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileCache.h; sourceTree = "<group>"; };
+		6DF42FA428A2A3FC00BA462C /* README_1.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README_1.md; sourceTree = "<group>"; };
+		6DF42FA528A2A3FC00BA462C /* fileOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fileOutput.h; sourceTree = "<group>"; };
+		6DF42FA628A2A3FC00BA462C /* Renderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Renderer.m; sourceTree = "<group>"; };
+		6DF42FA728A2A3FC00BA462C /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
+		6DF42FA828A2A3FC00BA462C /* ImageProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageProcess.m; sourceTree = "<group>"; };
+		6DF42FA928A2A3FC00BA462C /* FileCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileCache.m; sourceTree = "<group>"; };
+		6DF42FAA28A2A3FC00BA462C /* pb_render.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pb_render.h; sourceTree = "<group>"; };
+		6DF42FAB28A2A3FC00BA462C /* fastBlur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fastBlur.h; sourceTree = "<group>"; };
+		6DF42FBA28A2AA6E00BA462C /* PlasticBullet-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PlasticBullet-Bridging-Header.h"; sourceTree = "<group>"; };
 		6EB87AFBCA7036E43AF41A2F /* Pods-PlasticBullet-frameworks-Debug-output-files.xcfilelist */ = {isa = PBXFileReference; lastKnownFileType = text.xcfilelist; path = "Pods-PlasticBullet-frameworks-Debug-output-files.xcfilelist"; sourceTree = "<group>"; };
 		741D62301132D2FFFA684105 /* SwiftyMarkdown.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SwiftyMarkdown.release.xcconfig; sourceTree = "<group>"; };
 		756010AF02AFE80C59279AD3 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
@@ -310,6 +345,52 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		6DF42F8D28A2A20400BA462C /* LegacyImageProcessing */ = {
+			isa = PBXGroup;
+			children = (
+				6DF42F9328A2A3FC00BA462C /* Mojo */,
+				6DF42F9828A2A3FC00BA462C /* Renderer */,
+			);
+			path = LegacyImageProcessing;
+			sourceTree = "<group>";
+		};
+		6DF42F9328A2A3FC00BA462C /* Mojo */ = {
+			isa = PBXGroup;
+			children = (
+				6DF42F9428A2A3FC00BA462C /* RandomRenderArguments.h */,
+				6DF42F9528A2A3FC00BA462C /* mojoViewController.mm */,
+				6DF42F9628A2A3FC00BA462C /* RandomRenderArguments.m */,
+				6DF42F9728A2A3FC00BA462C /* mojoViewController.h */,
+			);
+			path = Mojo;
+			sourceTree = "<group>";
+		};
+		6DF42F9828A2A3FC00BA462C /* Renderer */ = {
+			isa = PBXGroup;
+			children = (
+				6DF42F9928A2A3FC00BA462C /* Plugin_Render.h */,
+				6DF42F9A28A2A3FC00BA462C /* DataFile.h */,
+				6DF42F9B28A2A3FC00BA462C /* fileOutput.c */,
+				6DF42F9C28A2A3FC00BA462C /* Plugin_Render.mm */,
+				6DF42F9D28A2A3FC00BA462C /* ImageProcess.h */,
+				6DF42F9E28A2A3FC00BA462C /* Utilities.h */,
+				6DF42F9F28A2A3FC00BA462C /* Renderer.h */,
+				6DF42FA028A2A3FC00BA462C /* fastBlur.c */,
+				6DF42FA128A2A3FC00BA462C /* pb_render.c */,
+				6DF42FA228A2A3FC00BA462C /* RenderArguments.h */,
+				6DF42FA328A2A3FC00BA462C /* FileCache.h */,
+				6DF42FA428A2A3FC00BA462C /* README_1.md */,
+				6DF42FA528A2A3FC00BA462C /* fileOutput.h */,
+				6DF42FA628A2A3FC00BA462C /* Renderer.m */,
+				6DF42FA728A2A3FC00BA462C /* Utilities.m */,
+				6DF42FA828A2A3FC00BA462C /* ImageProcess.m */,
+				6DF42FA928A2A3FC00BA462C /* FileCache.m */,
+				6DF42FAA28A2A3FC00BA462C /* pb_render.h */,
+				6DF42FAB28A2A3FC00BA462C /* fastBlur.h */,
+			);
+			path = Renderer;
+			sourceTree = "<group>";
+		};
 		75D7B80DCC3AB01CA88B2BDB /* Pods-PlasticBullet */ = {
 			isa = PBXGroup;
 			children = (
@@ -368,6 +449,7 @@
 		E82E5136D3F7E7141D1FDA42 /* PlasticBullet */ = {
 			isa = PBXGroup;
 			children = (
+				6DF42F8D28A2A20400BA462C /* LegacyImageProcessing */,
 				A1BDB0D27C9E0E11C107EF14 /* AppDelegate.swift */,
 				9C23E8E3E7E4D19A1B04533F /* Assets.xcassets */,
 				29393B4E70CADDD5D527C751 /* Extensions.swift */,
@@ -383,6 +465,7 @@
 				AA9D32F32CDE791D2CCC3B71 /* Preview Content */,
 				4CDF4C3F3137248B1D5F55C4 /* text-content */,
 				36F8F4B450FD65C71B1D001C /* Views */,
+				6DF42FBA28A2AA6E00BA462C /* PlasticBullet-Bridging-Header.h */,
 			);
 			path = PlasticBullet;
 			sourceTree = "<group>";
@@ -539,6 +622,7 @@
 				2D16B68170B91E6455000FA5 /* Pods.xcodeproj in Resources */,
 				1D352BBFF4D08657AD394C9B /* Preview Assets.xcassets in Resources */,
 				F3B05615736C97FA30C2DF63 /* README.md in Resources */,
+				6DF42FB228A2A3FD00BA462C /* README_1.md in Resources */,
 				AA8A9B96458C0F1F98341FAA /* SwiftyMarkdown-Info.plist in Resources */,
 				377A0BE5833F24BF9809F3C5 /* info-text1.md in Resources */,
 				FA95FB3BFBA65EAB81FD7CC2 /* info-text2.md in Resources */,
@@ -615,8 +699,15 @@
 				990DA935AC2D09CAC900801F /* AppDelegate.swift in Sources */,
 				38F6559BD879519A57302CEC /* BTN_Camera.swift in Sources */,
 				F95C8882D714C914346139A0 /* BTN_Info.swift in Sources */,
+				6DF42FB328A2A3FD00BA462C /* Renderer.m in Sources */,
+				6DF42FB128A2A3FD00BA462C /* pb_render.c in Sources */,
+				6DF42FAD28A2A3FD00BA462C /* RandomRenderArguments.m in Sources */,
+				6DF42FAF28A2A3FD00BA462C /* Plugin_Render.mm in Sources */,
 				48407962FEB19C4F51FB27D5 /* BTN_Library.swift in Sources */,
+				6DF42FB528A2A3FD00BA462C /* ImageProcess.m in Sources */,
 				FAA6603A003400DBEA068347 /* BTN_Refresh.swift in Sources */,
+				6DF42FB028A2A3FD00BA462C /* fastBlur.c in Sources */,
+				6DF42FB428A2A3FD00BA462C /* Utilities.m in Sources */,
 				E1658DC7D25A1C11B06DF3C2 /* CharacterRule.swift in Sources */,
 				A8EC74E62E7A91E67222F868 /* ContentView.swift in Sources */,
 				06C04162C95264AA7BF70CBF /* Extensions.swift in Sources */,
@@ -628,10 +719,12 @@
 				84B256F1E6B9FD75A7C24CE7 /* ImagePicker.swift in Sources */,
 				EEBB4DB05A1722F6F35CFAC2 /* MainLogoIcon.swift in Sources */,
 				B7E0973D43665950390B4BE4 /* ModuleLens.swift in Sources */,
+				6DF42FAE28A2A3FD00BA462C /* fileOutput.c in Sources */,
 				9CE122979062C16713F2C797 /* ObservableMiscViewFlags.swift in Sources */,
 				5DE785030DD8E3086037E6E2 /* ObservableUIImage.swift in Sources */,
 				675528F3054A38C6DF49A6E5 /* Panel_Info.swift in Sources */,
 				B6378CACAA391870A91EB490 /* PerfomanceLog.swift in Sources */,
+				6DF42FB628A2A3FD00BA462C /* FileCache.m in Sources */,
 				3A070E6327402B75E675A1B8 /* Pods-PlasticBullet-dummy.m in Sources */,
 				6483D89A07A4A96A408CB50B /* PopupView.swift in Sources */,
 				613BD5478FD259C6F434704F /* SceneDelegate.swift in Sources */,
@@ -640,6 +733,7 @@
 				AC457D7B5BF22BA226B33475 /* SwiftyMarkdown+iOS.swift in Sources */,
 				873A20C9D1E04695B561751C /* SwiftyMarkdown+macOS.swift in Sources */,
 				117835A09DFC52169E282147 /* SwiftyMarkdown-dummy.m in Sources */,
+				6DF42FAC28A2A3FD00BA462C /* mojoViewController.mm in Sources */,
 				F9D0F26A85C9A71FBE502C8C /* SwiftyMarkdown.swift in Sources */,
 				93A267BD5FC7E75A76A15A12 /* SwiftyScanner.swift in Sources */,
 				A5D4433C792CC11808BC7403 /* SwiftyTokeniser.swift in Sources */,
@@ -841,7 +935,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OBJC_BRIDGING_HEADER = "${PROJECT_DIR}/$(SWIFT_MODULE_NAME)/PlasticBullet-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = YES;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -904,7 +1000,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "${PROJECT_DIR}/$(SWIFT_MODULE_NAME)/PlasticBullet-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = YES;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
