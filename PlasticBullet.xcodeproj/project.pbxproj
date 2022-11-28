@@ -48,7 +48,7 @@
 		990DA935AC2D09CAC900801F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BDB0D27C9E0E11C107EF14 /* AppDelegate.swift */; };
 		9CE122979062C16713F2C797 /* ObservableMiscViewFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = D368454E6F2B76DA82F156A8 /* ObservableMiscViewFlags.swift */; };
 		A5D4433C792CC11808BC7403 /* SwiftyTokeniser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4BD7989E7F65DA8BB2ECCB /* SwiftyTokeniser.swift */; };
-		A8EC74E62E7A91E67222F868 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A5D4AFE344E5673A866F26 /* ContentView.swift */; };
+		A8EC74E62E7A91E67222F868 /* MainAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A5D4AFE344E5673A866F26 /* MainAppView.swift */; };
 		AA8A9B96458C0F1F98341FAA /* SwiftyMarkdown-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F98541872E89DE0BDD0E7896 /* SwiftyMarkdown-Info.plist */; };
 		AC457D7B5BF22BA226B33475 /* SwiftyMarkdown+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE79634726A44EC5D1A63D23 /* SwiftyMarkdown+iOS.swift */; };
 		AE00BF0BE1E1270F2F0080B0 /* FullscreenFilterableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FD0405B0167C4A7E40C484 /* FullscreenFilterableImageView.swift */; };
@@ -131,7 +131,7 @@
 		5F38D70A439A0CA6BE48A374 /* SwiftyLineProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyLineProcessor.swift; sourceTree = "<group>"; };
 		5FBB57CCFECA1E7A53E2DBB8 /* SwiftyMarkdown+macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwiftyMarkdown+macOS.swift"; sourceTree = "<group>"; };
 		6188F340632CDA01131A07B9 /* FilterableImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterableImageViewModel.swift; sourceTree = "<group>"; };
-		61A5D4AFE344E5673A866F26 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		61A5D4AFE344E5673A866F26 /* MainAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAppView.swift; sourceTree = "<group>"; };
 		66027E3A92565E84111134FB /* Panel_Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panel_Info.swift; sourceTree = "<group>"; };
 		6C8C1B2E0FD0500F9D0A05DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		6DF42F9428A2A3FC00BA462C /* RandomRenderArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RandomRenderArguments.h; sourceTree = "<group>"; };
@@ -179,7 +179,7 @@
 		ACA0CB1B9FF782C63DC0BE4E /* Pods-PlasticBullet-dummy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Pods-PlasticBullet-dummy.m"; sourceTree = "<group>"; };
 		AD2A77A49B14B3FC51603388 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		AFF7CB9AB4E593528DFB4457 /* Pods_PlasticBullet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlasticBullet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B46AB6E1E5FB76A5E72E5D7A /* PlasticBullet.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = PlasticBullet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B46AB6E1E5FB76A5E72E5D7A /* PlasticBullet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlasticBullet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD1623ABFD6289A27B3ADF1A /* SwiftyMarkdown-dummy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SwiftyMarkdown-dummy.m"; sourceTree = "<group>"; };
 		BE02D6881ADEE1AE0C0040EC /* SwiftyScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyScanner.swift; sourceTree = "<group>"; };
 		C3A93F06E793851CBB21BB16 /* BTN_Refresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTN_Refresh.swift; sourceTree = "<group>"; };
@@ -290,7 +290,7 @@
 				51B456D6A5B9A06F09EEAC99 /* BTN_Info.swift */,
 				22DE57A5F7BAAB89C23B2FB5 /* BTN_Library.swift */,
 				C3A93F06E793851CBB21BB16 /* BTN_Refresh.swift */,
-				61A5D4AFE344E5673A866F26 /* ContentView.swift */,
+				61A5D4AFE344E5673A866F26 /* MainAppView.swift */,
 				12F59CD24C19F56E368CF688 /* FilterableImageView.swift */,
 				D7FD0405B0167C4A7E40C484 /* FullscreenFilterableImageView.swift */,
 				756010AF02AFE80C59279AD3 /* ImagePicker.swift */,
@@ -514,7 +514,6 @@
 				BD61307408E73D479E29EBE8 /* Sources */,
 				E83CB86E7A5DECC25798F7CA /* Resources */,
 				7C764850A462AE2E30A37A58 /* Frameworks */,
-				DE1C3B83675BFE6895B48C45 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -632,23 +631,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		DE1C3B83675BFE6895B48C45 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PlasticBullet/Pods-PlasticBullet-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PlasticBullet/Pods-PlasticBullet-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PlasticBullet/Pods-PlasticBullet-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		F6272648C5A0EAA6570716DA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -709,7 +691,7 @@
 				6DF42FB028A2A3FD00BA462C /* fastBlur.c in Sources */,
 				6DF42FB428A2A3FD00BA462C /* Utilities.m in Sources */,
 				E1658DC7D25A1C11B06DF3C2 /* CharacterRule.swift in Sources */,
-				A8EC74E62E7A91E67222F868 /* ContentView.swift in Sources */,
+				A8EC74E62E7A91E67222F868 /* MainAppView.swift in Sources */,
 				06C04162C95264AA7BF70CBF /* Extensions.swift in Sources */,
 				71C4B3CA83ED01E31BA2C0D1 /* FilterableImage.swift in Sources */,
 				8D38E65C68509AF674E59C21 /* FilterableImageView.swift in Sources */,

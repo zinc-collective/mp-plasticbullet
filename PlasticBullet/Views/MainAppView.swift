@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  MainAppView.swift
 //  PlasticBullet
 //
 //  Created by Christopher Wallace on 1/12/20.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct MainAppView: View {
     enum ActiveSheet {
         case camera, photoLibrary, info, activity
     }
@@ -105,14 +105,14 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct MainAppView_Previews: PreviewProvider {
     @Namespace static var animation
     
     static var selectedImage: ObservableUIImage = ObservableUIImage(FilterableImage(rawImage: testImages[0]!))
     static var miscViewFlags: ObservableMiscViewFlags = ObservableMiscViewFlags()
 
     static var previews: some View {
-        ContentView()
+        MainAppView()
             .environmentObject(selectedImage)
             .environmentObject(miscViewFlags)
     }
