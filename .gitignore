@@ -1,12 +1,12 @@
 ._*
-.DS_Store
 *.xcodeproj
 *.xcworkspace
+*.ipa
+.DS_Store
 xcuserdata
 /build
 Pods/
 Podfile.lock
-*.ipa
 img
 Marketing/
 todo.md
