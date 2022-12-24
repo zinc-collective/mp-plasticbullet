@@ -33,8 +33,12 @@ struct ActivityView: UIViewControllerRepresentable {
 struct ActivityView_Previews: PreviewProvider {
     static var activityItems: [Any] = [testImages[0]!]
     static var applicationActivities: [UIActivity]? = nil
+    @State static var isShowingSheet = true
     
     static var previews: some View {
-        ActivityView(activityItems: activityItems, applicationActivities: applicationActivities)
+        NavigationView {}
+            .sheet(isPresented: $isShowingSheet){
+                ActivityView(activityItems: activityItems, applicationActivities: applicationActivities)
+            }
     }
 }
