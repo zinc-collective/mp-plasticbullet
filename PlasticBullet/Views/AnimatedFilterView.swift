@@ -25,30 +25,33 @@ struct AnimatedFilterView: View {
     var body: some View {
         ZStack {
             VStack {
-                LazyVGrid(columns: colums, spacing: 2, content: {
+                LazyVGrid(columns: colums, alignment: .center, spacing: 2, content: {
                     ForEach(models) { model in
                         ZStack {
-                            if chosenTileModel.showFullscreen && chosenTileModel.image.id == model.id {
-                                RoundedRectangle(cornerRadius: 15)
-                                    .fill(Color.clear)
-                            }
-                            else {
-                                FilterableImageView(model: FilterableImageViewModel(image: model))
-                                    .frame(maxHeight: 225)
-                                    .matchedGeometryEffect(id: model.id, in: animation)
-                                    .onTapGesture {
-                                        withAnimation {
-                                            chosenTileModel.showFullscreen = false
-                                            chosenTileModel.image = model
-                                            chosenTileModel.showFullscreen = true
-                                            
-                                            print("AnimatedFilterView -> Fullscreen?: \(chosenTileModel.showFullscreen) - \(chosenTileModel.id) - \(model.id)")
+                            VStack(alignment: .center) {
+                                if chosenTileModel.showFullscreen && chosenTileModel.image.id == model.id {
+                                    RoundedRectangle(cornerRadius: 15)
+                                        .fill(Color.clear)
+                                }
+                                else {
+                                    FilterableImageView(model: FilterableImageViewModel(image: model))
+                                        .frame(maxHeight: 225)
+                                        .matchedGeometryEffect(id: model.id, in: animation)
+                                        .onTapGesture {
+                                            withAnimation {
+                                                chosenTileModel.showFullscreen = false
+                                                chosenTileModel.image = model
+                                                chosenTileModel.showFullscreen = true
+                                                
+                                                print("AnimatedFilterView -> Fullscreen?: \(chosenTileModel.showFullscreen) - \(chosenTileModel.id) - \(model.id)")
+                                            }
                                         }
-                                    }
+                                }
                             }
                         }
                         .scaleEffect(chosenTileModel.showFullscreen && chosenTileModel.image.id == model.id ? chosenTileModel.scale : 1)
                         .zIndex(0)
+                        .padding(.bottom, 6)
                     }
                 })
                 Spacer()
