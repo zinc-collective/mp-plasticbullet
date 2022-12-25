@@ -10,11 +10,12 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    let analytics: AnalyticsProvider = SentryAnalytics()
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        analytics.load(nil)
         return true
     }
 
@@ -35,3 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+protocol AnalyticsProvider {
+    func load(_ config: [AnyHashable:Any]?)
+}

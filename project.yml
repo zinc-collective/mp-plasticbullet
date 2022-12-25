@@ -9,6 +9,9 @@ packages:
   SwiftyMarkdown:
     url: https://github.com/SimonFairbairn/SwiftyMarkdown
     majorVersion: 1.2.4
+  Sentry:
+    url: https://github.com/getsentry/sentry-cocoa
+    majorVersion: 7.0.0
 targets:
   PlasticBullet:
     CFBundleDisplayName: "PlasticBullet"
