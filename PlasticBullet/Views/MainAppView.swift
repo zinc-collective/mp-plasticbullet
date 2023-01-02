@@ -59,9 +59,9 @@ struct MainAppView: View {
                 if(miscViewFlags.sheetType == .activity){
                     ActivityView(activityItems: [selectedImage.image.processedImage], callback: notifySaveCallback)
                 } else if(miscViewFlags.sheetType == .camera){
-                    ImagePicker(source: miscViewFlags.source)
+                    CameraPicker(source: miscViewFlags.source)
                 } else if(miscViewFlags.sheetType == .photoLibrary){
-                    ImagePicker(source: miscViewFlags.source)
+                    PhotoLibraryPicker()
                 } else {
                     Panel_Info(miscViewFlags: miscViewFlags)
                 }

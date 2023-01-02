@@ -9,10 +9,14 @@
 import SwiftUI
 
 class ObservableUIImage: ObservableObject {
-    @Published var image: FilterableImage
+    typealias ImageType = FilterableImage
+    @Published var image: ImageType
     
-    init(_ image: FilterableImage) {
+    init(_ image: ImageType) {
+        self.image = image
+    }
+    
+    func replaceImage(_ image: ImageType) {
         self.image = image
     }
 }
-
