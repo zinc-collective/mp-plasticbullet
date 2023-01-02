@@ -55,19 +55,14 @@ struct AnimatedFilterView: View {
                     }
                 })
                 Spacer()
+                Spacer()
+                Spacer()
+                Spacer()
                 HStack(spacing: 15){
-                    Spacer()
-                    BTN_Camera(useAlternateIcon: true)
-                        .padding([.leading, .trailing])
-                    Spacer()
                     Button(action: reloadAllFilters){
                         Image("refresh-button")
                             .renderingMode(.original)
                     }
-                    Spacer()
-                    BTN_Library(useAlternateIcon: true)
-                        .padding([.leading, .trailing])
-                    Spacer()
                 }
                 Spacer()
             } // VStack
@@ -101,7 +96,7 @@ struct AnimatedFilterView: View {
         })
     } // body
     
-    func buildList() -> Void {
+    public func buildList() -> Void {
         models.removeAll()
         for _ in 0..<tileCount {
             models.append(FilterableImage(rawImage: selectedImage.image.rawImage))
