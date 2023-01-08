@@ -18,6 +18,23 @@ struct SheetImageView: View {
     @State private var showingPopup: Bool = false
     @State private var msg: String = ""
     
+    
+    init(showDetailSheet: Binding<Bool>, chosenViewModel: Binding<TestImageVM>) {
+        _showDetailSheet = showDetailSheet
+        _chosenViewModel = chosenViewModel
+        let coloredAppearance = UINavigationBarAppearance()
+        coloredAppearance.configureWithOpaqueBackground()
+        coloredAppearance.backgroundColor = .black
+        coloredAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        coloredAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        
+        UINavigationBar.appearance().standardAppearance = coloredAppearance
+        UINavigationBar.appearance().compactAppearance = coloredAppearance
+        UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
+        
+        UINavigationBar.appearance().tintColor = .white
+    }
+    
     var body: some View {
         VStack {
             Spacer()
@@ -62,11 +79,10 @@ struct SheetImageView: View {
                 Button(action: {
                     self.showDetailSheet = false
                 }, label: {
-                    Image("splash-logo")
+                    Image("logo")
                         .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(height: 150)
-                        .padding(.top, 30)
+                        .frame(width: 150)
+                        .aspectRatio(contentMode: .fill)
                 })
             }
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -81,6 +97,7 @@ struct SheetImageView: View {
                 })
             }
         })
+        .navigationBarTitleDisplayMode(.inline)
         .sheet(isPresented: $showSaveSheet){
             ActivityView(activityItems: [chosenViewModel.$processedImage.wrappedValue], callback: notifySaveCallback)
         }

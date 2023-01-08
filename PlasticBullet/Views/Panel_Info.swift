@@ -18,22 +18,24 @@ struct Panel_Info: View {
     @State private var p2: String = ""
     @State private var p3: String = ""
     
+    
+    init() {
+      let coloredAppearance = UINavigationBarAppearance()
+      coloredAppearance.configureWithTransparentBackground()
+      coloredAppearance.backgroundColor = .gray
+      coloredAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+      coloredAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+      
+      UINavigationBar.appearance().standardAppearance = coloredAppearance
+      UINavigationBar.appearance().compactAppearance = coloredAppearance
+      UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
+      
+      UINavigationBar.appearance().tintColor = .white
+    }
+    
+    
     var body: some View {
         VStack {
-            HStack {
-                Button(action: {
-                    self.miscViewFlags.isShowingSheet = false
-                }) {
-                    Image(systemName: "arrow.left")
-                }
-                Spacer()
-                Image("logo")
-                Spacer()
-            }
-                .padding()
-                .foregroundColor(Color.white)
-                .background(Color.gray)
-            
             Text(p1)
                 .padding()
             
@@ -65,6 +67,31 @@ struct Panel_Info: View {
             
 //            print((self.first?.attributedString().string)!)
         })
+        .navigationBarHidden(false)
+        .toolbar(content: {
+            ToolbarItem(placement: .principal) {
+                Button(action: {
+                    self.miscViewFlags.isShowingSheet = false
+                }, label: {
+                    Image("logo")
+                        .resizable()
+                        .frame(width: 150)
+                        .aspectRatio(contentMode: .fill)
+                })
+            }
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(action: {
+                    self.miscViewFlags.isShowingSheet = false
+                }, label: {
+                    Image(systemName: "arrow.left")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(height: 150)
+                        .padding(.top, 30)
+                })
+            }
+        })
+        .navigationBarTitleDisplayMode(.inline)
     }
     
     func viewDidLoad() {
