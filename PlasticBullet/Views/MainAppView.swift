@@ -17,8 +17,6 @@ struct MainAppView: View {
     @EnvironmentObject var miscViewFlags: ObservableMiscViewFlags    
     
     @State private var bgImage: Image = Image("160421-IMG_5876-")
-    @State private var showingPopup = false
-    @State private var msg: String = ""
     
     var body: some View {
         let navLink = NavigationLink(
@@ -56,9 +54,7 @@ struct MainAppView: View {
                 .edgesIgnoringSafeArea([.top, .bottom])
             }
             .sheet(isPresented: $miscViewFlags.isShowingSheet){
-                if(miscViewFlags.sheetType == .activity){
-                    ActivityView(activityItems: [selectedImage.image.processedImage], callback: notifySaveCallback)
-                } else if(miscViewFlags.sheetType == .camera){
+                if(miscViewFlags.sheetType == .camera){
                     CameraPicker(source: miscViewFlags.source)
                 } else if(miscViewFlags.sheetType == .photoLibrary){
                     PhotoLibraryPicker()
@@ -70,19 +66,6 @@ struct MainAppView: View {
                 self.loadRandomImage()
             })
         }
-        .popup(isPresented: $showingPopup, type: .floater(), position: .bottom, autohideIn: 3) {
-            HStack {
-                Text(msg)
-                    .font(.system(size: 10, weight: .light, design: .default))
-                    .foregroundColor(Color.black)
-                    .padding(5)
-                    .padding(.leading, 10)
-                    .padding(.trailing, 10)
-            }
-            .background(Color.white)
-            .shadow(radius: 10, x: 2, y: 2)
-            .cornerRadius(40.0)
-        }
     }
     
     func loadRandomImage() {
@@ -92,16 +75,6 @@ struct MainAppView: View {
     
     func getRandomIndex(max: Int) -> Int {
         return Int.random(in: 0...max)
-    }
-    
-    func notifySaveCallback(_ activityType: UIActivity.ActivityType?, _ completed: Bool, _ returnedItems: [Any]?, _ error: Error?) -> Void {
-        print(completed ? "SUCCESS!" : "FAILURE")
-        self.setPopMsg(msg: "Saved to your Photo Library")
-        self.showingPopup.toggle()
-    }
-    
-    func setPopMsg(msg: String) {
-        self.msg = msg
     }
 }
 //

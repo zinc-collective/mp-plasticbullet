@@ -11,7 +11,12 @@ struct SheetImageView: View {
     @EnvironmentObject var miscViewFlags: ObservableMiscViewFlags
     @EnvironmentObject var vm: TestVM
     
+    @Binding var showDetailSheet: Bool
     @Binding var chosenViewModel: TestImageVM
+    
+    @State private var showSaveSheet: Bool = false
+    @State private var showingPopup: Bool = false
+    @State private var msg: String = ""
     
     var body: some View {
         VStack {
@@ -55,7 +60,7 @@ struct SheetImageView: View {
         .toolbar(content: {
             ToolbarItem(placement: .principal) {
                 Button(action: {
-                    print("###---> FULLSCREEN.principal Button")
+                    self.showDetailSheet = false
                 }, label: {
                     Image("splash-logo")
                         .resizable()
@@ -64,23 +69,44 @@ struct SheetImageView: View {
                         .padding(.top, 30)
                 })
             }
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button(action:{}, label:{
-                    EmptyView()
-                })
-                .frame(width:33,height:0)
-            }
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: {
-                    self.miscViewFlags.isShowingSheet = true
-                    self.miscViewFlags.sheetType = .activity
-                    print("FullscreenView: \(self.miscViewFlags)")
+                    self.showSaveSheet = true
                 }, label: {
                     Image("share")
-                        .padding()
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(height: 150)
+                        .padding(.top, 30)
                 })
             }
         })
+        .sheet(isPresented: $showSaveSheet){
+            ActivityView(activityItems: [chosenViewModel.$processedImage.wrappedValue], callback: notifySaveCallback)
+        }
+        .popup(isPresented: $showingPopup, type: .floater(), position: .bottom, autohideIn: 3) {
+            HStack {
+                Text(msg)
+                    .font(.system(size: 10, weight: .light, design: .default))
+                    .foregroundColor(Color.black)
+                    .padding(5)
+                    .padding(.leading, 10)
+                    .padding(.trailing, 10)
+            }
+            .background(Color.white)
+            .shadow(radius: 10, x: 2, y: 2)
+            .cornerRadius(40.0)
+        }
+    }
+    
+    func notifySaveCallback(_ activityType: UIActivity.ActivityType?, _ completed: Bool, _ returnedItems: [Any]?, _ error: Error?) -> Void {
+        print(completed ? "SUCCESS!" : "FAILURE")
+        self.setPopMsg(msg: "Saved to your Photo Library")
+        self.showingPopup.toggle()
+    }
+    
+    func setPopMsg(msg: String) {
+        self.msg = msg
     }
 }
 //

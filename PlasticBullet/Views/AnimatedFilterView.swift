@@ -132,10 +132,12 @@ struct AnimatedFilterView: View {
             }
         })
         .sheet(isPresented: $showDetailSheet){
-            SheetImageView(chosenViewModel: $vm.chosenViewModel)
-                .onTapGesture {
-                    showDetailSheet = false
-                }
+            NavigationView {
+                SheetImageView(showDetailSheet: $showDetailSheet, chosenViewModel: $vm.chosenViewModel)
+//                    .onTapGesture {
+//                        showDetailSheet = false
+//                    }
+            }
         }
     } // body
     
