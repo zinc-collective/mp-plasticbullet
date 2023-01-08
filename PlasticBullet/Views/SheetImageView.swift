@@ -16,10 +16,7 @@ struct SheetImageView: View {
     var body: some View {
         VStack {
             Spacer()
-//            ImageTile(model: chosenViewModel)
-            Image(uiImage: $chosenViewModel.processedImage.wrappedValue)
-                .resizable()
-                .scaledToFit()
+            ImageTile(model: chosenViewModel.$processedImage)
                 .padding(.top, 50)
                 .frame(maxHeight: 570)
             Spacer()

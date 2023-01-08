@@ -30,10 +30,7 @@ struct AnimatedFilterView: View {
                         if(vm.isLoading){
                             ProgressView()
                         } else {
-//                            ImageTile(model: model)
-                            Image(uiImage: model.processedImage)
-                                .resizable()
-                                .scaledToFit()                            
+                            ImageTile(model: model.$processedImage)         
                                 .frame(maxHeight: 225)
                                 .onTapGesture {
                                     showDetailSheet = true
