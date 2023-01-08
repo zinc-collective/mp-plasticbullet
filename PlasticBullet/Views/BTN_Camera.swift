@@ -14,7 +14,7 @@ struct BTN_Camera: View {
     
     var body: some View {
         Button(action: {
-            self.miscViewFlags.isShowingSheet.toggle()
+            self.miscViewFlags.isShowingSheet = true
             self.miscViewFlags.source = .camera
             self.miscViewFlags.sheetType = .camera
         }) {

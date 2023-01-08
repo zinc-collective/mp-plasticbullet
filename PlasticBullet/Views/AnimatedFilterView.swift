@@ -83,7 +83,7 @@ struct AnimatedFilterView: View {
         .toolbar(content: {
             ToolbarItem(placement: .principal) {
                 Button(action: {
-                    self.miscViewFlags.isShowingSheet.toggle()
+                    self.miscViewFlags.isShowingSheet = true
                     self.miscViewFlags.sheetType = .info
                 }, label: {
                     Image("splash-logo")
@@ -107,6 +107,7 @@ struct AnimatedFilterView: View {
                     print(error)
                 }
             }
+//            DispatchQueue.main.async {}
         })
         .onChange(of: selectedImage.image, perform: { value in
             do {

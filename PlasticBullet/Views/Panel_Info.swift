@@ -22,7 +22,7 @@ struct Panel_Info: View {
         VStack {
             HStack {
                 Button(action: {
-                    self.miscViewFlags.isShowingSheet.toggle()
+                    self.miscViewFlags.isShowingSheet = false
                 }) {
                     Image(systemName: "arrow.left")
                 }

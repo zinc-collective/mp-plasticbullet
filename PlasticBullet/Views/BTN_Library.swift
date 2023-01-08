@@ -14,7 +14,7 @@ struct BTN_Library: View {
     
     var body: some View {
         Button(action: {
-            self.miscViewFlags.isShowingSheet.toggle()
+            self.miscViewFlags.isShowingSheet = true
             self.miscViewFlags.source = .photoLibrary
             self.miscViewFlags.sheetType = .photoLibrary
         }) {

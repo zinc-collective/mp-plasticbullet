@@ -13,7 +13,7 @@ struct BTN_Info: View {
     
     var body: some View {
         Button(action: {
-            self.miscViewFlags.isShowingSheet.toggle()
+            self.miscViewFlags.isShowingSheet = true
             self.miscViewFlags.sheetType = .info
         }) {
             Image("info")
