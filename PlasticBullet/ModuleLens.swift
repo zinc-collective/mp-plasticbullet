@@ -68,7 +68,7 @@ class ModuleLens: ObservableObject {
         let temp0 = self.processImage(image: source, filterEffect: self.gaussianBlur)
         let temp1 = self.processImage(image: temp0, filterEffect: self.gaussianBlur)
         let finalResult = self.processImage(image: temp1, filterEffect: self.sepia)
-        
+        print("###------------ RETURN FINAL RESULT!!!!!!")
         return finalResult
     }
 }

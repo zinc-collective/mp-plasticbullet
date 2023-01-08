@@ -37,7 +37,7 @@ struct ImagePicker: UIViewControllerRepresentable {
                 if let uiImageOriented = UIImage.fixedOrientation(for: uiImage) {
                     uiImage = uiImageOriented
                 }
-                parent.selectedImage.image = FilterableImage(rawImage: uiImage)
+                parent.selectedImage.image = TestImageVM(rawImage: uiImage)
                 print("picked: ", parent.selectedImage.image as Any)
             }
             parent.miscViewFlags.navLinkIsActive = true
@@ -50,13 +50,13 @@ struct ImagePicker: UIViewControllerRepresentable {
         Coordinator(self)
     }
 }
-
-struct ImagePicker_Previews: PreviewProvider {
-    static var source: UIImagePickerController.SourceType = .photoLibrary
-    static var selectedImage: ObservableUIImage = ObservableUIImage(FilterableImage(rawImage: testImages[0]!))
-    
-    static var previews: some View {
-        ImagePicker(source: source)
-            .environmentObject(selectedImage)
-    }
-}
+//
+//struct ImagePicker_Previews: PreviewProvider {
+//    static var source: UIImagePickerController.SourceType = .photoLibrary
+//    static var selectedImage: ObservableUIImage = ObservableUIImage(FilterableImage(rawImage: testImages[0]!))
+//    
+//    static var previews: some View {
+//        ImagePicker(source: source)
+//            .environmentObject(selectedImage)
+//    }
+//}

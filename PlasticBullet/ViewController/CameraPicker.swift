@@ -36,7 +36,7 @@ struct CameraPicker: UIViewControllerRepresentable {
                 if let uiImageOriented = UIImage.fixedOrientation(for: uiImage) {
                     uiImage = uiImageOriented
                 }
-                parent.selectedImage.image = FilterableImage(rawImage: uiImage)
+                parent.selectedImage.image = TestImageVM(rawImage: uiImage)
                 print("picked: ", parent.selectedImage.image as Any)
             }
             parent.miscViewFlags.navLinkIsActive = true

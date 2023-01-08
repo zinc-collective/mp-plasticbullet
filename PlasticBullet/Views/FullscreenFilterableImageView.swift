@@ -9,19 +9,19 @@
 import SwiftUI
 
 struct FullscreenFilterableImageView: View {
-    @ObservedObject var chosenTileModel: FilterableImageViewModel
+    @ObservedObject var model: FilterableImageViewModel
     @EnvironmentObject var miscViewFlags: ObservableMiscViewFlags
     
     var animation: Namespace.ID
     var body: some View {
         VStack {
             Spacer()
-            FilterableImageView(model: chosenTileModel)
+            FilterableImageView(model: model)
                 .padding(.top, 50)
                 .frame(maxHeight: 570)
-                .scaleEffect(chosenTileModel.scale)
-                .matchedGeometryEffect(id: chosenTileModel.id, in: animation)
-                .offset(chosenTileModel.offset)
+                .scaleEffect(model.scale)
+                .matchedGeometryEffect(id: model.id, in: animation)
+                .offset(model.offset)
                 .gesture(DragGesture().onChanged(onChanged(value:)).onEnded(onEnd(value:)))
             Spacer()
             HStack(spacing: 15){
@@ -29,7 +29,7 @@ struct FullscreenFilterableImageView: View {
                 BTN_Camera(useAlternateIcon: true)
                     .padding([.leading, .trailing])
                 Spacer()
-                BTN_Refresh(model: chosenTileModel)
+//                BTN_Refresh(model: model)
                 Spacer()
                 BTN_Library(useAlternateIcon: true)
                     .padding([.leading, .trailing])
@@ -44,7 +44,7 @@ struct FullscreenFilterableImageView: View {
         .toolbar(content: {
             ToolbarItem(placement: .principal) {
                 Button(action: {
-
+                    print("###---> FULLSCREEN.principal Button")
                 }, label: {
                     Image("splash-logo")
                         .resizable()
@@ -74,20 +74,20 @@ struct FullscreenFilterableImageView: View {
     
     func close(){
         withAnimation {
-            chosenTileModel.showFullscreen = false
+            model.showFullscreen = false
         }
     }
     
     func onChanged(value: DragGesture.Value){
         // Only Moving View When Swipes Down....
         if value.translation.height > 0 {
-            chosenTileModel.offset = value.translation
+            model.offset = value.translation
             // Scaling View....
             let screenHeight = UIScreen.main.bounds.height
-            let progress = chosenTileModel.offset.height / screenHeight
+            let progress = model.offset.height / screenHeight
             // only if > 0.5...
             if 1 - progress > 0.5 {
-                chosenTileModel.scale = 1 - progress
+                model.scale = 1 - progress
             }
         }
     }
@@ -97,23 +97,23 @@ struct FullscreenFilterableImageView: View {
         withAnimation(.default) {
             // Checking And Closing View...
             if value.translation.height > 300 {
-                chosenTileModel.showFullscreen = false
+                model.showFullscreen = false
             }
-            chosenTileModel.reset()
+            model.reset()
         }
     }
 }
 
-struct FullscreenFilterableImageView_Previews: PreviewProvider {
-    @Namespace static var animation
-    static var chosenTileModel: FilterableImageViewModel = FilterableImageViewModel(image: FilterableImage(rawImage: testImages[2]!))
-    
-    static var previews: some View {
-        NavigationView {
-            FullscreenFilterableImageView(chosenTileModel: chosenTileModel, animation: animation)
-        }
-    }
-}
+//struct FullscreenFilterableImageView_Previews: PreviewProvider {
+//    @Namespace static var animation
+//    static var model: FilterableImageViewModel = FilterableImageViewModel(image: FilterableImage(rawImage: testImages[2]!))
+//    
+//    static var previews: some View {
+//        NavigationView {
+//            FullscreenFilterableImageView(model: model, animation: animation)
+//        }
+//    }
+//}
 
 struct NavLogo: View {
 

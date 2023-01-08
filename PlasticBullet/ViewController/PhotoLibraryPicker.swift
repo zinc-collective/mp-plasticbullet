@@ -78,20 +78,20 @@ struct PhotoLibraryPicker: UIViewControllerRepresentable {
     }
     
     func updateSelection(_ image: UIImage) {
-        selectedImage.replaceImage(FilterableImage(rawImage: image))
+        selectedImage.replaceImage(TestImageVM(rawImage: image))
         print("###---> picked")
     }
 }
-
-struct PhotoLibraryPicker_Previews: PreviewProvider {
-    @Namespace static var animation
-    
-    static var selectedImage: ObservableUIImage = ObservableUIImage(FilterableImage(rawImage: testImages[0]!))
-    static var miscViewFlags: ObservableMiscViewFlags = ObservableMiscViewFlags()
-
-    static var previews: some View {
-        PhotoLibraryPicker()
-            .environmentObject(selectedImage)
-            .environmentObject(miscViewFlags)
-    }
-}
+//
+//struct PhotoLibraryPicker_Previews: PreviewProvider {
+//    @Namespace static var animation
+//    
+//    static var selectedImage: ObservableUIImage = ObservableUIImage(FilterableImage(rawImage: testImages[0]!))
+//    static var miscViewFlags: ObservableMiscViewFlags = ObservableMiscViewFlags()
+//
+//    static var previews: some View {
+//        PhotoLibraryPicker()
+//            .environmentObject(selectedImage)
+//            .environmentObject(miscViewFlags)
+//    }
+//}

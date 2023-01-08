@@ -9,7 +9,7 @@
 import SwiftUI
 
 class ObservableUIImage: ObservableObject {
-    typealias ImageType = FilterableImage
+    typealias ImageType = TestImageVM
     @Published var image: ImageType
     
     init(_ image: ImageType) {

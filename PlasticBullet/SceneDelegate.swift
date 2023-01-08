@@ -19,11 +19,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 
         // Create the SwiftUI view that provides the window contents.
-        let selectedImage = ObservableUIImage(FilterableImage(rawImage: UIImage(imageLiteralResourceName: "101123-Steve_Dodds-")))
+//        let chosenTileModel: FilterableImageViewModel = FilterableImageViewModel(image: FilterableImage(rawImage: testImages[1]!))
+//        let vm: ObservableAnimatedViewModel = ObservableAnimatedViewModel()
+        let vm: TestVM = TestVM()
+        let selectedImage = ObservableUIImage(TestImageVM(rawImage: UIImage(imageLiteralResourceName: "101123-Steve_Dodds-")))
         let miscViewFlags = ObservableMiscViewFlags()
         let mainAppView = MainAppView()
             .environmentObject(selectedImage)
             .environmentObject(miscViewFlags)
+            .environmentObject(vm)
             
         
 

@@ -12,9 +12,13 @@ struct FilterableImageView: View {
     @ObservedObject var model: FilterableImageViewModel
     
     var body: some View {
-        Image(uiImage: self.model.image.processedImage)
+        Image(uiImage: model.processedImage)
             .resizable()
             .scaledToFit()
+            .onChange(of: model.image, perform: { value in
+                print("###---> FilterableImageView model change detected")
+            })
+        //probaly don't need this onChanged(...)
     }
 }
 

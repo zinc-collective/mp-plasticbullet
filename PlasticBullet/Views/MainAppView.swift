@@ -104,16 +104,16 @@ struct MainAppView: View {
         self.msg = msg
     }
 }
-
-struct MainAppView_Previews: PreviewProvider {
-    @Namespace static var animation
-    
-    static var selectedImage: ObservableUIImage = ObservableUIImage(FilterableImage(rawImage: testImages[0]!))
-    static var miscViewFlags: ObservableMiscViewFlags = ObservableMiscViewFlags()
-
-    static var previews: some View {
-        MainAppView()
-            .environmentObject(selectedImage)
-            .environmentObject(miscViewFlags)
-    }
-}
+//
+//struct MainAppView_Previews: PreviewProvider {
+//    @Namespace static var animation
+//    
+//    static var selectedImage: ObservableUIImage = ObservableUIImage(FilterableImage(rawImage: testImages[0]!))
+//    static var miscViewFlags: ObservableMiscViewFlags = ObservableMiscViewFlags()
+//
+//    static var previews: some View {
+//        MainAppView()
+//            .environmentObject(selectedImage)
+//            .environmentObject(miscViewFlags)
+//    }
+//}
