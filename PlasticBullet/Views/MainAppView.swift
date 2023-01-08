@@ -59,7 +59,9 @@ struct MainAppView: View {
                 } else if(miscViewFlags.sheetType == .photoLibrary){
                     PhotoLibraryPicker()
                 } else {
-                    Panel_Info(miscViewFlags: miscViewFlags)
+                    NavigationView {
+                        Panel_Info()
+                    }
                 }
             }
             .onAppear(perform: {

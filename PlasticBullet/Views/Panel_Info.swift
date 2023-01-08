@@ -10,7 +10,7 @@ import SwiftUI
 import SwiftyMarkdown
 
 struct Panel_Info: View {
-    @StateObject var miscViewFlags: ObservableMiscViewFlags
+    @EnvironmentObject var miscViewFlags: ObservableMiscViewFlags
     
     @State private var first: SwiftyMarkdown?
     @State private var second: SwiftyMarkdown?
@@ -91,6 +91,7 @@ struct Panel_Info_Previews: PreviewProvider {
     static var miscViewFlags: ObservableMiscViewFlags = ObservableMiscViewFlags()
     
     static var previews: some View {
-        Panel_Info(miscViewFlags: miscViewFlags)
+        Panel_Info()
+            .environmentObject(miscViewFlags)
     }
 }
