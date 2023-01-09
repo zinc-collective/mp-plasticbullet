@@ -94,7 +94,7 @@ struct SheetImageView: View {
                 }, label: {
                     Image("share")
                         .resizable()
-                        .frame(width:20, height: 20)
+                        .frame(width:20, height: 25)
                         .aspectRatio(contentMode: .fit)
                         .foregroundColor(.white)
                 })
