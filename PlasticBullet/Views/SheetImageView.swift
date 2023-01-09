@@ -56,7 +56,7 @@ struct SheetImageView: View {
                     Task {
                         do {
 //                                try await vm.reloadAllFilters()
-                            vm.replaceSelectedViewModel(TestImageVM(rawImage: testImages[4]!))
+                            vm.processSelectedViewModel()
                         } catch {
                             throw error
                         }

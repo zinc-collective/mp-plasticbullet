@@ -41,13 +41,35 @@ class TestVM: ObservableObject {
         self.replaceFirst(DataType(rawImage: testImages[2]!))
     }
     
-    func replaceSelectedViewModel(_ newElement: DataType) {
-        var newIndex = self.data.firstIndex(where: { $0.id == chosenViewModel.id })
-        var newIndex2 = self.data.firstIndex(of: chosenViewModel)
+    func replaceViewModel(existingModel: DataType, newElement: DataType) -> Int? {
+        let newIndex = self.data.firstIndex(where: { $0.id == existingModel.id })
+        let newIndex2 = self.data.firstIndex(of: existingModel)
         print("### index comparision: \(newIndex == newIndex2 ? "SAME" : "DIFFERENT") -- \(newIndex!) : \(newIndex2!)")
+        
         self.data.remove(at: newIndex ?? 0)
         self.data.insert(newElement, at: newIndex ?? 0)
+        
+        if newIndex == nil {
+            print("###----> ORIGINAL MODEL NOT FOUND -- FIRST DATA ITEM WAS REPLACED")
+        }
+        return newIndex
+    }
+    
+    func replaceSelectedViewModel(_ newElement: DataType) {
+        _ = replaceViewModel(existingModel: self.chosenViewModel, newElement: newElement)
         self.chosenViewModel = newElement
+    }
+    
+    func processSelectedViewModel() {
+        let newFilteredModel = self.processFilter(on: self.chosenViewModel)
+//        let newFilteredModel = self.processFilter(on: TestImageVM(rawImage: testImages[4]!))
+        self.replaceSelectedViewModel(newFilteredModel)
+    }
+    
+    private func processFilter(on model: DataType) -> DataType {
+//        model.processImage()
+        // this is bad becasue it violates the immutability of "rawImage"
+        return TestImageVM(rawImage: model.processImage())
     }
     
 //    func reloadAllFilters() async throws {

@@ -56,8 +56,12 @@ struct TestImageVM: Identifiable, Equatable {
     //
     //    @MainActor
     
-    func processImage() {
-        self.resetImages(with: testImages[4]!)
+    func processImage() -> UIImage {
+//        self.resetImages(with: testImages[4]!)
+//        self.imageLens.processFilters(source: self.processedImage, completion: { newImge in
+//            self.processedImage = newImge
+//        })
+        return self.imageLens.processFilters(source: self.processedImage)
     }
     //    public func processImage() async -> Void {
     //        do {
