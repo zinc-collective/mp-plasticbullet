@@ -31,3 +31,15 @@ class ObservableMiscViewFlags: ObservableObject {
         self.navLinkIsActive = navLinkIsActive
     }
 }
+/*
+    TODO: https://dev.to/fassko/how-to-deal-with-modal-views-a-k-a-sheets-with-swiftui-1no5
+    - pull out sheet views
+    - use the last method in this article
+*/
+
+/*
+    TODO: https://www.hackingwithswift.com/quick-start/swiftui/what-is-the-appstorage-property-wrapper,
+         https://www.hackingwithswift.com/books/ios-swiftui/storing-user-settings-with-userdefaults
+    - store app settings in @AppStorage/UserDefaults.standard
+*/
+
