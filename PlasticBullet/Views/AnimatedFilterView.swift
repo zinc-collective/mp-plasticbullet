@@ -30,8 +30,9 @@ struct AnimatedFilterView: View {
                         if(vm.isLoading){
                             ProgressView()
                         } else {
-                            ImageTile(model: model.$processedImage)         
+                            ImageTile(model: model.$processedImage)
                                 .frame(maxHeight: 225)
+                                .padding(.bottom, 5)
                                 .onTapGesture {
                                     showDetailSheet = true
                                     vm.chosenViewModel = model
@@ -98,7 +99,7 @@ struct AnimatedFilterView: View {
             Task {
                 do {
                     print("###----> appearing")
-//                    try vm.buildList(from: selectedImage.image, count: tileCount)
+                    try vm.buildList(from: selectedImage.image, count: tileCount)
                     if let firstModel = vm.data.first {
 //                        vm.setAsSelectedModel(firstModel)
                     }
