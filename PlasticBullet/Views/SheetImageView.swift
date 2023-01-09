@@ -24,6 +24,7 @@ struct SheetImageView: View {
         _chosenViewModel = chosenViewModel
         let coloredAppearance = UINavigationBarAppearance()
         coloredAppearance.configureWithOpaqueBackground()
+        coloredAppearance.shadowColor = .clear
         coloredAppearance.backgroundColor = .black
         coloredAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
         coloredAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
@@ -35,11 +36,13 @@ struct SheetImageView: View {
         UINavigationBar.appearance().tintColor = .white
     }
     
+    
     var body: some View {
         VStack {
             Spacer()
             ImageTile(model: chosenViewModel.$processedImage)
                 .padding(.top, 50)
+                .padding(.horizontal, 10)
                 .frame(maxHeight: 570)
             Spacer()
             Spacer()
@@ -81,7 +84,7 @@ struct SheetImageView: View {
                 }, label: {
                     Image("logo")
                         .resizable()
-                        .frame(width: 150)
+                        .frame(width: 150, height: 30)
                         .aspectRatio(contentMode: .fill)
                 })
             }
@@ -91,9 +94,9 @@ struct SheetImageView: View {
                 }, label: {
                     Image("share")
                         .resizable()
+                        .frame(width:20, height: 20)
                         .aspectRatio(contentMode: .fit)
-                        .frame(height: 150)
-                        .padding(.top, 30)
+                        .foregroundColor(.white)
                 })
             }
         })

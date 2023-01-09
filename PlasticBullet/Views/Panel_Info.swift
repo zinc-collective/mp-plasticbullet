@@ -20,38 +20,41 @@ struct Panel_Info: View {
     
     
     init() {
-      let coloredAppearance = UINavigationBarAppearance()
-      coloredAppearance.configureWithTransparentBackground()
-      coloredAppearance.backgroundColor = .gray
-      coloredAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-      coloredAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-      
-      UINavigationBar.appearance().standardAppearance = coloredAppearance
-      UINavigationBar.appearance().compactAppearance = coloredAppearance
-      UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
-      
-      UINavigationBar.appearance().tintColor = .white
+        let coloredAppearance = UINavigationBarAppearance()
+        coloredAppearance.configureWithOpaqueBackground()
+        coloredAppearance.shadowColor = .clear
+        coloredAppearance.backgroundColor = .gray
+        coloredAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        coloredAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        
+        UINavigationBar.appearance().standardAppearance = coloredAppearance
+        UINavigationBar.appearance().compactAppearance = coloredAppearance
+        UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
+        
+        UINavigationBar.appearance().tintColor = .white
     }
     
     
     var body: some View {
-        VStack {
-            Text(p1)
-                .padding()
-            
-            HStack {
-                Toggle(isOn: $miscViewFlags.useFullResolution) {
-                    Text("Unlimited Resolution")
+        ScrollView {
+            VStack {
+                Text(p1)
+                    .padding()
+                
+                HStack {
+                    Toggle(isOn: $miscViewFlags.useFullResolution) {
+                        Text("Unlimited Resolution")
+                    }
                 }
-            }
                 .padding()
                 .foregroundColor(Color.white)
                 .background(Color.gray)
-                        
-            Text(p2)
-                .padding()
-                .foregroundColor(Color.white)
-            Spacer()
+                
+                Text(p2)
+                    .padding()
+                    .foregroundColor(Color.white)
+                Spacer()
+            }
         }
         .foregroundColor(Color.white)
         .accentColor(Color.white)
@@ -75,7 +78,7 @@ struct Panel_Info: View {
                 }, label: {
                     Image("logo")
                         .resizable()
-                        .frame(width: 150)
+                        .frame(width: 150, height: 30)
                         .aspectRatio(contentMode: .fill)
                 })
             }
@@ -85,9 +88,9 @@ struct Panel_Info: View {
                 }, label: {
                     Image(systemName: "arrow.left")
                         .resizable()
+                        .frame(width:20, height: 20)
                         .aspectRatio(contentMode: .fit)
-                        .frame(height: 150)
-                        .padding(.top, 30)
+                        .foregroundColor(.white)
                 })
             }
         })
