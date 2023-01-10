@@ -56,12 +56,16 @@ struct TestImageVM: Identifiable, Equatable {
     //
     //    @MainActor
     
-    func processImage() -> UIImage {
+    func processImage() async throws -> UIImage {
 //        self.resetImages(with: testImages[4]!)
 //        self.imageLens.processFilters(source: self.processedImage, completion: { newImge in
 //            self.processedImage = newImge
 //        })
-        return self.imageLens.processFilters(source: self.processedImage)
+        // source: https://thisdevbrain.com/how-to-use-async-await-with-ios-13/
+        try await withCheckedThrowingContinuation { continuation in
+            let newImage = self.imageLens.processFilters(source: self.processedImage)
+            continuation.resume(returning: newImage)
+        }
     }
     //    public func processImage() async -> Void {
     //        do {

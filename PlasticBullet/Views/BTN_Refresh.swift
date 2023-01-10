@@ -15,7 +15,7 @@ struct BTN_Refresh: View {
     var body: some View {
         Button(action: {
             Task {
-                $model.wrappedValue.processImage()
+                try? await $model.wrappedValue.processImage()
 //                await self.$model.wrappedValue.processImage()
             }
         }, label: {

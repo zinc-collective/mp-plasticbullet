@@ -61,15 +61,25 @@ class TestVM: ObservableObject {
     }
     
     func processSelectedViewModel() {
-        let newFilteredModel = self.processFilter(on: self.chosenViewModel)
-//        let newFilteredModel = self.processFilter(on: TestImageVM(rawImage: testImages[4]!))
-        self.replaceSelectedViewModel(newFilteredModel)
+        Task {
+            let newFilteredModel = await self.processFilter(on: self.chosenViewModel)
+//            let newFilteredModel = self.processFilter(on: TestImageVM(rawImage: testImages[4]!))
+            DispatchQueue.main.sync {
+                self.replaceSelectedViewModel(newFilteredModel)
+            }
+        }
     }
     
-    private func processFilter(on model: DataType) -> DataType {
+    private func processFilter(on model: DataType) async -> DataType {
 //        model.processImage()
         // this is bad becasue it violates the immutability of "rawImage"
-        return TestImageVM(rawImage: model.processImage())
+        
+        do {
+            let newImage = try? await model.processImage()
+            return TestImageVM(rawImage: newImage!)
+        } catch {
+            
+        }
     }
     
 //    func reloadAllFilters() async throws {
