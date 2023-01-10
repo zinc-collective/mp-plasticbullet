@@ -38,7 +38,17 @@ class TestVM: ObservableObject {
     }
     
     func reloadAllFilters() {
-        self.replaceFirst(DataType(rawImage: testImages[2]!))
+        for model in data {
+            Task { [weak self] in
+                guard let self = self else {
+                    print("###---> SELF NOT FOUND")
+                    return }
+                let newFilteredModel = await self.processFilter(on: model)
+                DispatchQueue.main.sync {
+                    _ = self.replaceViewModel(existingModel: model, newElement: newFilteredModel)
+                }
+            }
+        }
     }
     
     func replaceViewModel(existingModel: DataType, newElement: DataType) -> Int? {
@@ -63,25 +73,22 @@ class TestVM: ObservableObject {
     func processSelectedViewModel() {
         Task {
             let newFilteredModel = await self.processFilter(on: self.chosenViewModel)
-//            let newFilteredModel = self.processFilter(on: TestImageVM(rawImage: testImages[4]!))
-            DispatchQueue.main.sync {
-                self.replaceSelectedViewModel(newFilteredModel)
+            
+            DispatchQueue.main.sync { [weak self, newFilteredModel] in
+                self?.replaceSelectedViewModel(newFilteredModel)
             }
         }
     }
     
     private func processFilter(on model: DataType) async -> DataType {
-//        model.processImage()
-        // this is bad becasue it violates the immutability of "rawImage"
-        
+        // need a spec test to ensure preservation of "rawImage"
         do {
             let newImage = try? await model.processImage()
-            return TestImageVM(rawImage: newImage!)
+            return TestImageVM(rawImage: model.rawImage, processedImage: newImage!)
         } catch {
             
         }
     }
-    
 //    func reloadAllFilters() async throws {
 //        isLoading = true
 ////        sleep(2)

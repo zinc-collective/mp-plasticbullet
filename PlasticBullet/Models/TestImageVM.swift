@@ -25,6 +25,11 @@ struct TestImageVM: Identifiable, Equatable {
         self.processedImage = rawImage.copy() as! UIImage
     }
     
+    init(rawImage: UIImage, processedImage: UIImage) {
+        self.rawImage = rawImage
+        self.processedImage = processedImage
+    }
+    
     func resetImages(with rawImage: UIImage) {
         self.rawImage = rawImage
         self.processedImage = rawImage.copy() as! UIImage
