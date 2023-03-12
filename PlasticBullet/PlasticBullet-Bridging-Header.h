@@ -11,7 +11,7 @@
 //#import "Renderer.h"
 //#include "mojoViewController.h"
 //#import "ImageProcess.h"
-#import "RandomRenderArguments.h"
 #import "RenderArguments.h"
+#import "RandomRenderArguments.h"
 
 #endif /* PlasticBullet_Bridging_Header_h */

@@ -25,7 +25,15 @@ class ModuleLens: ObservableObject {
     
     
     // NEED TO SET VALUES
-    var colorClamp: Filter = Filter(name: "CIColorClamp", parameters: ["inputMinComponents":00, "inputMaxComponents":00])!
+    var colorClamp: Filter = Filter(name: "CIColorClamp", parameters: ["inputMinComponents": CIVector(x: CGFloat(0), y: CGFloat(0), z: CGFloat(0), w: 0.0),
+                                                                       "inputMaxComponents": CIVector(x: CGFloat(0), y: CGFloat(0), z: CGFloat(0), w: 0.0)])!
+    var colorControls: Filter = Filter(name: "CIColorControls", parameters: ["inputSaturation": 0.0,
+                                                                             "inputBrightness": 0.0,
+                                                                             "inputContrast": 0.0])!
+    var colorMonochrome: Filter = Filter(name: "CIColorMonochrome", parameters: ["inputColor": CIColor(red: CGFloat(0), green: CGFloat(0), blue: CGFloat(0)),
+                                                                                 "inputIntensity":0.0])!
+    var vignette: Filter = Filter(name: "CIVignette", parameters: ["inputRadius": 0.0, "inputIntensity":0.0])!
+    var bloom: Filter = Filter(name: "CIBloom", parameters: ["inputRadius": 0.0, "inputIntensity":0.0])!
     
     
     
@@ -73,13 +81,21 @@ class ModuleLens: ObservableObject {
         
         self.gaussianBlur.setValue((filterArgs.leakTintRGB.g * 10000)/100, forKey: "inputRadius") // this is a placeholder value
         self.sepia.setValue((filterArgs.cornerOpacity + 100)/100, forKey: "inputIntensity") // this is a placeholder value
-        self.colorClamp.setValuesForKeys(["inputMinComponents": CIVector(x: 0, y: 0, z: 0, w: 0),
-                                          "inputMaxComponents": CIVector(x: 1, y: 1, z: 1, w: 1)
+        self.colorClamp.setValuesForKeys(["inputMinComponents": CIVector(x: CGFloat(filterArgs.CCRGBMaxMin.rMin), y: CGFloat(filterArgs.CCRGBMaxMin.gMin), z: CGFloat(filterArgs.CCRGBMaxMin.bMin), w: 0.0),
+                                          "inputMaxComponents": CIVector(x: CGFloat(filterArgs.CCRGBMaxMin.rMax), y: CGFloat(filterArgs.CCRGBMaxMin.gMax), z: CGFloat(filterArgs.CCRGBMaxMin.bMax), w: 1.0)
                                          ])
-        
+        self.colorMonochrome.setValuesForKeys(["inputColor": CIColor(red: CGFloat(filterArgs.rgbValue.r), green: CGFloat(filterArgs.rgbValue.g), blue: CGFloat(filterArgs.rgbValue.b)),
+                                               "inputIntensity": filterArgs.blendrand / Double(filterArgs.randNum)
+                                              ])
+        self.colorControls.setValuesForKeys(["inputSaturation": filterArgs.blendrand,
+                                             "inputBrightness": filterArgs.difOpacity,
+                                             "inputContrast": filterArgs.contrast])
+        self.vignette.setValuesForKeys(["inputRadius": filterArgs.cornerOpacity, "inputIntensity": filterArgs.cvOpacity])
+        self.bloom.setValuesForKeys(["inputRadius": filterArgs.cornerOpacity, "inputIntensity": filterArgs.cvOpacity])
         let temp0 = self.processImage(image: source, filterEffect: self.colorClamp)
-        let temp1 = self.processImage(image: temp0, filterEffect: self.gaussianBlur)
-        let finalResult = self.processImage(image: temp1, filterEffect: self.sepia)
+        let temp1 = self.processImage(image: temp0, filterEffect: self.colorMonochrome)
+        let temp2 = self.processImage(image: temp1, filterEffect: self.colorControls)
+        let finalResult = self.processImage(image: temp2, filterEffect: self.vignette)
         print("###------------ RETURN FINAL RESULT!!!!!!")
         return finalResult
     }
